@@ -1,4 +1,4 @@
-import { AuthInputProps } from "../../types";
+import { AuthInputProps } from "../../../../../types";
 
 const AuthInput = ({
     register,

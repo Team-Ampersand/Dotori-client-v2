@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { baseURL } from '../Config/Config';
 import { BASE_HEADER } from '../Config/Config.json';
 import { getRefresh } from './getRefresh';
 
 export const apiClient = axios.create({
-	baseURL: baseURL,
+	baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 	headers: BASE_HEADER,
 });
 

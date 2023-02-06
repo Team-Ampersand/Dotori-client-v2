@@ -1,5 +1,6 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
+import "../public/static/fonts/style.css";
 
 const lightTheme = `
   --PRIMARY_P10 : #6F7AEC;
@@ -75,6 +76,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  font-family: SUIT;
 }
 input:focus,
 select:focus,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
-import "../public/static/fonts/style.css";
 
 const lightTheme = `
   --PRIMARY_P10 : #6F7AEC;

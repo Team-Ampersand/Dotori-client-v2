@@ -6,40 +6,40 @@
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-ExtraBold.otf') format('opentype');
-    font-weight: ExtraBold;
+    font-weight: 800;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-ExtraLight.otf') format('opentype');
-    font-weight: ExtraLight;
+    font-weight: 200;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-Heavy.otf') format('opentype');
-    font-weight: Heavy;
+    font-weight: 900;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-Light.otf') format('opentype');
-    font-weight: Light;
+    font-weight: 300;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-Medium.otf') format('opentype');
-    font-weight: Medium;
+    font-weight: 500;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-Regular.otf') format('opentype');
-    font-weight: Regular;
+    font-weight: 400;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-SemiBold.otf') format('opentype');
-    font-weight: SemiBold;
+    font-weight: 600;
 }
 @font-face {
     font-family: 'SUIT';
     src: url('SUIT-Thin.otf') format('opentype');
-    font-weight: Thin;
+    font-weight: 100;
 }

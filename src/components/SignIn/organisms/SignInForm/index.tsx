@@ -14,8 +14,6 @@ import * as S from "./style";
 const SignInForm = () => {
     const router = useRouter();
     const [isCheck, setIsCheck] = useState(false);
-    const [emailFocus, setEmailFocus] = useState(false);
-    const [passwordFocus, setPasswordFocus] = useState(false);
     const { register, setValue, watch, handleSubmit } = useForm<SigninForm>({
         defaultValues: {
           email: '@gsm.hs.kr',
@@ -44,7 +42,6 @@ const SignInForm = () => {
             <S.InputsWrapper>
                 <AuthInput
                     register={register("email", {
-                        onBlur(){setEmailFocus(false)},
                         required: "GSM메일을 입력해주세요.",
                         pattern: {
                             value: /^s[0-9]{5}@gsm.hs.kr$/,
@@ -55,14 +52,11 @@ const SignInForm = () => {
                     placeholder="@gsm.hs.kr"
                     maxLength={16}
                     labelName="persen"
-                    isFocus={emailFocus}
-                    handleFocus={() => setEmailFocus(true)}
                     DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
                     isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                 />
                 <AuthInput
                     register={register("password", {
-                        onBlur(){setPasswordFocus(false)},
                         required: "비밀번호를 입력해주세요.",
                         pattern: { 
                             value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
@@ -73,8 +67,6 @@ const SignInForm = () => {
                     placeholder="비밀번호"
                     maxLength={20}
                     labelName="lock"
-                    isFocus={passwordFocus}
-                    handleFocus={()=> setPasswordFocus(true)}
                     DeleteBtnClick={() =>  setValue('password', undefined)}
                     isValue={isNotNull(watch('password'))}
                 />

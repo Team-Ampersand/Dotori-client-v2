@@ -1,4 +1,5 @@
 import { LockIcon, PersonIcon, XmarkIcon } from "assets/svg";
+import { useState } from "react";
 import { Palette } from "styles/globals";
 import { AuthInputProps } from "types";
 import { isNotNull } from "utils/isNotNull";
@@ -10,27 +11,27 @@ const AuthInput = ({
     placeholder,
     maxLength,
     labelName,
-    isFocus,
     isValue,
-    handleFocus,
     DeleteBtnClick,
     isEmailAuth,
+    onSubmit,
   }: AuthInputProps) => {
+    const [isFocus, setIsFocus] = useState(false);
     const iconColor = isFocus ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`;
     return (
-        <S.AuthInput isRabel={isNotNull(labelName)} isEmailAuth={isNotNull(isEmailAuth)}>
+        <S.AuthInput isRabel={isNotNull(labelName)} isEmailAuth={isNotNull(isEmailAuth)} onSubmit={onSubmit}>
             <label>
             {
                 labelName === "persen" ? <PersonIcon color={iconColor}/> : 
                 labelName === "lock" ? <LockIcon color={iconColor}/> : ""
-                
             }
             <input
                 placeholder={placeholder}
                 {...register}
                 type={type}
                 maxLength={maxLength}
-                onFocus={handleFocus}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
             />
             </label>
             {

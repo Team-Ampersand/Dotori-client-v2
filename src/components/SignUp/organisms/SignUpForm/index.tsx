@@ -19,13 +19,6 @@ const SignUpForm = () => {
     const [isAuthCheck, setIsAuthEmailCheck] = useState(false);
     const [isAuth, setIsAuth] = useState(true);
 
-    const [nameFocus, setNameFocus] = useState(false);
-    const [stuIdFocus, setStuIdFocus] = useState(false);
-    const [emailFocus, setEmailFocus] = useState(false);
-    const [sertiNumFocus, setSertiNumFocus] = useState(false);
-    const [passwordFocus, setPasswordFocus] = useState(false);
-    const [passwordCheckFocus, setPasswordCheckFocus] = useState(false);
-
     const { register, setValue, watch, handleSubmit } = useForm<SignupForm>({
         defaultValues: {
           email: '@gsm.hs.kr',
@@ -85,7 +78,6 @@ const SignUpForm = () => {
                 <p>학번</p>
                 <AuthInput
                     register={register("stuId", {
-                        onBlur(){setStuIdFocus(false)},
                         required: "학번을 입력해주세요.",
                         pattern: {
                             value: /^[0-9]{4}$/,
@@ -94,15 +86,12 @@ const SignUpForm = () => {
                     })}
                     type="number"
                     placeholder="학번"
-                    isFocus={stuIdFocus}
-                    handleFocus={() => setStuIdFocus(true)}
                     DeleteBtnClick={() => setValue('stuId', undefined)}
                     isValue={isNotNull(watch('stuId'))}
                 />
                 <p>이름</p>
                  <AuthInput
                     register={register("name", {
-                        onBlur(){setNameFocus(false)},
                         required: "이름을 입력해주세요.",
                         pattern: {
                             value: /^[가-힣]{2,4}$/,
@@ -112,8 +101,6 @@ const SignUpForm = () => {
                     type="text"
                     placeholder="이름"
                     maxLength={4}
-                    isFocus={nameFocus}
-                    handleFocus={() => setNameFocus(true)}
                     DeleteBtnClick={() => setValue('name', undefined)}
                     isValue={isNotNull(watch('name'))}
                 />
@@ -130,7 +117,6 @@ const SignUpForm = () => {
                 <S.EmailCertiWrapper>
                     <AuthInput
                         register={register("email", {
-                            onBlur(){setEmailFocus(false)},
                             required: "이메일을 입력해주세요.",
                             pattern: {
                                 value: /^s[0-9]{5}@gsm.hs.kr$/,
@@ -140,9 +126,7 @@ const SignUpForm = () => {
                         type="text"
                         placeholder="@gsm.hs.kr"
                         maxLength={16}
-                        isFocus={emailFocus}
                         isEmailAuth={true}
-                        handleFocus={() => setEmailFocus(true)}
                         DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
                         isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                     />
@@ -151,13 +135,10 @@ const SignUpForm = () => {
                  <p>인증번호</p>
                  <AuthInput
                     register={register("certiNum", {
-                        onBlur(){setSertiNumFocus(false)},
                         required: "인증번호를 입력해주세요.",
                     })}
                     type="number"
                     placeholder="인증번호"
-                    isFocus={sertiNumFocus}
-                    handleFocus={() => setSertiNumFocus(true)}
                     DeleteBtnClick={() => setValue('certiNum', undefined)}
                     isValue={isNotNull(watch('certiNum'))}
                 />
@@ -168,7 +149,6 @@ const SignUpForm = () => {
                 <p>비밀번호</p>
                 <AuthInput
                     register={register("password", {
-                        onBlur(){setPasswordFocus(false)},
                         required: "비밀번호를 입력해주세요.",
                         pattern: {
                             value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
@@ -178,22 +158,17 @@ const SignUpForm = () => {
                     type="password"
                     placeholder="영문,숫자,특수문자 포함 8~20자"
                     maxLength={20}
-                    isFocus={passwordFocus}
-                    handleFocus={()=> setPasswordFocus(true)}
                     DeleteBtnClick={() => setValue('password', undefined)}
                     isValue={isNotNull(watch('password'))}
                 />
                 <p>비밀번호 확인</p>
                 <AuthInput
                     register={register("passwordCheck", {
-                        onBlur(){setPasswordCheckFocus(false)},
                         required: "비밀번호확인칸을 입력해주세요.",
                     })}
                     type="password"
                     placeholder="비밀번호확인"
                     maxLength={20}
-                    isFocus={passwordCheckFocus}
-                    handleFocus={()=> setPasswordCheckFocus(true)}
                     DeleteBtnClick={() => setValue('passwordCheck', undefined)}
                     isValue={isNotNull(watch('passwordCheck'))}
                 />

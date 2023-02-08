@@ -22,7 +22,7 @@ const SignInForm = () => {
 
     useEffect(() => {
         setIsCheck(isNotNull(watch('email')?.replace('@gsm.hs.kr', '') && watch('password')))
-    },[watch().email, watch().password])
+    },[watch(['email', 'password'])])
 
     const onInvalid:SubmitErrorHandler<SigninForm> = (data) => {
         if(watch('email') === "@gsm.hs.kr") return toast.error("gsm메일을 입력해주세요")
@@ -39,7 +39,7 @@ const SignInForm = () => {
     return (
         <AuthFormWrapper>
             <DotoriLogo/>
-            <S.InputsWrapper>
+            <S.SignInInputsWrapper>
                 <AuthInput
                     register={register("email", {
                         required: "GSM메일을 입력해주세요.",
@@ -71,7 +71,7 @@ const SignInForm = () => {
                     isValue={isNotNull(watch('password'))}
                 />
                 <Link href={"/"}>비밀번호 찾기</Link>
-            </S.InputsWrapper>
+            </S.SignInInputsWrapper>
             <AuthBottomWrapper>
                 <AuthButton text={"로그인"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)}/>
                 <p>Doroti가 처음이라면?<Link href={"/signup"}>회원가입</Link></p>

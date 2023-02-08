@@ -9,8 +9,7 @@ export const AuthFormWrapper = styled.div`
     justify-content: space-between;
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
-    gap: 40px;
-    padding: 35px 0;
+    padding: 30px 0;
 `;
 
 export const AuthBottomWrapper = styled.div`

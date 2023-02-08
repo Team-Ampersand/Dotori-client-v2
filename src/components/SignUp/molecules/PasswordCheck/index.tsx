@@ -1,7 +1,7 @@
 import { signup } from "api/member";
 import { AuthButton, AuthInput } from "components/Common";
 import { AuthBottomWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
-import { InputsWrapper, LoginLink } from "components/SignUp/atoms/Wrapper/style";
+import { InputsWrapper } from "components/SignUp/atoms/Wrapper/style";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -30,16 +30,10 @@ const PasswordCheck = () => {
         // const {data}:any =  await signup(SignUpObject.email||"", state.password||"", SignUpObject.name||"", SignUpObject.stuId||0,SignUpObject.gender || "남");
         // if(data) router.push('/signin');
         router.push('/signin');
-        setSignUpStep('first');
-    }
-
-    const handleLinkBtnCLick = () => {
-        router.push('/signin');
-        setSignUpStep('first');
     }
 
     return (
-        <>
+        <form>
             <InputsWrapper>
                 <p>비밀번호</p>
                 <AuthInput
@@ -69,10 +63,10 @@ const PasswordCheck = () => {
                 />
             </InputsWrapper>
             <AuthBottomWrapper>
-                <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)}/>
-                <p>이미 회원이라면?<LoginLink onClick={handleLinkBtnCLick}>로그인</LoginLink></p>
+                <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
+                <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>
             </AuthBottomWrapper>
-        </>
+        </form>
     )
 }
 

@@ -7,10 +7,12 @@ const AuthButton = ({
     isCheck,
     onClick,
     width,
+    type,
   }: AuthButtonProps) => (
         <S.AuthButton 
-             onClick={onClick} 
-             style={{
+            type={type}
+            onClick={onClick} 
+            style={{
                 background: isCheck? `${Palette.PRIMARY_P10}`:`${Palette.PRIMARY_P30}`,
                 width: width? `${width}px` : `380px`
             }}

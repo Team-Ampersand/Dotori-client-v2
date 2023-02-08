@@ -1,5 +1,5 @@
 import { AuthButton, AuthInput } from "components/Common";
-import { AuthBottomWrapper, AuthFormWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
+import { AuthBottomWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
 import GenderBtn from "components/SignUp/atoms/GenderBtn";
 import { InputsWrapper } from "components/SignUp/atoms/Wrapper/style";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const StuInfo = () => {
     }
 
     return (
-        <>
+        <form>
             <InputsWrapper>
                 <p>이름</p>
                  <AuthInput
@@ -71,10 +71,10 @@ const StuInfo = () => {
                 </S.GenderBtnsWrapper>
             </InputsWrapper>
             <AuthBottomWrapper>
-                <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)}/>
+                <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
                 <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>
             </AuthBottomWrapper>
-        </>
+        </form>
     )
 }
 

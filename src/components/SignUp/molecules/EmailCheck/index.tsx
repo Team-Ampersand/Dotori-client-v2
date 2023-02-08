@@ -1,7 +1,7 @@
 import { auth, authCheck } from "api/member";
 import { AuthButton, AuthInput } from "components/Common";
 import { AuthBottomWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
-import { InputsWrapper, LoginLink } from "components/SignUp/atoms/Wrapper/style";
+import { InputsWrapper } from "components/SignUp/atoms/Wrapper/style";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -57,11 +57,10 @@ const EmailCheck = () => {
 
     const handleLinkBtnCLick = () => {
         router.push('/signin');
-        setSignUpStep('first');
     }
 
     return (
-        <>
+        <form>
             <InputsWrapper>
                 <p>이메일</p>
                 <S.EmailCertiWrapper>
@@ -80,7 +79,7 @@ const EmailCheck = () => {
                         DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
                         isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                     />
-                    <AuthButton width={120} text={"인증하기"} isCheck={isAuthCheck} onClick={handleCertiEmailBtnClick}/>
+                    <AuthButton width={120} text={"인증하기"} isCheck={isAuthCheck} onClick={handleCertiEmailBtnClick} type={'button'}/>
                  </S.EmailCertiWrapper>
                  <p>인증번호</p>
                  <AuthInput
@@ -94,10 +93,10 @@ const EmailCheck = () => {
                 />
             </InputsWrapper>
             <AuthBottomWrapper>
-                <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)}/>
-                <p>이미 회원이라면?<LoginLink onClick={handleLinkBtnCLick}>로그인</LoginLink></p>
+                <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
+                <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>
             </AuthBottomWrapper>
-        </>
+        </form>
     )
 }
 

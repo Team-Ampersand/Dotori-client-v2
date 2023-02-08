@@ -26,14 +26,3 @@ export const FormWrapper = styled.div`
     gap: 40px;
     padding: 35px 0;
 `;
-
-export const LoginLink = styled.span`
-    text-decoration: none;
-    color: ${Palette.NEUTRAL_N10};
-    padding: 0 5px;
-    font-weight: 500;
-    text-decoration: underline;
-    text-underline-position: under;
-    text-decoration-color: white;
-    cursor: pointer;
-`;

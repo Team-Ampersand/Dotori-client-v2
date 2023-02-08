@@ -10,15 +10,20 @@ import { isNotNull } from "utils/isNotNull";
 import { AuthInput,AuthButton } from "components/Common"
 import { AuthBottomWrapper, AuthFormWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
 import * as S from "./style";
+import { useResetRecoilState } from "recoil";
+import { signUpStep } from "recoilAtoms";
 
 const SignInForm = () => {
     const router = useRouter();
     const [isCheck, setIsCheck] = useState(false);
+    const usersAreaReset = useResetRecoilState(signUpStep);
     const { register, setValue, watch, handleSubmit } = useForm<SigninForm>({
         defaultValues: {
           email: '@gsm.hs.kr',
         },
     });
+    
+    useEffect(() => {usersAreaReset()},[])
 
     useEffect(() => {
         setIsCheck(isNotNull(watch('email')?.replace('@gsm.hs.kr', '') && watch('password')))
@@ -39,44 +44,45 @@ const SignInForm = () => {
     return (
         <AuthFormWrapper>
             <DotoriLogo/>
-            <S.SignInInputsWrapper>
-                <AuthInput
-                    register={register("email", {
-                        required: "GSM메일을 입력해주세요.",
-                        pattern: {
-                            value: /^s[0-9]{5}@gsm.hs.kr$/,
-                            message: "gsm메일형식에 맞게 입력해주세요",
-                        },
-                    })}
-                    type="text"
-                    placeholder="@gsm.hs.kr"
-                    maxLength={16}
-                    labelName="persen"
-                    DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
-                    isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
-                />
-                <AuthInput
-                    register={register("password", {
-                        required: "비밀번호를 입력해주세요.",
-                        pattern: { 
-                            value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
-                            message: "영문, 숫자, 특수문자포함 8~20자로 입력하세요.",
-                        },
-                    })}
-                    type="password"
-                    placeholder="비밀번호"
-                    maxLength={20}
-                    labelName="lock"
-                    DeleteBtnClick={() =>  setValue('password', undefined)}
-                    isValue={isNotNull(watch('password'))}
-                />
-                <Link href={"/"}>비밀번호 찾기</Link>
-            </S.SignInInputsWrapper>
-            <AuthBottomWrapper>
-                <AuthButton text={"로그인"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)}/>
-                <p>Doroti가 처음이라면?<Link href={"/signup"}>회원가입</Link></p>
-            </AuthBottomWrapper>
-            
+            <form>
+                <S.SignInInputsWrapper>
+                    <AuthInput
+                        register={register("email", {
+                            required: "GSM메일을 입력해주세요.",
+                            pattern: {
+                                value: /^s[0-9]{5}@gsm.hs.kr$/,
+                                message: "gsm메일형식에 맞게 입력해주세요",
+                            },
+                        })}
+                        type="text"
+                        placeholder="@gsm.hs.kr"
+                        maxLength={16}
+                        labelName="persen"
+                        DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
+                        isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
+                    />
+                    <AuthInput
+                        register={register("password", {
+                            required: "비밀번호를 입력해주세요.",
+                            pattern: { 
+                                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
+                                message: "영문, 숫자, 특수문자포함 8~20자로 입력하세요.",
+                            },
+                        })}
+                        type="password"
+                        placeholder="비밀번호"
+                        maxLength={20}
+                        labelName="lock"
+                        DeleteBtnClick={() =>  setValue('password', undefined)}
+                        isValue={isNotNull(watch('password'))}
+                    />
+                    <Link href={"/"}>비밀번호 찾기</Link>
+                </S.SignInInputsWrapper>
+                <AuthBottomWrapper>
+                    <AuthButton text={"로그인"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
+                    <p>Doroti가 처음이라면?<Link href={"/signup"}>회원가입</Link></p>
+                </AuthBottomWrapper>
+            </form>
         </AuthFormWrapper>
     )
 }

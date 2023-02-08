@@ -1,7 +1,8 @@
 export interface AuthButtonProps {
     text: string,
     isCheck: boolean,
-    width?: number
+    width?: number,
+    type: "button" | "submit",
     onClick: () => void
 }
 

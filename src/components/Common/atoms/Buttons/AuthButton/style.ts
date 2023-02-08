@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
-export const AuthButton = styled.div`
+export const AuthButton = styled.button`
     width: 380px;
     height: 52px;
     display: flex;
@@ -13,4 +13,5 @@ export const AuthButton = styled.div`
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    border: none;
 `;

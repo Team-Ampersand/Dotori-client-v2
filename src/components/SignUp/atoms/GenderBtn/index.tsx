@@ -1,4 +1,4 @@
-import { GenderBtnProps } from "../../../../types"
+import { GenderBtnProps } from "types"
 
 const GenderBtn = ({gender,myGender,onClick}:GenderBtnProps) => (
       <>

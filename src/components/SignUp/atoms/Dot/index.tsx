@@ -1,4 +1,4 @@
-import { Palette } from "../../../../styles/globals";
+import { Palette } from "styles/globals";
 import * as S from "./style";
 
 const Dot = ({order,dotNum}:{order:string, dotNum:string}) => (

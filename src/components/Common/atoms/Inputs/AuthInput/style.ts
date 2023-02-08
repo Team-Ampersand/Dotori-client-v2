@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Palette } from "../../../../../styles/globals";
-import { AuthInputStyleProps } from "../../../../../types";
-
+import { Palette } from "styles/globals";
+import { AuthInputStyleProps } from "types";
 
 export const AuthInput = styled.div`
   position: relative;

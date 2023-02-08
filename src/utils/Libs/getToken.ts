@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { parseCookies } from "nookies";
-import { tokenReissue } from "../../api/member";
+import { tokenReissue } from "api/member";
 
 export const getToken = async (ctx:GetServerSidePropsContext|null) => {
   if(ctx){

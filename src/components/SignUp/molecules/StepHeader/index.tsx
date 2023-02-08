@@ -1,5 +1,5 @@
-import { DotoriLogo } from "../../../../../public/svg";
-import Dot from "../../atoms/Dot";
+import { DotoriLogo } from "assets/svg";
+import Dot from "components/SignUp/atoms/Dot";
 import * as S from "./style";
 
 const StepBar = ({order}:{order:string}) => (

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Palette } from "../../../../../styles/globals";
+import { Palette } from "styles/globals";
 
 export const AuthFormWrapper = styled.div`
     width: 460px;

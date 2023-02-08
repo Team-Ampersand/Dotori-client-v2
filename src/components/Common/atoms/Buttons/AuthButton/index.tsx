@@ -1,5 +1,5 @@
-import { Palette } from "../../../../../styles/globals";
-import { AuthButtonProps } from "../../../../../types";
+import { Palette } from "styles/globals";
+import { AuthButtonProps } from "types";
 import * as S from "./style";
 
 const AuthButton = ({

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Palette } from "../../../../styles/globals";
+import { Palette } from "styles/globals";
 
 export const AuthTemplates = styled.div`
     width: 100%;

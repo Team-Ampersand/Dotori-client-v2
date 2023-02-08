@@ -1,6 +1,7 @@
-import { LockIcon, PersonIcon, XmarkIcon } from "../../../../../../public/svg";
-import { Palette } from "../../../../../styles/globals";
-import { AuthInputProps } from "../../../../../types";
+import { LockIcon, PersonIcon, XmarkIcon } from "assets/svg";
+import { Palette } from "styles/globals";
+import { AuthInputProps } from "types";
+import { isNotNull } from "utils/isNotNull";
 import * as S from "./style";
 
 const AuthInput = ({
@@ -14,13 +15,15 @@ const AuthInput = ({
     handleFocus,
     DeleteBtnClick,
     isEmailAuth,
-  }: AuthInputProps) => { 
+  }: AuthInputProps) => {
+    const iconColor = isFocus ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`;
     return (
-        <S.AuthInput isRabel={labelName? true:false} isEmailAuth={isEmailAuth? true:false}>
+        <S.AuthInput isRabel={isNotNull(labelName)} isEmailAuth={isNotNull(isEmailAuth)}>
             <label>
             {
-                labelName === "persen" ? <PersonIcon color={isFocus ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`}/> : 
-                labelName === "lock" ? <LockIcon color={isFocus ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`}/> : ""
+                labelName === "persen" ? <PersonIcon color={iconColor}/> : 
+                labelName === "lock" ? <LockIcon color={iconColor}/> : ""
+                
             }
             <input
                 placeholder={placeholder}

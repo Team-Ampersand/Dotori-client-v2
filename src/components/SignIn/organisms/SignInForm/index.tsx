@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { DotoriLogo } from "../../../../../public/svg";
-import { signin } from "../../../../api/member";
-import { SigninForm } from "../../../../types";
-import { AuthInput,AuthButton } from "../../../Common"
-import { AuthBottomWrapper, AuthFormWrapper } from "../../../Common/atoms/Wrappers/AuthWrapper/style";
+import { DotoriLogo } from "assets/svg";
+import { signin } from "api/member";
+import { SigninForm } from "types";
+import { isNotNull } from "utils/isNotNull";
+import { AuthInput,AuthButton } from "components/Common"
+import { AuthBottomWrapper, AuthFormWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
 import * as S from "./style";
 
 const SignInForm = () => {
@@ -22,7 +23,7 @@ const SignInForm = () => {
     });
 
     useEffect(() => {
-        watch('email')?.replace('@gsm.hs.kr', '') && watch('password') ? setIsCheck(true) : setIsCheck(false)
+        setIsCheck(isNotNull(watch('email')?.replace('@gsm.hs.kr', '') && watch('password')))
     },[watch().email, watch().password])
 
     const onInvalid:SubmitErrorHandler<SigninForm> = (data) => {
@@ -46,7 +47,7 @@ const SignInForm = () => {
                         onBlur(){setEmailFocus(false)},
                         required: "GSM메일을 입력해주세요.",
                         pattern: {
-                            value: /^s[0-9]{5}@gsm.hs.kr$/g,
+                            value: /^s[0-9]{5}@gsm.hs.kr$/,
                             message: "gsm메일형식에 맞게 입력해주세요",
                         },
                     })}
@@ -57,7 +58,7 @@ const SignInForm = () => {
                     isFocus={emailFocus}
                     handleFocus={() => setEmailFocus(true)}
                     DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
-                    isValue={watch('email')?.replace('@gsm.hs.kr', '')? true:false}
+                    isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                 />
                 <AuthInput
                     register={register("password", {
@@ -75,7 +76,7 @@ const SignInForm = () => {
                     isFocus={passwordFocus}
                     handleFocus={()=> setPasswordFocus(true)}
                     DeleteBtnClick={() =>  setValue('password', undefined)}
-                    isValue={watch('password')? true:false}
+                    isValue={isNotNull(watch('password'))}
                 />
                 <Link href={"/"}>비밀번호 찾기</Link>
             </S.InputsWrapper>

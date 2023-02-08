@@ -3,12 +3,13 @@ import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { auth, authCheck, signup } from "../../../../api/member";
-import { SignupForm } from "../../../../types";
-import { AuthButton, AuthInput } from "../../../Common";
-import { AuthBottomWrapper, AuthFormWrapper } from "../../../Common/atoms/Wrappers/AuthWrapper/style";
-import GenderBtn from "../../atoms/GenderBtn";
-import StepHeader from "../../molecules/StepHeader";
+import { auth, authCheck, signup } from "api/member";
+import { SignupForm } from "types";
+import { isNotNull } from "utils/isNotNull";
+import { AuthButton, AuthInput } from "components/Common";
+import { AuthBottomWrapper, AuthFormWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
+import GenderBtn from "components/SignUp/atoms/GenderBtn";
+import StepHeader from "components/SignUp/molecules/StepHeader";
 import * as S from "./style";
 
 const SignUpForm = () => {
@@ -68,7 +69,6 @@ const SignUpForm = () => {
     }
 
     useEffect(() => {
-        console.log(watch());
         if(signUpStep === 'first' && watch().name && watch().stuId) return setIsCheck(true);
         else if(signUpStep === 'second' && watch('email')?.replace('@gsm.hs.kr', '') && watch().certiNum && !isAuth) return setIsCheck(true);
         else if(signUpStep === 'second' && watch('email')?.replace('@gsm.hs.kr', '') && isAuth) return setIsAuthEmailCheck(true);
@@ -97,7 +97,7 @@ const SignUpForm = () => {
                     isFocus={stuIdFocus}
                     handleFocus={() => setStuIdFocus(true)}
                     DeleteBtnClick={() => setValue('stuId', undefined)}
-                    isValue={watch('stuId')? true:false}
+                    isValue={isNotNull(watch('stuId'))}
                 />
                 <p>이름</p>
                  <AuthInput
@@ -115,7 +115,7 @@ const SignUpForm = () => {
                     isFocus={nameFocus}
                     handleFocus={() => setNameFocus(true)}
                     DeleteBtnClick={() => setValue('name', undefined)}
-                    isValue={watch('name')? true:false}
+                    isValue={isNotNull(watch('name'))}
                 />
                 <p>성별</p>
                 <S.GenderBtnsWrapper>
@@ -144,7 +144,7 @@ const SignUpForm = () => {
                         isEmailAuth={true}
                         handleFocus={() => setEmailFocus(true)}
                         DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
-                        isValue={watch('email')?.replace('@gsm.hs.kr', '') ? true:false}
+                        isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                     />
                     <AuthButton width={120} text={"인증하기"} isCheck={isAuthCheck} onClick={handleCertiEmailBtnClick}/>
                  </S.EmailCertiWrapper>
@@ -159,7 +159,7 @@ const SignUpForm = () => {
                     isFocus={sertiNumFocus}
                     handleFocus={() => setSertiNumFocus(true)}
                     DeleteBtnClick={() => setValue('certiNum', undefined)}
-                    isValue={watch('certiNum')? true:false}
+                    isValue={isNotNull(watch('certiNum'))}
                 />
             </S.InputsWrapper>
 
@@ -181,7 +181,7 @@ const SignUpForm = () => {
                     isFocus={passwordFocus}
                     handleFocus={()=> setPasswordFocus(true)}
                     DeleteBtnClick={() => setValue('password', undefined)}
-                    isValue={watch('password')? true:false}
+                    isValue={isNotNull(watch('password'))}
                 />
                 <p>비밀번호 확인</p>
                 <AuthInput
@@ -195,7 +195,7 @@ const SignUpForm = () => {
                     isFocus={passwordCheckFocus}
                     handleFocus={()=> setPasswordCheckFocus(true)}
                     DeleteBtnClick={() => setValue('passwordCheck', undefined)}
-                    isValue={watch('passwordCheck')? true:false}
+                    isValue={isNotNull(watch('passwordCheck'))}
                 />
             </S.InputsWrapper>
         )}

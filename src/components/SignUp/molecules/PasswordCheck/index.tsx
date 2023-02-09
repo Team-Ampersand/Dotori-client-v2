@@ -61,7 +61,7 @@ const PasswordCheck = () => {
                     DeleteBtnClick={() => resetField('passwordCheck')}
                     isValue={isNotNull(watch('passwordCheck'))}
                 />
-            </InputsWrapper>e
+            </InputsWrapper>
             <AuthBottomWrapper>
                 <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
                 <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>

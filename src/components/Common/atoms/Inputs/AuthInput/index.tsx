@@ -15,6 +15,7 @@ const AuthInput = ({
     DeleteBtnClick,
     isEmailAuth,
     onSubmit,
+    readOnly,
   }: AuthInputProps) => {
     const [isFocus, setIsFocus] = useState(false);
     const iconColor = isFocus ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`;
@@ -26,6 +27,7 @@ const AuthInput = ({
                 labelName === "lock" ? <LockIcon color={iconColor}/> : ""
             }
             <input
+                readOnly={readOnly}
                 placeholder={placeholder}
                 {...register}
                 type={type}

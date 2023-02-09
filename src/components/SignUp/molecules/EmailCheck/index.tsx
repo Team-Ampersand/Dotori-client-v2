@@ -45,7 +45,6 @@ const EmailCheck = () => {
     }
 
     const onValid:SubmitHandler<SignupForm> = async (state) => {
-        if(isAuth) return toast.error('이메일 인증을 해주세요');
         // const {data}:any =  await authCheck(state.certiNum || 0);
         // if(data) {
         // setSignUpObject({...SignUpObject, name:state.name, stuId:state.stuId})
@@ -83,9 +82,10 @@ const EmailCheck = () => {
                         required: "인증번호를 입력해주세요.",
                     })}
                     type="number"
-                    placeholder="인증번호"
+                    placeholder={`${isAuth ? "인증먼저 해주세요" : "인증번호"}`}
                     DeleteBtnClick={() => resetField('certiNum')}
                     isValue={isNotNull(watch('certiNum'))}
+                    readOnly={isAuth}
                 />
             </InputsWrapper>
             <AuthBottomWrapper>

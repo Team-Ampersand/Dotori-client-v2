@@ -17,12 +17,12 @@ const SignInForm = () => {
     const router = useRouter();
     const [isCheck, setIsCheck] = useState(false);
     const usersAreaReset = useResetRecoilState(signUpStep);
-    const { register, setValue, watch, handleSubmit } = useForm<SigninForm>({
+    const { register, watch, handleSubmit, resetField } = useForm<SigninForm>({
         defaultValues: {
           email: '@gsm.hs.kr',
         },
     });
-    
+
     useEffect(() => {usersAreaReset()},[])
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const SignInForm = () => {
                         placeholder="@gsm.hs.kr"
                         maxLength={16}
                         labelName="persen"
-                        DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
+                        DeleteBtnClick={() => resetField('email')}
                         isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                     />
                     <AuthInput
@@ -73,7 +73,7 @@ const SignInForm = () => {
                         placeholder="비밀번호"
                         maxLength={20}
                         labelName="lock"
-                        DeleteBtnClick={() =>  setValue('password', undefined)}
+                        DeleteBtnClick={() => resetField('password')}
                         isValue={isNotNull(watch('password'))}
                     />
                     <Link href={"/"}>비밀번호 찾기</Link>

@@ -20,7 +20,7 @@ const EmailCheck = () => {
     const [isAuth, setIsAuth] = useState(true);
     const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
     const [, setSignUpStep] = useRecoilState(signUpStep);
-    const { register, setValue, watch, handleSubmit} = useForm<SignupForm>({
+    const { register, watch, handleSubmit, resetField} = useForm<SignupForm>({
         defaultValues: {
           email: '@gsm.hs.kr',
         },
@@ -55,10 +55,6 @@ const EmailCheck = () => {
         setSignUpStep('last');
     }
 
-    const handleLinkBtnCLick = () => {
-        router.push('/signin');
-    }
-
     return (
         <form>
             <InputsWrapper>
@@ -76,7 +72,7 @@ const EmailCheck = () => {
                         placeholder="@gsm.hs.kr"
                         maxLength={16}
                         isEmailAuth={true}
-                        DeleteBtnClick={() => setValue('email', '@gsm.hs.kr')}
+                        DeleteBtnClick={() => resetField('email')}
                         isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
                     />
                     <AuthButton width={120} text={"인증하기"} isCheck={isAuthCheck} onClick={handleCertiEmailBtnClick} type={'button'}/>
@@ -88,7 +84,7 @@ const EmailCheck = () => {
                     })}
                     type="number"
                     placeholder="인증번호"
-                    DeleteBtnClick={() => setValue('certiNum', undefined)}
+                    DeleteBtnClick={() => resetField('certiNum')}
                     isValue={isNotNull(watch('certiNum'))}
                 />
             </InputsWrapper>

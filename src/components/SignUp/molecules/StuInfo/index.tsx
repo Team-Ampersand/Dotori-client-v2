@@ -13,7 +13,7 @@ import { isNotNull } from "utils/isNotNull";
 import * as S from "./style";
 
 const StuInfo = () => {    
-    const { register, setValue, watch, handleSubmit} = useForm<SignupForm>()
+    const { register, setValue, watch, handleSubmit, resetField} = useForm<SignupForm>()
     const [isCheck, setIsCheck] = useState(false);
     const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
     const [, setSignUpStep] = useRecoilState(signUpStep);
@@ -44,7 +44,7 @@ const StuInfo = () => {
                     type="text"
                     placeholder="이름"
                     maxLength={4}
-                    DeleteBtnClick={() => setValue('name', undefined)}
+                    DeleteBtnClick={() => resetField('name')}
                     isValue={isNotNull(watch('name'))}
                 />
                  <p>학번</p>
@@ -61,7 +61,7 @@ const StuInfo = () => {
                     })}
                     type="number"
                     placeholder="학번"
-                    DeleteBtnClick={() => setValue('stuId', undefined)}
+                    DeleteBtnClick={() => resetField('stuId')}
                     isValue={isNotNull(watch('stuId'))}
                 />
             <p>성별</p>

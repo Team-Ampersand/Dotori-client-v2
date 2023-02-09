@@ -14,7 +14,7 @@ import { isNotNull } from "utils/isNotNull";
 
 const PasswordCheck = () => {
     const router = useRouter();
-    const { register, setValue, watch, handleSubmit} = useForm<SignupForm>()
+    const { register, watch, handleSubmit, resetField} = useForm<SignupForm>()
     const [isCheck, setIsCheck] = useState(false);
     const [SignUpObject, ] = useRecoilState(signUpObject);
     const [, setSignUpStep] = useRecoilState(signUpStep);
@@ -47,7 +47,7 @@ const PasswordCheck = () => {
                     type="password"
                     placeholder="영문,숫자,특수문자 포함 8~20자"
                     maxLength={20}
-                    DeleteBtnClick={() => setValue('password', undefined)}
+                    DeleteBtnClick={() => resetField('password')}
                     isValue={isNotNull(watch('password'))}
                 />
                 <p>비밀번호 확인</p>
@@ -58,10 +58,10 @@ const PasswordCheck = () => {
                     type="password"
                     placeholder="비밀번호확인"
                     maxLength={20}
-                    DeleteBtnClick={() => setValue('passwordCheck', undefined)}
+                    DeleteBtnClick={() => resetField('passwordCheck')}
                     isValue={isNotNull(watch('passwordCheck'))}
                 />
-            </InputsWrapper>
+            </InputsWrapper>e
             <AuthBottomWrapper>
                 <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
                 <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>

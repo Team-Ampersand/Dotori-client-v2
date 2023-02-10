@@ -1,6 +1,6 @@
 export interface menuListProps {
     routerName: string,
-    menuTitle: string,
+    menuTitle: '홈'|'공지사항'|'자습신청'|'안마의자 신청'|'기상음악 신청'|'학생정보'|'규정위반',
     show: string[],
 }
 

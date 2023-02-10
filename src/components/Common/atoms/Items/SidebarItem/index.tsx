@@ -24,7 +24,9 @@ const SidebarItem = ({
 				isCurrentRouter={isCurrentRouter}
 				// isnotShow={!show.includes(role)}
 			>
-				{ChangeMenuIcon(menuTitle, isCurrentRouter)}
+				<>
+					{ChangeMenuIcon(isCurrentRouter)[menuTitle]()}
+				</>
 				<S.MenuTitle>{menuTitle}</S.MenuTitle>
 			</S.SidebarItemWrapper>
 		</Link>

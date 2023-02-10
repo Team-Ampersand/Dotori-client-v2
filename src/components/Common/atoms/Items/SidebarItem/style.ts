@@ -13,7 +13,7 @@ export const SidebarItemWrapper = styled.div`
 	gap: 20px;
 	border-radius: 16px;
 	cursor: pointer;
-	color: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `${Palette.PRIMARY_P10}` : `#BBBBCC`)};
+	color: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `${Palette.PRIMARY_P10}` : `${Palette.NEUTRAL_N30}`)};
 	background: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `${Palette.PRIMARY_P20}` : 'transparent')};
 	svg {
 		width: 25px;

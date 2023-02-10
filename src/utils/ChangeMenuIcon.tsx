@@ -14,6 +14,7 @@ import {
 	SpeakerBlueIcon,
 	PersonBlueIcon,
 } from 'assets/svg';
+import { Palette } from 'styles/globals';
 
 export const ChangeMenuIcon = (routerName:string, isCurrentRoute:boolean) => { 
 	switch (routerName) {
@@ -28,7 +29,7 @@ export const ChangeMenuIcon = (routerName:string, isCurrentRoute:boolean) => {
 		case '기상음악 신청':
 			return isCurrentRoute ? <SpeakerBlueIcon /> : <SpeakerIcon />;
 		case '학생정보':
-			return isCurrentRoute ? <PersonBlueIcon /> : <PersonIcon color={"#BBBBCC"}/>;
+			return isCurrentRoute ? <PersonBlueIcon /> : <PersonIcon color={Palette.NEUTRAL_N30}/>;
 		case '규정위반':
 			return ;
 		default:

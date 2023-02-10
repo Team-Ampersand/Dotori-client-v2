@@ -12,7 +12,7 @@ export const LogoutButtonWrapper = styled.a`
 	gap: 20px;
 	border-radius: 16px;
 	cursor: pointer;
-    color: #BBBBCC;
+    color: ${Palette.NEUTRAL_N30};
 	font-weight: 600;
 	font-size: 18px;
 

@@ -1,3 +1,4 @@
+import { Palette } from 'styles/globals';
 import { NoticeItemProps } from 'types';
 import { writerColor } from 'utils/writerColor';
 import * as S from './style';
@@ -7,10 +8,11 @@ const NoticeItem = ({
     date,
     title,
     desc,
+    isCurrenPage,
 }:NoticeItemProps) => {
     const Date = date?.replace(/(-0|-)/g,'. ');
     return (
-        <S.NoticeItemWrapper>
+        <S.NoticeItemWrapper style={{border : isCurrenPage ? `2px solid ${Palette.PRIMARY_P10}` : "" }}>
             <S.ItemTopWrapper>
                 <S.Writer>
                     <S.WriterDot style={{background: writerColor[writer]}}/>

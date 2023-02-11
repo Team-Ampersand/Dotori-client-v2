@@ -1,8 +1,7 @@
 import * as S from "./style";
-import {SidebarListProps, SignbarItemProps} from "types"
+import {SidebarListProps} from "types"
 import SidebarItem from "components/Common/atoms/Items/SidebarItem";
 import React, { useEffect } from "react";
-import Link from "next/link";
 
 const SidebarList = ({
     menuDataList,

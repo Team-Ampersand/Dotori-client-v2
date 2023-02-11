@@ -2,10 +2,10 @@ import { DotoriLogo } from "assets/svg";
 import LogoutButton from "components/Common/atoms/Buttons/LogoutButton";
 import SideBarList from "components/Common/molecules/SidebarList";
 import { useRouter } from "next/router";
-import SideBarMenuData from "assets/data/SidebarMenuData.json"
 import { useMemo, useState } from "react";
 import * as S from "./style";
 import Link from "next/link";
+import { MenuData } from "assets/data/SidebarMenuData";
 
 const SideBar = () => {
     const { pathname } = useRouter();
@@ -13,7 +13,7 @@ const SideBar = () => {
 
     const mappingSidebarMenu = useMemo(() => (
         <SideBarList
-            menuDataList={SideBarMenuData.menuList}
+            menuDataList={MenuData}
             currentRouter={currentRouter}
             setCurrentRouter={setCurrentRouter}
         />

@@ -1,10 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import SideBar from 'components/Common/organisms/Sidebar'
+import { MainTemplates } from 'components/Common/templates/MainTemplates/style'
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <>
-     
-    </>
+    <MainTemplates>
+      <SideBar/>
+   </MainTemplates>
   )
 }
+
+export default HomePage

@@ -10,3 +10,8 @@ export const signUpStep = atom<string>({
 	key: 'signUpStep',
 	default: 'first',
 });
+
+export const darkMode = atom<'dark' | 'light'>({
+	key: 'darkMode',
+	default: 'light',
+});

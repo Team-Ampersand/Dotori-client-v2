@@ -11,3 +11,7 @@ export interface GenderBtnProps {
     myGender: "남"|"여", 
     onClick: () => void
 }
+
+export interface DarkModeBtnStyleProps {
+	isDarkTheme: boolean
+};

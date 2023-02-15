@@ -81,8 +81,7 @@ const MealBoard = () => {
                         <LeftChevron/>
                     </button>
                     <span>
-						{date.datestr.slice(0, 4)}.{date.datestr.slice(4, 6)}.
-						{date.datestr.slice(6)} ({week[date.day]})
+						{date.datestr.slice(0, 4)}.{date.datestr.slice(4, 6)}.{date.datestr.slice(6)} ({week[date.day]})
                     </span>
                     <button onClick={() => nextPrevDay(+1)}>
                         <RightChevron/>

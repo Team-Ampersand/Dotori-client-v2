@@ -1,22 +1,21 @@
-export interface MenuOptionProps {
-    name: '프로필수정'| '규정위반 내역'| '비밀번호 변경' | '로그아웃',
+export interface MenuOptionStyleProps {
+	name: '프로필수정'|'규정위반 내역'|'비밀번호 변경'|'로그아웃'
+};
+
+export interface MenuOptionProps extends MenuOptionStyleProps {
     onClick: () => void
 }
 
-export interface MenuModal {
-    isClick: boolean, 
+export interface ModalStyleProps {
+    isClick: boolean
+};
+
+export interface MenuModal extends ModalStyleProps {
     setIsClick: (isClick: boolean) => void
     setPenaltyModal: (penaltyModal: boolean) => void
     setProfileImgModal: (profileImgModa: boolean) => void
 }
 
-export interface MenuOptionStyleProps {
-	name: '프로필수정'|'규정위반 내역'|'비밀번호 변경'|'로그아웃'
-};
-
-export interface ModalStyleProps {
-    isClick: boolean
-};
 
 export interface PenaltyModalProps {
     penaltyModal: boolean

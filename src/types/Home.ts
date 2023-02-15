@@ -1,7 +1,9 @@
-
-export interface applyBoardState {
-    count: number,
+export interface applyStyleProps {
     applyStatus: "신청취소"|"신청불가"|"자습신청"|"안마의자"
+}
+
+export interface applyBoardState extends applyStyleProps {
+    count: number,
 }
 
 export interface applyBoxProps extends applyBoardState {
@@ -9,10 +11,6 @@ export interface applyBoxProps extends applyBoardState {
     url: string,
     maxCount: number,
     onClick: () => void,
-}
-
-export interface applyStyleProps {
-    applyStatus: "신청취소"|"신청불가"|"자습신청"|"안마의자"
 }
 
 export interface returnMealdataType {

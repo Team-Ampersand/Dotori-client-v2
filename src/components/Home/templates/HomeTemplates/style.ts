@@ -10,7 +10,7 @@ export const HomeTemplates = styled.div`
     padding: 0 50px 50px 50px;
     grid-template-areas:
 		"시간    시간    프로필"
-        "시간    시간    프로필"
+		"시간    시간    프로필"
 		"시간    시간    급식"
 		"공지사항 자습신청 급식"
 		"공지사항 자습신청 급식"

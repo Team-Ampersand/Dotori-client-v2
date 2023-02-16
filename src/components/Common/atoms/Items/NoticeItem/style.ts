@@ -14,6 +14,7 @@ export const NoticeItemWrapper = styled.div`
     font-weight: 500;
     font-size: 12px;
     color: ${Palette.NEUTRAL_N20};
+    cursor: pointer;
 `;
 
 export const ItemTopWrapper = styled.div`

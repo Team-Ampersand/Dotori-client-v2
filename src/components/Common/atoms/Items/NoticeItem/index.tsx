@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Palette } from 'styles/globals';
 import { NoticeItemProps } from 'types';
 import { dateRegex } from 'utils/dateRegex';
@@ -10,9 +11,14 @@ const NoticeItem = ({
     title,
     desc,
     isCurrenPage,
+    id
 }:NoticeItemProps) => {
+    const router = useRouter();
     return (
-        <S.NoticeItemWrapper style={{border : isCurrenPage ? `2px solid ${Palette.PRIMARY_P10}` : "" }}>
+        <S.NoticeItemWrapper 
+            style={{border : isCurrenPage ? `2px solid ${Palette.PRIMARY_P10}` : "" }}
+            onClick={() => router.push(`/board/${id}`)}
+        >
             <S.ItemTopWrapper>
                 <S.Writer>
                     <S.WriterDot style={{background: writerColor[writer]}}/>

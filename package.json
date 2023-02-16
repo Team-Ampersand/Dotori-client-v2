@@ -27,6 +27,7 @@
     "nookies": "^2.5.2",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
+    "react-easy-crop": "^4.7.0",
     "react-hook-form": "^7.42.1",
     "react-toastify": "^9.1.1",
     "recoil": "^0.7.6",

@@ -2,7 +2,7 @@ import {menuListProps} from "types"
 
 export const MenuData:menuListProps[] = [
     {
-        "routerName": "/",
+        "routerName": "/home",
         "menuTitle": "홈",
         "show": ["admin", "councillor", "developer", "member"]
     },

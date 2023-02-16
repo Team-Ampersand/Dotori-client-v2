@@ -3,5 +3,6 @@ export interface NoticeItemProps {
     date:string,
     title:string,
     desc:string,
-    isCurrenPage:boolean
+    isCurrenPage:boolean,
+    id:number
 }

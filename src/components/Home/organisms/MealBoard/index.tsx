@@ -100,7 +100,7 @@ const MealBoard = () => {
             <S.MealList>
                 {
                     list && list.length > 0 ? (list.map((item:string, idx) => <S.Meal key={idx}>{item}</S.Meal>)) : 
-                    ( <p>급식이 없습니다</p> )
+                    ( <S.Meal >급식이 없습니다</S.Meal> )
                 }
              </S.MealList>
         </S.MealBoardWrapper>

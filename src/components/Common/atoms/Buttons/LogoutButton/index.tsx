@@ -8,7 +8,7 @@ const LogoutButton = () => {
     const router = useRouter();
     const handleClick = async ()  => {
         removeToken();
-        router.push('/signin');
+        router.push('/');
         toast.info('로그아웃되었습니다.');
     }
 

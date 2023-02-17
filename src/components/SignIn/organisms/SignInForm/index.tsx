@@ -38,7 +38,7 @@ const SignInForm = () => {
     const onValid:SubmitHandler<SigninForm> = async (data) => {
         if(!data.email || !data.password) return;
         // await signin(data.email, data.password);
-        router.push('/');
+        router.push('/home');
     }
 
     return (

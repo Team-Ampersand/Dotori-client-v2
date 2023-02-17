@@ -21,7 +21,7 @@ const SideBar = () => {
 
     return (
         <S.SideBarWrapper>
-            <Link href='/'>
+            <Link href='/home'>
                 <a>
                     <DotoriLogo />
                 </a>

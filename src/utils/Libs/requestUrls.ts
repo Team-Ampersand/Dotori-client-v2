@@ -3,6 +3,7 @@ export const MemberController = {
 	signup: '/signup',
 	auth: '/signup/email',
 	authcheck: '/signup/email/check',
+	changePasswd: '/changePasswd',
 }
 
 //토큰 재발급

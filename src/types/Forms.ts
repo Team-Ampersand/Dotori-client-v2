@@ -12,3 +12,9 @@ export interface SignupForm {
     password?: string;
     passwordCheck?: string;
 }
+
+export interface ChangePasswdForm {
+    password?: string;
+    newPassword?: string;
+    newPasswordCheck?: string;
+}

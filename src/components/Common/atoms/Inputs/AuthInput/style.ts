@@ -4,6 +4,11 @@ import { AuthInputStyleProps } from "types";
 
 export const AuthInput = styled.div`
   position: relative;
+  height: 55px;
+  width: ${((props:AuthInputStyleProps) => props.isRabel ? `385px` : props.isEmailAuth ? `255px` : `385px`)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   input{
     width: ${((props:AuthInputStyleProps) => props.isRabel ? `280px` : props.isEmailAuth ? `215px` : `340px`)};
     height: 52px;
@@ -42,18 +47,4 @@ export const AuthInput = styled.div`
       left:10px;
     }
 }
-`;
-
-export const DeleteBtn = styled.div`
-  position: absolute;
-  top: 1px;
-  right: 10px;
-  border: 1px solid;
-  width: 40px;
-  height: 40px;
-  
-  border-radius: 50%;
-  svg{
-    cursor: pointer;
-  }
 `;

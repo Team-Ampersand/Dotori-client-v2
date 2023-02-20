@@ -34,6 +34,7 @@ const AuthInput = ({
                 maxLength={maxLength}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
+                autoComplete="off"
             />
             </label>
             {

@@ -4,10 +4,10 @@ import { Palette } from "styles/globals";
 export const InputsWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    padding: 30px 0;
+    gap: 10px;
+    padding: 30px 0 40px 0;
     p{
-        padding-top: 8px;
+        padding-top: 15px;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;

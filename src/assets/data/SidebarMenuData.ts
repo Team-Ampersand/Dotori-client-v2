@@ -30,5 +30,10 @@ export const MenuData:menuListProps[] = [
         "routerName": "/studsDetail",
         "menuTitle": "학생정보",
         "show": ["admin", "councillor", "developer"]
+    },
+    {
+        "routerName": "/penalty",
+        "menuTitle": "규정위반",
+        "show": ["admin"]
     }
 ]

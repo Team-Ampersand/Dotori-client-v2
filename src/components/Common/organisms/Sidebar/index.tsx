@@ -1,4 +1,4 @@
-import { DotoriLogo } from "assets/svg";
+import { DotoriIcon, DotoriLogo } from "assets/svg";
 import LogoutButton from "components/Common/atoms/Buttons/LogoutButton";
 import SideBarList from "components/Common/molecules/SidebarList";
 import { useRouter } from "next/router";
@@ -23,7 +23,10 @@ const SideBar = () => {
         <S.SideBarWrapper>
             <Link href='/home'>
                 <a>
-                    <DotoriLogo />
+                    <S.DototiTitle>
+                        <DotoriIcon/>
+                        <span>DOTORI</span>
+                    </S.DototiTitle>
                 </a>
             </Link>
             {mappingSidebarMenu}

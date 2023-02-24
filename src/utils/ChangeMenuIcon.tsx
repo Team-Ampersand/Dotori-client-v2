@@ -13,6 +13,8 @@ import {
 	ChairBlueIcon,
 	SpeakerBlueIcon,
 	PersonBlueIcon,
+	PenaltyBlueIcon,
+	PenaltyIcon,
 } from 'assets/svg';
 import { Palette } from 'styles/globals';
 
@@ -24,6 +26,6 @@ export const ChangeMenuIcon = (isCurrentRoute:boolean) => {
 		'안마의자 신청' () { return isCurrentRoute ? <ChairBlueIcon /> : <ChairIcon /> },
 		'기상음악 신청' () { return isCurrentRoute ? <SpeakerBlueIcon /> : <SpeakerIcon /> },
 		'학생정보' () { return isCurrentRoute ? <PersonBlueIcon /> : <PersonIcon color={Palette.NEUTRAL_N30}/> },
-		'규정위반' () { return; },
+		'규정위반' () { return isCurrentRoute ? <PenaltyBlueIcon /> : <PenaltyIcon/> },
     }
 };

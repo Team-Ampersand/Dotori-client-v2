@@ -16,6 +16,7 @@ const FilterItem = ({
 				name={name}
 				checked={value === item}
 				onClick={() => setValue(index, item)}
+				readOnly
 			/>
 			<label htmlFor={item}>{item}</label>
 		</>

@@ -15,6 +15,9 @@ export const SideBarWrapper = styled.aside`
         width: 160px;
         height:66px;
     }
+    a{
+        text-decoration: none;
+    }
 `;
 
 export const LogoutButtonWrapper = styled.div`
@@ -28,4 +31,21 @@ export const LogoutButtonWrapper = styled.div`
 	gap: 20px;
 	border-radius: 16px;
 	cursor: pointer;
+`;
+
+export const DototiTitle = styled.div`
+    width: 146px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg{
+        width: 33px;
+    }
+    span{
+        color: ${Palette.PRIMARY_P10};
+        font-weight: 900;
+        font-size: 26px;
+    }
+
 `;

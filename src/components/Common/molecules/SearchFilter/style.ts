@@ -54,11 +54,25 @@ export const Search = styled.input`
 		font-weight: 500;
 		font-size: 16px;
 		color: ${Palette.NEUTRAL_N30};
+		transition: all 0.2s ease-in-out;
 	}
 `;
 
 export const SearchBtn = styled.div`
 	cursor: pointer;
+	display: flex;
+	${Search}:focus + & {
+		svg {
+			circle {
+				stroke: ${Palette.NEUTRAL_N10};
+				transition: all 0.2s ease-in-out;
+			}
+			path {
+				stroke: ${Palette.NEUTRAL_N10};
+				transition: all 0.2s ease-in-out;
+			}
+		}
+	}
 `;
 
 export const Select = styled.div`
@@ -110,5 +124,3 @@ export const SelectBox = styled.div`
 		border: 1px solid ${Palette.PRIMARY_P10};
 	}
 `;
-
-export const Gender = styled.div``;

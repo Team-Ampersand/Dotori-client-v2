@@ -1,7 +1,7 @@
 import * as S from './style';
 import { SearchIcon } from 'assets/svg';
 import { useState } from 'react';
-import SelectFilter from 'components/Common/atoms/Items/FilterItem';
+import FilterItem from 'components/Common/atoms/Items/FilterItem';
 import { SearchFilterTypeProps } from 'types';
 import { FilterMenuData } from 'assets/data/FilterMenuData';
 import { darkMode } from 'recoilAtoms/recoilAtomContainer';
@@ -54,7 +54,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
 					<span>{i.filterTitle}</span>
 					<S.SelectBox darkmode={darkModeState}>
 						{i.filterList.map((j, ind) => (
-							<SelectFilter
+							<FilterItem
 								key={ind}
 								index={idx}
 								name={i.filterTitle}

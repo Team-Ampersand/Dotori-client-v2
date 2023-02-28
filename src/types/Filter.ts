@@ -12,7 +12,7 @@ export interface SearchFilterProps {
 	name: string;
 	item: string;
 	value: string;
-	setValue: (ind: number, value: string) => void;
+	onClick: React.MouseEventHandler;
 }
 
 export interface SearchFilterTypeProps {

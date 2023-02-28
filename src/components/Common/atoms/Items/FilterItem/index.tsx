@@ -5,7 +5,7 @@ const FilterItem = ({
 	name,
 	item,
 	value,
-	setValue,
+	onClick,
 }: SearchFilterProps) => {
 	return (
 		<>
@@ -15,7 +15,7 @@ const FilterItem = ({
 				value={item}
 				name={name}
 				checked={value === item}
-				onClick={() => setValue(index, item)}
+				onClick={onClick}
 				readOnly
 			/>
 			<label htmlFor={item}>{item}</label>

@@ -60,7 +60,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
 								name={i.filterTitle}
 								item={j}
 								value={filterState[idx]}
-								setValue={filterChange}
+								onClick={() => filterChange(idx, j)}
 							/>
 						))}
 					</S.SelectBox>

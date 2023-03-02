@@ -4,7 +4,6 @@ import Script from 'next/script';
 
 const ChannelIOScript = ({stunumName,email}:{stunumName:string,email:string}) => {
   const [theme,] = UseToggleTheme()
-  console.log(theme);
   
   return (
       <Script

@@ -33,3 +33,5 @@ export { default as StampIcon } from './StampIcon';
 export { default as CapIcon } from './CapIcon';
 export { default as MaleIcon } from './MaleIcon';
 export { default as FemaleIcon } from './FemaleIcon';
+export { default as CheckBox } from './CheckBox';
+export { default as CheckedBox } from './CheckedBox';

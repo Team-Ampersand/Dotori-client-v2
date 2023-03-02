@@ -8,6 +8,7 @@ import {
 	MaleIcon,
 	FemaleIcon,
 } from 'assets/svg';
+import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
 
 const SelfStudyList = () => {
 	const userOBJ = [
@@ -376,7 +377,10 @@ const SelfStudyList = () => {
 							{idx === 49 && <StampIcon />}
 						</S.Medal>
 						<S.Checkbox>
-							<S.Box />
+							<SelfstudyCheck
+								// role={role}
+								checked={item.selfStudyCheck}
+							/>
 						</S.Checkbox>
 						<S.Profile>
 							<DefaultProfile />

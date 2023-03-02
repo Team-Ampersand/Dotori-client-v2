@@ -30,11 +30,11 @@ const darkTheme = `
   --NEUTRAL_N50 : #1E1E26;
   --BACKGROUND_BG : #1F1E2B;
   --BACKGROUND_CARD : #17161F;
-  --SYSTEM_ERROR : #FF7D7D;
-  --SYSTEM_POSITIVE : #5EFF8B;
-  --SUB_GREEN : #79CE6F;
-  --SUB_YELLOW : #E9D844;
-  --SUB_RED : #EE786D;
+  --SYSTEM_ERROR : #FF7D7D
+  --SYSTEM_POSITIVE : #5EFF8B
+  --SUB_GREEN : #79CE6F
+  --SUB_YELLOW : #E9D844
+  --SUB_RED : #EE786D
 `;
 
 const cssVar = (name: string) => `var(--${name})`;
@@ -163,6 +163,7 @@ const style = css`
 
   body {
     ${lightTheme};
+    background: ${Palette.BACKGROUND_BG};
   }
 
   @media (prefers-color-scheme: dark) {

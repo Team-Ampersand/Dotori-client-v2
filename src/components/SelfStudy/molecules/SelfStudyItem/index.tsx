@@ -1,17 +1,6 @@
-import * as S from './style';
-import {
-	DefaultProfile,
-	GoldMedalIcon,
-	SilverMedalIcon,
-	BronzeMedalIcon,
-	StampIcon,
-	MaleIcon,
-	FemaleIcon,
-} from 'assets/svg';
-import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
 import List from 'components/Common/molecules/List';
 
-const SelfStudyList = () => {
+const SelfStudyItem = () => {
 	const userOBJ = [
 		{
 			id: '1',
@@ -383,4 +372,4 @@ const SelfStudyList = () => {
 	);
 };
 
-export default SelfStudyList;
+export default SelfStudyItem;

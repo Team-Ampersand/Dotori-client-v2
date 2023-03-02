@@ -30,7 +30,7 @@ const darkTheme = `
   --NEUTRAL_N50 : #1E1E26;
   --BACKGROUND_BG : #1F1E2B;
   --BACKGROUND_CARD : #17161F;
-  --SYSTEM_ERROR : #626274
+  --SYSTEM_ERROR : #FF7D7D
   --SYSTEM_POSITIVE : #5EFF8B
   --SUB_GREEN : #79CE6F
   --SUB_YELLOW : #E9D844
@@ -56,62 +56,130 @@ export const Palette = {
   SUB_YELLOW: cssVar('SUB_YELLOW'),
   SUB_RED: cssVar('SUB_RED'),
   BLACK: '#000000',
-  WHITE: '#ffffff'
+  WHITE: '#ffffff',
 };
 
 const style = css`
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  font-family: SUIT;
-}
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-input:focus::-webkit-input-placeholder{
-  color:transparent;
-}
-button {
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: SUIT;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline: none;
+  }
+  input:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+  button {
     cursor: pointer;
     outline: none;
-}
-
-body {
-    ${lightTheme};
-}
-  
-@media (prefers-color-scheme: dark) {
-  body {
-    ${darkTheme}
   }
-}
-body[data-theme='light'] {
-  ${lightTheme};
-}
-body[data-theme='dark'] {
-  ${darkTheme};
-}
+
+  body {
+    ${lightTheme};
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      ${darkTheme}
+    }
+  }
+  body[data-theme='light'] {
+    ${lightTheme};
+  }
+  body[data-theme='dark'] {
+    ${darkTheme};
+  }
 `;
 
 const GlobalStyle = () => {
-    return <Global styles={style} />;
+  return <Global styles={style} />;
 };
 
 export default GlobalStyle;

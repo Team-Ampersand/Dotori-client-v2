@@ -11,7 +11,7 @@ import {
 import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
 import { SelfStudyListProps } from 'types';
 
-const List = ({
+const ApplicationItem = ({
 	index,
 	selfStudyCheck,
 	memberName,
@@ -20,7 +20,7 @@ const List = ({
 	listType,
 }: SelfStudyListProps) => {
 	return (
-		<S.ListWrapper>
+		<S.ApplicationItemWrapper>
 			<S.Number>{index + 1}</S.Number>
 			{listType === 'selfstudy' && (
 				<>
@@ -48,8 +48,8 @@ const List = ({
 				</S.Name>
 				<S.StuNum>{stuNum}</S.StuNum>
 			</S.StuInfo>
-		</S.ListWrapper>
+		</S.ApplicationItemWrapper>
 	);
 };
 
-export default List;
+export default ApplicationItem;

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
-export const ListWrapper = styled.div`
+
+export const ApplicationItemWrapper = styled.div`
 	width: 200px;
 	height: 140px;
 	display: flex;

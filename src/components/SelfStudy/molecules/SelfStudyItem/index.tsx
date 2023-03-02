@@ -1,4 +1,4 @@
-import List from 'components/Common/molecules/List';
+import ApplicationItem from 'components/Common/molecules/ApplicationItem';
 
 const SelfStudyItem = () => {
 	const userOBJ = [
@@ -358,7 +358,7 @@ const SelfStudyItem = () => {
 		<>
 			{userOBJ &&
 				userOBJ.map((item, idx) => (
-					<List
+					<ApplicationItem
 						key={idx}
 						index={idx}
 						selfStudyCheck={item.selfStudyCheck}

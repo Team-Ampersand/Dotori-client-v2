@@ -1,6 +1,6 @@
 import ApplicationItem from 'components/Common/molecules/ApplicationItem';
 
-const SelfStudyItem = () => {
+const SelfStudyList = () => {
 	const userOBJ = [
 		{
 			id: '1',
@@ -372,4 +372,4 @@ const SelfStudyItem = () => {
 	);
 };
 
-export default SelfStudyItem;
+export default SelfStudyList;

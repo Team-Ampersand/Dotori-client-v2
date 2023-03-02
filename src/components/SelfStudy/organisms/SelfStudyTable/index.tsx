@@ -1,5 +1,5 @@
 import * as S from './style';
-import SelfStudyItem from 'components/SelfStudy/molecules/SelfStudyItem';
+import SelfStudyList from 'components/SelfStudy/molecules/SelfStudyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import { CapIcon } from 'assets/svg';
 
@@ -8,7 +8,7 @@ const SelfStudyTable = () => {
 		<S.TableWrapper>
 			{true ? (
 				<S.ListWrapper>
-					<SelfStudyItem />
+					<SelfStudyList />
 				</S.ListWrapper>
 			) : (
 				<S.ExceptionWrapper>

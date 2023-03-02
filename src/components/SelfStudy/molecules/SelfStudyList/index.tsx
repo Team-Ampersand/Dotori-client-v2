@@ -9,6 +9,7 @@ import {
 	FemaleIcon,
 } from 'assets/svg';
 import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
+import List from 'components/Common/molecules/List';
 
 const SelfStudyList = () => {
 	const userOBJ = [
@@ -368,31 +369,15 @@ const SelfStudyList = () => {
 		<>
 			{userOBJ &&
 				userOBJ.map((item, idx) => (
-					<S.ListWrapper key={idx}>
-						<S.Number>{idx + 1}</S.Number>
-						<S.Medal>
-							{idx === 0 && <GoldMedalIcon />}
-							{idx === 1 && <SilverMedalIcon />}
-							{idx === 2 && <BronzeMedalIcon />}
-							{idx === 49 && <StampIcon />}
-						</S.Medal>
-						<S.Checkbox>
-							<SelfstudyCheck
-								// role={role}
-								checked={item.selfStudyCheck}
-							/>
-						</S.Checkbox>
-						<S.Profile>
-							<DefaultProfile />
-						</S.Profile>
-						<S.StuInfo>
-							<S.Name>
-								{item.memberName}
-								{item.gender === 'MAN' ? <MaleIcon /> : <FemaleIcon />}
-							</S.Name>
-							<S.StuNum>{item.stuNum}</S.StuNum>
-						</S.StuInfo>
-					</S.ListWrapper>
+					<List
+						key={idx}
+						index={idx}
+						selfStudyCheck={item.selfStudyCheck}
+						memberName={item.memberName}
+						gender={item.gender}
+						stuNum={item.stuNum}
+						listType="selfstudy"
+					/>
 				))}
 		</>
 	);

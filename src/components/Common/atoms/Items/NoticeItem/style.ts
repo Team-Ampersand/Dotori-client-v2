@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const NoticeItemWrapper = styled.div`
-    width: 396px;
+    width: 370px;
     height: 95px;
     border-radius: 12px;
     background: ${Palette.NEUTRAL_N50};

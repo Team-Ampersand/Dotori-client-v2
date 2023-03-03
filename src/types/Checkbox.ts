@@ -1,4 +1,4 @@
 export interface CheckProps {
 	// role: string;
-	checked: boolean;
+	checked: boolean | null;
 }

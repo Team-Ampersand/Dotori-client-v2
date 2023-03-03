@@ -1,9 +1,8 @@
 import { Palette } from 'styles/globals';
-import { darkMode } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState } from 'recoil';
+import UseToggleTheme from 'hooks/useToggleTheme';
 
 const CupIcon = () => {
-  const [darkModeState] = useRecoilState(darkMode);
+  const [theme] = UseToggleTheme();
 
   return (
     <svg
@@ -15,13 +14,13 @@ const CupIcon = () => {
     >
       <path
         d="M84.0008 97.125C84.0008 115.484 64.3602 127.125 50.0008 127.125C35.6414 127.125 36.0008 121.484 36.0008 107.125C36.0008 92.7656 47.6414 81.125 62.0008 81.125C76.3602 81.125 84.0008 86.7656 84.0008 97.125Z"
-        stroke={darkModeState === 'light' ? '#656B80' : '#CDCDD5'}
+        stroke={theme === 'light' ? '#656B80' : '#CDCDD5'}
         strokeWidth="8"
       />
       <path
         d="M4 85.125C4 78.4976 9.37258 73.125 16 73.125H52C58.6274 73.125 64 78.4976 64 85.125V133.125C64 139.752 58.6274 145.125 52 145.125H16C9.37258 145.125 4 139.752 4 133.125V85.125Z"
         fill={Palette.BACKGROUND_BG}
-        stroke={darkModeState === 'light' ? '#656B80' : '#CDCDD5'}
+        stroke={theme === 'light' ? '#656B80' : '#CDCDD5'}
         strokeWidth="8"
       />
       <path

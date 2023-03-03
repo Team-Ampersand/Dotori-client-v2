@@ -35,3 +35,4 @@ export { default as MaleIcon } from './MaleIcon';
 export { default as FemaleIcon } from './FemaleIcon';
 export { default as CheckBox } from './CheckBox';
 export { default as CheckedBox } from './CheckedBox';
+export { default as CupIcon } from './CupIcon';

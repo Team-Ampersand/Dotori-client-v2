@@ -1,21 +1,21 @@
 import * as S from './style';
-import SelfStudyList from 'components/SelfStudy/molecules/SelfStudyList';
+import MassageList from 'components/Massage/molecules/MassageList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import NullApplicstionItem from 'components/Common/molecules/NullApplicationItem';
 
-const SelfStudyTable = () => {
+const MassageTable = () => {
   return (
     <S.TableWrapper>
       {false ? (
         <S.ListWrapper>
-          <SelfStudyList />
+          <MassageList />
         </S.ListWrapper>
       ) : (
-        <NullApplicstionItem type={'selfstudy'} />
+        <NullApplicstionItem type={'massage'} />
       )}
-      <SearchFilter filterType={'selfstudy'} />
+      <SearchFilter filterType={'massage'} />
     </S.TableWrapper>
   );
 };
 
-export default SelfStudyTable;
+export default MassageTable;

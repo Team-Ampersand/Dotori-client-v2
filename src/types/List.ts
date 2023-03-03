@@ -6,3 +6,7 @@ export interface ApplicationItemProps {
   stuNum: string;
   listType: string;
 }
+
+export interface NullApplicationItemProps {
+  type: string;
+}

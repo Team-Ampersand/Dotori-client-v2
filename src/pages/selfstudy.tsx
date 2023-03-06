@@ -1,23 +1,21 @@
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
-import {
-	SelfStudyHeader,
-	SelfStudyTable,
-} from 'components/SelfStudy/organisms';
+import { SelfStudyTable } from 'components/SelfStudy/organisms';
 import { SelfstudyTemplates } from 'components/SelfStudy/templates/SelfstudyTemplates/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
+import CommonHeader from 'components/Common/organisms/CommonHeader';
 
 const SelfStudyPage = () => {
-	UseThemeEffect();
-	return (
-		<MainTemplates>
-			<SideBar />
-			<SelfstudyTemplates>
-				<SelfStudyHeader />
-				<SelfStudyTable />
-			</SelfstudyTemplates>
-		</MainTemplates>
-	);
+  UseThemeEffect();
+  return (
+    <MainTemplates>
+      <SideBar />
+      <SelfstudyTemplates>
+        <CommonHeader />
+        <SelfStudyTable />
+      </SelfstudyTemplates>
+    </MainTemplates>
+  );
 };
 
 export default SelfStudyPage;

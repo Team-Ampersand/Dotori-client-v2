@@ -20,11 +20,13 @@ export const SidebarItemWrapper = styled.div`
 		height: 25px;
 	}
 
+	&:hover{
+		transition: all 0.3s ease-in;
+		background: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `` : `${Palette.BACKGROUND_BG}`)};
+	}
+
 	@media (max-width: 1634px) {
 		width: 65px;
-		div{
-			display: none;
-		}
 	}
 		
     @media (max-width: 420px) {
@@ -36,4 +38,8 @@ export const SidebarItemWrapper = styled.div`
 export const MenuTitle = styled.div`
 	font-size: 18px;
 	font-weight: 600;
+
+	@media (max-width: 1634px) {
+		display: none;
+	}
 `;

@@ -10,6 +10,10 @@ export const ProfileWrapper = styled.div`
     gap: 20px;
     grid-area: 프로필;
 
+    @media (max-width: 950px) {
+		display: none;
+	}
+
 `;
 
 export const ProfileBox = styled.div`
@@ -23,6 +27,7 @@ export const ProfileBox = styled.div`
     padding: 24px;
     gap: 15px;
     border-radius: 16px;
+    position: relative;
 
     svg{
         cursor: pointer;
@@ -30,7 +35,7 @@ export const ProfileBox = styled.div`
 `;
 
 export const StudentInfo = styled.div`
-    width: 65%;
+    width: 200px;
     height: 70px;
     display: flex;
     flex-direction: column;

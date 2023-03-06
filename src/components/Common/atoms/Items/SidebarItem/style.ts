@@ -29,6 +29,7 @@ export const SidebarItemWrapper = styled.div`
 		
     @media (max-width: 420px) {
 		display: ${(props:SidebarStyleProps) => (props.title === "규정위반" ? 'none' : props.title === "학생정보" ? 'none' : "flex")};
+		background: transparent
 	}
 `;
 

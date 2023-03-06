@@ -12,6 +12,11 @@ export const PenaltyModalWrapper = styled.div`
 	padding: 16px;
 	border-radius: 8px;
 	box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+
+	@media (max-width: 420px) {
+		width: 90%;
+		border-radius: 16px;
+	}
 `;
 
 
@@ -26,11 +31,13 @@ export const PenaltyItems = styled.div`
 
 
 export const PenaltyModalBtn = styled.button`
-	height: 45px;
+	height: 50px;
 	background: ${Palette.PRIMARY_P10};
 	border: none;
 	color: white;
 	cursor: pointer;
 	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 700;
 `;
 

@@ -19,6 +19,17 @@ export const SidebarItemWrapper = styled.div`
 		width: 25px;
 		height: 25px;
 	}
+
+	@media (max-width: 1634px) {
+		width: 65px;
+		div{
+			display: none;
+		}
+	}
+		
+    @media (max-width: 420px) {
+		display: ${(props:SidebarStyleProps) => (props.title === "규정위반" ? 'none' : props.title === "학생정보" ? 'none' : "flex")};
+	}
 `;
 
 export const MenuTitle = styled.div`

@@ -18,7 +18,6 @@ export const AuthButton = styled.button`
 
     @media (max-width: 420px) {
         width:  ${(props:AuthButtonStyleProps) => props.width === 380 ? "90vw" : "30vw"};
-        /* padding: 0 50px; */
         margin: 0 auto;
     }
 `;

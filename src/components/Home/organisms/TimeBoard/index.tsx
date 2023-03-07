@@ -46,7 +46,7 @@ const TimeBoard = () => {
                     {/* } */}
                     <span>DOTORI</span>
                 </S.MobileTitle>
-                <S.BoardTopRightWrapper className="homeprofile">
+                <S.BoardTopRightWrapper>
                     <DarkModeButton/>
                     <DefaultProfile width={40} height={40} onClick={() => setMenuModal(pre => !pre)} className="defaultProfileImg"/>
                     <MenuModal

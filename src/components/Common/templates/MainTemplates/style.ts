@@ -6,4 +6,8 @@ export const MainTemplates = styled.div`
     height: 100vh;
     background: ${Palette.BACKGROUND_BG};
     display: flex;
+
+    @media (max-width: 420px) {
+        flex-direction: column-reverse;
+	}
 `;

@@ -3,7 +3,6 @@ import { Palette } from "styles/globals";
 import { DarkModeBtnStyleProps } from "types";
 
 export const DarkModeButtonWrapper = styled.div`
-
     position: relative;
     width: 70px;
     height: 40px;
@@ -14,6 +13,11 @@ export const DarkModeButtonWrapper = styled.div`
     justify-content: flex-start;
     cursor: pointer;
     background: ${Palette.NEUTRAL_N40};
+
+    @media (max-width: 420px) {
+        width: 56px;
+        height: 32px;
+	}
 `;
 
 
@@ -30,5 +34,13 @@ export const TogleIcon = styled.div`
 
     svg{
         border-radius: 50%;
+        width: 31px;
     }
+
+    @media (max-width: 420px) {
+        left: ${(props:DarkModeBtnStyleProps) => props.isDarkTheme ? '24px' : "0px"};
+        svg{
+            width: 24px;
+        }
+	}
 `;

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const MealBoardWrapper = styled.div`
+    height: 69vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,6 +10,7 @@ export const MealBoardWrapper = styled.div`
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
     padding: 20px;
+    gap: 30px;
 
     span{
         font-weight: 700;
@@ -28,6 +30,16 @@ export const MealHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 20px;
+
+    span{
+        font-size: 18px;
+    }
+
+    @media (max-width: 420px) {
+        span{
+            font-size: 16px;
+        }
+	}
 `;
 
 export const ControlDate = styled.div`
@@ -95,7 +107,7 @@ export const SelectBtn = styled.button`
 
 export const MealList = styled.div`
     height: 500px;
-    width: 330px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -108,4 +120,8 @@ export const Meal = styled.div`
     color: ${Palette.NEUTRAL_N10};
     font-weight: 700;
     font-size: 18px;
+
+    @media (max-width: 420px) {
+		font-size: 15px;
+	}
 `;

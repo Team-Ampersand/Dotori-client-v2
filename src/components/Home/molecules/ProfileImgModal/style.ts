@@ -25,6 +25,12 @@ export const ProileImgModalWrapper = styled.div`
 	padding: 16px;
 	border-radius: 8px;
 	box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+
+	@media (max-width: 420px) {
+		width: 90%;
+		height: 420px;
+		border-radius: 16px;
+	}
 `;
 
 export const AddImgBtn = styled.div`
@@ -46,6 +52,12 @@ export const AddImgBtn = styled.div`
 		font-size: 12px;
 		color: ${Palette.NEUTRAL_N20};
 	}
+
+	@media (max-width: 420px) {
+        width: 95%;
+		height: 320px;
+		margin: 20px auto;
+	}
 `;
 
 export const ImgCrop = styled.div`
@@ -55,7 +67,17 @@ export const ImgCrop = styled.div`
 	margin: 22px 5px;
 	background: ${Palette.BACKGROUND_CARD};
 	border: none;
+
+	@media (max-width: 950px) {
+        width: 65vw;
+	}
+
+	@media (max-width: 420px) {
+		width: 100%;
+		height: 100%;
+	}
 `;
+
 
 export const BottomBtns = styled.div`
 	display: flex;
@@ -70,11 +92,19 @@ export const BottomBtns = styled.div`
 		height: 43px;
 		border-radius: 8px;
 	}
+
+	@media (max-width: 420px) {
+        button {
+			width: 45%;
+			height: 43px;
+		}
+	}
 `;
 
 export const CancelBtn = styled.button`
 	border: 1px solid ${Palette.NEUTRAL_N20};
 	color: ${Palette.NEUTRAL_N20};
+	background-color: transparent;
 
 `;
 

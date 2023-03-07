@@ -1,7 +1,7 @@
 import * as S from './style';
 import { ModalOverayWrapper } from 'components/Home/atoms/Wrapper/style';
-import { PenaltyModalState } from 'types';
-import ModalHeader from 'components/Home/atoms/ModalHeader';
+import { ModalProps } from 'types';
+import ModalHeader from 'components/Common/atoms/ModalHeader';
 import PenaltyRecordMenuItem from 'components/Penalty/atoms/PenaltyRecordMenuItem';
 import { PenaltyMenuData } from 'assets/data/PenaltyMenuData';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ import { useRecoilState } from 'recoil';
 import { penaltySelected } from 'recoilAtoms/recoilAtomContainer';
 import { XtextIcon } from 'assets/svg';
 
-const PenaltyRecordMenuModal = ({ modal, setModal }: PenaltyModalState) => {
+const PenaltyRecordMenuModal = ({ modalState, setModalState }: ModalProps) => {
   const [penaltySelect, setPenaltySelect] = useRecoilState(penaltySelected);
   const [currentMenu, setCurrentMenu] = useState('');
   const [currentItem, setCurrentItem] = useState('');
@@ -33,9 +33,9 @@ const PenaltyRecordMenuModal = ({ modal, setModal }: PenaltyModalState) => {
   };
 
   return (
-    <ModalOverayWrapper isClick={modal}>
+    <ModalOverayWrapper isClick={modalState}>
       <S.PenaltyRecordInfoModalWrapper>
-        <ModalHeader name={'규정 위반 기록'} setState={setModal} />
+        <ModalHeader name={'규정 위반 기록'} setState={setModalState} />
         <S.SelectWrapper>
           <S.SelectBox>
             {PenaltyMenuData.map((i, idx) => (
@@ -76,8 +76,8 @@ const PenaltyRecordMenuModal = ({ modal, setModal }: PenaltyModalState) => {
           ))}
         </S.TagWrapper>
         <S.BtnWrapper>
-          <S.CancelBtn onClick={() => setModal(false)}>이전</S.CancelBtn>
-          <S.NextBtn onClick={() => setModal(false)}>다음</S.NextBtn>
+          <S.CancelBtn onClick={() => setModalState(false)}>이전</S.CancelBtn>
+          <S.NextBtn onClick={() => setModalState(false)}>다음</S.NextBtn>
         </S.BtnWrapper>
       </S.PenaltyRecordInfoModalWrapper>
     </ModalOverayWrapper>

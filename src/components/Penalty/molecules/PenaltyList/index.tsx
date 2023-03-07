@@ -3,9 +3,9 @@ import PenaltyItem from 'components/Penalty/atoms/PenaltyItem';
 import PenaltyListModal from '../PenaltyListModal';
 import PenaltyRecordModal from '../PenaltyRecordModal';
 import { useState } from 'react';
-import { PenaltyModalProps } from 'types';
+import { ModalProps } from 'types';
 
-const PenaltyList = ({ penaltyModal, setPenaltyModal }: PenaltyModalProps) => {
+const PenaltyList = ({ modalState, setModalState }: ModalProps) => {
   const userOBJ = [
     {
       id: 1,
@@ -150,7 +150,7 @@ const PenaltyList = ({ penaltyModal, setPenaltyModal }: PenaltyModalProps) => {
           <PenaltyItem
             key={idx}
             setPenaltyListModal={setPenaltyListModal}
-            setPenaltyRecordModal={setPenaltyModal}
+            setPenaltyRecordModal={setModalState}
             name={i.memberName}
             gender={i.gender}
             number={i.stuNum}
@@ -159,12 +159,15 @@ const PenaltyList = ({ penaltyModal, setPenaltyModal }: PenaltyModalProps) => {
         ))}
       {penaltyListModal && (
         <PenaltyListModal
-          modal={penaltyListModal}
-          setModal={setPenaltyListModal}
+          modalState={penaltyListModal}
+          setModalState={setPenaltyListModal}
         />
       )}
-      {penaltyModal && (
-        <PenaltyRecordModal modal={penaltyModal} setModal={setPenaltyModal} />
+      {modalState && (
+        <PenaltyRecordModal
+          modalState={modalState}
+          setModalState={setModalState}
+        />
       )}
     </S.PenaltyListWrapper>
   );

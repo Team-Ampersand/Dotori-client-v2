@@ -43,8 +43,8 @@ const PenaltyTable = () => {
           </S.TagWrapper>
         )}
         <PenaltyList
-          penaltyModal={penaltyRecordModal}
-          setPenaltyModal={setPenaltyRecordModal}
+          modalState={penaltyRecordModal}
+          setModalState={setPenaltyRecordModal}
         />
       </S.ListWrapper>
       <div>

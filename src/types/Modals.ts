@@ -17,8 +17,8 @@ export interface MenuModal extends ModalStyleProps {
 }
 
 export interface ModalProps {
-    modalState: boolean
-    setModalState: (state: boolean) => void
+  modalState: boolean;
+  setModalState: (state: boolean) => void;
 }
 
 export interface PenaltyItemType {
@@ -31,6 +31,6 @@ export interface ModalHeaderProps {
   setState: (state: boolean) => void;
 }
 
-export interface PenaltyDelModalProps extends PenaltyModalState {
+export interface PenaltyDelModalProps extends ModalProps {
   penaltyName: string;
 }

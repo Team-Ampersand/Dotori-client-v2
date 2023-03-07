@@ -1,21 +1,21 @@
 import * as S from './style';
 import { ModalOverayWrapper } from 'components/Home/atoms/Wrapper/style';
-import { PenaltyModalState } from 'types';
-import ModalHeader from 'components/Home/atoms/ModalHeader';
+import { ModalProps } from 'types';
+import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { XIcon, CalendarIcon, PlusIcon } from 'assets/svg';
 import { useState } from 'react';
 import PenaltyRecordMenuModal from '../PenaltyRecordMenuModal';
 import { useRecoilState } from 'recoil';
 import { penaltySelected } from 'recoilAtoms/recoilAtomContainer';
 
-const PenaltyRecordModal = ({ modal, setModal }: PenaltyModalState) => {
+const PenaltyRecordModal = ({ modalState, setModalState }: ModalProps) => {
   const [penaltySelect, setPenaltySelect] = useRecoilState(penaltySelected);
   const [penaltyRecordInfoModal, setPenaltyRecordInfoModal] = useState(false);
 
   return (
-    <ModalOverayWrapper isClick={modal}>
+    <ModalOverayWrapper isClick={modalState}>
       <S.PenaltyRecordModalWrapper>
-        <ModalHeader name={'규정 위반 기록'} setState={setModal} />
+        <ModalHeader name={'규정 위반 기록'} setState={setModalState} />
         <S.SelectWrapper>
           <span>학생</span>
           <S.SelectItem>
@@ -43,12 +43,12 @@ const PenaltyRecordModal = ({ modal, setModal }: PenaltyModalState) => {
           </S.PenaltyItemsWrapper>
         </S.PenaltyWrapper>
         <S.BtnWrapper>
-          <S.CancelBtn onClick={() => setModal(false)}>취소</S.CancelBtn>
-          <S.NextBtn onClick={() => setModal(false)}>부여</S.NextBtn>
+          <S.CancelBtn onClick={() => setModalState(false)}>취소</S.CancelBtn>
+          <S.NextBtn onClick={() => setModalState(false)}>부여</S.NextBtn>
           {penaltyRecordInfoModal && (
             <PenaltyRecordMenuModal
-              modal={penaltyRecordInfoModal}
-              setModal={setPenaltyRecordInfoModal}
+              modalState={penaltyRecordInfoModal}
+              setModalState={setPenaltyRecordInfoModal}
             />
           )}
         </S.BtnWrapper>

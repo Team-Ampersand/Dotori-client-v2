@@ -109,7 +109,7 @@ export const TodayDate = styled.div`
 
 export const BoardBottom = styled.div`
     position: relative;
-    height: 17.3vw;
+    height: 27vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

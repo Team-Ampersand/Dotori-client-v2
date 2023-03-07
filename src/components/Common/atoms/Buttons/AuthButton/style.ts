@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
+import { AuthButtonStyleProps } from "types";
 
 export const AuthButton = styled.button`
-    width: 380px;
+    width: ${(props:AuthButtonStyleProps) => props.width}px;
     height: 52px;
     display: flex;
     align-items: center;
@@ -14,4 +15,10 @@ export const AuthButton = styled.button`
     font-weight: 700;
     cursor: pointer;
     border: none;
+
+    @media (max-width: 420px) {
+        width:  ${(props:AuthButtonStyleProps) => props.width === 380 ? "90vw" : "30vw"};
+        /* padding: 0 50px; */
+        margin: 0 auto;
+    }
 `;

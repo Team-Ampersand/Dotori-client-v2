@@ -6,8 +6,7 @@ export const ProfileWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
     margin-top: 5.55vh;
-    padding: 3px 0;
-    gap: 20px;
+    gap: 2vh;
     grid-area: 프로필;
 
     @media (max-width: 950px) {

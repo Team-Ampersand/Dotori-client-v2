@@ -3,6 +3,7 @@ import { Palette } from "styles/globals";
 import { applyStyleProps } from "types";
 
 export const ApplyBoxWrapper = styled.div`
+    width: 30vw;
     height: 25.65vh;
     display: flex;
     flex-direction: column;
@@ -10,6 +11,10 @@ export const ApplyBoxWrapper = styled.div`
     padding: 20px 25px;
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
+
+    @media (max-width: 950px) {
+        width: 100%;
+	}
     		
     @media (max-width: 420px) {
         height: 220px;

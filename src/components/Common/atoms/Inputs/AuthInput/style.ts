@@ -9,6 +9,7 @@ export const AuthInput = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   input{
     width: ${((props:AuthInputStyleProps) => props.isRabel ? `280px` : props.isEmailAuth ? `215px` : `340px`)};
     height: 52px;
@@ -47,4 +48,12 @@ export const AuthInput = styled.div`
       left:10px;
     }
 }
+
+  @media (max-width: 420px) {
+    width: ${((props:AuthInputStyleProps) => props.isRabel ? `90vw` : props.isEmailAuth ? `70vw` : `90vw`)};
+    input {
+      width: ${((props:AuthInputStyleProps) => props.isRabel ? `calc(90vw - 100px)` : props.isEmailAuth ? `50vw` : `calc(90vw - 40px)`)};
+      margin: 0 auto;
+    }
+  } 
 `;

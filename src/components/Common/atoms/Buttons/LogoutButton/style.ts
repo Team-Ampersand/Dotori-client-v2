@@ -21,4 +21,15 @@ export const LogoutButtonWrapper = styled.a`
 		height: 25px;
 		stroke: ${Palette.NEUTRAL_N30};
 	}
+
+	@media (max-width: 1634px) {
+		width: 65px;
+        span{
+            display: none;
+        }
+	}
+		
+    @media (max-width: 360px) {
+		font-size: 12px;
+	}
 `;

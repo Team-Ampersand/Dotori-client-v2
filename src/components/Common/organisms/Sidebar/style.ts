@@ -18,6 +18,19 @@ export const SideBarWrapper = styled.aside`
     a{
         text-decoration: none;
     }
+
+    @media (max-width: 1634px) {
+        width: 72px;
+	}
+		
+    @media (max-width: 420px) {
+		width: 100%;
+        height: 52px;
+        flex-direction: row;
+        a{
+            display: none;
+        }
+	}
 `;
 
 export const LogoutButtonWrapper = styled.div`
@@ -47,5 +60,18 @@ export const DototiTitle = styled.div`
         font-weight: 900;
         font-size: 26px;
     }
+
+    @media (max-width: 1634px) {
+        width: 70px;
+        display: flex;
+        justify-content: center;
+        span{
+            display: none;
+        }
+	}
+		
+    @media (max-width: 360px) {
+		font-size: 12px;
+	}
 
 `;

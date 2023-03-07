@@ -7,7 +7,11 @@ const ApplyBox = ({name, url, count, maxCount, applyStatus, onClick}:applyBoxPro
     <S.ApplyBoxWrapper style={{gridArea:name}}>
             <S.ApplyBoardHeader>
                 <div>{name}</div>
-                <Link href={url}>전체보기 &gt;</Link>
+                <Link href={url}>
+                    <a>
+                        <span>전체보기</span> &gt;
+                    </a>
+                </Link>
             </S.ApplyBoardHeader>
             <S.ApplyCountWrapper>
             <p>{`${count}/${maxCount}`}</p>

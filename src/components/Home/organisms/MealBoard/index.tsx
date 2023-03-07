@@ -47,7 +47,7 @@ const MealBoard = () => {
     const mealHourArr = ['조식', '중식', '석식'];
 
 	const getDateStr = (myDate: Date) => {
-        const month = String(myDate.getMonth()+2).padStart(2, '0'); // 1개월 후
+        const month = String(myDate.getMonth()+1).padStart(2, '0');
         const day = String(myDate.getDate()).padStart(2, '0');
 		return myDate.getFullYear() + month + day;
 	};

@@ -19,9 +19,27 @@ export const SidebarItemWrapper = styled.div`
 		width: 25px;
 		height: 25px;
 	}
+
+	&:hover{
+		transition: all 0.3s ease-in;
+		background: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `` : `${Palette.BACKGROUND_BG}`)};
+	}
+
+	@media (max-width: 1634px) {
+		width: 65px;
+	}
+		
+    @media (max-width: 420px) {
+		display: ${(props:SidebarStyleProps) => (props.title === "규정위반" ? 'none' : props.title === "학생정보" ? 'none' : "flex")};
+		background: transparent
+	}
 `;
 
 export const MenuTitle = styled.div`
 	font-size: 18px;
 	font-weight: 600;
+
+	@media (max-width: 1634px) {
+		display: none;
+	}
 `;

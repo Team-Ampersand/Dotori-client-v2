@@ -18,4 +18,5 @@ export interface SignbarItemProps extends menuListProps {
 export interface SidebarStyleProps {
 	isCurrentRouter: boolean;
 	isnotShow?: boolean;
+	title:string;
 }

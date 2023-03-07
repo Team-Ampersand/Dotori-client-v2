@@ -17,7 +17,7 @@ const MenuModal = ({isClick, setIsClick, setPenaltyModal, setProfileImgModal}:Me
             case '규정위반 내역' :
                 return setPenaltyModal(true);
             case '비밀번호 변경' :
-                return router.push('/passwordChange');
+                return router.push('/changePasswd');
             case '로그아웃' :
                 return logout();
         }

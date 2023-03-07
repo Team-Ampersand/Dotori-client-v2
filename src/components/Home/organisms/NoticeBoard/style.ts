@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const NoticeBoardWrapper = styled.div`
+    max-width: 430px;
+    height: 56vh;
     display: flex;
     flex-direction: column;
     padding: 20px 25px 0 25px;
@@ -14,7 +16,12 @@ export const NoticeBoardWrapper = styled.div`
         font-weight: 700;
         font-size: 18px;
         color: ${Palette.NEUTRAL_N10};
+        margin: 10px 0;
     }
+
+    @media (max-width: 950px) {
+        display: none;
+	}
 `;
 
 export const NoticeList = styled.div`

@@ -31,4 +31,12 @@ export const GenderBtnsWrapper = styled.div`
         border: 1px solid ${Palette.PRIMARY_P10};
         border-radius: 4px;
     }
+
+    @media (max-width: 420px) {
+        width: 90vw;
+        margin: 0 auto;
+        input {
+            width: 50%;
+        }
+    }
 `;

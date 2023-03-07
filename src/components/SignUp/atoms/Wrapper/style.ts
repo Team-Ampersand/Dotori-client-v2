@@ -13,6 +13,13 @@ export const InputsWrapper = styled.div`
         font-size: 14px;
         color: ${Palette.NEUTRAL_N10};
     }
+
+    @media (max-width: 420px) {
+        p{
+            width: 90vw;
+            margin: 0 auto;
+        }
+    }
 `;
 
 export const FormWrapper = styled.div`

@@ -10,6 +10,10 @@ export const AuthFormWrapper = styled.div`
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
     padding: 30px 0;
+
+    @media (max-width: 420px) {
+        width: 100%;
+    }
 `;
 
 export const AuthBottomWrapper = styled.div`

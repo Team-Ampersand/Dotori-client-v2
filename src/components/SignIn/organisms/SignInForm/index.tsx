@@ -76,7 +76,7 @@ const SignInForm = () => {
                         DeleteBtnClick={() => resetField('password')}
                         isValue={isNotNull(watch('password'))}
                     />
-                    <Link href={"/"}>비밀번호 찾기</Link>
+                    <Link href={"/changePasswd"}>비밀번호 찾기</Link>
                 </S.SignInInputsWrapper>
                 <AuthBottomWrapper>
                     <AuthButton text={"로그인"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>

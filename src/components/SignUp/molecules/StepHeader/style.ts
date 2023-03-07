@@ -6,6 +6,11 @@ export const StepHeaderWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding-right: 27px;
+
+    @media (max-width: 420px) {
+        width: 100vw;
+    }
+    
 `;
 
 export const DotsWrapper = styled.div`

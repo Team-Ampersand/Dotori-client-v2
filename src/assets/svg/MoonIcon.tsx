@@ -1,7 +1,7 @@
 import React from "react";
 
 const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="31.989898999629304" height="32" fill="none" {...props}><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" className="selected"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="31.989898999629304" height="32" viewBox="0 0 32 32" fill="none" {...props}><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" className="selected"/>
     <defs>
     <filter id="filter0_d_1038_3456" x="0.75" y="0.5" width="77.5" height="77.5" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
     <feFlood floodOpacity="0" result="BackgroundImageFix"/>

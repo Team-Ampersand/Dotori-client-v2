@@ -17,19 +17,14 @@ export interface MenuModal extends ModalStyleProps {
 }
 
 
-export interface PenaltyModalProps {
-    penaltyModal: boolean
-    setPenaltyModal: (profileImgModa: boolean) => void
+export interface ModalProps {
+    modalState: boolean
+    setModalState: (state: boolean) => void
 }
 
 export interface PenaltyItemType {
     name: string,
     date: string
-}
-
-export interface ProfileImgModalProps {
-    profileImgModal: boolean
-    setProfileImgModal: (profileImgModal: boolean) => void
 }
 
 export interface ModalHeaderProps {

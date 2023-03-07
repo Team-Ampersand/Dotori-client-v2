@@ -35,10 +35,10 @@ const Profile = () => {
                 </div>
             </S.ProfileBox>
             {
-                penaltyModal && <PenaltyModal penaltyModal={penaltyModal} setPenaltyModal={setPenaltyModal}/>
+                penaltyModal && <PenaltyModal modalState={penaltyModal} setModalState={setPenaltyModal}/>
             }
             {
-                profileImgModal && <ProileImgModal profileImgModal={profileImgModal} setProfileImgModal={setProfileImgModal}/>
+                profileImgModal && <ProileImgModal modalState={profileImgModal} setModalState={setProfileImgModal}/>
             }
         </S.ProfileWrapper>
     )

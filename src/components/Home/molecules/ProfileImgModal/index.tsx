@@ -1,14 +1,14 @@
 import { CameraIcon } from "assets/svg";
-import ModalHeader from "components/Home/atoms/ModalHeader";
+import ModalHeader from "components/Common/atoms/ModalHeader";
 import { ModalOverayWrapper } from "components/Home/atoms/Wrapper/style";
 import { useCallback, useState } from "react";
-import { ProfileImgModalProps } from "types";
 import * as S from "./style";
 import Cropper, { Area } from 'react-easy-crop'
 import { Palette } from "styles/globals";
 import { getCroppedImg } from "utils/canvas";
+import { ModalProps } from "types";
 
-const ProileImgModal = ({profileImgModal, setProfileImgModal}:ProfileImgModalProps) => {
+const ProileImgModal = ({ modalState, setModalState}:ModalProps) => {
     const [imgBase64, setImgBase64] = useState("");
     const [file, setFile] = useState("");
     const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -46,9 +46,9 @@ const ProileImgModal = ({profileImgModal, setProfileImgModal}:ProfileImgModalPro
 
     return (
         <>
-            <ModalOverayWrapper isClick={profileImgModal}>
+            <ModalOverayWrapper isClick={modalState}>
                 <S.ProileImgModalWrapper>
-                    <ModalHeader name={imgBase64 ? "이미지 편집" : "프로필 이미지 선택"} setState={setProfileImgModal} />
+                    <ModalHeader name={imgBase64 ? "이미지 편집" : "프로필 이미지 선택"} setState={setModalState} />
                         {
                             imgBase64 ? (
                                 <S.ImgCrop>
@@ -63,7 +63,7 @@ const ProileImgModal = ({profileImgModal, setProfileImgModal}:ProfileImgModalPro
                                         onZoomChange={setZoom}
                                         onCropComplete={onCropComplete}
                                         style={{ 
-                                            containerStyle:{borderRadius: "8px", color:`${Palette.BACKGROUND_CARD}`, width: "500px", height: "500px"},
+                                            containerStyle:{borderRadius: "8px", color:`${Palette.BACKGROUND_CARD}`, width: "100%", height: "100%"},
                                             cropAreaStyle: {borderRadius: "8px", color:`${Palette.BACKGROUND_CARD}`}
                                         }}
                                     />

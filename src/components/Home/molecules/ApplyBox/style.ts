@@ -3,22 +3,27 @@ import { Palette } from "styles/globals";
 import { applyStyleProps } from "types";
 
 export const ApplyBoxWrapper = styled.div`
-    height: 250px;
+    height: 26.2vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px 25px;
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
+    		
+    @media (max-width: 420px) {
+        height: 220px;
+	}
 `;
 
 export const ApplyBoardHeader = styled.div`
+    max-width: 450px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: ${Palette.NEUTRAL_N10};
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
 
     a{
         text-decoration: none;
@@ -26,6 +31,17 @@ export const ApplyBoardHeader = styled.div`
         font-weight: 500;
         font-size: 14px;
     }
+
+    @media (max-width: 950px) {
+        max-width: 100%;
+	}
+		
+    @media (max-width: 420px) {
+        font-size: 16px;
+        span{
+            display: none;
+        }
+	}
 `;
 
 export const ApplyCountWrapper = styled.div`
@@ -39,11 +55,17 @@ export const ApplyCountWrapper = styled.div`
         font-weight: 700;
         font-size: 44px;
     }
+		
+    @media (max-width: 420px) {
+        P{
+            font-size: 32px;
+        }
+	}
 
 `;
 
 export const CountLine = styled.div`
-    width: 450px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 `;
@@ -69,6 +91,13 @@ export const ApplyBottom = styled.div`
         font-size: 12px;
         color: ${Palette.NEUTRAL_N20};
     }
+
+    @media (max-width: 420px) {
+        P{
+            display: none;
+        }
+	}
+
 `;
 
 export const ApplyDesc = styled.div`
@@ -89,4 +118,8 @@ export const ApplyBtn = styled.div`
                 props.applyStatus === "신청불가" ? `${Palette.PRIMARY_P30}` : `${Palette.PRIMARY_P10}` } ;
     border: ${(props:applyStyleProps) => props.applyStatus === "신청취소" ? `1px solid ${Palette.NEUTRAL_N20}` : `` } ;
     
+    @media (max-width: 420px) {
+        width: 100%;
+        height: 43px;
+	}
 `;

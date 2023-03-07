@@ -35,7 +35,7 @@ export const ProfileBox = styled.div`
 `;
 
 export const StudentInfo = styled.div`
-    width: 200px;
+    width: 12.5vw;
     height: 70px;
     display: flex;
     flex-direction: column;

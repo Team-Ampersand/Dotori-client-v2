@@ -27,6 +27,19 @@ export const PenaltyItems = styled.div`
 	gap: 10px;
 	overflow-y: auto;
 	margin: 15px 0 10px 0;
+
+	::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${Palette.NEUTRAL_N30};
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: ${Palette.NEUTRAL_N50}
+    }
 `;
 
 

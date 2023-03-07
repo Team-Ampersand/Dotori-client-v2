@@ -3,10 +3,10 @@ import { Palette } from "styles/globals";
 
 export const NoticeBoardWrapper = styled.div`
     max-width: 430px;
-    height: 56vh;
+    height: 54.5vh;
     display: flex;
     flex-direction: column;
-    padding: 20px 25px 0 25px;
+    padding: 20px 25px;
     grid-area: 공지사항;
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
@@ -30,7 +30,6 @@ export const NoticeList = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
     gap: 15px;
     overflow-y: auto;
     margin: 0 auto;

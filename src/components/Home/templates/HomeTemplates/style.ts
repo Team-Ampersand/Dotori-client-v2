@@ -6,7 +6,7 @@ export const HomeTemplates = styled.div`
     height: 100vh;
     background: ${Palette.BACKGROUND_BG};
     display: grid;
-    gap: 3vh;
+    gap: 2.5vh;
     padding: 0 3vw 3vh 3vw;
     overflow-y: auto;
     overflow-x: hidden;

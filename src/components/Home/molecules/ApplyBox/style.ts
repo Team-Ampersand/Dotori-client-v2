@@ -3,7 +3,7 @@ import { Palette } from "styles/globals";
 import { applyStyleProps } from "types";
 
 export const ApplyBoxWrapper = styled.div`
-    height: 26.2vh;
+    height: 25.65vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -88,7 +88,7 @@ export const ApplyBottom = styled.div`
 
     p{
         font-weight: 500;
-        font-size: 12px;
+        font-size: 11px;
         color: ${Palette.NEUTRAL_N20};
     }
 
@@ -107,7 +107,7 @@ export const ApplyDesc = styled.div`
 
 export const ApplyBtn = styled.div`
     width: 100px;
-    height: 40px;
+    height: 4.2vh;
     border-radius: 8px;
     display: flex;
     align-items: center;

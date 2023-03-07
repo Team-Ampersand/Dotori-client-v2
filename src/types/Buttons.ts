@@ -6,6 +6,10 @@ export interface AuthButtonProps {
     onClick: () => void
 }
 
+export interface AuthButtonStyleProps {
+	width: number
+};
+
 export interface GenderBtnProps {
     gender: string,
     myGender: "남"|"여", 

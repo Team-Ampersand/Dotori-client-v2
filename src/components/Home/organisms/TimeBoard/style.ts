@@ -113,7 +113,7 @@ export const BoardBottom = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 70px;
+    padding: 0 4.5vw;
     gap: 10px;
     color: white;
     font-weight: 600;
@@ -168,7 +168,7 @@ export const CurrentTime = styled.p`
 
 export const DotoriImgBox = styled.div`
     position: absolute;
-    right: 37px;
+    right: 3vw;
     bottom: 5px;
     width: 319px;
     height: 330px;

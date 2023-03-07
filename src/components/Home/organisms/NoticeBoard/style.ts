@@ -25,13 +25,15 @@ export const NoticeBoardWrapper = styled.div`
 `;
 
 export const NoticeList = styled.div`
-    display: flex;
+    max-width: 370px;
     height: 490px;
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
     gap: 15px;
     overflow-y: auto;
+    margin: 0 auto;
 `;
 
 export const DateLine = styled.div`

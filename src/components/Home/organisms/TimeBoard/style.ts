@@ -169,9 +169,9 @@ export const CurrentTime = styled.p`
 export const DotoriImgBox = styled.div`
     position: absolute;
     right: 3vw;
-    bottom: 5px;
-    width: 319px;
-    height: 330px;
+    bottom: 45px;
+    width: 30vh;
+    height: 30vh;
 
     @media (max-width: 950px) {
         width: 240px;

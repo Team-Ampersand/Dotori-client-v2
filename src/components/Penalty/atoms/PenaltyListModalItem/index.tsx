@@ -21,8 +21,8 @@ const PenaltyListModalItem = ({ name, date }: PenaltyItemType) => {
       </S.PenaltyListModalItemWrapper>
       {penaltyDelModal && (
         <PenaltyDelModal
-          modal={penaltyDelModal}
-          setModal={setPenaltyDelModal}
+          modalState={penaltyDelModal}
+          setModalState={setPenaltyDelModal}
           penaltyName={name}
         />
       )}

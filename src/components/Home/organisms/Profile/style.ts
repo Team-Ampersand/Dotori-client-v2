@@ -5,9 +5,8 @@ export const ProfileWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-top: 50px;
-    padding: 3px 0;
-    gap: 20px;
+    margin-top: 5.55vh;
+    gap: 2vh;
     grid-area: 프로필;
 
     @media (max-width: 950px) {
@@ -18,7 +17,7 @@ export const ProfileWrapper = styled.div`
 
 export const ProfileBox = styled.div`
     width: 100%;
-    height: 120px;
+    height: 12.4vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,14 +28,19 @@ export const ProfileBox = styled.div`
     border-radius: 16px;
     position: relative;
 
-    svg{
+    svg {
         cursor: pointer;
+        rect{
+            /* height: 8vh; */
+
+        }
+        /* width: 8vh; */
     }
 `;
 
 export const StudentInfo = styled.div`
     width: 12.5vw;
-    height: 70px;
+    height: 7.233vh;
     display: flex;
     flex-direction: column;
     gap: 8px;

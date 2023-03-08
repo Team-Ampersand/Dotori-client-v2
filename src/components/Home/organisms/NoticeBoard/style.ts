@@ -2,11 +2,10 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const NoticeBoardWrapper = styled.div`
-    max-width: 430px;
-    height: 56vh;
+    height: 54.5vh;
     display: flex;
     flex-direction: column;
-    padding: 20px 25px 0 25px;
+    padding: 20px;
     grid-area: 공지사항;
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
@@ -16,7 +15,7 @@ export const NoticeBoardWrapper = styled.div`
         font-weight: 700;
         font-size: 18px;
         color: ${Palette.NEUTRAL_N10};
-        margin: 10px 0;
+        margin: 10px;
     }
 
     @media (max-width: 950px) {
@@ -26,14 +25,27 @@ export const NoticeBoardWrapper = styled.div`
 
 export const NoticeList = styled.div`
     max-width: 370px;
-    height: 490px;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
     gap: 15px;
     overflow-y: auto;
     margin: 0 auto;
+    padding-right: 10px;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${Palette.NEUTRAL_N30};
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: ${Palette.NEUTRAL_N50}
+    }
 `;
 
 export const DateLine = styled.div`

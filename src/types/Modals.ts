@@ -31,6 +31,8 @@ export interface ModalHeaderProps {
   setState: (state: boolean) => void;
 }
 
-export interface PenaltyDelModalProps extends ModalProps {
-  penaltyName: string;
+export interface CommonCheckModalProps extends ModalProps {
+  title: string;
+  content: string;
+  onClick: () => void;
 }

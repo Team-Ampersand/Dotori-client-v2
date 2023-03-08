@@ -3,10 +3,12 @@ import { dateRegex } from 'utils/dateRegex';
 import * as S from './style';
 import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import { useState } from 'react';
-import PenaltyDelModal from '../PenaltyDelModal';
+import CommonDelModal from 'components/Common/molecules/CommonDelModal';
 
 const PenaltyListModalItem = ({ name, date }: PenaltyItemType) => {
   const [penaltyDelModal, setPenaltyDelModal] = useState(false);
+
+  const onClick = () => {};
 
   return (
     <>
@@ -20,10 +22,12 @@ const PenaltyListModalItem = ({ name, date }: PenaltyItemType) => {
         </div>
       </S.PenaltyListModalItemWrapper>
       {penaltyDelModal && (
-        <PenaltyDelModal
+        <CommonDelModal
           modalState={penaltyDelModal}
           setModalState={setPenaltyDelModal}
-          penaltyName={name}
+          title={'규정 위반 내역 삭제'}
+          content={`'${name}' 위반 내역을 삭제 하시겠습니까?`}
+          onClick={onClick}
         />
       )}
     </>

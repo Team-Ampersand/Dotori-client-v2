@@ -27,10 +27,10 @@ const ApplyBox = ({name, url, count, maxCount, applyStatus, onClick}:applyBoxPro
             </S.ApplyCountWrapper>
             <S.ApplyBottom>
                 {
-                    name === "자습신청" ? <p>20:00 ~ 21:00 에 자습 신청이 가능해요</p> :
+                    name === "자습신청" ? <p>20:00 ~ 21:00 에 자습 신청이 가능해요.</p> :
                     <S.ApplyDesc>
-                        <p>20:00 ~ 21:00 에 안마의자 신청이 가능해요</p>
-                        <p style={{color:`${Palette.PRIMARY_P10}`}}>※ 여학생의 경우 여자 사감선생님께 별도로 신청해주시기 바랍니다.</p>
+                        <p>20:00 ~ 21:00 에 안마의자 신청이 가능해요.</p>
+                        <p style={{color:`${Palette.PRIMARY_P10}`}}>※ 여학생의 경우 여자 사감선생님께 별도로 신청해주세요.</p>
                     </S.ApplyDesc>
                 }
                 <S.ApplyBtn onClick={onClick} applyStatus={applyStatus}>{applyStatus}</S.ApplyBtn>

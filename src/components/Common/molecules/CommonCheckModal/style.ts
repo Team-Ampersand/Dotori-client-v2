@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
-export const PenaltyDelModalWrapper = styled.div`
+export const CheckModalWrapper = styled.div`
   width: 320px;
   height: 160px;
   background: ${Palette.BACKGROUND_CARD};
@@ -14,13 +14,13 @@ export const PenaltyDelModalWrapper = styled.div`
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 `;
 
-export const ModalHeaderWrapper = styled.div`
+export const CheckTitle = styled.div`
   color: ${Palette.NEUTRAL_N10};
   font-weight: 700;
   font-size: 18px;
 `;
 
-export const DelText = styled.div`
+export const CheckContent = styled.div`
   font-weight: 500;
   font-size: 14px;
   color: ${Palette.NEUTRAL_N20};
@@ -44,6 +44,7 @@ export const CancelBtn = styled.button`
   border: 1px solid ${Palette.NEUTRAL_N30};
   border-radius: 8px;
 `;
+
 export const CheckBtn = styled.button`
   width: 130px;
   font-weight: 700;

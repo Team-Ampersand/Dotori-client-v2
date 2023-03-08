@@ -3,7 +3,7 @@ import { dateRegex } from 'utils/dateRegex';
 import * as S from './style';
 import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import { useState } from 'react';
-import CommonDelModal from 'components/Common/molecules/CommonDelModal';
+import CommonDelModal from 'components/Common/molecules/CommonCheckModal';
 
 const PenaltyListModalItem = ({ name, date }: PenaltyItemType) => {
   const [penaltyDelModal, setPenaltyDelModal] = useState(false);

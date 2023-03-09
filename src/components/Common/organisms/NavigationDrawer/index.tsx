@@ -1,44 +1,51 @@
 import * as S from './style';
-import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
 import { useRouter } from 'next/router';
-import { MenuData } from 'assets/data/SidebarMenuData';
 import { DotoriIcon, XtextIcon } from 'assets/svg';
 import { ChangeMenuIcon } from 'utils/ChangeMenuIcon';
-import { ModalOverayWrapper } from 'components/Home/atoms/Wrapper/style';
 import { ModalProps } from 'types';
+import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 
 const NavigationDrawer = ({modalState, setModalState}:ModalProps) => {
   const router = useRouter();
 
+  const isCurrentRouter = (route:string) => router.pathname === route;
+
   return (
-    <ModalOverayWrapper isClick={modalState} >
+    <>
+    <ModalOverayWrapper isClick={modalState} onClick={() => setModalState(false)} />
       <S.NavigationDrawerWrapper>
         <S.NavigationDrawerTop>
           <XtextIcon onClick={() => setModalState(false)}/>
         </S.NavigationDrawerTop>
           <S.DototiTitle>
               <DotoriIcon/>
-              <span>DOTORI</span>
+              <span>DOTORI</span> 
           </S.DototiTitle>
-
           <S.NavigationDrawerList>
-              <S.NavigationDrawerItem onClick={() => router.push('/studsDetail')}>
+              <S.NavigationDrawerItem 
+                title='학생정보'
+                onClick={() => router.push('/studsDetail')}
+                isCurrentRouter={isCurrentRouter('/studsDetail')}
+              >
               <>
-                {ChangeMenuIcon(false)['학생정보']()}
+                {ChangeMenuIcon(isCurrentRouter('/studsDetail'))['학생정보']()}
               </>
-                <S.DrawerItemTitle>{'학생정보'}</S.DrawerItemTitle>
+                <S.DrawerItemTitle>학생정보</S.DrawerItemTitle>
               </S.NavigationDrawerItem>
-              <S.NavigationDrawerItem onClick={() => router.push('/penalty')}>
+              <S.NavigationDrawerItem 
+                  title='규정위반'
+                  onClick={() => router.push('/penalty')}
+                  isCurrentRouter={isCurrentRouter('/penalty')}
+              >
               <>
-                {ChangeMenuIcon(false)['규정위반']()}
+                {ChangeMenuIcon(isCurrentRouter('/penalty'))['규정위반']()}
               </>
-                <S.DrawerItemTitle>{'규정위반'}</S.DrawerItemTitle>
+                <S.DrawerItemTitle>규정위반</S.DrawerItemTitle>
               </S.NavigationDrawerItem>
           </S.NavigationDrawerList>
 
       </S.NavigationDrawerWrapper>
-    </ModalOverayWrapper>
-
+    </>
   );
 };
 

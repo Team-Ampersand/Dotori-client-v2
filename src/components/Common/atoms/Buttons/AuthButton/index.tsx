@@ -12,9 +12,9 @@ const AuthButton = ({
         <S.AuthButton 
             type={type}
             onClick={onClick} 
+            width={width || 380}
             style={{
                 background: isCheck? `${Palette.PRIMARY_P10}`:`${Palette.PRIMARY_P30}`,
-                width: width? `${width}px` : `380px`
             }}
         >
             {text}

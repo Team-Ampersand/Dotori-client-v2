@@ -39,3 +39,7 @@ export { default as CupIcon } from './CupIcon';
 export { default as PaperIcon } from './PaperIcon';
 export { default as HanbergerIcon } from './HanbergerIcon';
 export { default as PenIcon } from './PenIcon';
+export { default as PlusIcon } from './PlusIcon';
+export { default as ExclamationMark } from './ExclamationMark';
+export { default as CalendarIcon } from './CalendarIcon';
+export { default as XIcon } from './XIcon';

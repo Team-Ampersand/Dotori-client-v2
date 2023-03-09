@@ -16,4 +16,9 @@ export const SignInInputsWrapper = styled.div`
         line-height: 17px;
         color: ${Palette.NEUTRAL_N20};
     }
+
+    @media (max-width: 420px) {
+        width: 90vw;
+        margin: 40px auto;
+    }
 `;

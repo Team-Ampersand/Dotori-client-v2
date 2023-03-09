@@ -10,7 +10,7 @@ export const MealBoardWrapper = styled.div`
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
     padding: 20px;
-    gap: 30px;
+    gap: 3.2vh;
 
     span{
         font-weight: 700;
@@ -66,7 +66,7 @@ export const ControlDate = styled.div`
 
 export const HourMealChooseBox = styled.div`
     position: relative;
-    height: 47px;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,7 +90,7 @@ export const HourMealChooseBox = styled.div`
 export const SelectBtn = styled.button`
     position: absolute;
     width: 32%;
-    height: 40px;
+    height: 4vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,12 +106,12 @@ export const SelectBtn = styled.button`
 `;
 
 export const MealList = styled.div`
-    height: 500px;
+    height: 52vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 30px 0 30px 30px;
+    padding: 3vh 0 3vh 30px;
     background: ${Palette.NEUTRAL_N50};
     border-radius: 8px;
 `;

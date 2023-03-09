@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const TimeBoardWrapper = styled.div`
-    height: 320px;
+    height: 33vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 50px;
+    margin-top: 5.55vh;
     grid-area: 시간;
 
     @media (max-width: 950px) {
@@ -109,7 +109,7 @@ export const TodayDate = styled.div`
 
 export const BoardBottom = styled.div`
     position: relative;
-    height: 255px;
+    height: 27vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,9 +169,9 @@ export const CurrentTime = styled.p`
 export const DotoriImgBox = styled.div`
     position: absolute;
     right: 3vw;
-    bottom: 5px;
-    width: 319px;
-    height: 330px;
+    bottom: 45px;
+    width: 30vh;
+    height: 30vh;
 
     @media (max-width: 950px) {
         width: 240px;

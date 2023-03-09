@@ -9,3 +9,4 @@ export * from './Home';
 export * from './Filter';
 export * from './Checkbox';
 export * from './List';
+export * from './Penalty';

@@ -118,14 +118,13 @@ export const BoardBottom = styled.div`
     color: white;
     font-weight: 600;
     font-size: 30px;
-    background: radial-gradient(198.73% 2092.94% at 17.26% 9.06%, #5966E9 0%, #C955FF 94.62%, #F2B5B5 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
-    border-radius: 16px;
 
     span{
         padding-left: 10px;
         font-weight: 600;
         font-size: 24px;
+        z-index: 0;
     }
 
     @media (max-width: 950px) {
@@ -152,6 +151,7 @@ export const CurrentTime = styled.p`
     font-weight: 800;
     font-size: 64px;
     letter-spacing: 4.5px;
+    z-index: 0;
 
     @media (max-width: 950px) {
         width: 400px;

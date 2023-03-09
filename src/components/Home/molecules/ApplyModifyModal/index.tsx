@@ -1,6 +1,7 @@
 import { AuthInput } from "components/Common";
 import ModalHeader from "components/Common/atoms/ModalHeader";
-import { ModalOverayWrapper } from "components/Home/atoms/Wrapper/style";
+import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
+
 import { useForm } from "react-hook-form";
 import { ApplyModifyModalProps } from "types";
 import { isNotNull } from "utils/isNotNull";

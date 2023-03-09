@@ -68,11 +68,11 @@ const TimeBoard = () => {
                 navigationDrawer && <NavigationDrawer modalState={navigationDrawer} setModalState={setNavigationDrawer}/>
             }
             <S.BoardBottom>
-                <Image src={GradationImg} layout="fill" alt="GradationImg"/>
+                <Image src={GradationImg} layout="fill" priority alt="GradationImg"/>
                 <span>현재시간</span>
                 <S.CurrentTime>{date}</S.CurrentTime>
                 <S.DotoriImgBox>
-                    <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" width={305} height={315} objectFit={"cover"}/>
+                    <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" priority width={305} height={315} objectFit={"cover"}/>
                 </S.DotoriImgBox>
             </S.BoardBottom>
         </S.TimeBoardWrapper>

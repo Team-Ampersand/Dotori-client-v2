@@ -1,5 +1,5 @@
 import * as S from './style';
-import { ModalOverayWrapper } from 'components/Home/atoms/Wrapper/style';
+import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { ModalProps } from 'types';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import PenaltyListModalItem from 'components/Penalty/atoms/PenaltyListModalItem';

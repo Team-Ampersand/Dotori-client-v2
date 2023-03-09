@@ -36,3 +36,9 @@ export interface CommonCheckModalProps extends ModalProps {
   content: string;
   onClick: () => void;
 }
+
+export interface ApplyModifyModalProps extends ModalProps {
+  name: string;
+  maxCount: number;
+  onClick: (n:number) => void;
+}

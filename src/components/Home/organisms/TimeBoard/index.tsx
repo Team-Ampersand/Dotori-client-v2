@@ -68,7 +68,7 @@ const TimeBoard = () => {
                 navigationDrawer && <NavigationDrawer modalState={navigationDrawer} setModalState={setNavigationDrawer}/>
             }
             <S.BoardBottom>
-                <Image src={GradationImg} layout={"fill"} alt='그라데이션이미지'/>
+                <Image src={GradationImg} layout="fill" alt="GradationImg"/>
                 <span>현재시간</span>
                 <S.CurrentTime>{date}</S.CurrentTime>
                 <S.DotoriImgBox>

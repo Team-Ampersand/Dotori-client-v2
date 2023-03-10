@@ -13,5 +13,5 @@ export const ModalOverayWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(6, 9, 45, 0.25);
+  background: hsla(235, 77%, 10%, 0.45);
 `;

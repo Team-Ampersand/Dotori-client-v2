@@ -71,7 +71,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
           <span>적용</span>
         </S.ApplyBtn>
       </S.FilterWrapper>
-      <S.ModalOverayWrapper
+      <ModalOverayWrapper
         isClick={modalState}
         onClick={() => setModalState(false)}
       />

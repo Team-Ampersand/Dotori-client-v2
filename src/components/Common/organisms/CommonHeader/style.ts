@@ -72,6 +72,7 @@ export const ModalBtn = styled.div`
   border-radius: 8px;
   padding: 8px 12px;
   gap: 8px;
+  cursor: pointer;
   span {
     font-weight: 500;
     font-size: 16px;

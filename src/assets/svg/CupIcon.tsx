@@ -8,7 +8,7 @@ const CupIcon = () => {
     <svg
       width="88"
       height="150"
-      viewBox="0 0 88 150"
+      viewBox="0 0 75 150"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

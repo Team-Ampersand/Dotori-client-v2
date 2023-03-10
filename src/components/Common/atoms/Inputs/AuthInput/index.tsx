@@ -38,7 +38,7 @@ const AuthInput = ({
             />
             </label>
             {
-                isValue && <XmarkIcon onClick={DeleteBtnClick}  color={`${Palette.NEUTRAL_N30}`}/>
+                isValue && <XmarkIcon onClick={DeleteBtnClick}/>
             }
         </S.AuthInput>
     );

@@ -39,7 +39,7 @@ export const AuthInput = styled.div`
   }
   svg{
     position: absolute;
-    top:14px;
+    top:15px;
     right:10px;
     cursor: pointer;
   }

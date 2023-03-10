@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
-import { FilterStyleProps } from 'types';
+import { FilterStyleProps, ModalStyleProps } from 'types';
 
 export const FilterWrapper = styled.div`
   min-width: 250px;
@@ -159,9 +159,25 @@ export const ApplyBtn = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  cursor: pointer;
   span {
     font-weight: 700;
     font-size: 16px;
     color: #fff;
   }
+`;
+
+export const ModalOverayWrapper = styled.div`
+  visibility: ${(props: ModalStyleProps) =>
+    props.isClick ? 'visible' : 'hidden'};
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsla(235, 77%, 10%, 0.45);
 `;

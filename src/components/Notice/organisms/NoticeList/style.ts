@@ -6,14 +6,15 @@ export const Layer = styled.div`
   height: 100%;
   border-radius: 16px;
   background: ${Palette.BACKGROUND_CARD};
-  padding: 16px 24px 0 24px;
+  padding: 6px 24px 0 24px;
+  overflow: hidden;
 `;
 
 export const NoticeContainer = styled.div`
+  max-height: 726px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px;
   gap: 15px;
   overflow-y: auto;
 

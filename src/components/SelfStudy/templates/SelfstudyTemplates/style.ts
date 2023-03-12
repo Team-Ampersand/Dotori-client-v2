@@ -12,8 +12,6 @@ export const SelfstudyTemplates = styled.div`
   @media (max-width: 1634px) {
     width: 100%;
   }
-  @media (max-width: 950px) {
-  }
   @media (max-width: 420px) {
     overflow-y: auto;
     overflow-x: hidden;

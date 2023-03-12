@@ -4,25 +4,25 @@ import NoticeEmpty from 'components/Notice/organisms/NoticeEmpty';
 import NoticeHeader from 'components/Notice/organisms/NoticeHeader';
 import NoticeList from 'components/Notice/organisms/NoticeList';
 import {
-	NoticeTemplate,
-	NoticeWrapper,
+  NoticeTemplate,
+  NoticeWrapper,
 } from 'components/Notice/templates/NoticeTemplate/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 
 const Notice = () => {
-	UseThemeEffect();
-	return (
-		<MainTemplates>
-			<SideBar />
-			<NoticeTemplate>
-				<NoticeHeader />
-				<NoticeWrapper>
-					<NoticeList />
-					<NoticeEmpty />
-				</NoticeWrapper>
-			</NoticeTemplate>
-		</MainTemplates>
-	);
+  UseThemeEffect();
+  return (
+    <MainTemplates>
+      <SideBar />
+      <NoticeTemplate>
+        <NoticeHeader />
+        <NoticeWrapper>
+          <NoticeList />
+          <NoticeEmpty />
+        </NoticeWrapper>
+      </NoticeTemplate>
+    </MainTemplates>
+  );
 };
 
 export default Notice;

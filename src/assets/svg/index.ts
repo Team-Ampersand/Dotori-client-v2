@@ -43,3 +43,5 @@ export { default as PlusIcon } from './PlusIcon';
 export { default as ExclamationMark } from './ExclamationMark';
 export { default as CalendarIcon } from './CalendarIcon';
 export { default as XIcon } from './XIcon';
+export { default as EditPencilIcon } from './EditPencilIcon';
+export { default as TrashCan } from './TrashCan';

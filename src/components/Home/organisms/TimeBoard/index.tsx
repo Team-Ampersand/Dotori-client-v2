@@ -12,6 +12,7 @@ import PenaltyModal from "components/Home/molecules/PenaltyModal";
 import ProileImgModal from "components/Home/molecules/ProfileImgModal";
 import { useRole } from "hooks/useRole";
 import NavigationDrawer from "components/Common/organisms/NavigationDrawer";
+import GradationImg from '../../../../assets/png/Gradation.png';
 
 const TimeBoard = () => {
     const [date, setDate] = useState<string>("");
@@ -67,10 +68,11 @@ const TimeBoard = () => {
                 navigationDrawer && <NavigationDrawer modalState={navigationDrawer} setModalState={setNavigationDrawer}/>
             }
             <S.BoardBottom>
+                <Image src={GradationImg} layout="fill" priority alt="GradationImg"/>
                 <span>현재시간</span>
                 <S.CurrentTime>{date}</S.CurrentTime>
                 <S.DotoriImgBox>
-                    <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" width={305} height={315} objectFit={"cover"}/>
+                    <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" priority width={305} height={315} objectFit={"cover"}/>
                 </S.DotoriImgBox>
             </S.BoardBottom>
         </S.TimeBoardWrapper>

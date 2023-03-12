@@ -1,8 +1,8 @@
 import * as S from './style';
-import { ModalOverayWrapper } from 'components/Home/atoms/Wrapper/style';
+import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { ModalProps } from 'types';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
-import { XIcon, CalendarIcon, PlusIcon } from 'assets/svg';
+import { XmarkIcon, CalendarIcon, PlusIcon } from 'assets/svg';
 import { useState } from 'react';
 import PenaltyRecordMenuModal from '../PenaltyRecordMenuModal';
 import { useRecoilState } from 'recoil';
@@ -20,7 +20,7 @@ const PenaltyRecordModal = ({ modalState, setModalState }: ModalProps) => {
           <span>학생</span>
           <S.SelectItem>
             선민재, 박영재, 강경민, 조재영, 손정민, 유환빈
-            <XIcon />
+            <XmarkIcon />
           </S.SelectItem>
         </S.SelectWrapper>
         <S.SelectWrapper>
@@ -34,7 +34,7 @@ const PenaltyRecordModal = ({ modalState, setModalState }: ModalProps) => {
           <S.PenaltyItemsWrapper>
             {penaltySelect.map((i, idx) => (
               <S.PenaltyItems key={idx}>
-                {i} <XIcon />
+                {i} <XmarkIcon />
               </S.PenaltyItems>
             ))}
             <S.PenaltyAddBtn onClick={() => setPenaltyRecordInfoModal(true)}>

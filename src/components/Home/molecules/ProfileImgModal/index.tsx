@@ -1,6 +1,6 @@
 import { CameraIcon } from "assets/svg";
 import ModalHeader from "components/Common/atoms/ModalHeader";
-import { ModalOverayWrapper } from "components/Home/atoms/Wrapper/style";
+import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { useCallback, useState } from "react";
 import * as S from "./style";
 import Cropper, { Area } from 'react-easy-crop'

@@ -1,7 +1,7 @@
 import { XtextIcon } from "assets/svg";
 import ModalHeader from "components/Common/atoms/ModalHeader";
 import PenaltyItem from "components/Home/atoms/PenaltyItem";
-import { ModalOverayWrapper } from "components/Home/atoms/Wrapper/style";
+import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { ModalProps } from "types";
 import * as S from "./style";
 

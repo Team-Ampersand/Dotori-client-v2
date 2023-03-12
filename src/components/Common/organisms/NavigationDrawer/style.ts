@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
+import { SidebarStyleProps } from 'types';
 
 export const NavigationDrawerWrapper = styled.div`
     position: absolute;
     left: 0;
+    top: 0;
     width: 70vw;
     height: 100vh;
     display: flex;
@@ -16,7 +18,7 @@ export const NavigationDrawerWrapper = styled.div`
 `;
 
 export const NavigationDrawerTop = styled.div`
-    width: 90%;
+    width: 85%;
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
@@ -68,6 +70,14 @@ export const NavigationDrawerItem = styled.div`
 	svg {
 		width: 30px;
 		height: 30px;
+	}
+
+    color: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `${Palette.PRIMARY_P10}` : `${Palette.NEUTRAL_N30}`)};
+	background: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `${Palette.PRIMARY_P20}` : 'transparent')};
+
+	&:hover{
+		transition: all 0.3s ease-in;
+		background: ${(props:SidebarStyleProps) => (props.isCurrentRouter ? `` : `${Palette.BACKGROUND_BG}`)};
 	}
 `;
 

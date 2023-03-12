@@ -25,3 +25,8 @@ export const penaltyStudent = atom<string[]>({
   key: 'penaltyStudent',
   default: [],
 });
+
+export const filterModal = atom<boolean>({
+  key: 'filterModal',
+  default: false,
+});

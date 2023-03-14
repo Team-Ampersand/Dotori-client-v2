@@ -9,7 +9,7 @@ export const getRefresh = async (config: AxiosRequestConfig) => {
   if (config.headers && Authorization){
     config.headers["Authorization"] = Authorization
   }
-  else if (!Authorization && config.url !== "로그인" && config.url !== "회원가입"){
+  else if (!Authorization && config.url?.includes("/email") && config.url.includes("/auth")){
     const {newAuthorization}: any = await tokenReissue(RefreshToken,null)
     if (config.headers) config.headers["Authorization"] = newAuthorization
   }

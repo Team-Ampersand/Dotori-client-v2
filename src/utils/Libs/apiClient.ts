@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_HEADER } from '../Config/Config.json';
+import  BASE_HEADER  from '../Config/Config.json';
 import { getRefresh } from './getRefresh';
 
 export const apiClient = axios.create({

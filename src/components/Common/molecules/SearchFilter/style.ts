@@ -151,18 +151,22 @@ export const SelectBox = styled.div`
 `;
 
 export const ApplyBtn = styled.div`
-  width: 100%;
-  height: 45px;
-  background-color: ${Palette.PRIMARY_P10};
-  border-radius: 8px;
-  display: ${(props: FilterStyleProps) => (props.modalState ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  cursor: pointer;
-  span {
-    font-weight: 700;
-    font-size: 16px;
-    color: #fff;
+  display: none;
+  @media (max-width: 950px) {
+    width: 100%;
+    height: 45px;
+    background-color: ${Palette.PRIMARY_P10};
+    border-radius: 8px;
+    display: ${(props: FilterStyleProps) =>
+      props.modalState ? 'flex' : 'none'};
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    cursor: pointer;
+    span {
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
   }
 `;

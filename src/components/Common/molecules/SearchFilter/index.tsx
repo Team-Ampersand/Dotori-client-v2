@@ -7,7 +7,7 @@ import { FilterMenuData } from 'assets/data/FilterMenuData';
 import UseToggleTheme from 'hooks/useToggleTheme';
 import { useRecoilState } from 'recoil';
 import { filterModal } from 'recoilAtoms/recoilAtomContainer';
-import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
+import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 
 const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
@@ -71,7 +71,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
           <span>적용</span>
         </S.ApplyBtn>
       </S.FilterWrapper>
-      <ModalOverayWrapper
+      <ResponseOverayWrapper
         isClick={modalState}
         onClick={() => setModalState(false)}
       />

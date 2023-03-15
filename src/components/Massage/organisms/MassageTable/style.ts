@@ -10,28 +10,14 @@ export const TableWrapper = styled.div`
 
 export const ListWrapper = styled.div`
   width: 100%;
-  height: 100%;
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px 200px;
   grid-template-columns: repeat(5, 210px);
   grid-auto-rows: 140px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow-y: auto;
   ::-webkit-scrollbar {
-    display: none;
-  }
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: ${Palette.NEUTRAL_N30};
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: ${Palette.NEUTRAL_N50};
+    width: 0;
   }
 
   @media (max-width: 1200px) {
@@ -46,7 +32,6 @@ export const ListWrapper = styled.div`
   @media (max-width: 420px) {
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: 170px;
-
     padding: 0 0 20px;
   }
 `;

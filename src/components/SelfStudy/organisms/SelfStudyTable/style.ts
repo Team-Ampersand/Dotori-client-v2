@@ -26,14 +26,7 @@ export const ListWrapper = styled.div`
   overflow-y: auto;
   padding-right: 10px;
   ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: ${Palette.NEUTRAL_N30};
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: ${Palette.NEUTRAL_N50};
+    width: 0;
   }
 
   @media (max-width: 1634px) {

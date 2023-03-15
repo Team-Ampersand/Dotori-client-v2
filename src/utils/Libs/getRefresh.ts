@@ -7,11 +7,11 @@ export const getRefresh = async (config: AxiosRequestConfig) => {
   const {Authorization, RefreshToken} = await getToken(null)
   
   if (config.headers && Authorization){
-    config.headers["Authorization"] = Authorization
+    config.headers["Authorization"] = `Bearer ${Authorization}`
   }
-  else if (!Authorization && config.url !== "로그인" && config.url !== "회원가입"){
+  else if (!Authorization && config.url?.includes("/email") && config.url.includes("/auth")){
     const {newAuthorization}: any = await tokenReissue(RefreshToken,null)
-    if (config.headers) config.headers["Authorization"] = newAuthorization
+    if (config.headers) config.headers["Authorization"] = `Bearer ${newAuthorization}`
   }
 
   return config;

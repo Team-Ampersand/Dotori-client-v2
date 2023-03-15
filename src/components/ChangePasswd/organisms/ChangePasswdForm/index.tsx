@@ -28,9 +28,8 @@ const ChangePasswdForm = () => {
         if(!state.password || !state.newPassword ) return;
         if(state.password === state.newPassword) return toast.error('비밀번호확인이 현재 비밀번호와 똑같습니다.')
         else if(state.newPassword !== state.newPasswordCheck) return toast.error('새로운 비밀번호확인이 새로운 비밀번호와 맞지 않습니다.')
-        // const {data}:any = await passwordChange(state.password, state.newPassword);
-        // if(data) router.push('/home');
-        router.push('/home');
+        const notError =  await passwordChange(state.password, state.newPassword);
+        if(notError) router.push('/home') 
     }
 
     return (

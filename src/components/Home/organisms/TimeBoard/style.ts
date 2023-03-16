@@ -5,7 +5,7 @@ export const TimeBoardWrapper = styled.div`
     height: 33vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
     margin-top: 5.55vh;
     grid-area: 시간;
 
@@ -146,6 +146,21 @@ export const BoardBottom = styled.div`
 	}
 `;
 
+export const ShadowImgBox = styled.div`
+    position: absolute;
+    right: -5.7vw;
+    bottom: -6vh;
+    width: 55vh;
+    height: 52vh;
+    border-radius: 50%;
+    z-index: 0;
+
+    @media (max-width: 950px) {
+        display: none;
+    }
+
+`;
+
 export const CurrentTime = styled.p`
     width: 500px;
     font-weight: 800;
@@ -168,10 +183,11 @@ export const CurrentTime = styled.p`
 
 export const DotoriImgBox = styled.div`
     position: absolute;
-    right: 3vw;
-    bottom: 45px;
-    width: 30vh;
-    height: 30vh;
+    right: 1.5vw;
+    bottom: 2vh;
+    width: 34vh;
+    height: 34vh;
+    z-index: 1;
 
     @media (max-width: 950px) {
         width: 240px;
@@ -187,12 +203,13 @@ export const DotoriImgBox = styled.div`
 		
     @media (max-width: 420px) {
         width: 127px;
-        height: 107px;
+        height: 137px;
         right: -22px;
         top: 10px;
+        z-index: 0;
         img {
             clip: rect( 0, 105px, 105px, 0);
-            clip-path: ellipse(100px 100px at 22% 21%);
+            clip-path: ellipse(100px 109px at 22% 21%);
         }
 	}
 `;

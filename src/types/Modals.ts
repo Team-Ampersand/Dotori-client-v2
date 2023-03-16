@@ -42,3 +42,7 @@ export interface ApplyModifyModalProps extends ModalProps {
   maxCount: number;
   onClick: (n:number) => void;
 }
+
+export interface PromotionStyleProps {
+  isShow: boolean;
+}

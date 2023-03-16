@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/inline-script-id */
 import UseToggleTheme from 'hooks/useToggleTheme';
 import Script from 'next/script';
+import { myProfileType } from 'types';
+import useSWR from 'swr';
+import { MemberController } from 'utils/Libs/requestUrls';
 
-const ChannelIOScript = ({stunumName,email}:{stunumName:string,email:string}) => {
-  const [theme,] = UseToggleTheme()
-  
-  return (
+const ChannelIOScript = ({stunumName,theme}:{stunumName:string,theme:string}) => (
       <Script
         dangerouslySetInnerHTML={{
             __html: `(function() {
@@ -47,13 +47,11 @@ const ChannelIOScript = ({stunumName,email}:{stunumName:string,email:string}) =>
             "pluginKey": "${process.env.NEXT_PUBLIC_CHANNEL_IO_KEY}",
             "profile": {
               "name": "${stunumName}",
-              "email": "${email}",
             }
         });
         ChannelIO('setAppearance', '${theme}')
         `}}
       />
-  );
-};
+);
 
 export default ChannelIOScript;

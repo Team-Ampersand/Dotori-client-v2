@@ -3,7 +3,7 @@ import { Palette } from "styles/globals";
 import { applyStyleProps } from "types";
 
 export const ApplyBoxWrapper = styled.div`
-    width: 30vw;
+    width: 31vw;
     height: 25.65vh;
     display: flex;
     flex-direction: column;
@@ -12,17 +12,22 @@ export const ApplyBoxWrapper = styled.div`
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
 
+    @media (min-width: 1950px) {
+        width: 34.5vw;
+    }
+    @media (max-width: 1634px) {
+        width: 35vw;
+    }
     @media (max-width: 950px) {
         width: 100%;
-	}
-    		
+    }
     @media (max-width: 420px) {
         height: 220px;
 	}
 `;
 
 export const ApplyBoardHeader = styled.div`
-    max-width: 450px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,10 +41,6 @@ export const ApplyBoardHeader = styled.div`
         font-weight: 500;
         font-size: 14px;
     }
-
-    @media (max-width: 950px) {
-        max-width: 100%;
-	}
 		
     @media (max-width: 420px) {
         font-size: 16px;

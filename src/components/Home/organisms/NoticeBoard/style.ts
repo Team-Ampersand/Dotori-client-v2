@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const NoticeBoardWrapper = styled.div`
+    max-width: 400px;
     height: 54.5vh;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 15px 20px 0 20px;
     grid-area: 공지사항;
     background: ${Palette.BACKGROUND_CARD};
     border-radius: 16px;
@@ -15,37 +16,42 @@ export const NoticeBoardWrapper = styled.div`
         font-weight: 700;
         font-size: 18px;
         color: ${Palette.NEUTRAL_N10};
-        margin: 10px;
+        margin: 10px 10px 18px 5px;
     }
 
+    @media (min-width: 1950px) {
+        width: 25vw;
+        max-width: none;
+    } 
     @media (max-width: 950px) {
         display: none;
 	}
 `;
 
 export const NoticeList = styled.div`
-    max-width: 370px;
-    height: 90%;
+    position: relative;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     overflow-y: auto;
     margin: 0 auto;
-    padding-right: 10px;
 
     ::-webkit-scrollbar {
-        width: 5px;
+        width: 0px;
     }
+`;
 
-    ::-webkit-scrollbar-thumb {
-        background: ${Palette.NEUTRAL_N30};
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: ${Palette.NEUTRAL_N50}
-    }
+export const NoticeBottom = styled.div`
+    position: absolute;
+    right: 0.5px;
+    top: 88%;
+    width: 100%;
+    height: 12%;
+    border-radius: 16px;
+    background: linear-gradient(180deg, ${Palette.BACKGROUND_CARD} 0%, rgba(253, 253, 253, 0) 100%);
+    transform: matrix(1, 0, 0, -1, 0, 0);
 `;
 
 export const DateLine = styled.div`
@@ -53,14 +59,32 @@ export const DateLine = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
     color: ${Palette.NEUTRAL_N20};
 
     hr{
-        border : 1px solid ${Palette.NEUTRAL_N40};
+        border : 0.5px solid ${Palette.NEUTRAL_N40};
         width: 100px;
         margin: 0;
     }
+`;
+
+export const EmptyNoticeItem = styled.div`
+    width: 370px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25%;
+    span{
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    @media (max-width: 1634px) {
+        width: 26vw;
+    }    
 `;

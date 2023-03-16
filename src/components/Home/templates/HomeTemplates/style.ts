@@ -20,6 +20,7 @@ export const HomeTemplates = styled.div`
 		"공지사항 안마의자 급식";
 
     @media (max-width: 1634px) {
+      padding: 0 2.5vw 2.5vh 2.5vw;
       width: 100%;
     }
 

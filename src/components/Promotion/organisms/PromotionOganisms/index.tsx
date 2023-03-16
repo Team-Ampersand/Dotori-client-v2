@@ -3,7 +3,7 @@ import UseThemeEffect from 'hooks/useThemeEffect'
 import Spline from '@splinetool/react-spline';
 import { useEffect, useState } from 'react';
 import * as S from "./style";
-import DecsPart from 'components/Promotion/molecules/DescPark';
+import DecsPart from 'components/Promotion/molecules/DescPart';
 
 const PromotionOganisms = () => {
   const [isShow, setIsShow] = useState(false);

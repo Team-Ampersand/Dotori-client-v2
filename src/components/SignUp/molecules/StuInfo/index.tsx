@@ -13,13 +13,17 @@ import { isNotNull } from "utils/isNotNull";
 import * as S from "./style";
 
 const StuInfo = () => {    
-    const { register, setValue, watch, handleSubmit, resetField} = useForm<SignupForm>()
+    const { register, setValue, watch, handleSubmit, resetField} = useForm<SignupForm>({
+        defaultValues: {
+            gender: 'MAN',
+        },
+    })
     const [isCheck, setIsCheck] = useState(false);
     const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
     const [, setSignUpStep] = useRecoilState(signUpStep);
 
     useEffect(() => {
-        setIsCheck(isNotNull(watch('name') && watch('stuId')))
+        setIsCheck(isNotNull(watch('name') && watch('stuId')));
     },[watch(['name', 'stuId'])])
 
     const onInvalid:SubmitErrorHandler<SignupForm> = (state) => toast.error(state.stuId?.message || state.name?.message)
@@ -66,13 +70,19 @@ const StuInfo = () => {
                 />
             <p>성별</p>
             <S.GenderBtnsWrapper>
-                    <GenderBtn gender={"남"} myGender={"남"} onClick={() => setValue("gender", "남")}/>
-                    <GenderBtn gender={""} myGender={"여"} onClick={() => setValue("gender", "여")}/>
+                    <GenderBtn gender={"남"} myGender={"남"} onClick={() => setValue("gender", "MAN")}/>
+                    <GenderBtn gender={""} myGender={"여"} onClick={() => setValue("gender", "WOMAN")}/>
                 </S.GenderBtnsWrapper>
             </InputsWrapper>
             <AuthBottomWrapper>
                 <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
-                <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>
+                <p>이미 회원이라면?
+                    <Link href={"/signin"}> 
+                        <a>
+                            로그인
+                        </a> 
+                    </Link>
+                </p>
             </AuthBottomWrapper>
         </form>
     )

@@ -26,10 +26,13 @@ const PasswordCheck = () => {
     const onInvalid:SubmitErrorHandler<SignupForm> = (state) => toast.error(state.password?.message || state.passwordCheck?.message)
 
     const onValid:SubmitHandler<SignupForm> = async (state) => {
+        if(!SignUpObject.email || !SignUpObject.name || !SignUpObject.stuId || !SignUpObject.gender || !state.password) return;
         if(state.password !== state.passwordCheck) return toast.error('비밀번호확인이 비밀번호와 맞지 않습니다.')
-        // const {data}:any =  await signup(SignUpObject.email||"", state.password||"", SignUpObject.name||"", SignUpObject.stuId||0,SignUpObject.gender || "남");
-        // if(data) router.push('/signin');
-        router.push('/signin');
+        const notError = await signup(SignUpObject.email, state.password, SignUpObject.name, SignUpObject.stuId, SignUpObject.gender);        
+        if(notError){
+            setSignUpStep('first');
+            router.push('/signin');
+        }
     }
 
     return (
@@ -64,7 +67,13 @@ const PasswordCheck = () => {
             </InputsWrapper>
             <AuthBottomWrapper>
                 <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
-                <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>
+                <p>이미 회원이라면?
+                    <Link href={"/signin"}> 
+                        <a>
+                            로그인
+                        </a> 
+                    </Link>
+                </p>
             </AuthBottomWrapper>
         </form>
     )

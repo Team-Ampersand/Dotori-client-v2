@@ -4,6 +4,7 @@ export const MemberController = {
 	emailCheck: '/email/signup',
 	authcheck: '/email/verify-email',
 	changePasswd: '/members/password',
+	myProfile: '/home'
 }
 
 export const NoticeController = {
@@ -21,4 +22,8 @@ export const MassageController = {
 	massage(role: string){return `/${role}/massage`},
 	cancelMassage(role: string){return `/${role}/cancel/massage`},
 	modifyMassage(role: string,num:number){return `/${role}/modify/massage/${num}`},
+}
+
+export const penaltyController = {
+	strRule(strNum:string){return `/rule/${strNum}`}
 }

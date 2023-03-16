@@ -14,6 +14,10 @@ export const ModalOverayWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: hsla(235, 77%, 10%, 0.45);
+
+  @media (max-width: 950px) {
+    background: hsla(235, 77%, 10%, 0.70);
+	}
 `;
 
 export const ResponseOverayWrapper = styled.div`

@@ -1,24 +1,38 @@
-import { XtextIcon } from "assets/svg";
 import ModalHeader from "components/Common/atoms/ModalHeader";
 import PenaltyItem from "components/Home/atoms/PenaltyItem";
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { ModalProps } from "types";
+import { PenaltyListType } from "types";
 import * as S from "./style";
+import useSWR from 'swr';
+import { penaltyController } from "utils/Libs/requestUrls";
+import { penaltyModalState } from "recoilAtoms/recoilAtomContainer";
+import { useRecoilState } from "recoil";
 
-const PenaltyModal = ({modalState, setModalState}:ModalProps) => {
+const PenaltyModal = ({role}:{role:string}) => {
+    const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);
+    const { data } = useSWR<PenaltyListType>(penaltyController.strRule(role));
+    
     return (
-        <ModalOverayWrapper isClick={modalState}>
+        <ModalOverayWrapper isClick={penaltyModal}>
             <S.PenaltyModalWrapper>
-                <ModalHeader name={"규정 위반 내역"} setState={setModalState} />
+                <ModalHeader name={"규정 위반 내역"} setState={setPenaltyModal} />
                 <S.PenaltyItems>
-                    <PenaltyItem name={"타호실 출입"} date={"2022-04-17"} />
-                    <PenaltyItem name={"타호실 출입"} date={"2022-04-17"} />
-                    <PenaltyItem name={"타호실 출입"} date={"2022-04-17"} />
-                    <PenaltyItem name={"타호실 출입"} date={"2022-04-17"} />
-                    <PenaltyItem name={"타호실 출입"} date={"2022-04-17"} />
-                    <PenaltyItem name={"타호실 출입"} date={"2022-04-17"} />
+                    {
+                        data?.rules && data.rules.length > 0 ? (
+                            data.rules?.map((i) => (
+                                <PenaltyItem 
+                                    name={i.name}
+                                    createDate={i.createDate}
+                                    id={i.id}                                
+                                    key={i.id} 
+                                />
+                            ))
+                        ):(
+                            <S.NullPenalty>규정위반 내역이 없습니다</S.NullPenalty>    
+                        )
+                    }
                 </S.PenaltyItems>
-            <S.PenaltyModalBtn onClick={() => setModalState(false)}>확인</S.PenaltyModalBtn>
+            <S.PenaltyModalBtn onClick={() => setPenaltyModal(false)}>확인</S.PenaltyModalBtn>
             </S.PenaltyModalWrapper>
         </ModalOverayWrapper>
     )

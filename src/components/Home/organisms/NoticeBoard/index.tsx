@@ -1,22 +1,46 @@
 import NoticeItem from "components/Common/atoms/Items/NoticeItem";
 import * as S from "./style";
+import useSWR from 'swr';
+import { noticePageProps } from "types";
+import { getRole } from "utils/Libs/getRole";
+
 
 const NoticeBoard = () => {
+	const role = getRole();
+	const { data } = useSWR<noticePageProps[]>([`/${role}/getNotice`]);	
+
     return (
         <S.NoticeBoardWrapper>
             <p>공지사항</p>
             <S.NoticeList>
-                <NoticeItem writer={"도토리"} date={"2022-07-06"} title={"[기숙사 자습실 관련 공지]"} desc={"많은 분들이 급식의 화살표를 눌렀을때 날짜만 변경되는 점이 불편하다고 하여 이제는 급식"} isCurrenPage={false} id={1}/>
-                <NoticeItem writer={"도토리"} date={"2022-07-06"} title={"[기숙사 자습실 관련 공지]"} desc={"많은 분들이 급식의 화살표를 눌렀을때 날짜만 변경되는 점이 불편하다고 하여 이제는 급식"} isCurrenPage={false} id={1}/>
-                <S.DateLine>
-                    <hr/>{"8월 25일"}<hr/>
-                    {/* <hr/>{`${date.slice(4, 6)}월 ${date.slice(6)}일`}<hr/> */}
-                </S.DateLine>
-                <NoticeItem writer={"도토리"} date={"2022-07-06"} title={"[기숙사 자습실 관련 공지]"} desc={"많은 분들이 급식의 화살표를 눌렀을때 날짜만 변경되는 점이 불편하다고 하여 이제는 급식"} isCurrenPage={false} id={1}/>
-                <NoticeItem writer={"도토리"} date={"2022-07-06"} title={"[기숙사 자습실 관련 공지]"} desc={"많은 분들이 급식의 화살표를 눌렀을때 날짜만 변경되는 점이 불편하다고 하여 이제는 급식"} isCurrenPage={false} id={1}/>
-                <NoticeItem writer={"도토리"} date={"2022-07-06"} title={"[기숙사 자습실 관련 공지]"} desc={"많은 분들이 급식의 화살표를 눌렀을때 날짜만 변경되는 점이 불편하다고 하여 이제는 급식"} isCurrenPage={false} id={1}/>
-                <NoticeItem writer={"도토리"} date={"2022-07-06"} title={"[기숙사 자습실 관련 공지]"} desc={"많은 분들이 급식의 화살표를 눌렀을때 날짜만 변경되는 점이 불편하다고 하여 이제는 급식"} isCurrenPage={false} id={1}/>
+                {
+                    data ? (
+                    data.map((i,idx) => (
+                        <>
+                            <NoticeItem 
+                                writer={'도토리'} 
+                                date={i.createdTime.slice(1,10)} 
+                                title={i.title} 
+                                desc={i.content} 
+                                isCurrenPage={false} 
+                                id={idx}
+                            />
+                            {
+                                data[idx]?.createdTime.slice(1,10) !== data[idx-1]?.createdTime.slice(1,10) &&
+                                <S.DateLine>
+                                    <hr/>{`${i?.createdTime.slice(5, 7)}월 ${i?.createdTime.slice(8, 10)}일`}<hr/>
+                                </S.DateLine>
+                            }
+                        </>
+                    ))
+                    ):(
+                        <S.EmptyNoticeItem>
+                            <span>공지사항이없습니다</span>
+                        </S.EmptyNoticeItem>
+                    )
+                }              
             </S.NoticeList>
+			<S.NoticeBottom/>
         </S.NoticeBoardWrapper>
     )
 }

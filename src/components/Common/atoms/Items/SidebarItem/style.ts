@@ -5,7 +5,7 @@ import { SidebarStyleProps } from "types";
 export const SidebarItemWrapper = styled.div`
 	width: 200px;
 	height: 52px;
-	display: ${(props:SidebarStyleProps) => (props.isnotShow ? 'none' : 'flex')};
+	display: ${(props:SidebarStyleProps) => (props.isShow ? 'flex' : 'none')};
 	align-items: center;
 	justify-content: flex-start;
 	text-decoration: none;

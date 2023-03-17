@@ -18,3 +18,24 @@ export interface returnMealdataType {
 	mealCode: number,
 	setList:  (list: string) => void;
 }
+
+export interface myProfileType{
+    id: number,
+    stuNum: string,
+    name: string,
+    gender: 'MAN'|'WOMAN'
+}
+
+export interface applyPageProps{
+    count: number,
+    limit: number,
+	selfStudyStatus: 'CAN'|'APPLIED'|'CANT'|'IMPOSSIBLE'
+}
+
+export interface noticePageProps{
+    id: number,
+    title: string,
+    content:string
+    roles: string,
+    createdTime: string,
+}

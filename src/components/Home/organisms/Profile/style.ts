@@ -2,13 +2,21 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const ProfileWrapper = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: flex-end;
-    margin-top: 5.55vh;
+    margin-top: 5.4vh;
     gap: 2vh;
     grid-area: 프로필;
-
+    
+    @media (min-width: 1950px) {
+        margin-top: 6.2vh;
+    }
+    @media (max-width: 1634px) {
+        width: 23vw;
+    }    
     @media (max-width: 950px) {
 		display: none;
 	}
@@ -17,7 +25,7 @@ export const ProfileWrapper = styled.div`
 
 export const ProfileBox = styled.div`
     width: 100%;
-    height: 12.4vh;
+    height: 13vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,11 +38,7 @@ export const ProfileBox = styled.div`
 
     svg {
         cursor: pointer;
-        rect{
-            /* height: 8vh; */
-
-        }
-        /* width: 8vh; */
+        /* width: 5vw; */
     }
 `;
 
@@ -44,7 +48,7 @@ export const StudentInfo = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     font-weight: 700;
     font-size: 16px;
 `;

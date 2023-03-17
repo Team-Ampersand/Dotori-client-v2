@@ -27,8 +27,8 @@ export const ProileImgModalWrapper = styled.div`
 	box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
 	@media (max-width: 420px) {
-		width: 90%;
-		height: 420px;
+		width: 90vw;
+		height: 140vw;
 		border-radius: 16px;
 	}
 `;
@@ -69,7 +69,8 @@ export const ImgCrop = styled.div`
 	border: none;
 
 	@media (max-width: 950px) {
-        width: 65vw;
+        width: 60vw;
+		height: 60vw;
 	}
 
 	@media (max-width: 420px) {

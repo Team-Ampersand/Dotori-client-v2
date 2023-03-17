@@ -29,16 +29,7 @@ export const PenaltyItems = styled.div`
 	margin: 15px 0 10px 0;
 
 	::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: ${Palette.NEUTRAL_N30};
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: ${Palette.NEUTRAL_N50}
+        width: 0px;
     }
 `;
 
@@ -54,3 +45,10 @@ export const PenaltyModalBtn = styled.button`
 	font-weight: 700;
 `;
 
+export const NullPenalty = styled.div`
+	height: 280px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+`;

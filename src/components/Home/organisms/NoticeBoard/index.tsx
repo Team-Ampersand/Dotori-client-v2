@@ -34,7 +34,9 @@ const NoticeBoard = () => {
                         </>
                     ))
                     ):(
-                        <S.EmptyNoticeItem/>
+                        <S.EmptyNoticeItem>
+                            <span>공지사항이없습니다</span>
+                        </S.EmptyNoticeItem>
                     )
                 }              
             </S.NoticeList>

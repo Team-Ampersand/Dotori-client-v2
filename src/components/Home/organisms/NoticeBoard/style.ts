@@ -81,7 +81,7 @@ export const EmptyNoticeItem = styled.div`
     padding-bottom: 25%;
     span{
         font-weight: 700;
-        font-size: 24px;
+        font-size: 18px;
     }
 
     @media (max-width: 1634px) {

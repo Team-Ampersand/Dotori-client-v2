@@ -12,9 +12,9 @@ const SidebarItem = ({
     show,
 	currentRouter,
 	setCurrentRouter,
+	role
 }:SignbarItemProps) => {
 	const isCurrentRouter = `/${currentRouter.split('/')[1]}` === routerName;
-	const role = getRole();
 	
 	return (
 		<Link href={routerName} passHref>
@@ -22,7 +22,7 @@ const SidebarItem = ({
 				title={menuTitle}
 				onClick={() => {setCurrentRouter(routerName)}}
 				isCurrentRouter={isCurrentRouter}
-				isnotShow={!show.includes(role)}
+				isShow={show.includes(role)}
 			>
 				<>
 					{ChangeMenuIcon(isCurrentRouter)[menuTitle]()}

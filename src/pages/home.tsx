@@ -12,12 +12,12 @@ import { MassageController, MemberController, NoticeController, SelfstudyControl
 import { applyPageProps, myProfileType, noticePageProps } from 'types'
 import ChannelBtn from 'components/Home/molecules/ChannelBtn'
 
-const HomePage:NextPage<{fallback: Record<string,myProfileType> & Record<string,noticePageProps> & Record<string,applyPageProps>  & Record<string,applyPageProps>}> = ({fallback}) => {
+const HomePage:NextPage<{fallback: Record<string,myProfileType> & Record<string,noticePageProps> & Record<string,applyPageProps>  & Record<string,applyPageProps>,role:string}> = ({fallback,role}) => {
   UseThemeEffect()
   return (
     <SWRConfig value={fallback}>
       <MainTemplates>
-        <SideBar/>
+        <SideBar role={role}/>
         <HomeTemplates>
           <TimeBoard/>
           <Profile/>
@@ -50,6 +50,7 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
           [SelfstudyController.selfStudyInfo(role)]: selfStudyData,
           [MassageController.massage(role)]: massageData,
         },
+        role
       },
     };
   } catch (e) {

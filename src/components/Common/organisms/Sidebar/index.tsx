@@ -6,13 +6,15 @@ import { useMemo, useState } from "react";
 import * as S from "./style";
 import Link from "next/link";
 import { MenuData } from "assets/data/SidebarMenuData";
+import { getRole } from "utils/Libs/getRole";
 
-const SideBar = () => {
+const SideBar = ({role}:{role:string}) => {
     const { pathname } = useRouter();
     const [currentRouter, setCurrentRouter] = useState(pathname);
 
     const mappingSidebarMenu = useMemo(() => (
         <SideBarList
+            role={role}
             menuDataList={MenuData}
             currentRouter={currentRouter}
             setCurrentRouter={setCurrentRouter}

@@ -1,7 +1,7 @@
 import Spline from '@splinetool/react-spline';
 import { useState } from 'react';
 import * as S from "./style";
-import DecsPart from 'components/Promotion/molecules/DescPart';
+import DecsPart from 'components/Promotion/molecules/DecsPart';
 
 const PromotionOrganisms = () => {
   const [isShow, setIsShow] = useState(false);

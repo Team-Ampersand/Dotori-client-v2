@@ -2,15 +2,14 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 import { PromotionStyleProps } from "types";
 
-
 export const DecsPartOverlay = styled.div`
     width: 100%;
     height: 100vh;
     background:  ${(props:PromotionStyleProps) => props.isShow ? 'rgba(0, 0, 0, 0.5)' : ""};
-    backdrop-filter: ${(props:PromotionStyleProps) => props.isShow ? 'blur(20px)' : "blur(0px)"};
-    z-index: 3;
-    transition: all 1s ease-in;
+    backdrop-filter: blur(${(props:PromotionStyleProps) => props.isShow ? '20' : '0' }px);
     visibility: ${(props:PromotionStyleProps) => props.isShow ? 'visible' : "hidden"};
+    transition: all 1s ease-in;
+    z-index: 3;
 `;
 
 export const DecsPartWrapper = styled.div`
@@ -25,7 +24,7 @@ export const DecsPartWrapper = styled.div`
     gap: 30px;
     padding-top: 30vh;
     justify-content: flex-start;
-    color: ${Palette.BACKGROUND_CARD};
+    color: white;
     transition: all 1.4s ease-out;
 `;
 
@@ -55,12 +54,18 @@ export const PomotionDesc = styled.div`
     gap: 7px;
     flex-direction: column;
     align-items: center;
+    padding: 0 50px;
+    word-break: keep-all;
+
+    p{
+        text-align: center;
+    }
 
     @media (max-width: 950px) {
-        font-size: 12px;
+        font-size: 17px;
     }
     @media (max-width: 420px) {
-        font-size: 10px;
+        font-size: 14px;
     }
 `;
 
@@ -83,13 +88,13 @@ export const SignInBtn = styled.div`
     }
 
     @media (max-width: 950px) {
-        width: 70px;
-        height: 32px;
-        font-size: 12px;
+        width: 80px;
+        height: 40px;
+        font-size: 14px;
     }
     @media (max-width: 420px) {
-        width: 60px;
-        height: 27px;
-        font-size: 10px;
+        width: 65px;
+        height: 30px;
+        font-size: 12px;
     }
 `;

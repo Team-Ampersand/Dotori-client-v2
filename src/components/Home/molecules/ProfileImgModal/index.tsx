@@ -9,6 +9,7 @@ import { getCroppedImg } from "utils/canvas";
 import { ModalProps } from "types";
 import { imgBase64profile, profileModalState } from "recoilAtoms/recoilAtomContainer";
 import { useRecoilState } from "recoil";
+import { toast } from "react-toastify";
 
 const ProileImgModal = () => {
     const [profileImgModal, setProfileImgModal] = useRecoilState(profileModalState);
@@ -27,6 +28,7 @@ const ProileImgModal = () => {
         try {
             const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels )
             console.log(croppedImage)
+            toast.info('다음릴리즈때 추가됩니다.')
             setFile(croppedImage || "")
         } catch (e) {
           console.error(e)

@@ -22,6 +22,9 @@ export const MealBoardWrapper = styled.div`
         width: 23vw;
         height: 68.5vh;
     }    
+    @media (max-width: 950px) {
+        width: 100%;
+    }    
 `;
 
 export const MealControlBox = styled.div`

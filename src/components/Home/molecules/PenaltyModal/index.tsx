@@ -1,4 +1,3 @@
-import { XtextIcon } from "assets/svg";
 import ModalHeader from "components/Common/atoms/ModalHeader";
 import PenaltyItem from "components/Home/atoms/PenaltyItem";
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
@@ -8,7 +7,6 @@ import useSWR from 'swr';
 import { penaltyController } from "utils/Libs/requestUrls";
 import { penaltyModalState } from "recoilAtoms/recoilAtomContainer";
 import { useRecoilState } from "recoil";
-import { getRole } from "utils/Libs/getRole";
 
 const PenaltyModal = ({role}:{role:string}) => {
     const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);

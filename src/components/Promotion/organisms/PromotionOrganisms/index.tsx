@@ -1,11 +1,9 @@
-import { MainTemplates } from 'components/Common/templates/MainTemplates/style'
-import UseThemeEffect from 'hooks/useThemeEffect'
 import Spline from '@splinetool/react-spline';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from "./style";
 import DecsPart from 'components/Promotion/molecules/DescPart';
 
-const PromotionOganisms = () => {
+const PromotionOrganisms = () => {
   const [isShow, setIsShow] = useState(false);
   
   return (
@@ -22,4 +20,4 @@ const PromotionOganisms = () => {
   )
 }
 
-export default PromotionOganisms
+export default PromotionOrganisms

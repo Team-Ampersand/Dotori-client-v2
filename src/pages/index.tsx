@@ -1,12 +1,12 @@
 import UseThemeEffect from 'hooks/useThemeEffect'
-import PromotionOganisms from 'components/Promotion/organisms/PromotionOganisms';
 import { PromotionTemplates } from 'components/Promotion/templates/PromotionTemplates/style';
+import PromotionOrganisms from 'components/Promotion/organisms/PromotionOrganisms';
 
 const PromotionPage = () => {
   UseThemeEffect()
   return (
     <PromotionTemplates>
-      <PromotionOganisms/>
+      <PromotionOrganisms/>
     </PromotionTemplates>
   )
 }

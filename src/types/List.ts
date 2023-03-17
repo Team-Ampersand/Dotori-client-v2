@@ -10,10 +10,3 @@ export interface ApplicationItemProps {
 export interface NullApplicationItemProps {
   type: string;
 }
-
-// export interface NoticeListProps {
-//   id: number,
-//   title: string,
-//   roles: string,
-//   createdTime: Date
-// }

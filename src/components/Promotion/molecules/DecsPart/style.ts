@@ -5,7 +5,7 @@ import { PromotionStyleProps } from "types";
 export const DecsPartOverlay = styled.div`
     width: 100%;
     height: 100vh;
-    background:  ${(props:PromotionStyleProps) => props.isShow ? 'rgba(0, 0, 0, 0.5)' : ""};
+    background:  ${(props:PromotionStyleProps) => props.isShow ? 'rgba(0, 0, 0, 0.3)' : ""};
     backdrop-filter: blur(${(props:PromotionStyleProps) => props.isShow ? '20' : '0' }px);
     visibility: ${(props:PromotionStyleProps) => props.isShow ? 'visible' : "hidden"};
     transition: all 1s ease-in;
@@ -21,17 +21,18 @@ export const DecsPartWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: ${(props:PromotionStyleProps) => props.isShow ? '30px' : "60px"};
+    opacity: ${(props:PromotionStyleProps) => props.isShow ? '1' : "0.1"};;
     padding-top: 30vh;
     justify-content: flex-start;
     color: white;
-    transition: all 1.4s ease-out;
+    transition: all 1.8s ease-out;
 `;
 
 export const PomotionTitle = styled.p`
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 36px;
 
     @media (max-width: 950px) {
         font-size: 25px;
@@ -56,6 +57,7 @@ export const PomotionDesc = styled.div`
     align-items: center;
     padding: 0 50px;
     word-break: keep-all;
+    letter-spacing: 1px;
 
     p{
         text-align: center;
@@ -71,7 +73,7 @@ export const PomotionDesc = styled.div`
 
 export const SignInBtn = styled.div`
     width: 110px;
-    height: 42px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;

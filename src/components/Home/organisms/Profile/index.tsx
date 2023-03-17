@@ -9,11 +9,13 @@ import useSWR from 'swr';
 import { MemberController } from "utils/Libs/requestUrls";
 import { useRecoilState } from "recoil";
 import { menuModalState, penaltyModalState, profileModalState } from "recoilAtoms/recoilAtomContainer";
+import { getRole } from "utils/Libs/getRole";
 
 const Profile = () => {
     const [menuModal, setMenuModal] = useRecoilState(menuModalState);
     const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);
     const [profileImgModal, setProfileImgModal] = useRecoilState(profileModalState);
+    const role = getRole();
     const { data } = useSWR<myProfileType>(MemberController.myProfile);    
     
     return (
@@ -38,7 +40,7 @@ const Profile = () => {
                 </div>
             </S.ProfileBox>
             {
-                penaltyModal && <PenaltyModal/>
+                penaltyModal && <PenaltyModal role={role}/>
             }
             {
                 profileImgModal && <ProileImgModal/>

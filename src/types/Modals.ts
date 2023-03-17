@@ -26,6 +26,10 @@ export interface PenaltyItemType {
   date: string;
 }
 
+export interface PenaltyListType {
+  rules : PenaltyItemType[]
+}
+
 export interface ModalHeaderProps {
   name: string;
   setState: (state: boolean) => void;

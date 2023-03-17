@@ -62,7 +62,7 @@ const TimeBoard = () => {
                 </S.BoardTopRightWrapper>
             </S.BoardTop>
             {
-                penaltyModal && <PenaltyModal/>
+                penaltyModal && <PenaltyModal role={role}/>
             }
             {
                 profileImgModal && <ProileImgModal/>
@@ -78,7 +78,7 @@ const TimeBoard = () => {
                     <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" priority layout="fill" objectFit={"cover"}/>
                 </S.DotoriImgBox>
                 <S.ShadowImgBox>
-                    <Image src={ShadowImg} layout="fill" alt="그림자이미지"/>
+                    <Image src={ShadowImg} layout="fill" priority alt="그림자이미지"/>
                 </S.ShadowImgBox>
             </S.BoardBottom>
         </S.TimeBoardWrapper>

@@ -2,17 +2,17 @@ import { XtextIcon } from "assets/svg";
 import ModalHeader from "components/Common/atoms/ModalHeader";
 import PenaltyItem from "components/Home/atoms/PenaltyItem";
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { ModalProps, myProfileType, PenaltyItemType } from "types";
+import { PenaltyListType } from "types";
 import * as S from "./style";
 import useSWR from 'swr';
-import { MemberController, penaltyController } from "utils/Libs/requestUrls";
+import { penaltyController } from "utils/Libs/requestUrls";
 import { penaltyModalState } from "recoilAtoms/recoilAtomContainer";
 import { useRecoilState } from "recoil";
+import { getRole } from "utils/Libs/getRole";
 
-const PenaltyModal = () => {
+const PenaltyModal = ({role}:{role:string}) => {
     const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);
-    const { data:ProfileData } = useSWR<myProfileType>(MemberController.myProfile);
-    const { data } = useSWR<PenaltyItemType[]>(penaltyController.strRule(ProfileData?.stuNum || ""));
+    const { data } = useSWR<PenaltyListType>(penaltyController.strRule(role));
     
     return (
         <ModalOverayWrapper isClick={penaltyModal}>
@@ -20,8 +20,8 @@ const PenaltyModal = () => {
                 <ModalHeader name={"규정 위반 내역"} setState={setPenaltyModal} />
                 <S.PenaltyItems>
                     {
-                        data ? (
-                            data?.map((i,idx) => (
+                        data?.rules && data.rules.length > 0 ? (
+                            data.rules?.map((i,idx) => (
                                 <PenaltyItem 
                                     name={i.name} 
                                     date={i.date}

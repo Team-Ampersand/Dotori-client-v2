@@ -25,5 +25,5 @@ export const MassageController = {
 }
 
 export const penaltyController = {
-	strRule(strNum:string){return `/rule/${strNum}`}
+	strRule(role:string){return `${role}/rule`}
 }

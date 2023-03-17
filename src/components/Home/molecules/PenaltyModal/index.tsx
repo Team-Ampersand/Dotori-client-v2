@@ -21,11 +21,12 @@ const PenaltyModal = ({role}:{role:string}) => {
                 <S.PenaltyItems>
                     {
                         data?.rules && data.rules.length > 0 ? (
-                            data.rules?.map((i,idx) => (
+                            data.rules?.map((i) => (
                                 <PenaltyItem 
-                                    name={i.name} 
-                                    date={i.date}
-                                    key={idx} 
+                                    name={i.name}
+                                    createDate={i.createDate}
+                                    id={i.id}                                
+                                    key={i.id} 
                                 />
                             ))
                         ):(

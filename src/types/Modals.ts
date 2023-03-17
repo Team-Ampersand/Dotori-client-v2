@@ -22,8 +22,9 @@ export interface ModalProps {
 }
 
 export interface PenaltyItemType {
+  id:number
   name: string;
-  date: string;
+  createDate: string;
 }
 
 export interface PenaltyListType {

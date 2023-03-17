@@ -98,8 +98,26 @@ export const ApplyBottom = styled.div`
         color: ${Palette.NEUTRAL_N20};
     }
 
+    @media (max-width: 1150px) {
+        .womanText{
+            display: none;
+        }
+	}
+    @media (max-width: 950px) {
+        .womanText{
+            display: block;
+        }    
+    }
+    @media (max-width: 500px) {
+        .womanText{
+            display: none;
+        }
+	}
     @media (max-width: 420px) {
         P{
+            display: none;
+        }
+        .womanText{
             display: none;
         }
 	}

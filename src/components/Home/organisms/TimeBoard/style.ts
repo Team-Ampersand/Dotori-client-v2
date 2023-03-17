@@ -168,13 +168,17 @@ export const CurrentTime = styled.p`
     letter-spacing: 4.5px;
     z-index: 0;
 
-    @media (max-width: 950px) {
+    @media (max-width: 1130px) {
         width: 400px;
         font-size: 50px;
         letter-spacing: 4px;
 	}
-		
-    @media (max-width: 420px) {
+    @media (max-width: 650px) {
+        width: 240px;
+		font-size: 34px;
+        letter-spacing: 2px;
+	}	
+    @media (max-width: 530px) {
         width: 210px;
 		font-size: 24px;
         letter-spacing: 2px;
@@ -188,6 +192,13 @@ export const DotoriImgBox = styled.div`
     width: 34vh;
     height: 34vh;
     z-index: 1;
+
+    @media (max-width: 1260px) {
+        width: 28vh;
+        height: 28vh;
+        right: 1vw;
+        bottom: 3vh;
+	}
 
     @media (max-width: 950px) {
         width: 240px;

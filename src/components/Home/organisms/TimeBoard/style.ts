@@ -155,6 +155,12 @@ export const ShadowImgBox = styled.div`
     border-radius: 50%;
     z-index: 0;
 
+    @media (max-width: 1130px) {
+        right: -3.7vw;
+        bottom: -1vh;
+        width: 45vh;
+        height: 42vh;
+	}
     @media (max-width: 950px) {
         display: none;
     }

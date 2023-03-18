@@ -10,6 +10,7 @@ export const DecsPartOverlay = styled.div`
     visibility: ${(props:PromotionStyleProps) => props.isShow ? 'visible' : "hidden"};
     transition: all 1s ease-in;
     z-index: 3;
+    transform:  ${(props:PromotionStyleProps) => props.isShow ? 'scale(1)' : ""};
 `;
 
 export const DecsPartWrapper = styled.div`
@@ -17,16 +18,17 @@ export const DecsPartWrapper = styled.div`
     position: absolute;
     top: ${(props:PromotionStyleProps) => props.isShow ? '0' : "80vh"};
     width: 100%;
-    height: 100vh;
+    height: ${(props:PromotionStyleProps) => props.isShow ? '100vh' : "0vh"};
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: ${(props:PromotionStyleProps) => props.isShow ? '30px' : "60px"};
-    opacity: ${(props:PromotionStyleProps) => props.isShow ? '1' : "0.1"};;
-    padding-top: 30vh;
+    opacity: ${(props:PromotionStyleProps) => props.isShow ? '1' : "0"};
+    padding-top: ${(props:PromotionStyleProps) => props.isShow ? '30vh' : "0vh"};
     justify-content: flex-start;
     color: white;
-    transition: all 1.8s ease-out;
+    transition: all 1.7s ease-out;
+    
 `;
 
 export const PomotionTitle = styled.p`

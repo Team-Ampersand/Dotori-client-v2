@@ -7,7 +7,8 @@ export const getToken = async (ctx:GetServerSidePropsContext|null) => {
     let Authorization = ctx.req.cookies['Authorization'] || "";
     let RefreshToken =  ctx.req.cookies['RefreshToken'] || "";
     
-    if(!Authorization){
+    if(!RefreshToken) return {}
+    else if(!Authorization){
       const {newAuthorization}: any = await tokenReissue(RefreshToken,ctx)
       Authorization = newAuthorization
     }

@@ -5,8 +5,8 @@ import { PromotionStyleProps } from "types";
 export const DecsPartOverlay = styled.div`
     width: 100%;
     height: 100vh;
-    background:  ${(props:PromotionStyleProps) => props.isShow ? 'rgba(0, 0, 0, 0.3)' : ""};
-    backdrop-filter: blur(${(props:PromotionStyleProps) => props.isShow ? '20' : '0' }px);
+    background:  ${(props:PromotionStyleProps) => props.isShow ? 'rgba(0, 0, 0, 0.4)' : ""};
+    backdrop-filter: blur(${(props:PromotionStyleProps) => props.isShow ? '50' : '0' }px);
     visibility: ${(props:PromotionStyleProps) => props.isShow ? 'visible' : "hidden"};
     transition: all 1s ease-in;
     z-index: 3;
@@ -18,13 +18,13 @@ export const DecsPartWrapper = styled.div`
     position: absolute;
     top: ${(props:PromotionStyleProps) => props.isShow ? '0' : "80vh"};
     width: 100%;
-    height: ${(props:PromotionStyleProps) => props.isShow ? '100vh' : "0vh"};
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: ${(props:PromotionStyleProps) => props.isShow ? '30px' : "60px"};
     opacity: ${(props:PromotionStyleProps) => props.isShow ? '1' : "0"};
-    padding-top: ${(props:PromotionStyleProps) => props.isShow ? '30vh' : "0vh"};
+    padding-top: 30vh;
     justify-content: flex-start;
     color: white;
     transition: all 1.7s ease-out;

@@ -42,12 +42,11 @@ export const AuthInput = styled.div`
     top:15px;
     right:10px;
     cursor: pointer;
+  } 
+
+  .frontIcon{
+    left: 10px;
   }
-  label{
-    svg{
-      left:10px;
-    }
-}
 
   @media (max-width: 420px) {
     width: ${((props:AuthInputStyleProps) => props.isRabel ? `90vw` : props.isEmailAuth ? `70vw` : `90vw`)};

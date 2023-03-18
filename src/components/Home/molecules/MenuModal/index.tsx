@@ -25,7 +25,7 @@ const MenuModal = ({isClick, setIsClick, setPenaltyModal, setProfileImgModal}:Me
 
     const logout = () => {
         removeToken();
-        router.push('/');
+        router.push('/signin');
         toast.info('로그아웃되었습니다.');
     }
 

@@ -35,13 +35,22 @@ const HomePage:NextPage<{fallback: Record<string,myProfileType> & Record<string,
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
+
+  if (!Authorization) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    }
+  }
   
   try {
     const { data:myData } = await apiClient.get(MemberController.myProfile, {headers: {Authorization:`Bearer ${Authorization}`}});
     const { data:noticeData } = await apiClient.get(NoticeController.getNotice(role), {headers: {Authorization:`Bearer ${Authorization}`}});
     const { data:selfStudyData } = await apiClient.get(SelfstudyController.selfStudyInfo(role), {headers: {Authorization:`Bearer ${Authorization}`}});
     const { data:massageData } = await apiClient.get(MassageController.massage(role), {headers: {Authorization:`Bearer ${Authorization}`}});
-                
+
     return {
       props: {
         fallback: {

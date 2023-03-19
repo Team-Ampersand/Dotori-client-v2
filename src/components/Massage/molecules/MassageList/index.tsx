@@ -1,4 +1,8 @@
 import ApplicationItem from 'components/Common/molecules/ApplicationItem';
+import useSWR from 'swr';
+import { massageRankProps } from 'types';
+import { getRole } from 'utils/Libs/getRole';
+import { MassageController } from 'utils/Libs/requestUrls';
 
 const MassageList = () => {
   const userOBJ = [
@@ -33,6 +37,10 @@ const MassageList = () => {
       memberName: '이름',
     },
   ];
+  const role = getRole();
+  const { data } = useSWR<massageRankProps[]>(
+    MassageController.massageRank(role)
+  );
 
   return (
     <>

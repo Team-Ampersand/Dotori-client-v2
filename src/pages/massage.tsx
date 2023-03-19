@@ -5,39 +5,59 @@ import { MassageTable } from 'components/Massage/organisms';
 import { MassageTemplates } from 'components/Massage/templates/MassageTemplates/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
+import { SWRConfig } from 'swr';
+import { apiClient } from 'utils/Libs/apiClient';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
+import { MassageController } from 'utils/Libs/requestUrls';
+import { massageRankProps } from 'types';
 
-const MassagePage:NextPage<{role:string}> = ({role}) => {
+const MassagePage: NextPage<{
+  fallback: Record<string, massageRankProps>;
+  role: string;
+}> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <MainTemplates>
-      <SideBar role={role}/>
-      <MassageTemplates>
-        <CommonHeader />
-        <MassageTable />
-      </MassageTemplates>
-    </MainTemplates>
+    <SWRConfig value={fallback}>
+      <MainTemplates>
+        <SideBar role={role} />
+        <MassageTemplates>
+          <CommonHeader />
+          <MassageTable />
+        </MassageTemplates>
+      </MainTemplates>
+    </SWRConfig>
   );
 };
 
-export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
-  
+
+  if (!Authorization) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  }
+
   try {
-                
+    const { data: massageData } = await apiClient.get(
+      MassageController.massageRank(role),
+      { headers: { Authorization: `Bearer ${Authorization}` } }
+    );
     return {
       props: {
-        fallback: {
-        },
-        role
+        fallback: { [MassageController.massageRank(role)]: massageData },
+        role,
       },
     };
   } catch (e) {
     console.log(e);
     return { props: {} };
   }
-}
+};
 
 export default MassagePage;

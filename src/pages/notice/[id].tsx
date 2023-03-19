@@ -3,6 +3,7 @@ import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import NoticeContent from 'components/Notice/organisms/NoticeContent';
 import NoticeHeader from 'components/Notice/organisms/NoticeHeader';
 import NoticeList from 'components/Notice/organisms/NoticeList';
+import NoticeWrite from 'components/Notice/organisms/NoticeWrite';
 import {
   NoticeTemplate,
   NoticeWrapper,
@@ -18,7 +19,7 @@ const Notice = () => {
         <NoticeHeader />
         <NoticeWrapper>
           <NoticeList />
-          <NoticeContent />
+          <NoticeWrite />
         </NoticeWrapper>
       </NoticeTemplate>
     </MainTemplates>

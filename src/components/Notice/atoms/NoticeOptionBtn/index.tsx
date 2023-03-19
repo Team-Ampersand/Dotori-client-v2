@@ -1,4 +1,3 @@
-import { Palette } from 'styles/globals';
 import { NoticeOptionButton } from './style';
 
 export interface Props {
@@ -6,6 +5,7 @@ export interface Props {
   bgColor?: string;
   color: string;
   border?: string;
+  borderRadius?: string;
   onClick: () => void;
 }
 
@@ -14,6 +14,7 @@ const NoticeOptionBtn = ({
   bgColor,
   color,
   border,
+  borderRadius,
   onClick,
 }: Props) => {
   return (
@@ -22,6 +23,7 @@ const NoticeOptionBtn = ({
         bgColor={bgColor ?? 'transparent'}
         color={color}
         border={border}
+        borderRadius={borderRadius}
         onClick={onClick}
       >
         {children}

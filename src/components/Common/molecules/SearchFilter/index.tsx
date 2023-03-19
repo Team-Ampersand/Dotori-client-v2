@@ -1,23 +1,33 @@
 import * as S from './style';
 import { SearchIcon } from 'assets/svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterItem from 'components/Common/atoms/Items/FilterItem';
 import { SearchFilterTypeProps } from 'types';
 import { FilterMenuData } from 'assets/data/FilterMenuData';
 import UseToggleTheme from 'hooks/useToggleTheme';
 import { useRecoilState } from 'recoil';
-import { filterModal } from 'recoilAtoms/recoilAtomContainer';
+import {
+  filterModal,
+  selfStudyList,
+  selfStudyLookup,
+} from 'recoilAtoms/recoilAtomContainer';
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
+import { selfStudySearch } from 'api/selfStudy';
+import { getRole } from 'utils/Libs/getRole';
 
 const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
   const [name, setName] = useState('');
   const [filterState, setFilterState] = useState(['', '', '', '', '']);
   const [modalState, setModalState] = useRecoilState(filterModal);
+  const [userlist, setUserList] = useRecoilState(selfStudyList);
+  // const [lookUp, setLookUp] = useRecoilState(selfStudyLookup);
+  // const role = getRole();
 
-  const filterReset = () => {
+  const handelResetClick = () => {
     setName('');
     setFilterState(['', '', '', '', '']);
+    // setLookUp(false);
   };
 
   const filterChange = (idx: number, value: string) => {
@@ -26,12 +36,27 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
     setFilterState(copy);
   };
 
+  // const handelSelfstudySearch = async () => {
+  //   await selfStudySearch(
+  //     name,
+  //     filterState[2],
+  //     filterState[1],
+  //     filterState[0],
+  //     '',
+  //     null
+  //   ).then((res) => setUserList(res?.data));
+  // };
+
+  // useEffect(() => {
+  //   if (lookUp) handelSelfstudySearch();
+  // }, [name, filterState]);
+
   return (
     <>
       <S.FilterWrapper modalState={modalState}>
         <S.Top>
           <span>필터</span>
-          <S.ResetBtn onClick={filterReset}>초기화</S.ResetBtn>
+          <S.ResetBtn onClick={handelResetClick}>초기화</S.ResetBtn>
         </S.Top>
         <S.SearchBox>
           <S.Search
@@ -57,7 +82,10 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
                     name={i.filterTitle}
                     item={j}
                     value={filterState[idx]}
-                    onClick={() => filterChange(idx, j)}
+                    onClick={() => {
+                      filterChange(idx, j);
+                      // setLookUp(true);
+                    }}
                   />
                 ))}
               </S.SelectBox>
@@ -68,7 +96,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
           onClick={() => setModalState(false)}
           modalState={modalState}
         >
-          <span>적용</span>
+          <span>닫기</span>
         </S.ApplyBtn>
       </S.FilterWrapper>
       <ResponseOverayWrapper

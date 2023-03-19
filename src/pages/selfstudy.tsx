@@ -7,37 +7,58 @@ import CommonHeader from 'components/Common/organisms/CommonHeader';
 import { GetServerSideProps, NextPage } from 'next';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
+import { SWRConfig } from 'swr';
+import { apiClient } from 'utils/Libs/apiClient';
+import { SelfstudyController } from 'utils/Libs/requestUrls';
+import { selfstudyRankProps } from 'types';
 
-const SelfStudyPage:NextPage<{role:string}> = ({role}) => {
+const SelfStudyPage: NextPage<{
+  fallback: Record<string, selfstudyRankProps>;
+  role: string;
+}> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <MainTemplates>
-      <SideBar role={role} />
-      <SelfstudyTemplates>
-        <CommonHeader />
-        <SelfStudyTable />
-      </SelfstudyTemplates>
-    </MainTemplates>
+    <SWRConfig value={fallback}>
+      <MainTemplates>
+        <SideBar role={role} />
+        <SelfstudyTemplates>
+          <CommonHeader />
+          <SelfStudyTable />
+        </SelfstudyTemplates>
+      </MainTemplates>
+    </SWRConfig>
   );
 };
 
-export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
-  
+
+  if (!Authorization) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  }
+
   try {
-                
+    const { data: selfStudyData } = await apiClient.get(
+      SelfstudyController.selfStudyRank(role),
+      { headers: { Authorization: `Bearer ${Authorization}` } }
+    );
+
     return {
       props: {
-        fallback: {
-        },
-        role
+        fallback: { [SelfstudyController.selfStudyRank(role)]: selfStudyData },
+        role,
       },
     };
   } catch (e) {
     console.log(e);
     return { props: {} };
   }
-}
+};
 
 export default SelfStudyPage;

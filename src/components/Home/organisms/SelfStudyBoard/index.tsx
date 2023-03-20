@@ -13,7 +13,7 @@ const SelfStudyBoard = () => {
     const [checkModal, setCheckModal] = useState(false);
     const [applyModifyModal, setApplyModifyModal] = useState(false);
     const role = getRole()
-    const { data, mutate } = useSWR<applyPageProps>(SelfstudyController.selfStudyInfo(role));
+    const { data, mutate } = useSWR<applyPageProps>(SelfstudyController.selfStudyInfo(role));    
     
     useEffect(() => {
         if(role === 'admin') return setInfo({ applyStatus : '인원수정' });
@@ -51,7 +51,8 @@ const SelfStudyBoard = () => {
             }
             return;
             case '인원수정' : {
-                // return await applyModifyStudy(role, n||50);
+                const notError = await applyModifyStudy(role, n||50);
+                if(notError) mutate();
             }
         }
     };

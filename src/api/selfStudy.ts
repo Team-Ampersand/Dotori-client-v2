@@ -14,7 +14,7 @@ export const applySelfStudy = async (role: string) => {
     return true;
   } catch (e: any) {
     if (e.message === 'Request failed with status code 409') {
-      toast.warning('신청을 할 있는 상태가 아니에요');
+      toast.warning('신청을 할 수 없는 상태에요');
     }
     return false;
   }
@@ -33,22 +33,22 @@ export const applyCancelStudy = async (role: string) => {
     return true;
   } catch (e: any) {
     if (e.message === 'Request failed with status code 409') {
-      toast.warning('신청취소을 할 있는 상태가 아니에요');
+      toast.warning('신청취소를 할 수 없는 상태에요');
     }
     return false;
   }
 };
 
-export const applyModifyStudy = async (role: string, num:number) => {
-	try {
-		await apiClient.put(SelfstudyController.studyModify(role,num), {
-			number:num,
-		});
-		toast.success('자습 인원이 수정 되었어요');
-		return true;
-	} catch (e) {
-		return false;
-	}
+export const applyModifyStudy = async (role: string, num: number) => {
+  try {
+    await apiClient.put(SelfstudyController.studyModify(role, num), {
+      number: num,
+    });
+    toast.success('자습 인원이 수정 되었어요');
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
 
 export const selfStudySearch = async (

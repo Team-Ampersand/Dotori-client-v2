@@ -38,12 +38,14 @@ export const applyCancelStudy = async (role: string) => {
 
 export const applyModifyStudy = async (role: string, num:number) => {
 	try {
-		const { data } = await apiClient.put(SelfstudyController.studyModify(role,num), {
+		await apiClient.put(SelfstudyController.studyModify(role,num), {
 			number:num,
 		});
 		toast.success('자습 인원이 수정 되었어요');
-		return { data };
-	} catch (e) {}
+		return true;
+	} catch (e) {
+		return false;
+	}
 };
 
 export const selfStudyInfo = async (role: string) => {

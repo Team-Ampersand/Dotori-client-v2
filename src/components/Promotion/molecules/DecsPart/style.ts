@@ -24,7 +24,7 @@ export const DecsPartWrapper = styled.div`
     align-items: center;
     gap: ${(props:PromotionStyleProps) => props.isShow ? '30px' : "60px"};
     opacity: ${(props:PromotionStyleProps) => props.isShow ? '1' : "0"};
-    padding-top: 30vh;
+    padding-top: 33vh;
     justify-content: flex-start;
     color: white;
     transition: all 1.7s ease-out;

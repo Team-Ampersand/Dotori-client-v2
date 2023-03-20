@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Palette } from "styles/globals";
+import styled from '@emotion/styled';
+import { Palette } from 'styles/globals';
 
 export const PromotionTemplates = styled.div`
   position: fixed;
@@ -7,5 +7,5 @@ export const PromotionTemplates = styled.div`
   height: 100vh;
   overflow-y: hidden;
   display: flex;
-  background: ${Palette.BACKGROUND_BG};
+  background: #16182f;
 `;

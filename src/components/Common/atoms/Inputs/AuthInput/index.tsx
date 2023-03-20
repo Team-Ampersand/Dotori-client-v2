@@ -1,4 +1,4 @@
-import { LockIcon, PersonIcon, XmarkIcon } from "assets/svg";
+import { EyeIcon, EyeSelectedIcon, LockIcon, PersonIcon, XmarkIcon } from "assets/svg";
 import { useState } from "react";
 import { Palette } from "styles/globals";
 import { AuthInputProps } from "types";
@@ -18,28 +18,42 @@ const AuthInput = ({
     readOnly,
   }: AuthInputProps) => {
     const [isFocus, setIsFocus] = useState(false);
+    const [seePassword, setSeePassword] = useState(false);
     const iconColor = isFocus ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`;
+
+    const handleEyeIconClick = () => setSeePassword(pre => !pre);
+
     return (
         <S.AuthInput isRabel={isNotNull(labelName)} isEmailAuth={isNotNull(isEmailAuth)} onSubmit={onSubmit}>
             <label>
             {
-                labelName === "persen" ? <PersonIcon color={iconColor}/> : 
-                labelName === "lock" ? <LockIcon color={iconColor}/> : ""
+                labelName === "persen" ? <PersonIcon color={iconColor} className='frontIcon'/> : 
+                labelName === "lock" && <LockIcon color={iconColor} className='frontIcon'/>
             }
             <input
                 readOnly={readOnly}
                 placeholder={placeholder}
                 {...register}
-                type={type}
+                type={seePassword ? 'text' : type}
                 maxLength={maxLength}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
                 autoComplete="off"
             />
-            </label>
             {
-                isValue && <XmarkIcon onClick={DeleteBtnClick}/>
+                isValue && type === 'password' && 
+                (
+                    seePassword ? 
+                    <EyeSelectedIcon onClick={handleEyeIconClick} color={iconColor}/> : 
+                    <EyeIcon onClick={handleEyeIconClick} color={iconColor}/>
+                )
             }
+            {
+                isValue && type !== 'password' && 
+                <XmarkIcon onClick={DeleteBtnClick}/>
+            }
+            </label>
+
         </S.AuthInput>
     );
 }

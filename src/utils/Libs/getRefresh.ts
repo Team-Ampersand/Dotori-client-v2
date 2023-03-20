@@ -10,7 +10,7 @@ export const getRefresh = async (config: AxiosRequestConfig) => {
     config.headers["Authorization"] = `Bearer ${Authorization}`
   }
   else if (!Authorization && config.url?.includes("/email") && config.url.includes("/auth")){
-    const {newAuthorization}: any = await tokenReissue(RefreshToken,null)
+    const {newAuthorization}: any = await tokenReissue(RefreshToken || "",null)
     if (config.headers) config.headers["Authorization"] = `Bearer ${newAuthorization}`
   }
 

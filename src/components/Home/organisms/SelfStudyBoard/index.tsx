@@ -13,16 +13,17 @@ const SelfStudyBoard = () => {
     const [checkModal, setCheckModal] = useState(false);
     const [applyModifyModal, setApplyModifyModal] = useState(false);
     const role = getRole()
-    const { data, mutate } = useSWR<applyPageProps>(SelfstudyController.selfStudyInfo(role));
+    const { data, mutate } = useSWR<applyPageProps>(SelfstudyController.selfStudyInfo(role));    
     
-    useEffect(() => {        
+    useEffect(() => {
+        if(role === 'admin') return setInfo({ applyStatus : '인원수정' });
         switch(data?.selfStudyStatus) {
             case 'CAN' :
                 return  setInfo({ applyStatus : '자습신청' });
             case 'APPLIED' : 
-                return setInfo({ applyStatus : '신청취소' });;
+                return setInfo({ applyStatus : '신청취소' });
             case 'CANT' : case 'IMPOSSIBLE' :
-                return setInfo({ applyStatus : '신청불가' });;
+                return setInfo({ applyStatus : '신청불가' });
         }
     },[data]);
 
@@ -50,7 +51,8 @@ const SelfStudyBoard = () => {
             }
             return;
             case '인원수정' : {
-                // return await applyModifyStudy(role, n||50);
+                const notError = await applyModifyStudy(role, n||50);
+                if(notError) mutate();
             }
         }
     };

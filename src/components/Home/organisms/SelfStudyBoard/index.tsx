@@ -2,26 +2,33 @@ import { applyCancelStudy, applyModifyStudy, applySelfStudy } from "api/selfStud
 import CommonCheckModal from "components/Common/molecules/CommonCheckModal";
 import ApplyBox from "components/Home/molecules/ApplyBox";
 import ApplyModifyModal from "components/Home/molecules/ApplyModifyModal";
-import { useRole } from "hooks/useRole";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { applyBoardState } from "types";
+import { applyBoardState, applyPageProps, applyStyleProps } from "types";
+import { getRole } from "utils/Libs/getRole";
+import useSWR from 'swr';
+import { SelfstudyController } from "utils/Libs/requestUrls";
 
 const SelfStudyBoard = () => {
-    const [info, setInfo] = useState<applyBoardState>({ count: 25, applyStatus: '신청취소' });
+    const [info, setInfo] = useState<applyStyleProps>({applyStatus: '자습신청' });
     const [checkModal, setCheckModal] = useState(false);
     const [applyModifyModal, setApplyModifyModal] = useState(false);
-    // const role = useRole()
-    const role:string = 'member'; // 예시
-
-    useEffect(() => {
-        if(role === 'admin'){
-            setInfo({...info, applyStatus: '인원수정'});
+    const role = getRole()
+    const { data, mutate } = useSWR<applyPageProps>(SelfstudyController.selfStudyInfo(role));
+    
+    useEffect(() => {        
+        switch(data?.selfStudyStatus) {
+            case 'CAN' :
+                return  setInfo({ applyStatus : '자습신청' });
+            case 'APPLIED' : 
+                return setInfo({ applyStatus : '신청취소' });;
+            case 'CANT' : case 'IMPOSSIBLE' :
+                return setInfo({ applyStatus : '신청불가' });;
         }
-    },[])
+    },[data]);
 
     const handleApplyBtnClick = () => {
         switch(info.applyStatus) {
-            case '자습신청'||'신청불가' :
+            case '자습신청': case '신청불가' :
                 return  StudyControll();
             case '신청취소' : 
                 return setCheckModal(true);
@@ -32,15 +39,14 @@ const SelfStudyBoard = () => {
 
     const StudyControll = async (n?:number) => {
         switch(info.applyStatus) {
-            case '자습신청' : {
-                // const {data}:any = await applySelfStudy(role);  
-                // if(data){}
-                setInfo({ count: info.count+1, applyStatus : '신청취소' });
+            case '자습신청' : case '신청불가' : {
+                const notError = await applySelfStudy(role);  
+                if(notError) mutate()
             }
             return;
             case '신청취소' : {
-                // await applyCancelStudy(role);
-                setInfo({ count: info.count-1, applyStatus : '신청불가' });
+                const notError = await applyCancelStudy(role);
+                if(notError) mutate();
             }
             return;
             case '인원수정' : {
@@ -58,9 +64,9 @@ const SelfStudyBoard = () => {
         <>
             <ApplyBox 
                 name={"자습신청"} 
-                url={"/selfstudy"} 
-                count={info.count} 
-                maxCount={50} 
+                url={"/selfstudy"}
+                count={data?.count || 0} 
+                maxCount={data?.limit || 0} 
                 applyStatus={info.applyStatus}
                 onClick={handleApplyBtnClick}
             />
@@ -81,7 +87,7 @@ const SelfStudyBoard = () => {
                     onClick={(n) => handleModalClick(setApplyModifyModal,n)}
                     modalState={applyModifyModal} 
                     setModalState={setApplyModifyModal}
-                    maxCount={50}
+                    maxCount={data?.limit || 0}
                 />
             }
         </>

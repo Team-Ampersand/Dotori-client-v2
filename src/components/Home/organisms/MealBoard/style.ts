@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Palette } from "styles/globals";
 
 export const MealBoardWrapper = styled.div`
-    height: 69vh;
+    height: 68.65vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,6 +17,14 @@ export const MealBoardWrapper = styled.div`
         font-size: 18px;
         color: ${Palette.NEUTRAL_N10};
     }
+    
+    @media (max-width: 1634px) {
+        width: 23vw;
+        height: 68.5vh;
+    }    
+    @media (max-width: 950px) {
+        width: 100%;
+    }    
 `;
 
 export const MealControlBox = styled.div`

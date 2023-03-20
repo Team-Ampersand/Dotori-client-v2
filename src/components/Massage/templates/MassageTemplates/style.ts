@@ -7,5 +7,16 @@ export const MassageTemplates = styled.div`
   background: ${Palette.BACKGROUND_BG};
   display: flex;
   flex-direction: column;
-  padding: 0 50px 0px 50px;
+  padding: 0 3vw 0 3vw;
+
+  @media (max-width: 1634px) {
+    width: 100%;
+  }
+  @media (max-width: 420px) {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;

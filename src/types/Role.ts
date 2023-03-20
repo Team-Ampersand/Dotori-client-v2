@@ -1,6 +1,7 @@
 export interface RoleType {
-    sub: string;
+	roles: string[];
+	userEmail:string;
+	tokenType:string;
 	iat: number;
 	exp: number;
-	auth: string[];
 };

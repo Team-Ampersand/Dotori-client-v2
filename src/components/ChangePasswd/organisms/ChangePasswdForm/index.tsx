@@ -28,9 +28,8 @@ const ChangePasswdForm = () => {
         if(!state.password || !state.newPassword ) return;
         if(state.password === state.newPassword) return toast.error('비밀번호확인이 현재 비밀번호와 똑같습니다.')
         else if(state.newPassword !== state.newPasswordCheck) return toast.error('새로운 비밀번호확인이 새로운 비밀번호와 맞지 않습니다.')
-        // const {data}:any = await passwordChange(state.password, state.newPassword);
-        // if(data) router.push('/home');
-        router.push('/home');
+        const notError =  await passwordChange(state.password, state.newPassword);
+        if(notError) router.push('/home') 
     }
 
     return (
@@ -53,7 +52,7 @@ const ChangePasswdForm = () => {
                     DeleteBtnClick={() => resetField('password')}
                     isValue={isNotNull(watch('password'))}
                 />
-                <p>비밀번호 확인</p>
+                <p>새로운 비밀번호</p>
                 <AuthInput
                     register={register("newPassword", {
                         required: "비밀번호확인칸을 입력해주세요.",
@@ -82,7 +81,7 @@ const ChangePasswdForm = () => {
             </InputsWrapper>
             <AuthBottomWrapper>
                 <AuthButton text={"확인"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
-                <p>비밀번호를 변경할 필요가 없다면?<Link href={"/signin"}>로그인</Link></p>
+                <p>비밀번호를 변경할 필요가 없다면?<Link href={"/home"}>홈화면</Link></p>
             </AuthBottomWrapper>
         </form>
         </AuthFormWrapper>

@@ -7,12 +7,16 @@ import Cropper, { Area } from 'react-easy-crop'
 import { Palette } from "styles/globals";
 import { getCroppedImg } from "utils/canvas";
 import { ModalProps } from "types";
+import { imgBase64profile, profileModalState } from "recoilAtoms/recoilAtomContainer";
+import { useRecoilState } from "recoil";
+import { toast } from "react-toastify";
 
-const ProileImgModal = ({ modalState, setModalState}:ModalProps) => {
-    const [imgBase64, setImgBase64] = useState("");
+const ProileImgModal = () => {
+    const [profileImgModal, setProfileImgModal] = useRecoilState(profileModalState);
+    const [imgBase64, setImgBase64] = useRecoilState(imgBase64profile);
     const [file, setFile] = useState("");
     const [crop, setCrop] = useState({ x: 0, y: 0 });
-    const [zoom, setZoom] = useState(1)
+    const [zoom, setZoom] = useState(1)    
     
     const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area>();
 
@@ -24,6 +28,7 @@ const ProileImgModal = ({ modalState, setModalState}:ModalProps) => {
         try {
             const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels )
             console.log(croppedImage)
+            toast.info('다음릴리즈때 추가됩니다.')
             setFile(croppedImage || "")
         } catch (e) {
           console.error(e)
@@ -46,9 +51,9 @@ const ProileImgModal = ({ modalState, setModalState}:ModalProps) => {
 
     return (
         <>
-            <ModalOverayWrapper isClick={modalState}>
+            <ModalOverayWrapper isClick={profileImgModal}>
                 <S.ProileImgModalWrapper>
-                    <ModalHeader name={imgBase64 ? "이미지 편집" : "프로필 이미지 선택"} setState={setModalState} />
+                    <ModalHeader name={imgBase64 ? "이미지 편집" : "프로필 이미지 선택"} setState={setProfileImgModal} />
                         {
                             imgBase64 ? (
                                 <S.ImgCrop>

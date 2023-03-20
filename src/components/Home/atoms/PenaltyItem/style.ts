@@ -14,7 +14,6 @@ export const PenaltyItemWrapper = styled.div`
     font-size: 16px;
     color: ${Palette.NEUTRAL_N10};
     border-radius: 8px;
-    margin-right: 10px;
 `;
 
 export const PenaltyItemDate = styled.span`

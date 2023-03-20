@@ -4,25 +4,28 @@ import { todayDate } from "utils/todayDate";
 import * as S from "./style";
 import Dotori3DImg from 'assets/png/Dotori3D.png';
 import Dotori3DDarkImg from 'assets/png/Dotori3DDark.png';
+import ShadowImg from 'assets/png/shadow.png';
 import UseToggleTheme from "hooks/useToggleTheme";
 import DarkModeButton from "components/Common/atoms/Buttons/DarkModeBtn";
 import { DefaultProfile, HanbergerIcon } from "assets/svg";
 import MenuModal from "components/Home/molecules/MenuModal";
 import PenaltyModal from "components/Home/molecules/PenaltyModal";
 import ProileImgModal from "components/Home/molecules/ProfileImgModal";
-import { useRole } from "hooks/useRole";
 import NavigationDrawer from "components/Common/organisms/NavigationDrawer";
 import GradationImg from '../../../../assets/png/Gradation.png';
+import { useRecoilState } from "recoil";
+import { menuModalState, penaltyModalState, profileModalState } from "recoilAtoms/recoilAtomContainer";
+import { getRole } from "utils/Libs/getRole";
 
 const TimeBoard = () => {
     const [date, setDate] = useState<string>("");
     const [year, month, day] = todayDate();
     const [theme, ] = UseToggleTheme();
-    const [menuModal, setMenuModal] = useState(false);
-    const [penaltyModal, setPenaltyModal] = useState(false);
-    const [profileImgModal, setProfileImgModal] = useState(false);
+    const [menuModal, setMenuModal] = useRecoilState(menuModalState);
+    const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);
+    const [profileImgModal, setProfileImgModal] = useRecoilState(profileModalState);
     const [navigationDrawer, setNavigationDrawer] = useState(false);
-    // const role = useRole()
+    const role = getRole()
 
     useEffect(() => tick(),[])
 
@@ -41,10 +44,10 @@ const TimeBoard = () => {
                     <S.TodayDate>{`${year}년 ${month}월 ${day}일`}</S.TodayDate>
                 </S.BoardTopLeftWrapper>
                 <S.MobileTitle>
-                    {/* {
-                        role !== 'member' && */}
-                        {/* <HanbergerIcon onClick={() => setNavigationDrawer(pre => !pre)}/> */}
-                    {/* } */}
+                    {
+                        role !== 'member' &&
+                        <HanbergerIcon onClick={() => setNavigationDrawer(pre => !pre)}/>
+                    }
                     <span>DOTORI</span>
                 </S.MobileTitle>
                 <S.BoardTopRightWrapper>
@@ -59,10 +62,10 @@ const TimeBoard = () => {
                 </S.BoardTopRightWrapper>
             </S.BoardTop>
             {
-                penaltyModal && <PenaltyModal modalState={penaltyModal} setModalState={setPenaltyModal}/>
+                penaltyModal && <PenaltyModal role={role}/>
             }
             {
-                profileImgModal && <ProileImgModal modalState={profileImgModal} setModalState={setProfileImgModal}/>
+                profileImgModal && <ProileImgModal/>
             }
             {
                 navigationDrawer && <NavigationDrawer modalState={navigationDrawer} setModalState={setNavigationDrawer}/>
@@ -72,8 +75,11 @@ const TimeBoard = () => {
                 <span>현재시간</span>
                 <S.CurrentTime>{date}</S.CurrentTime>
                 <S.DotoriImgBox>
-                    <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" priority width={305} height={315} objectFit={"cover"}/>
+                    <Image src={theme === 'light' ? Dotori3DImg : Dotori3DDarkImg} alt="도토리" priority layout="fill" objectFit={"cover"}/>
                 </S.DotoriImgBox>
+                <S.ShadowImgBox>
+                    <Image src={ShadowImg} layout="fill" priority alt="그림자이미지"/>
+                </S.ShadowImgBox>
             </S.BoardBottom>
         </S.TimeBoardWrapper>
     )

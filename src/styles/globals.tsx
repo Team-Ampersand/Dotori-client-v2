@@ -21,7 +21,7 @@ const lightTheme = `
 
 const darkTheme = `
   --PRIMARY_P10 : #5966E9;
-  --PRIMARY_P20 : #141841;
+  --PRIMARY_P20 : #1D2136;
   --PRIMARY_P30 : #24295D;
   --NEUTRAL_N10 : #CDCDD5;
   --NEUTRAL_N20 : #818198;

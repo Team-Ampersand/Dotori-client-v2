@@ -8,15 +8,17 @@ export interface SidebarListProps {
 	menuDataList: menuListProps[];
 	currentRouter: string;
 	setCurrentRouter: (currentRouter: string) => void;
+	role:string
 }
 
 export interface SignbarItemProps extends menuListProps {
 	currentRouter: string;
 	setCurrentRouter: (currentRouter: string) => void;
+	role:string
 }
 
 export interface SidebarStyleProps {
 	isCurrentRouter: boolean;
-	isnotShow?: boolean;
+	isShow?: boolean;
 	title:string;
 }

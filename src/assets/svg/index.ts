@@ -44,3 +44,7 @@ export { default as ExclamationMark } from './ExclamationMark';
 export { default as CalendarIcon } from './CalendarIcon';
 export { default as EditPencilIcon } from './EditPencilIcon';
 export { default as TrashCan } from './TrashCan';
+export { default as FilterIcon } from './FilterIcon';
+export { default as DownloadIcon } from './DownloadIcon';
+export { default as EyeIcon } from './EyeIcon';
+export { default as EyeSelectedIcon } from './EyeSelectedIcon';

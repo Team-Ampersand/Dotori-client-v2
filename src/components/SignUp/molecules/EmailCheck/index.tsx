@@ -1,4 +1,4 @@
-import { auth, authCheck } from "api/member";
+import { authCheck, emailCheck } from "api/member";
 import { AuthButton, AuthInput } from "components/Common";
 import { AuthBottomWrapper } from "components/Common/atoms/Wrappers/AuthWrapper/style";
 import { InputsWrapper } from "components/SignUp/atoms/Wrapper/style";
@@ -34,24 +34,24 @@ const EmailCheck = () => {
     const handleCertiEmailBtnClick = async () => {
         if(!isAuthCheck) return;
         else if(!(/^s[0-9]{5}@gsm.hs.kr$/.test(watch().email || ""))) return toast.error("이메일형식이 잘못되었어요.")
-        // await auth(watch().email || "");
-        toast.success('인증번호가 이메일로 전송되었습니다.');
-        setIsAuthEmailCheck(false);
-        setIsAuth(false);
+        const notError = await emailCheck(watch().email || "");
+        if(notError){
+            toast.success('인증번호가 이메일로 전송되었습니다.');
+            setIsAuthEmailCheck(false);
+            setIsAuth(false);
+        }
     }
 
     const onInvalid:SubmitErrorHandler<SignupForm> = (state) => {
         toast.error(!isNotNull(watch('email')?.replace('@gsm.hs.kr', '')) && '이메일을 입력해주세요' || state.email?.message || state.certiNum?.message);
     }
 
-    const onValid:SubmitHandler<SignupForm> = async (state) => {
-        // const {data}:any =  await authCheck(state.certiNum || 0);
-        // if(data) {
-        // setSignUpObject({...SignUpObject, name:state.name, stuId:state.stuId})
-        // setSignUpStep('last');
-        // }
-        setSignUpObject({...SignUpObject, name:state.name, stuId:state.stuId})
-        setSignUpStep('last');
+    const onValid:SubmitHandler<SignupForm> = async (state) => {        
+        const notError = await authCheck(state.certiNum || 0);
+        if(notError){
+            setSignUpObject({...SignUpObject, email:state.email})
+            setSignUpStep('last');
+        }
     }
 
     return (
@@ -90,7 +90,13 @@ const EmailCheck = () => {
             </InputsWrapper>
             <AuthBottomWrapper>
                 <AuthButton text={"다음"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
-                <p>이미 회원이라면?<Link href={"/signin"}>로그인</Link></p>
+                <p>이미 회원이라면?
+                    <Link href={"/signin"}> 
+                        <a>
+                            로그인
+                        </a> 
+                    </Link>
+                </p>
             </AuthBottomWrapper>
         </form>
     )

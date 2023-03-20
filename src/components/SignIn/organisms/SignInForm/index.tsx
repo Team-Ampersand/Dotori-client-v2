@@ -37,8 +37,8 @@ const SignInForm = () => {
 
     const onValid:SubmitHandler<SigninForm> = async (data) => {
         if(!data.email || !data.password) return;
-        // await signin(data.email, data.password);
-        router.push('/home');
+        const notError = await signin(data.email, data.password);
+        if(notError) router.push('/home');
     }
 
     return (
@@ -80,7 +80,13 @@ const SignInForm = () => {
                 </S.SignInInputsWrapper>
                 <AuthBottomWrapper>
                     <AuthButton text={"로그인"} isCheck={isCheck} onClick={handleSubmit(onValid, onInvalid)} type={"submit"}/>
-                    <p>Doroti가 처음이라면?<Link href={"/signup"}>회원가입</Link></p>
+                    <p>Doroti가 처음이라면?
+                        <Link href={"/signup"}> 
+                            <a>
+                                회원가입
+                            </a> 
+                        </Link>
+                    </p>
                 </AuthBottomWrapper>
             </form>
         </AuthFormWrapper>

@@ -1,9 +1,9 @@
-import { useRole } from 'hooks/useRole';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { SignbarItemProps } from 'types';
 import { ChangeMenuIcon } from 'utils/ChangeMenuIcon';
+import { getRole } from 'utils/Libs/getRole';
 import * as S from './style';
 
 const SidebarItem = ({
@@ -12,9 +12,9 @@ const SidebarItem = ({
     show,
 	currentRouter,
 	setCurrentRouter,
+	role
 }:SignbarItemProps) => {
 	const isCurrentRouter = `/${currentRouter.split('/')[1]}` === routerName;
-	// const role = useRole();
 	
 	return (
 		<Link href={routerName} passHref>
@@ -22,7 +22,7 @@ const SidebarItem = ({
 				title={menuTitle}
 				onClick={() => {setCurrentRouter(routerName)}}
 				isCurrentRouter={isCurrentRouter}
-				// isnotShow={!show.includes(role)}
+				isShow={show.includes(role)}
 			>
 				<>
 					{ChangeMenuIcon(isCurrentRouter)[menuTitle]()}

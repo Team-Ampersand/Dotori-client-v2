@@ -46,7 +46,7 @@ const PenaltyListModal = ({ modalState, setModalState }: ModalProps) => {
         <ModalHeader name={'규정 위반 내역'} setState={setModalState} />
         <S.PenaltyItems itemCnt={penaltyOBG.length}>
           {penaltyOBG.map((i, idx) => (
-            <PenaltyListModalItem key={idx} name={i.name} date={i.date} />
+            <PenaltyListModalItem key={idx} name={i.name} createDate={i.date}  />
           ))}
         </S.PenaltyItems>
         <S.PenaltyModalBtn onClick={() => setModalState(false)}>

@@ -7,6 +7,7 @@ const SidebarList = ({
     menuDataList,
 	currentRouter,
 	setCurrentRouter,
+    role,
 }:SidebarListProps) => {
     useEffect(() => {
 		window.onpopstate = () => setCurrentRouter(window.location.pathname);
@@ -17,6 +18,7 @@ const SidebarList = ({
             {
                 menuDataList.map((i, idx) => (
                     <SidebarItem
+                        role={role}
                         currentRouter={currentRouter}
                         setCurrentRouter={setCurrentRouter}
                         routerName={i.routerName}

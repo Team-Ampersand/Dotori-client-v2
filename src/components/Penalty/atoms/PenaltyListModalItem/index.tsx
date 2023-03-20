@@ -5,7 +5,7 @@ import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import { useState } from 'react';
 import CommonDelModal from 'components/Common/molecules/CommonCheckModal';
 
-const PenaltyListModalItem = ({ name, date }: PenaltyItemType) => {
+const PenaltyListModalItem = ({ name, createDate }: PenaltyItemType) => {
   const [penaltyDelModal, setPenaltyDelModal] = useState(false);
 
   const onClick = () => {};
@@ -16,7 +16,7 @@ const PenaltyListModalItem = ({ name, date }: PenaltyItemType) => {
         <span>{name}</span>
         <div>
           <S.PenaltyListModalItemDate>
-            {dateRegex(date)}
+            {dateRegex(createDate)}
           </S.PenaltyListModalItemDate>
           <TrashcanIcon onClick={() => setPenaltyDelModal(true)} />
         </div>

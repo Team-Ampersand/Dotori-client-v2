@@ -22,8 +22,13 @@ export interface ModalProps {
 }
 
 export interface PenaltyItemType {
+  id?:number
   name: string;
-  date: string;
+  createDate: string;
+}
+
+export interface PenaltyListType {
+  rules : PenaltyItemType[]
 }
 
 export interface ModalHeaderProps {
@@ -41,4 +46,8 @@ export interface ApplyModifyModalProps extends ModalProps {
   name: string;
   maxCount: number;
   onClick: (n:number) => void;
+}
+
+export interface PromotionStyleProps {
+  isShow: boolean;
 }

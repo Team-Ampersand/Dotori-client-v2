@@ -44,8 +44,8 @@ const AuthInput = ({
                 isValue && type === 'password' && 
                 (
                     seePassword ? 
-                    <EyeSelectedIcon onClick={handleEyeIconClick} color={iconColor}/> : 
-                    <EyeIcon onClick={handleEyeIconClick} color={iconColor}/>
+                    <EyeIcon onClick={handleEyeIconClick} color={iconColor}/> : 
+                    <EyeSelectedIcon onClick={handleEyeIconClick} color={iconColor}/>
                 )
             }
             {

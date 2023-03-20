@@ -16,13 +16,14 @@ const MassageBoard = () => {
     const { data, mutate } = useSWR<applyPageProps>(MassageController.massage(role));
 
     useEffect(() => {        
-        switch(data?.selfStudyStatus) {
+        if(role === 'admin') return setInfo({ applyStatus : '인원수정' });
+        switch(data?.massageStatus) {
             case 'CAN' :
                 return  setInfo({ applyStatus : '안마의자' });
             case 'APPLIED' : 
-                return setInfo({ applyStatus : '신청취소' });;
+                return setInfo({ applyStatus : '신청취소' });
             case 'CANT' : case 'IMPOSSIBLE' :
-                return setInfo({ applyStatus : '신청불가' });;
+                return setInfo({ applyStatus : '신청불가' });
         }
     },[data])
 
@@ -41,20 +42,17 @@ const MassageBoard = () => {
         switch(info.applyStatus) {
             case '안마의자' : case'신청불가' : {
                 const notError = await applyMassage(role);  
-                if(data){notError}{
-                    setInfo({ applyStatus : '신청취소' });
-                    mutate();
-                }
+                if(notError) mutate();
             }
             return;
             case '신청취소' : {
-                await applyCancelMassage(role);
-                setInfo({ applyStatus : '신청불가' });
-                mutate();
+                const notError = await applyCancelMassage(role);
+                if(notError) mutate();
             }
             return;
             case '인원수정' : {
-                // return await applyModifyMassage(role, n||50);
+                const notError = await applyModifyMassage(role, n||50);
+                if(notError) mutate();
             }
         }
     };

@@ -26,7 +26,7 @@ const StuInfo = () => {
         setIsCheck(isNotNull(watch('name') && watch('stuId')));
     },[watch(['name', 'stuId'])])
 
-    const onInvalid:SubmitErrorHandler<SignupForm> = (state) => toast.error(state.stuId?.message || state.name?.message)
+    const onInvalid:SubmitErrorHandler<SignupForm> = (state) => toast.error(state.name?.message || state.stuId?.message )
 
     const onValid:SubmitHandler<SignupForm> = async (state) => {
         setSignUpObject({...SignUpObject, name:state.name, stuId:state.stuId, gender:state.gender})
@@ -59,8 +59,8 @@ const StuInfo = () => {
                             message: "학번을 입력해주세요" 
                           },
                         pattern: {
-                            value: /^[0-9]{4}$/,
-                            message: "4자리로된 학번을 입력해주세요",
+                            value: /^[1-3]{1}[1-4]{1}[0-1]{1}[0-9]{1}$/,
+                            message: "정확한 학번을 입력해주세요",
                         },
                     })}
                     type="number"

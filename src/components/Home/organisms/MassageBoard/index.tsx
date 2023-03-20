@@ -16,6 +16,7 @@ const MassageBoard = () => {
     const { data, mutate } = useSWR<applyPageProps>(MassageController.massage(role));
 
     useEffect(() => {        
+        if(role === 'admin') return setInfo({ applyStatus : '인원수정' });
         switch(data?.selfStudyStatus) {
             case 'CAN' :
                 return  setInfo({ applyStatus : '안마의자' });

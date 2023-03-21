@@ -1,14 +1,14 @@
-import UseThemeEffect from 'hooks/useThemeEffect'
+import UseThemeEffect from 'hooks/useThemeEffect';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
-import NotFoundOrganism from 'components/\bNotFound/organisms/NotFoundOrganisms';
+import NotFoundOrganism from 'components/NotFound/organisms/NotFoundOrganisms';
 
 const NotFoundPage = () => {
-  UseThemeEffect()
+  UseThemeEffect();
   return (
     <MainTemplates>
-        <NotFoundOrganism/>
+      <NotFoundOrganism />
     </MainTemplates>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

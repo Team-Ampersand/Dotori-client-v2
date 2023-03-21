@@ -8,7 +8,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 
-const SelfStudyPage:NextPage<{role:string}> = ({role}) => {
+const SelfStudyPage: NextPage<{ role: string }> = ({ role }) => {
   UseThemeEffect();
   return (
     <MainTemplates>
@@ -21,23 +21,21 @@ const SelfStudyPage:NextPage<{role:string}> = ({role}) => {
   );
 };
 
-export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
-  
+
   try {
-                
     return {
       props: {
-        fallback: {
-        },
-        role
+        fallback: {},
+        role,
       },
     };
   } catch (e) {
     console.log(e);
     return { props: {} };
   }
-}
+};
 
 export default SelfStudyPage;

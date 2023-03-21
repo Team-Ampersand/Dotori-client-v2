@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
-export const Layer = styled.div`
+export const Layer = styled.form`
   width: 69%;
   height: 100%;
   display: flex;

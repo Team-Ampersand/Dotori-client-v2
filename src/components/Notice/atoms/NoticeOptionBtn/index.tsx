@@ -7,6 +7,7 @@ export interface Props {
   border?: string;
   borderRadius?: string;
   onClick: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const NoticeOptionBtn = ({
@@ -16,15 +17,17 @@ const NoticeOptionBtn = ({
   border,
   borderRadius,
   onClick,
+  type = 'button',
 }: Props) => {
   return (
     <>
       <NoticeOptionButton
+        type={type}
         bgColor={bgColor ?? 'transparent'}
         color={color}
         border={border}
         borderRadius={borderRadius}
-        onClick={onClick}
+        onClick={() => onClick()}
       >
         {children}
       </NoticeOptionButton>

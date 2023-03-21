@@ -1,5 +1,7 @@
 import NoticeOptionBtn from 'components/Notice/atoms/NoticeOptionBtn';
+import { UseFormHandleSubmit } from 'react-hook-form';
 import { Palette } from 'styles/globals';
+import { NoticeFormType } from 'types/components/NoticeWritePage';
 import * as S from './style';
 
 const BottomBtnBox = () => {
@@ -23,6 +25,7 @@ const BottomBtnBox = () => {
         onClick={() => {
           return;
         }}
+        type="submit"
       >
         확인
       </NoticeOptionBtn>

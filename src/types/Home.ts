@@ -29,7 +29,8 @@ export interface myProfileType{
 export interface applyPageProps{
     count: number,
     limit: number,
-	selfStudyStatus: 'CAN'|'APPLIED'|'CANT'|'IMPOSSIBLE'
+	selfStudyStatus?: 'CAN'|'APPLIED'|'CANT'|'IMPOSSIBLE'
+    massageStatus?: 'CAN'|'APPLIED'|'CANT'|'IMPOSSIBLE'
 }
 
 export interface noticePageProps{

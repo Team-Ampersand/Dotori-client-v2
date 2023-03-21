@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const { data: massageData } = await apiClient.get(
       MassageController.massageRank(role),
-      { headers: { Authorization: `Bearer ${Authorization}` } }
+      { headers: { Authorization: `${Authorization}` } }
     );
     return {
       props: {

@@ -100,7 +100,7 @@ export const passwordChange = async (
 };
 
 export const tokenReissue = async (
-  RefreshToken: string,
+  refreshToken: string,
   ctx: GetServerSidePropsContext | null
 ) => {
   let newAuthorization: string;
@@ -110,13 +110,13 @@ export const tokenReissue = async (
       {},
       {
         headers: {
-          RefreshToken: `Bearer ${RefreshToken}`,
+          refreshToken,
         },
       }
     );
     newAuthorization = data.accessToken;
-    RefreshToken = data.refreshToken;
-    setToken(newAuthorization, RefreshToken, ctx);
+    refreshToken = data.refreshToken;
+    setToken(newAuthorization, refreshToken, ctx);
     return { newAuthorization };
   } catch (e: any) {
     console.log(e);

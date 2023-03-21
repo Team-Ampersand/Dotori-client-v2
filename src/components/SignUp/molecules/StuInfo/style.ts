@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
+import { DarkModeBtnStyleProps } from 'types';
 
 export const GenderBtnsWrapper = styled.div`
   width: 100%;
@@ -28,8 +29,12 @@ export const GenderBtnsWrapper = styled.div`
     font-weight: 700;
   }
   input[type='radio']:checked + label {
-    background: ${Palette.BACKGROUND_CARD};
-    color: ${Palette.NEUTRAL_N10};
+    background: ${(props: DarkModeBtnStyleProps) =>
+      props.isDarkTheme
+        ? `${Palette.NEUTRAL_N30}`
+        : `${Palette.BACKGROUND_CARD}`};
+    color: ${(props: DarkModeBtnStyleProps) =>
+      props.isDarkTheme ? `${Palette.NEUTRAL_N10}` : `${Palette.NEUTRAL_N30}`};
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
   }

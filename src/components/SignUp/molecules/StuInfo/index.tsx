@@ -2,6 +2,7 @@ import { AuthButton, AuthInput } from 'components/Common';
 import { AuthBottomWrapper } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import GenderBtn from 'components/SignUp/atoms/GenderBtn';
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
+import UseToggleTheme from 'hooks/useToggleTheme';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
@@ -19,6 +20,7 @@ const StuInfo = () => {
         gender: 'MAN',
       },
     });
+  const [theme] = UseToggleTheme();
   const [isCheck, setIsCheck] = useState(false);
   const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
   const [, setSignUpStep] = useRecoilState(signUpStep);
@@ -76,7 +78,7 @@ const StuInfo = () => {
           isValue={isNotNull(watch('stuId'))}
         />
         <p>성별</p>
-        <S.GenderBtnsWrapper>
+        <S.GenderBtnsWrapper isDarkTheme={theme === 'dark'}>
           <GenderBtn
             gender={'남'}
             myGender={'남'}

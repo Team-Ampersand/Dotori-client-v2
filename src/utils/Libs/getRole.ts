@@ -15,6 +15,6 @@ function getUserToken(ctx?: GetServerSidePropsContext) {
 
 export const getRole = (ctx?: GetServerSidePropsContext) => {
   const user = getUserToken(ctx);
-  if (!user) return;
+  if (!user) return '';
   return GET_ROLE[user];
 };

@@ -5,7 +5,7 @@ import { SelfstudyController } from 'utils/Libs/requestUrls';
 
 export const applySelfStudy = async (role: string) => {
   try {
-    const { data } = await apiClient.post(SelfstudyController.selfStudy(role));
+    const { data } = await apiClient.patch(SelfstudyController.selfStudy(role));
     if (data.code === 202) {
       toast.error(data.msg);
       return false;

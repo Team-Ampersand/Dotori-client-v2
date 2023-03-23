@@ -46,7 +46,7 @@ export const MassageController = {
     return `/${role}/massage`;
   },
   modifyMassage(role: string) {
-    return `/${role}/aaegmss/modify`;
+    return `/${role}/massage/limit`;
   },
   massageRank(role: string) {
     return `/${role}/massage/rank`;

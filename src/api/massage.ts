@@ -20,7 +20,7 @@ export const applyMassage = async (role: string) => {
 
 export const applyCancelMassage = async (role: string) => {
   try {
-    await apiClient.put(MassageController.cancelMassage(role));
+    await apiClient.delete(MassageController.massage(role));
     toast.success('안마의자 신청이 취소 되었어요.');
     return true;
   } catch (e) {
@@ -28,10 +28,10 @@ export const applyCancelMassage = async (role: string) => {
   }
 };
 
-export const applyModifyMassage = async (role: string, num: number) => {
+export const applyModifyMassage = async (role: string, limit: number) => {
   try {
-    await apiClient.put(MassageController.modifyMassage(role, num), {
-      limir: num,
+    await apiClient.patch(MassageController.modifyMassage(role), {
+      limit,
     });
     toast.success('안마의자 인원이 수정 되었어요');
     return true;

@@ -39,10 +39,10 @@ export const applyCancelStudy = async (role: string) => {
   }
 };
 
-export const applyModifyStudy = async (role: string, num: number) => {
+export const applyModifyStudy = async (role: string, limit: number) => {
   try {
-    await apiClient.put(SelfstudyController.studyModify(role, num), {
-      number: num,
+    await apiClient.put(SelfstudyController.modiftStudy(role), {
+      limit,
     });
     toast.success('자습 인원이 수정 되었어요');
     return true;

@@ -4,11 +4,12 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { noticePageProps } from 'types';
 import { getRole } from 'utils/Libs/getRole';
+import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
 const NoticeList = () => {
   const role = getRole();
-  const { data } = useSWR<noticePageProps[]>([`/${role}/getNotice`]);
+  const { data } = useSWR<noticePageProps[]>(NoticeController.getNotice(role));
 
   const requestWriter = (role: string) => {
     switch (role) {
@@ -26,7 +27,7 @@ const NoticeList = () => {
       <ListHeader />
       <S.NoticeContainer>
         {data &&
-          data?.map((item) => (
+          Array.from(data).map((item, key) => (
             <Link href={`/notice/${item.id}`} key={item.id}>
               <NoticeItem
                 writer={requestWriter(item.roles)}

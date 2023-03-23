@@ -51,3 +51,7 @@ export const imgBase64profile = atom<string>({
   default: '',
 });
 
+export const isNoticeWrite = atom<boolean>({
+  key: 'isNoticeWrite',
+  default: false,
+});

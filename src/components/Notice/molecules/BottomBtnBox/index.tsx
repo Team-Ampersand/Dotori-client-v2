@@ -1,10 +1,11 @@
 import NoticeOptionBtn from 'components/Notice/atoms/NoticeOptionBtn';
-import { UseFormHandleSubmit } from 'react-hook-form';
+import { useSetRecoilState } from 'recoil';
+import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
 import { Palette } from 'styles/globals';
-import { NoticeFormType } from 'types/components/NoticeWritePage';
 import * as S from './style';
 
 const BottomBtnBox = () => {
+  const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   return (
     <S.BtnContainer>
       <NoticeOptionBtn
@@ -12,9 +13,7 @@ const BottomBtnBox = () => {
         bgColor={Palette.BACKGROUND_CARD}
         border={Palette.NEUTRAL_N20}
         borderRadius="8px"
-        onClick={() => {
-          return;
-        }}
+        onClick={() => setNoticeWrite(false)}
       >
         취소
       </NoticeOptionBtn>

@@ -5,19 +5,17 @@ import WriteForm from 'components/Notice/molecules/WriteForm';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { NoticeFormType } from 'types/components/NoticePage';
+import { noticeFormType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import * as S from './style';
 
 const NoticeWrite = () => {
-  const { register, watch, handleSubmit } = useForm<NoticeFormType>({
+  const { register, watch, handleSubmit } = useForm<noticeFormType>({
     defaultValues: { title: '', content: '' },
   });
-  const formData = new FormData();
   const [imgList, setImgList] = useState<File[]>([]);
   const role = getRole();
   const router = useRouter();
-  // const { data, mutate } = useSWR(`/${role}/getNotice`);
 
   const onChangeImg = () => {
     const images = watch('img');
@@ -31,7 +29,6 @@ const NoticeWrite = () => {
       watch('content'),
       imgList
     );
-    console.log(data);
     if (!data) return;
     router.push('/notice');
   };

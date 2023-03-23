@@ -14,6 +14,9 @@ export const NoticeController = {
   boardId(boardIdx: number) {
     return `/board/${boardIdx}`;
   },
+  getNoticeDetail(role: string, boardIdx: string) {
+    return `${role}/board/${boardIdx}`;
+  },
 };
 
 export const SelfstudyController = {

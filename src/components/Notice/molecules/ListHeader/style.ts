@@ -2,19 +2,19 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
 export const Layer = styled.div`
-	width: 100%;
-	height: 64px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-	span {
-		font-size: 1.3em;
-		color: ${Palette.NEUTRAL_N10};
-	}
+  span {
+    font-size: 1.3em;
+    color: ${Palette.NEUTRAL_N10};
+  }
 `;
 
 export const ButtonBox = styled.div`
-	display: flex;
-	gap: 10px;
+  display: flex;
+  gap: 10px;
 `;

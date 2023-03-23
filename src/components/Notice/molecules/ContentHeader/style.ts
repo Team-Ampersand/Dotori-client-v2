@@ -46,4 +46,10 @@ export const HeaderRightBox = styled(HeaderLeftBox)`
 export const IconBox = styled.div`
   display: flex;
   gap: 1.2em;
+
+  button {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
 `;

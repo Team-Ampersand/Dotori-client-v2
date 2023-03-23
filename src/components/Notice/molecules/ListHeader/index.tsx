@@ -1,10 +1,15 @@
 import NoticeOptionBtn from 'components/Notice/atoms/NoticeOptionBtn';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
 import { Palette } from 'styles/globals';
 import * as S from './style';
 
 const ListHeader = () => {
   const [isEdit, setEdit] = useState<boolean>(false);
+  const [noticeWrite, setNoticeWrite] = useRecoilState(isNoticeWrite);
+  const router = useRouter();
 
   return (
     <S.Layer>
@@ -33,7 +38,8 @@ const ListHeader = () => {
             bgColor={Palette.PRIMARY_P10}
             color={Palette.WHITE}
             onClick={() => {
-              return;
+              setNoticeWrite(true);
+              router.push('/notice');
             }}
           >
             + 작성

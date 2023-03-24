@@ -38,7 +38,7 @@ const ApplicationItem = ({
               {index === 49 && <StampIcon />}
             </S.Medal>
           )}
-          {role && role !== 'member' && (
+          {role !== 'member' && (
             <S.Checkbox>
               <SelfstudyCheck
                 role={role}

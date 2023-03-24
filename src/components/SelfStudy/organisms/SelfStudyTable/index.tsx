@@ -28,17 +28,13 @@ const SelfStudyTable = () => {
         자습신청
         <FilterIcon onClick={() => setModal(true)} />
       </S.ResponseHeader>
-      {
-        // userlist &&
-        // data?.length === 0
-        true ? (
-          <S.ListWrapper>
-            <SelfStudyList />
-          </S.ListWrapper>
-        ) : (
-          <NullApplicstionItem type={'selfstudy'} />
-        )
-      }
+      {userList && userList.length > 0 ? (
+        <S.ListWrapper>
+          <SelfStudyList />
+        </S.ListWrapper>
+      ) : (
+        <NullApplicstionItem type={'selfstudy'} />
+      )}
       <div>
         <SearchFilter filterType={'selfstudy'} />
       </div>

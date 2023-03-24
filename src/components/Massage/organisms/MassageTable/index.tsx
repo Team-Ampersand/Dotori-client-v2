@@ -8,21 +8,20 @@ import useSWR from 'swr';
 
 const MassageTable = () => {
   const role = getRole();
-  const data = useSWR<massageRankProps[]>(MassageController.massageRank(role));
+  const { data } = useSWR<massageRankProps[]>(
+    MassageController.massageRank(role)
+  );
 
   return (
     <S.TableWrapper>
       <S.ResponseHeader>안마의자</S.ResponseHeader>
-      {
-        //data.isValidating
-        true ? (
-          <S.ListWrapper>
-            <MassageList />
-          </S.ListWrapper>
-        ) : (
-          <NullApplicstionItem type={'massage'} />
-        )
-      }
+      {data && data.length > 0 ? (
+        <S.ListWrapper>
+          <MassageList />
+        </S.ListWrapper>
+      ) : (
+        <NullApplicstionItem type={'massage'} />
+      )}
     </S.TableWrapper>
   );
 };

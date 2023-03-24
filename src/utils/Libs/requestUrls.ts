@@ -39,6 +39,9 @@ export const SelfstudyController = {
   ) {
     return `/student-info/search?name=${name}?gender=${gender}?classNum=${classNum}?grade=${grade}?role=${role}?selfStudyCheck=${selfStudyCheck}`;
   },
+  selfStudyCheck(role: string, memberId: string) {
+    return `/${role}/self-study/check/${memberId}`;
+  },
 };
 
 export const MassageController = {

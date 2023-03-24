@@ -1,4 +1,3 @@
-import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
 import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
@@ -72,4 +71,20 @@ export const selfStudySearch = async (
     );
     return { data };
   } catch (e) {}
+};
+
+export const selfStudyCheck = async (
+  role: string,
+  memberId: string,
+  check: boolean
+) => {
+  try {
+    const { data } = await apiClient.patch(
+      SelfstudyController.selfStudyCheck(role, memberId),
+      {
+        selfStudyCheck: check,
+      }
+    );
+    return { data };
+  } catch (e: any) {}
 };

@@ -40,7 +40,11 @@ const ApplicationItem = ({
           )}
           {role && role !== 'member' && (
             <S.Checkbox>
-              <SelfstudyCheck checked={selfStudyCheck} />
+              <SelfstudyCheck
+                role={role}
+                stuNum={stuNum}
+                checked={selfStudyCheck}
+              />
             </S.Checkbox>
           )}
         </>

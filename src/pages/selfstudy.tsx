@@ -10,10 +10,10 @@ import { getToken } from 'utils/Libs/getToken';
 import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
-import { selfstudyRankProps } from 'types';
+import { selfstudyListProps } from 'types';
 
 const SelfStudyPage: NextPage<{
-  fallback: Record<string, selfstudyRankProps>;
+  fallback: Record<string, selfstudyListProps[]>;
   role: string;
 }> = ({ fallback, role }) => {
   UseThemeEffect();

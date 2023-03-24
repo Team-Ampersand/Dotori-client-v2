@@ -42,36 +42,35 @@ const SelfStudyList = () => {
       memberName: '이름',
       selfStudyCheck: false,
     },
+    {
+      email: 's21038@gsm.hs.kr',
+      memberName: '전승원4',
+      stuNum: '2102',
+      gender: 'MAN',
+      role: 'ROLE_MEMBER',
+      selfStudyCheck: false,
+    },
   ];
 
-  const [userlist, setUserList] = useRecoilState(selfStudyList);
+  const [userList] = useRecoilState(selfStudyList);
   const [lookUp] = useRecoilState(selfStudyLookup);
 
   return (
     <>
-      {!lookUp
-        ? userOBJ.map((item, idx) => (
-            <ApplicationItem
-              key={idx}
-              index={idx}
-              selfStudyCheck={item.selfStudyCheck}
-              memberName={item.memberName}
-              gender={item.gender}
-              stuNum={item.stuNum}
-              listType="selfstudy"
-            />
-          ))
-        : userlist?.map((item, idx) => (
-            <ApplicationItem
-              key={idx}
-              index={idx}
-              selfStudyCheck={item.selfStudyCheck}
-              memberName={item.memberName}
-              gender={item.gender}
-              stuNum={item.stuNum}
-              listType="selfstudy"
-            ></ApplicationItem>
-          ))}
+      {
+        //userList
+        userOBJ.map((item, idx) => (
+          <ApplicationItem
+            key={idx}
+            index={idx}
+            selfStudyCheck={item.selfStudyCheck}
+            memberName={item.memberName}
+            gender={item.gender}
+            stuNum={item.stuNum}
+            listType="selfstudy"
+          />
+        ))
+      }
     </>
   );
 };

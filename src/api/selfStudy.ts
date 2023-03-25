@@ -1,10 +1,11 @@
 import { toast } from 'react-toastify';
+import { clearScreenDown } from 'readline';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 
 export const applySelfStudy = async (role: string) => {
   try {
-    const { data } = await apiClient.patch(SelfstudyController.selfStudy(role));
+    const { data } = await apiClient.post(SelfstudyController.selfStudy(role));
     if (data.code === 202) {
       toast.error(data.msg);
       return false;
@@ -40,7 +41,7 @@ export const applyCancelStudy = async (role: string) => {
 
 export const applyModifyStudy = async (role: string, limit: number) => {
   try {
-    await apiClient.put(SelfstudyController.modiftStudy(role), {
+    await apiClient.patch(SelfstudyController.modiftStudy(role), {
       limit,
     });
     toast.success('자습 인원이 수정 되었어요');
@@ -51,31 +52,31 @@ export const applyModifyStudy = async (role: string, limit: number) => {
 };
 
 export const selfStudySearch = async (
-  name: string,
-  gender: string,
-  classNum: string,
-  grade: string,
   role: string,
-  selfStudyCheck: boolean | null
+  name: string | null,
+  grade: string | null,
+  classNum: string | null,
+  gender: string | null
 ) => {
   try {
     const { data } = await apiClient.get(
-      SelfstudyController.selfStudySearch(
-        name,
-        gender,
-        classNum,
-        grade,
-        role,
-        selfStudyCheck
-      )
+      SelfstudyController.selfStudySearch(role),
+      {
+        params: {
+          name: name,
+          grade: grade,
+          classNum: classNum,
+          gender: gender,
+        },
+      }
     );
     return { data };
-  } catch (e) {}
+  } catch (e: any) {}
 };
 
 export const selfStudyCheck = async (
   role: string,
-  memberId: string,
+  memberId: number | undefined,
   check: boolean
 ) => {
   try {

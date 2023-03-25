@@ -29,17 +29,10 @@ export const SelfstudyController = {
   selfStudyRank(role: string) {
     return `/${role}/self-study/rank`;
   },
-  selfStudySearch(
-    name: string,
-    gender: string,
-    classNum: string,
-    grade: string,
-    role: string,
-    selfStudyCheck: boolean | null
-  ) {
-    return `/student-info/search?name=${name}?gender=${gender}?classNum=${classNum}?grade=${grade}?role=${role}?selfStudyCheck=${selfStudyCheck}`;
+  selfStudySearch(role: string) {
+    return `/${role}/self-study/search`;
   },
-  selfStudyCheck(role: string, memberId: string) {
+  selfStudyCheck(role: string, memberId: number | undefined) {
     return `/${role}/self-study/check/${memberId}`;
   },
 };

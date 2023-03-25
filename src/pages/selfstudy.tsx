@@ -49,7 +49,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       { headers: { Authorization: Authorization } }
     );
 
-    console.log(selfStudyData);
     return {
       props: {
         fallback: { [SelfstudyController.selfStudyRank(role)]: selfStudyData },

@@ -1,70 +1,58 @@
 import * as S from './style';
 import { SearchIcon } from 'assets/svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FilterItem from 'components/Common/atoms/Items/FilterItem';
 import { SearchFilterTypeProps } from 'types';
 import { FilterMenuData } from 'assets/data/FilterMenuData';
 import UseToggleTheme from 'hooks/useToggleTheme';
 import { useRecoilState } from 'recoil';
-import {
-  filterModal,
-  selfStudyList,
-  selfStudyLookup,
-} from 'recoilAtoms/recoilAtomContainer';
+import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { selfStudySearch } from 'api/selfStudy';
-import { getRole } from 'utils/Libs/getRole';
+import { useDidMountEffect } from 'hooks/useDidMountEffect';
 
-const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
+const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
   const [name, setName] = useState('');
   const [filterState, setFilterState] = useState(['', '', '', '', '']);
   const [modalState, setModalState] = useRecoilState(filterModal);
-  const [userlist, setUserList] = useRecoilState(selfStudyList);
-  // const [lookUp, setLookUp] = useRecoilState(selfStudyLookup);
-  // const role = getRole();
+  const [lookUp, setLookUp] = useRecoilState(selfStudyLookup);
 
   const handelResetClick = () => {
     setName('');
     setFilterState(['', '', '', '', '']);
-    // setLookUp(false);
+    setLookUp(false);
   };
 
   const filterChange = (idx: number, value: string) => {
+    value === '남자'
+      ? (value = 'MAN')
+      : value === '여자'
+      ? (value = 'WOMEN')
+      : '';
     const copy = [...filterState];
     copy[idx] = value;
     setFilterState(copy);
   };
 
-  // const handelSelfstudySearch = async () => {
-  //   await selfStudySearch(
-  //     name,
-  //     filterState[2],
-  //     filterState[1],
-  //     filterState[0],
-  //     '',
-  //     null
-  //   ).then((res) => setUserList(res?.data));
-  // };
-
-  // useEffect(() => {
-  //   if (lookUp) handelSelfstudySearch();
-  // }, [name, filterState]);
+  useDidMountEffect(() => {
+    onSubmit(filterState, name);
+  }, [name, filterState]);
 
   return (
     <>
       <S.FilterWrapper modalState={modalState}>
         <S.Top>
           <span>필터</span>
-          <S.ResetBtn onClick={handelResetClick}>초기화</S.ResetBtn>
+          <S.ResetBtn onClick={() => handelResetClick()}>초기화</S.ResetBtn>
         </S.Top>
         <S.SearchBox>
           <S.Search
             placeholder="이름을 입력해 주세요."
             value={name}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setName(e.target.value);
+              setLookUp(true);
+            }}
           />
           <S.SearchBtn>
             <SearchIcon />
@@ -84,7 +72,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
                     value={filterState[idx]}
                     onClick={() => {
                       filterChange(idx, j);
-                      // setLookUp(true);
+                      setLookUp(true);
                     }}
                   />
                 ))}

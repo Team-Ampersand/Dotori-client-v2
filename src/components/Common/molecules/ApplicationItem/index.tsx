@@ -15,7 +15,8 @@ import { selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
 import { getRole } from 'utils/Libs/getRole';
 
 const ApplicationItem = ({
-  index,
+  id,
+  rank,
   selfStudyCheck,
   memberName,
   gender,
@@ -27,22 +28,22 @@ const ApplicationItem = ({
 
   return (
     <S.ApplicationItemWrapper>
-      <S.Number>{index + 1}</S.Number>
+      <S.Number>{rank}</S.Number>
       {listType === 'selfstudy' && (
         <>
           {!lookUp && (
             <S.Medal>
-              {index === 0 && <GoldMedalIcon />}
-              {index === 1 && <SilverMedalIcon />}
-              {index === 2 && <BronzeMedalIcon />}
-              {index === 49 && <StampIcon />}
+              {rank === 1 && <GoldMedalIcon />}
+              {rank === 2 && <SilverMedalIcon />}
+              {rank === 3 && <BronzeMedalIcon />}
+              {rank === 50 && <StampIcon />}
             </S.Medal>
           )}
           {role !== 'member' && (
             <S.Checkbox>
               <SelfstudyCheck
                 role={role}
-                stuNum={stuNum}
+                memberId={id}
                 checked={selfStudyCheck}
               />
             </S.Checkbox>

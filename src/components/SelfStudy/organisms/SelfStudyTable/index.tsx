@@ -4,23 +4,37 @@ import SearchFilter from 'components/Common/molecules/SearchFilter';
 import NullApplicstionItem from 'components/Common/molecules/NullApplicationItem';
 import { FilterIcon } from 'assets/svg';
 import { filterModal, selfStudyList } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState } from 'recoil';
-import { selfstudyListProps } from 'types';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { selfstudyListType } from 'types';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { useEffect } from 'react';
+import { selfStudySearch } from 'api/selfStudy';
 
 const SelfStudyTable = () => {
   const [userList, setUserList] = useRecoilState(selfStudyList);
+  const setModal = useSetRecoilState(filterModal);
   const role = getRole();
-  const { data } = useSWR<selfstudyListProps[]>(
+  const { data } = useSWR<selfstudyListType>(
     SelfstudyController.selfStudyRank(role)
   );
-  const [modal, setModal] = useRecoilState(filterModal);
+
+  const handelSelfstudySearch = async (state: any, name: string) => {
+    await selfStudySearch(
+      role,
+      name ? name : null,
+      state[0] ? state[0] : null,
+      state[1] ? state[1].slice(0, 1) : null,
+      state[2] ? state[2] : null
+    ).then((res) => {
+      setUserList(res?.data.list);
+    });
+  };
+
   useEffect(() => {
-    return setUserList(data);
-  }, []);
+    setUserList(data?.list);
+  }, [data]);
 
   return (
     <S.TableWrapper>
@@ -36,7 +50,10 @@ const SelfStudyTable = () => {
         <NullApplicstionItem type={'selfstudy'} />
       )}
       <div>
-        <SearchFilter filterType={'selfstudy'} />
+        <SearchFilter
+          filterType={'selfstudy'}
+          onSubmit={handelSelfstudySearch}
+        />
       </div>
     </S.TableWrapper>
   );

@@ -1,13 +1,9 @@
 import ApplicationItem from 'components/Common/molecules/ApplicationItem';
 import { useRecoilState } from 'recoil';
-import {
-  selfStudyList,
-  selfStudyLookup,
-} from 'recoilAtoms/recoilAtomContainer';
+import { selfStudyList } from 'recoilAtoms/recoilAtomContainer';
 
 const SelfStudyList = () => {
   const [userList] = useRecoilState(selfStudyList);
-  const [lookUp] = useRecoilState(selfStudyLookup);
 
   return (
     <>
@@ -15,7 +11,8 @@ const SelfStudyList = () => {
         userList.map((item, idx) => (
           <ApplicationItem
             key={idx}
-            index={idx}
+            id={item.id}
+            rank={item.rank}
             selfStudyCheck={item.selfStudyCheck}
             memberName={item.memberName}
             gender={item.gender}

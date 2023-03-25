@@ -1,22 +1,21 @@
 import ApplicationItem from 'components/Common/molecules/ApplicationItem';
 import useSWR from 'swr';
-import { massageRankProps } from 'types';
+import { massageListType } from 'types';
 import { getRole } from 'utils/Libs/getRole';
 import { MassageController } from 'utils/Libs/requestUrls';
 
 const MassageList = () => {
   const role = getRole();
-  const { data } = useSWR<massageRankProps[]>(
-    MassageController.massageRank(role)
-  );
+  const { data } = useSWR<massageListType>(MassageController.massageRank(role));
 
   return (
     <>
-      {data &&
-        data.map((item, idx) => (
+      {data?.list &&
+        data.list.map((item, idx) => (
           <ApplicationItem
             key={idx}
-            index={idx}
+            id={undefined}
+            rank={undefined}
             selfStudyCheck={null}
             memberName={item.memberName}
             gender={item.gender}

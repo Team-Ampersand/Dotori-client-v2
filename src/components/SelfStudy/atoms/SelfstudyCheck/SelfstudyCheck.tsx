@@ -6,24 +6,23 @@ import { selfStudyCheck } from 'api/selfStudy';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import useSWR from 'swr';
 
-const SelfstudyCheck = ({ role, stuNum, checked }: CheckProps) => {
+const SelfstudyCheck = ({ role, memberId, checked }: CheckProps) => {
   const { mutate } = useSWR<selfstudyListProps[]>(
     SelfstudyController.selfStudyRank(role)
   );
 
   const studyChecks = async (
     role: string,
-    memberId: string,
+    memberId: number | undefined,
     checked: boolean
   ) => {
-    await selfStudyCheck(role, memberId, checked);
-    mutate();
+    await selfStudyCheck(role, memberId, checked).then(() => mutate());
   };
 
   return (
     <S.Checkbox
       onClick={() => {
-        studyChecks(role, stuNum, !checked);
+        studyChecks(role, memberId, !checked);
       }}
     >
       {checked ? <CheckedBox /> : <CheckBox />}

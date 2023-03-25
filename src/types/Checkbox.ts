@@ -1,5 +1,5 @@
 export interface CheckProps {
   role: string;
-  stuNum: string;
+  memberId: number | undefined;
   checked: boolean | null;
 }

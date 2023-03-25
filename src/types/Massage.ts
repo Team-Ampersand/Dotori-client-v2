@@ -5,3 +5,7 @@ export interface massageRankProps {
   memberName: string;
   gender: 'MALE' | 'FEMALE';
 }
+
+export interface massageListType {
+  list: massageRankProps[];
+}

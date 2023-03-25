@@ -1,5 +1,6 @@
 export interface ApplicationItemProps {
-  index: number;
+  id: number | undefined;
+  rank: number | undefined;
   selfStudyCheck: boolean | null;
   memberName: string;
   gender: string;

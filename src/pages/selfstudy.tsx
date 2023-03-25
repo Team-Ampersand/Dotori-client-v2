@@ -10,10 +10,10 @@ import { getToken } from 'utils/Libs/getToken';
 import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
-import { selfstudyListProps } from 'types';
+import { selfstudyListType } from 'types';
 
 const SelfStudyPage: NextPage<{
-  fallback: Record<string, selfstudyListProps[]>;
+  fallback: Record<string, selfstudyListType>;
   role: string;
 }> = ({ fallback, role }) => {
   UseThemeEffect();
@@ -49,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       { headers: { Authorization: Authorization } }
     );
 
+    console.log(selfStudyData);
     return {
       props: {
         fallback: { [SelfstudyController.selfStudyRank(role)]: selfStudyData },

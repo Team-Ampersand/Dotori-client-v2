@@ -10,3 +10,5 @@ export * from './Filter';
 export * from './Checkbox';
 export * from './List';
 export * from './Penalty';
+export * from './Selfstudy';
+export * from './Massage';

@@ -1,13 +1,17 @@
 import * as S from './style';
 import Image from 'next/image';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
+import { isNoticeModify } from 'recoilAtoms/recoilAtomContainer';
 
 interface Props {
   register: UseFormRegisterReturn;
-  data: File[];
+  data: string[];
+  onDelete: (id: number) => void;
 }
 
-const ImgForm = ({ register, data }: Props) => {
+const ImgForm = ({ register, data, onDelete }: Props) => {
+  const noticeModify = useRecoilValue(isNoticeModify);
   return (
     <S.Layer>
       <S.TopWrapper>
@@ -19,22 +23,29 @@ const ImgForm = ({ register, data }: Props) => {
         </S.ToolTipBox>
       </S.TopWrapper>
       <S.BottomWrapper>
-        <S.ImgInput id="imgForm" type="file" {...register} />
-        <S.ImgInputLabel htmlFor="imgForm">
-          <S.Camera />
-          <p>이미지 추가</p>
-        </S.ImgInputLabel>
+        {!noticeModify && (
+          <>
+            <S.ImgInput id="imgForm" type="file" {...register} />
+            <S.ImgInputLabel htmlFor="imgForm">
+              <S.Camera />
+              <p>이미지 추가</p>
+            </S.ImgInputLabel>
+          </>
+        )}
         {data &&
           data.map((item, key) => (
             <S.ImgWrapper key={key}>
               <Image
-                src={URL.createObjectURL(item)}
+                src={item}
                 alt="image"
                 width={200}
                 height={200}
                 layout="fill"
                 objectFit={'cover'}
               />
+              {!noticeModify && (
+                <S.ImgDeleteBtn onClick={() => onDelete(key)} />
+              )}
             </S.ImgWrapper>
           ))}
       </S.BottomWrapper>

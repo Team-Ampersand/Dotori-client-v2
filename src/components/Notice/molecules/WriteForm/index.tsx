@@ -1,9 +1,9 @@
 import { UseFormRegister } from 'react-hook-form';
-import { NoticeFormType } from 'types/components/NoticeWritePage';
+import { noticeFormType } from 'types/components/NoticePage';
 import * as S from './style';
 
 interface Props {
-  register: UseFormRegister<NoticeFormType>;
+  register: UseFormRegister<noticeFormType>;
 }
 
 const WriteForm = ({ register }: Props) => {

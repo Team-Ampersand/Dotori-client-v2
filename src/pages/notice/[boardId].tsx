@@ -1,6 +1,7 @@
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import NoticeContent from 'components/Notice/organisms/NoticeContent';
+import NoticeEdit from 'components/Notice/organisms/NoticeEdit';
 import NoticeHeader from 'components/Notice/organisms/NoticeHeader';
 import NoticeList from 'components/Notice/organisms/NoticeList';
 import NoticeWrite from 'components/Notice/organisms/NoticeWrite';
@@ -10,8 +11,8 @@ import {
 } from 'components/Notice/templates/NoticeTemplate/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
-import { useRecoilValue } from 'recoil';
-import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { isNoticeWrite, noticeContent } from 'recoilAtoms/recoilAtomContainer';
 import { SWRConfig } from 'swr';
 import { noticePageProps } from 'types';
 import { noticeDetailType } from 'types/components/NoticePage';
@@ -47,7 +48,7 @@ const Notice: NextPage<{
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = await getRole(ctx);
-  const boardId = ctx.query.boardId ?? '';
+  const boardId = ctx.params?.boardId ?? '';
 
   const { data: noticeData } = await apiClient.get(
     NoticeController.getNotice(role),
@@ -59,10 +60,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     { headers: { Authorization } }
   );
 
-  const { data: deleteNotice } = await apiClient.delete(
-    NoticeController.getNoticeDetail(role, boardId[0]),
-    { headers: { Authorization } }
-  );
+  // const { data: deleteNotice } = await apiClient.delete(
+  //   NoticeController.getNoticeDetail(role, boardId[0]),
+  //   { headers: { Authorization } }
+  // );
 
   if (!Authorization) {
     return {
@@ -73,12 +74,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 
+  if (noticeDetailData) {
+  }
+
   return {
     props: {
       fallback: {
         [NoticeController.getNotice(role)]: noticeData,
-        [NoticeController.getNoticeDetail(role, boardId[0])]: noticeDetailData,
-        [NoticeController.getNoticeDetail(role, boardId[0])]: deleteNotice,
+        // [NoticeController.getNoticeDetail(role, boardId[0])]: noticeDetailData,
+        // [NoticeController.getNoticeDetail(role, boardId[0])]: deleteNotice,
       },
       role,
     },

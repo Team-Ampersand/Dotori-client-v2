@@ -1,14 +1,15 @@
 import NoticeOptionBtn from 'components/Notice/atoms/NoticeOptionBtn';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { isNoticeWrite, noticeContent } from 'recoilAtoms/recoilAtomContainer';
 import { Palette } from 'styles/globals';
 import * as S from './style';
 
 const ListHeader = () => {
   const [isEdit, setEdit] = useState<boolean>(false);
   const [noticeWrite, setNoticeWrite] = useRecoilState(isNoticeWrite);
+  const setNoticeContent = useSetRecoilState(noticeContent);
   const router = useRouter();
 
   return (
@@ -39,6 +40,7 @@ const ListHeader = () => {
             color={Palette.WHITE}
             onClick={() => {
               setNoticeWrite(true);
+              setNoticeContent(null);
               router.push('/notice');
             }}
           >

@@ -21,4 +21,25 @@ export const ContentWrapper = styled.div`
   color: ${Palette.NEUTRAL_N10};
   font-weight: 300;
   font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const BottomWrapper = styled.div`
+  max-width: 910px;
+  height: 30%;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+
+  > div {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  ::-webkit-scrollbar {
+    height: 0px;
+  }
 `;

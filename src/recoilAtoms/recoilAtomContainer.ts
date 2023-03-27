@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
-import { SignupForm, selfstudyListProps } from 'types';
+import { selfstudyListProps, SignupForm } from 'types';
+import { noticeDetailType } from 'types/components/NoticePage';
 
 export const signUpObject = atom<SignupForm>({
   key: 'signUpObject',
@@ -58,5 +59,37 @@ export const selfStudyList = atom<selfstudyListProps[] | undefined>({
 
 export const selfStudyLookup = atom<boolean>({
   key: 'selfStudyLookup',
+  default: false,
+});
+
+export const noticeContent = atom<noticeDetailType | null>({
+  key: 'noticeContent',
+  default: {
+    id: 0,
+    title: '',
+    content: '',
+    roles: '',
+    createdDate: '',
+    modifiedDate: null,
+    boardImage: [],
+  },
+});
+
+export const isNoticeWrite = atom<boolean>({
+  key: 'isNoticeWrite',
+  default: false,
+});
+export const isNoticeEdit = atom<boolean>({
+  key: 'isNoticeEdit',
+  default: false,
+});
+
+export const isNoticeFetch = atom<boolean>({
+  key: 'isNoticeFetch',
+  default: false,
+});
+
+export const isNoticeModify = atom<boolean>({
+  key: 'isNoticeModify',
   default: false,
 });

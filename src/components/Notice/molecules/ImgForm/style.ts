@@ -132,7 +132,36 @@ export const ImgWrapper = styled.div`
   aspect-ratio: 1 / 1;
   border-radius: 1em;
   overflow: hidden;
+
   > img {
     object-fit: cover;
+  }
+`;
+
+export const ImgDeleteBtn = styled.span`
+  position: absolute;
+  width: 1.375em;
+  height: 1.375em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background: ${Palette.NEUTRAL_N50};
+  top: 0.5em;
+  right: 0.5em;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    transform: rotate(-45deg);
+    background: ${Palette.NEUTRAL_N10};
+    width: 0.8em;
+    height: 0.1em;
+  }
+  &::after {
+    transform: rotate(45deg);
   }
 `;

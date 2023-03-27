@@ -17,7 +17,7 @@ const NoticeItem = ({
   return (
     <S.NoticeItemWrapper
       style={{ border: isCurrenPage ? `2px solid ${Palette.PRIMARY_P10}` : '' }}
-      onClick={() => router.push(`/board/${id}`)}
+      onClick={() => router.push(`/notice/${id}`)}
     >
       <S.ItemTopWrapper>
         <S.Writer>

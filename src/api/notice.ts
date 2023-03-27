@@ -30,9 +30,42 @@ export const postNotice = async (
 
   try {
     const { data } = await apiClient.post(
-      NoticeController.getNotice('developer')
+      NoticeController.getNotice(role),
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
     );
     toast.success('공지사항 작성이 완료되었습니다');
     return { data };
   } catch (e: any) {}
+};
+
+export const deleteNotice = async (role: string, boardIdx: number) => {
+  try {
+    await apiClient.delete(
+      NoticeController.getNoticeDetail(role, String(boardIdx))
+    );
+    toast.success('공지사항 삭제가 완료되었습니다');
+    return;
+  } catch (e: any) {}
+};
+
+export const putNotice = async (
+  role: string,
+  boardIdx: number,
+  title: string,
+  content: string
+) => {
+  try {
+    await apiClient.put(
+      NoticeController.getNoticeDetail(role, String(boardIdx)),
+      {
+        title: title,
+        content: content,
+      }
+    );
+    toast.success('공지사항 수정이 완료되었습니다');
+    return;
+  } catch (e: any) {
+    toast.error('공지사항 수정이 실패하였습니다');
+  }
 };

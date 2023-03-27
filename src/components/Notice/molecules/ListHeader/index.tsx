@@ -44,8 +44,8 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
             onClick={() => {
               choice.map(async (item) => {
                 await deleteNotice(role, item);
+                setNoticeFetch(true);
               });
-              setNoticeFetch(true);
             }}
           >
             삭제

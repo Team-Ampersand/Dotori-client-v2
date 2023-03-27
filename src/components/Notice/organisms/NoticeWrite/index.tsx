@@ -5,6 +5,7 @@ import WriteForm from 'components/Notice/molecules/WriteForm';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   isNoticeFetch,
@@ -57,6 +58,11 @@ const NoticeWrite = () => {
     router.push('/notice');
   };
 
+  const onError = (err: Object) => {
+    console.log(err);
+    return toast.error(Object.values(err)[0].message);
+  };
+
   const onImgDelete = (id: number) => {
     URL.revokeObjectURL(imgList[id]);
     setPostImgList([...postImgList.filter((_item, key) => key !== id)]);
@@ -64,7 +70,7 @@ const NoticeWrite = () => {
   };
 
   return (
-    <S.Layer onSubmit={handleSubmit(onSubmit)}>
+    <S.Layer onSubmit={handleSubmit(onSubmit, onError)}>
       <WriteForm register={register} />
       <ImgForm
         register={register('img', {

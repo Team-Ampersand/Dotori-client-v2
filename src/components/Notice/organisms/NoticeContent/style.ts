@@ -37,6 +37,8 @@ export const BottomWrapper = styled.div`
     position: relative;
     height: 100%;
     aspect-ratio: 1 / 1;
+    border-radius: 1em;
+    overflow: hidden;
   }
 
   ::-webkit-scrollbar {

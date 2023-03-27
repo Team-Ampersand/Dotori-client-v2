@@ -18,16 +18,20 @@ const WriteForm = ({ register }: Props) => {
           placeholder="제목(1~45자)"
           maxLength={45}
           {...register('title', {
-            required: true,
-            minLength: 1,
+            required: {
+              value: true,
+              message: '제목을 입력해 주세요',
+            },
           })}
         />
         <textarea
           placeholder="내용(1~5000자)"
           maxLength={5000}
           {...register('content', {
-            required: true,
-            minLength: 1,
+            required: {
+              value: true,
+              message: '내용을 입력해 주세요',
+            },
           })}
         />
       </S.FormContent>

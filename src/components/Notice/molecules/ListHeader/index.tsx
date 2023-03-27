@@ -1,15 +1,21 @@
+import { deleteNotice } from 'api/notice';
 import NoticeOptionBtn from 'components/Notice/atoms/NoticeOptionBtn';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { isNoticeWrite, noticeContent } from 'recoilAtoms/recoilAtomContainer';
+import {
+  isNoticeDelete,
+  isNoticeWrite,
+  noticeChoice,
+  noticeContent,
+} from 'recoilAtoms/recoilAtomContainer';
 import { Palette } from 'styles/globals';
 import * as S from './style';
 
-const ListHeader = () => {
-  const [isEdit, setEdit] = useState<boolean>(false);
+const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
+  const [noticeDelete, setNoticeDelete] = useRecoilState(isNoticeDelete);
   const [noticeWrite, setNoticeWrite] = useRecoilState(isNoticeWrite);
   const setNoticeContent = useSetRecoilState(noticeContent);
+  const setSelectedNotice = useSetRecoilState(noticeChoice);
   const router = useRouter();
 
   return (
@@ -19,17 +25,24 @@ const ListHeader = () => {
         <NoticeOptionBtn
           color={Palette.NEUTRAL_N20}
           border={Palette.NEUTRAL_N20}
-          onClick={() => setEdit(!isEdit)}
+          borderRadius="1em"
+          onClick={() => {
+            setNoticeDelete(!noticeDelete);
+            setSelectedNotice([]);
+          }}
         >
-          {isEdit ? '취소' : '편집'}
+          {noticeDelete ? '취소' : '편집'}
         </NoticeOptionBtn>
 
-        {isEdit ? (
+        {noticeDelete ? (
           <NoticeOptionBtn
             color={Palette.SYSTEM_ERROR}
             border={Palette.SYSTEM_ERROR}
+            borderRadius="1em"
             onClick={() => {
-              return;
+              choice.map(async (item) => {
+                await deleteNotice(role, item);
+              });
             }}
           >
             삭제
@@ -38,6 +51,7 @@ const ListHeader = () => {
           <NoticeOptionBtn
             bgColor={Palette.PRIMARY_P10}
             color={Palette.WHITE}
+            borderRadius="1em"
             onClick={() => {
               setNoticeWrite(true);
               setNoticeContent(null);

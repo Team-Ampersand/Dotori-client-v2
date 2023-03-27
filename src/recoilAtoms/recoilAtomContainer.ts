@@ -79,8 +79,8 @@ export const isNoticeWrite = atom<boolean>({
   key: 'isNoticeWrite',
   default: false,
 });
-export const isNoticeEdit = atom<boolean>({
-  key: 'isNoticeEdit',
+export const isNoticeDelete = atom<boolean>({
+  key: 'isNoticeDeletes',
   default: false,
 });
 
@@ -92,4 +92,9 @@ export const isNoticeFetch = atom<boolean>({
 export const isNoticeModify = atom<boolean>({
   key: 'isNoticeModify',
   default: false,
+});
+
+export const noticeChoice = atom<number[]>({
+  key: 'noticeChoice',
+  default: [],
 });

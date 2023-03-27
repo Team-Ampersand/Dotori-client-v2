@@ -12,12 +12,13 @@ const NoticeItem = ({
   desc,
   isCurrenPage,
   id,
+  onClick = () => router.push(`/notice/${id}`),
 }: NoticeItemProps) => {
   const router = useRouter();
   return (
     <S.NoticeItemWrapper
       style={{ border: isCurrenPage ? `2px solid ${Palette.PRIMARY_P10}` : '' }}
-      onClick={() => router.push(`/notice/${id}`)}
+      onClick={onClick}
     >
       <S.ItemTopWrapper>
         <S.Writer>

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   isNoticeDelete,
+  isNoticeFetch,
   isNoticeWrite,
   noticeChoice,
   noticeContent,
@@ -13,9 +14,10 @@ import * as S from './style';
 
 const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
   const [noticeDelete, setNoticeDelete] = useRecoilState(isNoticeDelete);
-  const [noticeWrite, setNoticeWrite] = useRecoilState(isNoticeWrite);
+  const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const setNoticeContent = useSetRecoilState(noticeContent);
   const setSelectedNotice = useSetRecoilState(noticeChoice);
+  const setNoticeFetch = useSetRecoilState(isNoticeFetch);
   const router = useRouter();
 
   return (
@@ -43,6 +45,7 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
               choice.map(async (item) => {
                 await deleteNotice(role, item);
               });
+              setNoticeFetch(true);
             }}
           >
             삭제

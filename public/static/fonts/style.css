@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-Bold.otf') format('opentype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-ExtraBold.otf') format('opentype');
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-Heavy.otf') format('opentype');
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-Light.otf') format('opentype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-Medium.otf') format('opentype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-Regular.otf') format('opentype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-SemiBold.otf') format('opentype');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'SUIT';
+    src: url('SUIT-Thin.otf') format('opentype');
+    font-weight: 100;
+}

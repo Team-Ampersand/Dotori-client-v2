@@ -26,8 +26,17 @@ export const SelfstudyController = {
   selfStudyInfo(role: string) {
     return `/${role}/self-study/info`;
   },
-  studyModify(role: string, num: number) {
-    return `/${role}/selfstudy/modify/${num}`;
+  modiftStudy(role: string) {
+    return `/${role}/self-study/limit`;
+  },
+  selfStudyRank(role: string) {
+    return `/${role}/self-study/rank`;
+  },
+  selfStudySearch(role: string) {
+    return `/${role}/self-study/search`;
+  },
+  selfStudyCheck(role: string, memberId: number | undefined) {
+    return `/${role}/self-study/check/${memberId}`;
   },
 };
 
@@ -35,11 +44,11 @@ export const MassageController = {
   massage(role: string) {
     return `/${role}/massage`;
   },
-  cancelMassage(role: string) {
-    return `/${role}/cancel/massage`;
+  modifyMassage(role: string) {
+    return `/${role}/massage/limit`;
   },
-  modifyMassage(role: string, num: number) {
-    return `/${role}/modify/massage/${num}`;
+  massageRank(role: string) {
+    return `/${role}/massage/rank`;
   },
 };
 

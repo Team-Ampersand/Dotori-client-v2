@@ -21,6 +21,8 @@ const PenaltyTable = () => {
       : toast.warning('학생을 선택해주세요');
   };
 
+  const handelPenaltySearch = async () => {};
+
   return (
     <S.TableWrapper>
       <S.ListWrapper>
@@ -48,7 +50,7 @@ const PenaltyTable = () => {
         />
       </S.ListWrapper>
       <div>
-        <SearchFilter filterType={'penalty'} />
+        <SearchFilter filterType={'penalty'} onSubmit={handelPenaltySearch} />
         <S.CSVWrapper>
           <span>내보내기</span>
           <S.CSVLink>엑셀 다운로드</S.CSVLink>

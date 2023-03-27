@@ -8,7 +8,7 @@ export const MassageTemplates = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 3vw 0 3vw;
-
+  overflow-x: hidden;
   @media (max-width: 1634px) {
     width: 100%;
   }

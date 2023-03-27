@@ -6,40 +6,53 @@ import { SearchFilterTypeProps } from 'types';
 import { FilterMenuData } from 'assets/data/FilterMenuData';
 import UseToggleTheme from 'hooks/useToggleTheme';
 import { useRecoilState } from 'recoil';
-import { filterModal } from 'recoilAtoms/recoilAtomContainer';
+import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
+import { useDidMountEffect } from 'hooks/useDidMountEffect';
 
-const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
+const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
   const [name, setName] = useState('');
   const [filterState, setFilterState] = useState(['', '', '', '', '']);
   const [modalState, setModalState] = useRecoilState(filterModal);
+  const [lookUp, setLookUp] = useRecoilState(selfStudyLookup);
 
-  const filterReset = () => {
+  const handelResetClick = () => {
     setName('');
     setFilterState(['', '', '', '', '']);
+    setLookUp(false);
   };
 
   const filterChange = (idx: number, value: string) => {
+    value === '남자'
+      ? (value = 'MAN')
+      : value === '여자'
+      ? (value = 'WOMEN')
+      : '';
     const copy = [...filterState];
     copy[idx] = value;
     setFilterState(copy);
   };
+
+  useDidMountEffect(() => {
+    onSubmit(filterState, name);
+  }, [name, filterState]);
 
   return (
     <>
       <S.FilterWrapper modalState={modalState}>
         <S.Top>
           <span>필터</span>
-          <S.ResetBtn onClick={filterReset}>초기화</S.ResetBtn>
+          <S.ResetBtn onClick={() => handelResetClick()}>초기화</S.ResetBtn>
         </S.Top>
         <S.SearchBox>
           <S.Search
             placeholder="이름을 입력해 주세요."
             value={name}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setName(e.target.value);
+              setLookUp(true);
+            }}
           />
           <S.SearchBtn>
             <SearchIcon />
@@ -57,7 +70,10 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
                     name={i.filterTitle}
                     item={j}
                     value={filterState[idx]}
-                    onClick={() => filterChange(idx, j)}
+                    onClick={() => {
+                      filterChange(idx, j);
+                      setLookUp(true);
+                    }}
                   />
                 ))}
               </S.SelectBox>
@@ -68,7 +84,7 @@ const SearchFilter = ({ filterType }: SearchFilterTypeProps) => {
           onClick={() => setModalState(false)}
           modalState={modalState}
         >
-          <span>적용</span>
+          <span>닫기</span>
         </S.ApplyBtn>
       </S.FilterWrapper>
       <ResponseOverayWrapper

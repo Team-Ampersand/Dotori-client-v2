@@ -1,4 +1,5 @@
 export interface CheckProps {
-	// role: string;
-	checked: boolean | null;
+  role: string;
+  memberId: number | undefined;
+  checked: boolean | null;
 }

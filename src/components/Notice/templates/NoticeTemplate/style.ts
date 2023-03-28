@@ -5,7 +5,7 @@ export const NoticeTemplate = styled.div`
   width: 100%;
   max-height: 100vh;
   background: ${Palette.BACKGROUND_BG};
-  padding: 56px 72px;
+  padding: 0 56px 72px 56px;
   display: flex;
   flex-direction: column;
   gap: 24px;

@@ -1,7 +1,7 @@
+import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import NoticeContent from 'components/Notice/organisms/NoticeContent';
-import NoticeHeader from 'components/Notice/organisms/NoticeHeader';
 import NoticeList from 'components/Notice/organisms/NoticeList';
 import NoticeWrite from 'components/Notice/organisms/NoticeWrite';
 import {
@@ -12,33 +12,27 @@ import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
-import { SWRConfig } from 'swr';
-import { noticePageProps } from 'types';
-import { noticeDetailType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 
 const Notice: NextPage<{
-  fallback: Record<string, noticePageProps> | Record<string, noticeDetailType>;
   role: string;
-}> = ({ fallback, role }) => {
+}> = ({ role }) => {
   UseThemeEffect();
 
   const isWrite = useRecoilValue(isNoticeWrite);
 
   return (
-    <SWRConfig value={fallback}>
-      <MainTemplates>
-        <SideBar role={role} />
-        <NoticeTemplate>
-          <NoticeHeader />
-          <NoticeWrapper>
-            <NoticeList />
-            {isWrite ? <NoticeWrite /> : <NoticeContent />}
-          </NoticeWrapper>
-        </NoticeTemplate>
-      </MainTemplates>
-    </SWRConfig>
+    <MainTemplates>
+      <SideBar role={role} />
+      <NoticeTemplate>
+        <CommonHeader />
+        <NoticeWrapper>
+          <NoticeList />
+          {isWrite ? <NoticeWrite /> : <NoticeContent />}
+        </NoticeWrapper>
+      </NoticeTemplate>
+    </MainTemplates>
   );
 };
 
@@ -57,7 +51,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      fallback: {},
       role,
     },
   };

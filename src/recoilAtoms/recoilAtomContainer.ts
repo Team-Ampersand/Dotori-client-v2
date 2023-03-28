@@ -60,3 +60,8 @@ export const selfStudyLookup = atom<boolean>({
   key: 'selfStudyLookup',
   default: false,
 });
+
+export const selectedDate = atom<Date>({
+  key: 'selectedCalendar',
+  default: new Date(),
+});

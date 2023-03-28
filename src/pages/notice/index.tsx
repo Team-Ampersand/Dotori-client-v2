@@ -46,11 +46,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
 
-  const { data: selfStudyData } = await apiClient.get(
-    SelfstudyController.selfStudyInfo(role),
-    { headers: { Authorization } }
-  );
-
   if (!Authorization) {
     return {
       redirect: {
@@ -59,6 +54,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   }
+
+  const { data: selfStudyData } = await apiClient.get(
+    SelfstudyController.selfStudyInfo(role),
+    { headers: { Authorization } }
+  );
 
   return {
     props: {

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   isNoticeFetch,
   isNoticeModify,
@@ -15,6 +15,7 @@ import {
 } from 'recoilAtoms/recoilAtomContainer';
 import { noticeFormType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
+import requestWriter from 'utils/Libs/requestRole';
 import * as S from './style';
 
 const NoticeWrite = () => {
@@ -26,10 +27,10 @@ const NoticeWrite = () => {
   const [postImgList, setPostImgList] = useState<File[]>([]);
   const role = getRole();
   const router = useRouter();
-  const [noticeWrite, setNoticeWrite] = useRecoilState(isNoticeWrite);
+  const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const setNoticeFetch = useSetRecoilState(isNoticeFetch);
   const [content, setContent] = useRecoilState(noticeContent);
-  const [noticeModify, setNoticeModify] = useRecoilState(isNoticeModify);
+  const noticeModify = useRecoilValue(isNoticeModify);
 
   useEffect(() => {
     if (!content) return;
@@ -59,7 +60,6 @@ const NoticeWrite = () => {
   };
 
   const onError = (err: Object) => {
-    console.log(err);
     return toast.error(Object.values(err)[0].message);
   };
 
@@ -71,7 +71,7 @@ const NoticeWrite = () => {
 
   return (
     <S.Layer onSubmit={handleSubmit(onSubmit, onError)}>
-      <WriteForm register={register} />
+      <WriteForm register={register} role={requestWriter(role)} />
       <ImgForm
         register={register('img', {
           onChange: () => {

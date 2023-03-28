@@ -1,17 +1,23 @@
 import { UseFormRegister } from 'react-hook-form';
 import { noticeFormType } from 'types/components/NoticePage';
 import * as S from './style';
+import { todayDate } from 'utils/todayDate';
 
 interface Props {
   register: UseFormRegister<noticeFormType>;
+  role: string;
 }
 
-const WriteForm = ({ register }: Props) => {
+const WriteForm = ({ register, role }: Props) => {
+  const writeDate = `${todayDate()[0]}년 ${todayDate()[1]}월 ${
+    todayDate()[2]
+  }일`;
+
   return (
     <S.Layer>
       <S.FormHeader>
-        <p>작성자: 도토리</p>
-        <small>2022년 7월 6일 오후 3시 36분</small>
+        <p>{`작성자: ${role}`}</p>
+        <small>{writeDate}</small>
       </S.FormHeader>
       <S.FormContent>
         <input

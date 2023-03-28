@@ -10,9 +10,9 @@ import {
   noticeChoice,
 } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
-import { userRole } from 'types/common/userRole';
 import { noticeListType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
+import requestWriter from 'utils/Libs/requestRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
@@ -27,17 +27,6 @@ const NoticeList = () => {
   const noticeDelete = useRecoilValue(isNoticeDelete);
   const [selectedNotice, setSelectedNotice] = useRecoilState(noticeChoice);
   const router = useRouter();
-
-  const requestWriter = (role: Omit<userRole, 'ROLE_MEMBER'>) => {
-    switch (role) {
-      case 'ROLE_ADMIN':
-        return '사감선생님';
-      case 'ROLE_COUNCILLOR':
-        return '기숙사자치위원회';
-      default:
-        return '도토리';
-    }
-  };
 
   useEffect(() => {
     if (!noticeFetch) return;

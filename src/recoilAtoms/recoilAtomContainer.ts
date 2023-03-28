@@ -97,4 +97,7 @@ export const isNoticeModify = atom<boolean>({
 export const noticeChoice = atom<number[]>({
   key: 'noticeChoice',
   default: [],
+export const selectedDate = atom<Date>({
+  key: 'selectedCalendar',
+  default: new Date(),
 });

@@ -13,7 +13,7 @@ const TrashCan = () => {
         d="M3 18.4998V7.49976H15V18.4998C15 19.6043 14.1046 20.4998 13 20.4998H5C3.89543 20.4998 3 19.6043 3 18.4998Z"
         stroke={Palette.SYSTEM_ERROR}
         strokeWidth="1.5"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M7 10.9998V16.9998"

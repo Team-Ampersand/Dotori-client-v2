@@ -98,3 +98,8 @@ export const noticeChoice = atom<number[]>({
   key: 'noticeChoice',
   default: [],
 });
+
+export const selectedDate = atom<Date>({
+  key: 'selectedDate',
+  default: new Date(),
+});

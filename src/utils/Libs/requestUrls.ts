@@ -57,9 +57,9 @@ export const penaltyController = {
 
 export const SongController = {
   music(role: string) {
-    return `${role}/rule`;
+    return `${role}/music`;
   },
   deleteMusic(role: string, musicId: number) {
-    return `${role}/rule/${musicId}`;
+    return `${role}/music/${musicId}`;
   },
 };

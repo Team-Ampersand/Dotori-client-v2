@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { SignupForm } from 'types';
+import { SignupForm, selfstudyListProps } from 'types';
 
 export const signUpObject = atom<SignupForm>({
   key: 'signUpObject',
@@ -51,3 +51,17 @@ export const imgBase64profile = atom<string>({
   default: '',
 });
 
+export const selfStudyList = atom<selfstudyListProps[] | undefined>({
+  key: 'selfStudyList',
+  default: [],
+});
+
+export const selfStudyLookup = atom<boolean>({
+  key: 'selfStudyLookup',
+  default: false,
+});
+
+export const selectedDate = atom<Date>({
+  key: 'selectedCalendar',
+  default: new Date(),
+});

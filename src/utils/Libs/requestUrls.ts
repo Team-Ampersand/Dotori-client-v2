@@ -1,29 +1,56 @@
 export const MemberController = {
-	signup: '/auth/signup',
-	auth: '/auth',
-	emailCheck: '/email/signup',
-	authcheck: '/email/verify-email',
-	changePasswd: '/members/password',
-	myProfile: '/home'
-}
+  signup: '/auth/signup',
+  auth: '/auth',
+  emailCheck: '/email/signup',
+  authcheck: '/email/verify-email',
+  changePasswd: '/members/password',
+  myProfile: '/home',
+};
 
 export const NoticeController = {
-	getNotice(role:string) {return `/${role}/board`},
-	boardId(boardIdx:number) {return `/board/${boardIdx}`},
+  getNotice(role: string) {
+    return `/${role}/board`;
+  },
+  boardId(boardIdx: number) {
+    return `/board/${boardIdx}`;
+  },
 };
 
 export const SelfstudyController = {
-	selfStudy(role: string){return `/${role}/self-study`},
-	selfStudyInfo(role: string){return `/${role}/self-study/info`},
-	studyModify(role: string,num:number){return `/${role}/selfstudy/modify/${num}`},
+  selfStudy(role: string) {
+    return `/${role}/self-study`;
+  },
+  selfStudyInfo(role: string) {
+    return `/${role}/self-study/info`;
+  },
+  modiftStudy(role: string) {
+    return `/${role}/self-study/limit`;
+  },
+  selfStudyRank(role: string) {
+    return `/${role}/self-study/rank`;
+  },
+  selfStudySearch(role: string) {
+    return `/${role}/self-study/search`;
+  },
+  selfStudyCheck(role: string, memberId: number | undefined) {
+    return `/${role}/self-study/check/${memberId}`;
+  },
 };
 
 export const MassageController = {
-	massage(role: string){return `/${role}/massage`},
-	cancelMassage(role: string){return `/${role}/cancel/massage`},
-	modifyMassage(role: string,num:number){return `/${role}/modify/massage/${num}`},
-}
+  massage(role: string) {
+    return `/${role}/massage`;
+  },
+  modifyMassage(role: string) {
+    return `/${role}/massage/limit`;
+  },
+  massageRank(role: string) {
+    return `/${role}/massage/rank`;
+  },
+};
 
 export const penaltyController = {
-	strRule(role:string){return `${role}/rule`}
-}
+  strRule(role: string) {
+    return `${role}/rule`;
+  },
+};

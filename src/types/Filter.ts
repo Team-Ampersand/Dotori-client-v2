@@ -19,6 +19,7 @@ export interface SearchFilterProps {
 
 export interface SearchFilterTypeProps {
   filterType: string;
+  onSubmit: (state: string[], name: string) => void;
 }
 
 export interface FilterStyleProps {

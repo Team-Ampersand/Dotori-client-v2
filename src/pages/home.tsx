@@ -80,8 +80,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       { headers: { Authorization } }
     );
 
-    console.log(massageData);
-
     return {
       props: {
         fallback: {
@@ -94,7 +92,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   } catch (e) {
-    console.log(e);
     return { props: {} };
   }
 };

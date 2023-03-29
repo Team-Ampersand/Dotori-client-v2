@@ -17,5 +17,6 @@ export const ListHeader = styled.div`
 
 export const ListContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 66px);
+  border-radius: 1rem;
 `;

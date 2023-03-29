@@ -65,3 +65,8 @@ export const selectedDate = atom<Date>({
   key: 'selectedDate',
   default: new Date(),
 });
+
+export const songNoticeModal = atom<boolean>({
+  key: 'songNoticeModal',
+  default: false,
+});

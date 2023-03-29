@@ -4,7 +4,7 @@ import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import { noticeListType } from 'types/Home';
-import { requestWriter } from 'utils/requesWriter';
+import { RoleData } from 'assets/data/RoleData';
 
 const NoticeBoard = () => {
   const role = getRole();
@@ -19,7 +19,7 @@ const NoticeBoard = () => {
           content.map((i, idx) => (
             <>
               <NoticeItem
-                writer={requestWriter(i.roles[0])}
+                writer={i.roles[0]}
                 date={i.createdDate.slice(0, 10)}
                 title={i.title}
                 desc={i.content}

@@ -26,8 +26,8 @@ const NoticeBoard = () => {
                 isCurrenPage={false}
                 id={idx}
               />
-              {content[idx]?.createdDate.slice(1, 10) !==
-                content[idx - 1]?.createdDate.slice(1, 10) && (
+              {content[idx]?.createdDate.slice(0, 10) >
+                content[idx + 1]?.createdDate.slice(0, 10) && (
                 <S.DateLine>
                   <hr />
                   {`${i?.createdDate.slice(5, 7)}월 ${i?.createdDate.slice(

@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
 import * as S from './Style';
 import { CheckBox, CheckedBox } from 'assets/svg';
-import { PenaltyCheckProps } from 'types';
 import { useRecoilState } from 'recoil';
 import { penaltyStudent } from 'recoilAtoms/recoilAtomContainer';
 
-const PenaltyCheck = ({ name }: PenaltyCheckProps) => {
+const PenaltyCheck = ({ name, stuNum }: { name: string; stuNum: string }) => {
   const [penaltyStu, setPenaltyStu] = useRecoilState(penaltyStudent);
 
-  const handleStuCheck = (stuName: string) => {
-    if (!penaltyStu.includes(name)) {
-      setPenaltyStu([...penaltyStu, stuName]);
+  const handleStuCheck = () => {
+    if (!penaltyStu.some((i) => i.name === name)) {
+      setPenaltyStu((penaltyStu) => [
+        ...penaltyStu,
+        {
+          name: name,
+          stuNum: stuNum,
+        },
+      ]);
     } else {
-      setPenaltyStu(penaltyStu.filter((i) => i !== stuName));
+      setPenaltyStu(penaltyStu.filter((i) => i.name !== name));
     }
   };
 
   return (
     <S.Checkbox
       onClick={() => {
-        handleStuCheck(name);
+        handleStuCheck();
       }}
     >
-      {penaltyStu.includes(name) ? <CheckedBox /> : <CheckBox />}
+      {penaltyStu.some((i) => i.name === name) ? <CheckedBox /> : <CheckBox />}
     </S.Checkbox>
   );
 };

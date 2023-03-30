@@ -8,6 +8,12 @@ import { dateRegex } from 'utils/dateRegex';
 import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import NewPageIcon from 'assets/svg/NewPageIcon';
 import { getRole } from 'utils/Libs/getRole';
+import { deleteMusic, getMusic } from 'api/music';
+import { mutate } from 'swr';
+import { SongController } from 'utils/Libs/requestUrls';
+import { useRecoilValue } from 'recoil';
+import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
+import { todayDate } from 'utils/todayDate';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -33,6 +39,10 @@ const SongItem = ({ data }: { data: SongType }) => {
     6,
     7
   )}월 ${dateRegex(String(data.createdTime)).slice(9, 11)}일`;
+  const date = useRecoilValue(selectedDate);
+  const postDate = `${todayDate(date)[0]}-${todayDate(date)[1]}-${
+    todayDate(date)[2]
+  }`;
 
   useEffect(() => {
     songTitle(youtubeId).then((res) => {
@@ -40,8 +50,10 @@ const SongItem = ({ data }: { data: SongType }) => {
     });
   }, [youtubeId]);
 
-  const onDelete = () => {
-    return;
+  const onDelete = async (id: number) => {
+    const isSuccess = await deleteMusic(role, id);
+    if (isSuccess)
+      mutate(SongController.music(role), () => getMusic(role, postDate));
   };
 
   return (
@@ -63,10 +75,10 @@ const SongItem = ({ data }: { data: SongType }) => {
       </S.StuInfo>
       <S.CreateDate>{createDate}</S.CreateDate>
       <S.ButtonContainer>
-        {role === 'member' && (
+        {role !== 'member' && (
           <button
             onClick={() => {
-              onDelete();
+              onDelete(data.id);
             }}
           >
             <TrashcanIcon />

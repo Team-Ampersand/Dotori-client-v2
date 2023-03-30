@@ -10,8 +10,8 @@ export const getMusic = async (role: string, date: string) => {
       },
     });
     return data;
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    throw new Error(e);
   }
 };
 
@@ -37,9 +37,10 @@ export const postMusic = async (role: string, url: string) => {
 export const deleteMusic = async (role: string, musicId: number) => {
   try {
     await apiClient.delete(SongController.deleteMusic(role, musicId));
+
+    toast.success('음악삭제를 성공하셨습니다');
     return true;
   } catch (e) {
-    console.log(e);
     return false;
   }
 };

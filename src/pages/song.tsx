@@ -6,11 +6,18 @@ import SongList from 'components/Song/organisms/SongList';
 import SongRightLayer from 'components/Song/organisms/SongRightLayer';
 import * as S from 'components/Song/template/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
+import { GetServerSideProps, NextPage } from 'next';
+import { SongListType } from 'types/components/SongPage';
+import { apiClient } from 'utils/Libs/apiClient';
 import { getRole } from 'utils/Libs/getRole';
+import { getToken } from 'utils/Libs/getToken';
+import { SongController } from 'utils/Libs/requestUrls';
 
-const Song = () => {
+const Song: NextPage<{
+  fallback: Record<string, SongListType>;
+  role: string;
+}> = ({ fallback, role }) => {
   UseThemeEffect();
-  const role = getRole();
   return (
     <MainTemplates>
       <SideBar role={role} />
@@ -24,6 +31,34 @@ const Song = () => {
       <NoticeModal />
     </MainTemplates>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { Authorization } = await getToken(ctx);
+  const role = getRole(ctx);
+
+  if (!Authorization) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  }
+
+  try {
+    const { data: songData } = await apiClient.get(SongController.music(role), {
+      headers: { Authorization },
+    });
+    return {
+      props: {
+        fallback: { [SongController.music(role)]: songData },
+        role,
+      },
+    };
+  } catch (e) {
+    return { props: {} };
+  }
 };
 
 export default Song;

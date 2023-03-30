@@ -7,29 +7,34 @@ import useSWR from 'swr';
 import { SongListType } from 'types/components/SongPage';
 import { getRole } from 'utils/Libs/getRole';
 import { SongController } from 'utils/Libs/requestUrls';
+import { todayDate } from 'utils/todayDate';
 import * as S from './style';
 
 const SongList = () => {
   const role = getRole();
   const date = useRecoilValue(selectedDate);
+  const postDate = `${todayDate(date)[0]}-${todayDate(date)[1]}-${
+    todayDate(date)[2]
+  }`;
   const { data, mutate } = useSWR<SongListType>(
     SongController.music(role),
-    () => getMusic(role, '2023-03-30')
+    () => getMusic(role, postDate)
   );
 
   useEffect(() => {
-    console.log(data?.content);
-  }, []);
+    mutate();
+  }, [date]);
+
   return (
     <S.Layer>
       <S.ListHeader>
         <h3>신청음악</h3>
         <p>
-          <span>{data?.content.length}</span> 개
+          <span>{data?.content?.length ?? 0}</span> 개
         </p>
       </S.ListHeader>
       <S.ListContainer>
-        {data && data.content.map((i) => <SongItem key={i.id} data={i} />)}
+        {data && data.content?.map((i) => <SongItem key={i.id} data={i} />)}
       </S.ListContainer>
     </S.Layer>
   );

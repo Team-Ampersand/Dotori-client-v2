@@ -1,10 +1,12 @@
-import { postMusic } from 'api/music';
+import { getMusic, postMusic } from 'api/music';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useSetRecoilState } from 'recoil';
-import { songNoticeModal } from 'recoilAtoms/recoilAtomContainer';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { selectedDate, songNoticeModal } from 'recoilAtoms/recoilAtomContainer';
 import { mutate } from 'swr';
+import { dateRegex } from 'utils/dateRegex';
 import { getRole } from 'utils/Libs/getRole';
+import { SongController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
 const SongForm = () => {
@@ -16,9 +18,13 @@ const SongForm = () => {
   const regUrl =
     /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
 
+  const date = useRecoilValue(selectedDate);
+  const postDate = dateRegex(String(date));
+
   const onSuccess = async () => {
     const isSuccess = await postMusic(role, getValues('url'));
-    if (isSuccess) mutate(`/${role}/music`);
+    if (isSuccess)
+      mutate(SongController.music(role), () => getMusic(role, postDate));
   };
 
   const onError = (err: Object) => {

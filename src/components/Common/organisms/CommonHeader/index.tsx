@@ -13,8 +13,10 @@ import { useRecoilState } from 'recoil';
 import { filterModal } from 'recoilAtoms/recoilAtomContainer';
 import { useState } from 'react';
 import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
+import { getRole } from 'utils/Libs/getRole';
 
 const CommonHeader = () => {
+  const role = getRole();
   const { pathname } = useRouter();
   const [modalState, setModalState] = useRecoilState(filterModal);
   const [navigationDrawer, setNavigationDrawer] = useState(false);
@@ -25,9 +27,9 @@ const CommonHeader = () => {
         {MenuData.filter((i) => i.routerName == pathname)[0].menuTitle}
       </S.Title>
       <S.MobileTitle>
-        {/* {role !== 'member' && ( */}
-        {/* <HanbergerIcon onClick={() => setNavigationDrawer((pre) => !pre)} /> */}
-        {/* )} */}
+        {role !== 'member' && (
+          <HanbergerIcon onClick={() => setNavigationDrawer((pre) => !pre)} />
+        )}
         <span>DOTORI</span>
       </S.MobileTitle>
       {navigationDrawer && (

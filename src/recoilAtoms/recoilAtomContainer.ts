@@ -1,5 +1,11 @@
 import { atom } from 'recoil';
-import { SignupForm, selfstudyListProps } from 'types';
+import {
+  SignupForm,
+  selfstudyListProps,
+  PenaltyListProps,
+  PenaltyStuType,
+  PenaltyRuleItemProps,
+} from 'types';
 
 export const signUpObject = atom<SignupForm>({
   key: 'signUpObject',
@@ -21,7 +27,7 @@ export const penaltySelected = atom<string[]>({
   default: [],
 });
 
-export const penaltyStudent = atom<string[]>({
+export const penaltyStudent = atom<PenaltyStuType[]>({
   key: 'penaltyStudent',
   default: [],
 });
@@ -64,4 +70,34 @@ export const selfStudyLookup = atom<boolean>({
 export const selectedDate = atom<Date>({
   key: 'selectedCalendar',
   default: new Date(),
+});
+
+export const penaltyListModalState = atom<boolean>({
+  key: 'penaltyListModal',
+  default: false,
+});
+
+export const penaltyRecordModalState = atom<boolean>({
+  key: 'penaltyRecordModal',
+  default: false,
+});
+
+export const penaltyList = atom<PenaltyListProps[] | undefined>({
+  key: 'penaltyList',
+  default: [],
+});
+
+export const penaltyRuleList = atom<PenaltyRuleItemProps[] | undefined>({
+  key: 'penaltyRuleList',
+  default: [],
+});
+
+export const penaltyStuNumber = atom<string>({
+  key: 'penaltyStuNumber',
+  default: '',
+});
+
+export const calendarModalState = atom<boolean>({
+  key: 'calendarModalState',
+  default: false,
 });

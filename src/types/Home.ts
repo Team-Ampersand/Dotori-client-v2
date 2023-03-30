@@ -37,6 +37,10 @@ export interface noticePageProps {
   id: number;
   title: string;
   content: string;
-  roles: string;
+  roles: ('ROLE_DEVELOPER' | 'ROLE_COUNCILLOR' | 'ROLE_ADMIN')[];
   createdDate: string;
+}
+
+export interface noticeListType {
+  content: noticePageProps[];
 }

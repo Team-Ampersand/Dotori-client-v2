@@ -24,7 +24,8 @@ const SelfStudyBoard = () => {
   );
 
   useEffect(() => {
-    if (role === 'admin') return setInfo({ applyStatus: '인원수정' });
+    if (role === ('admin' || 'councillor'))
+      return setInfo({ applyStatus: '인원수정' });
     switch (data?.selfStudyStatus) {
       case 'CAN':
         return setInfo({ applyStatus: '자습신청' });
@@ -52,21 +53,11 @@ const SelfStudyBoard = () => {
     switch (info.applyStatus) {
       case '자습신청':
       case '신청불가':
-        {
-          const notError = await applySelfStudy(role);
-          if (notError) mutate();
-        }
-        return;
+        return (await applySelfStudy(role)) && mutate();
       case '신청취소':
-        {
-          const notError = await applyCancelStudy(role);
-          if (notError) mutate();
-        }
-        return;
-      case '인원수정': {
-        const notError = await applyModifyStudy(role, n || 50);
-        if (notError) mutate();
-      }
+        return (await applyCancelStudy(role)) && mutate();
+      case '인원수정':
+        return (await applyModifyStudy(role, n || 50)) && mutate();
     }
   };
 

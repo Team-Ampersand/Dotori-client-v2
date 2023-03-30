@@ -1,18 +1,34 @@
 import * as S from './style';
 import PenaltyList from 'components/Penalty/molecules/PenaltyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
-import { useRecoilState } from 'recoil';
-import { penaltyStudent } from 'recoilAtoms/recoilAtomContainer';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  penaltyList,
+  penaltyRecordModalState,
+  penaltyStudent,
+} from 'recoilAtoms/recoilAtomContainer';
 import { XtextIcon } from 'assets/svg';
-import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { selfPenaltySearch } from 'api/penalty';
+import { getRole } from 'utils/Libs/getRole';
+import { useEffect } from 'react';
+import useSWR from 'swr';
+import { PenaltyStuListType } from 'types';
+import { penaltyController } from 'utils/Libs/requestUrls';
 
 const PenaltyTable = () => {
+  const role = getRole();
   const [penaltyStu, setPenaltyStu] = useRecoilState(penaltyStudent);
-  const [penaltyRecordModal, setPenaltyRecordModal] = useState(false);
+  const setPenaltyRecordModal = useSetRecoilState(penaltyRecordModalState);
+  const setPenaltyOBJ = useSetRecoilState(penaltyList);
+  const { data } = useSWR<PenaltyStuListType>(penaltyController.strRule(role));
 
-  const handelStuCheck = (stuName: string) => {
-    setPenaltyStu(penaltyStu.filter((i) => i !== stuName));
+  useEffect(() => {
+    setPenaltyOBJ(data?.students);
+  }, [data]);
+
+  const handelStuCheck = (name: string) => {
+    setPenaltyStu(penaltyStu.filter((i) => i.name !== name));
   };
 
   const ClickPenaltyBtn = () => {
@@ -21,7 +37,17 @@ const PenaltyTable = () => {
       : toast.warning('학생을 선택해주세요');
   };
 
-  const handelPenaltySearch = async () => {};
+  const handelPenaltySearch = async (state: any, name: string) => {
+    await selfPenaltySearch(
+      role,
+      name ? name : null,
+      state[0] ? state[0] : null,
+      state[1] ? state[1].slice(0, 1) : null,
+      state[2] ? state[2] : null
+    ).then((res) => {
+      setPenaltyOBJ(res?.data.students);
+    });
+  };
 
   return (
     <S.TableWrapper>
@@ -38,16 +64,13 @@ const PenaltyTable = () => {
           <S.TagWrapper>
             {penaltyStu.map((i, idx) => (
               <S.TagItem key={idx}>
-                {i}
-                <XtextIcon onClick={() => handelStuCheck(i)} />
+                {i.name}
+                <XtextIcon onClick={() => handelStuCheck(i.name)} />
               </S.TagItem>
             ))}
           </S.TagWrapper>
         )}
-        <PenaltyList
-          modalState={penaltyRecordModal}
-          setModalState={setPenaltyRecordModal}
-        />
+        <PenaltyList />
       </S.ListWrapper>
       <div>
         <SearchFilter filterType={'penalty'} onSubmit={handelPenaltySearch} />

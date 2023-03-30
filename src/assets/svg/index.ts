@@ -46,3 +46,4 @@ export { default as DownloadIcon } from './DownloadIcon';
 export { default as DotoriLoadingLogo } from './DotoriLoadingLogo';
 export { default as EyeIcon } from './EyeIcon';
 export { default as EyeSelectedIcon } from './EyeSelectedIcon';
+export { default as MusicalNoteIcon } from './MusicNoteIcon';

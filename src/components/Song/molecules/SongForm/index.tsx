@@ -29,11 +29,13 @@ const SongForm = () => {
     <S.Layer onSubmit={handleSubmit(onSuccess, onError)}>
       <S.FormHeader>
         <h2>음악 신청</h2>
-        <S.NoticeModalBtn onClick={() => setModal(true)}>!</S.NoticeModalBtn>
+        <S.NoticeModalBtn type="button" onClick={() => setModal(true)}>
+          !
+        </S.NoticeModalBtn>
       </S.FormHeader>
       <S.Input
         placeholder="URL을 입력해 주세요"
-        type="text"
+        type="url"
         {...register('url', {
           required: {
             value: true,

@@ -2,9 +2,13 @@ import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SongController } from 'utils/Libs/requestUrls';
 
-export const getMusic = async (role: string) => {
+export const getMusic = async (role: string, date: string) => {
   try {
-    const { data } = await apiClient.get(SongController.music(role));
+    const { data } = await apiClient.get(SongController.music(role), {
+      params: {
+        date: date,
+      },
+    });
     return data;
   } catch (e) {
     console.log(e);

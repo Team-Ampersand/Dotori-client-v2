@@ -24,7 +24,7 @@ const MassageBoard = () => {
   );
 
   useEffect(() => {
-    if (role === 'admin' || 'councillor')
+    if (role === ('admin' || 'councillor'))
       return setInfo({ applyStatus: '인원수정' });
     switch (data?.massageStatus) {
       case 'CAN':
@@ -53,21 +53,11 @@ const MassageBoard = () => {
     switch (info.applyStatus) {
       case '안마의자':
       case '신청불가':
-        {
-          const notError = await applyMassage(role);
-          if (notError) mutate();
-        }
-        return;
+        return (await applyMassage(role)) && mutate();
       case '신청취소':
-        {
-          const notError = await applyCancelMassage(role);
-          if (notError) mutate();
-        }
-        return;
-      case '인원수정': {
-        const notError = await applyModifyMassage(role, n || 50);
-        if (notError) mutate();
-      }
+        return (await applyCancelMassage(role)) && mutate();
+      case '인원수정':
+        return (await applyModifyMassage(role, n || 50)) && mutate();
     }
   };
 

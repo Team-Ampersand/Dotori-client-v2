@@ -33,7 +33,7 @@ const SongForm = () => {
           !
         </S.NoticeModalBtn>
       </S.FormHeader>
-      {role === 'admin' ? (
+      {role !== 'admin' ? (
         <>
           <S.Input
             placeholder="URL을 입력해 주세요"

@@ -52,3 +52,7 @@ export const Submit = styled.button`
   background: ${Palette.PRIMARY_P30};
   color: ${Palette.NEUTRAL_N20};
 `;
+
+export const NotForm = styled.p`
+  color: ${Palette.NEUTRAL_N20};
+`;

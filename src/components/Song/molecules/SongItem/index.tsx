@@ -7,6 +7,7 @@ import * as S from './style';
 import { dateRegex } from 'utils/dateRegex';
 import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import NewPageIcon from 'assets/svg/NewPageIcon';
+import { getRole } from 'utils/Libs/getRole';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -25,6 +26,7 @@ const youtube_parser = (url: string) => {
 };
 
 const SongItem = ({ data }: { data: SongType }) => {
+  const role = getRole();
   const youtubeId = youtube_parser(data.url);
   const [title, setTitle] = useState('');
   const createDate = `${dateRegex(String(data.createdTime)).slice(
@@ -61,13 +63,15 @@ const SongItem = ({ data }: { data: SongType }) => {
       </S.StuInfo>
       <S.CreateDate>{createDate}</S.CreateDate>
       <S.ButtonContainer>
-        <button
-          onClick={() => {
-            onDelete();
-          }}
-        >
-          <TrashcanIcon />
-        </button>
+        {role === 'member' && (
+          <button
+            onClick={() => {
+              onDelete();
+            }}
+          >
+            <TrashcanIcon />
+          </button>
+        )}
         <Link href={data.url}>
           <a>
             <NewPageIcon />

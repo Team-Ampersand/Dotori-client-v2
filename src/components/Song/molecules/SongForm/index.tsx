@@ -33,21 +33,27 @@ const SongForm = () => {
           !
         </S.NoticeModalBtn>
       </S.FormHeader>
-      <S.Input
-        placeholder="URL을 입력해 주세요"
-        type="url"
-        {...register('url', {
-          required: {
-            value: true,
-            message: '아무것도 입력하지 않았어요',
-          },
-          pattern: {
-            value: regUrl,
-            message: 'URL 형식에 맞게 입력해주세요',
-          },
-        })}
-      />
-      <S.Submit type="submit">신청하기</S.Submit>
+      {role === 'admin' ? (
+        <>
+          <S.Input
+            placeholder="URL을 입력해 주세요"
+            type="url"
+            {...register('url', {
+              required: {
+                value: true,
+                message: '아무것도 입력하지 않았어요',
+              },
+              pattern: {
+                value: regUrl,
+                message: 'URL 형식에 맞게 입력해주세요',
+              },
+            })}
+          />
+          <S.Submit type="submit">신청하기</S.Submit>
+        </>
+      ) : (
+        <S.NotForm>사감선생님은 기상음악을 신청하지 않아도 됩니다</S.NotForm>
+      )}
     </S.Layer>
   );
 };

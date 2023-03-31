@@ -1,24 +1,24 @@
-import { authCheck, emailCheck } from 'api/member';
+import { authCheck, emailCheck, emailPasswordCheck } from 'api/member';
 import { AuthButton, AuthInput } from 'components/Common';
 import { AuthBottomWrapper } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import { signUpObject, signUpStep } from 'recoilAtoms';
+import { isemailPasswordCheck } from 'recoilAtoms/recoilAtomContainer';
 import { SignupForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
 import * as S from './style';
 
-const EmailCheck = () => {
-  const router = useRouter();
+const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
   const [isCheck, setIsCheck] = useState(false);
   const [isAuthCheck, setIsAuthEmailCheck] = useState(false);
   const [isAuth, setIsAuth] = useState(true);
   const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
+  const [, setIsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
   const [, setSignUpStep] = useRecoilState(signUpStep);
   const { register, watch, handleSubmit, resetField } = useForm<SignupForm>({
     defaultValues: {
@@ -43,8 +43,11 @@ const EmailCheck = () => {
     if (!isAuthCheck) return;
     else if (!/^s[0-9]{5}@gsm.hs.kr$/.test(watch().email || ''))
       return toast.error('이메일형식이 잘못되었어요.');
-    const notError = await emailCheck(watch().email || '');
-    if (notError) {
+    if (
+      isLogin
+        ? await emailCheck(watch().email || '')
+        : await emailPasswordCheck(watch().email || '')
+    ) {
       toast.success('인증번호가 이메일로 전송되었습니다.');
       setIsAuthEmailCheck(false);
       setIsAuth(false);
@@ -61,10 +64,11 @@ const EmailCheck = () => {
   };
 
   const onValid: SubmitHandler<SignupForm> = async (state) => {
-    const notError = await authCheck(state.certiNum || 0);
-    if (notError) {
-      setSignUpObject({ ...SignUpObject, email: state.email });
+    if ((await authCheck(state.certiNum || 0)) && isLogin) {
       setSignUpStep('last');
+      setSignUpObject({ ...SignUpObject, email: state.email });
+    } else {
+      setIsemailPasswordCheck(true);
     }
   };
 
@@ -116,7 +120,7 @@ const EmailCheck = () => {
           type={'submit'}
         />
         <p>
-          이미 회원이라면?
+          비밀번호를 변경할 필요가 없다면?
           <Link href={'/signin'}>
             <a>로그인</a>
           </Link>

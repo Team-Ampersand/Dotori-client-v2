@@ -1,7 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
 import { noticeFormType } from 'types/components/NoticePage';
+import { getDate } from 'utils/getDate';
 import * as S from './style';
-import { todayDate } from 'utils/todayDate';
 
 interface Props {
   register: UseFormRegister<noticeFormType>;
@@ -9,9 +9,7 @@ interface Props {
 }
 
 const WriteForm = ({ register, role }: Props) => {
-  const writeDate = `${todayDate()[0]}년 ${todayDate()[1]}월 ${
-    todayDate()[2]
-  }일`;
+  const writeDate = `${getDate()[0]}년 ${getDate()[1]}월 ${getDate()[2]}일`;
 
   return (
     <S.Layer>

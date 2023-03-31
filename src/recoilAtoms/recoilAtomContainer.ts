@@ -70,15 +70,7 @@ export const selfStudyLookup = atom<boolean>({
 
 export const noticeContent = atom<noticeDetailType | null>({
   key: 'noticeContent',
-  default: {
-    id: 0,
-    title: '',
-    content: '',
-    roles: '',
-    createdDate: '',
-    modifiedDate: null,
-    boardImage: [],
-  },
+  default: null,
 });
 
 export const isNoticeWrite = atom<boolean>({

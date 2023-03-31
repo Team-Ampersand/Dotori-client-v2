@@ -1,8 +1,6 @@
-export interface item {
-  [key: string]: string;
-}
+import { ReturnPenaltyName } from 'types';
 
-export const returnPenaltyValuesKorean: item = {
+export const returnPenaltyValuesKorean: ReturnPenaltyName = {
   FIREARMS: '반입 - 화기류',
   WEAPON: '반입 - 흉기',
   ALCOHOL: '반입 - 주류',
@@ -40,7 +38,7 @@ export const returnPenaltyValuesKorean: item = {
   '': '',
 };
 
-export const returnPenaltyValuesEnglish: item = {
+export const returnPenaltyValuesEnglish: ReturnPenaltyName = {
   '반입 - 화기류': 'FIREARMS',
   '반입 - 흉기': 'WEAPON',
   '반입 - 주류': 'ALCOHOL',

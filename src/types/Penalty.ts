@@ -45,9 +45,12 @@ export interface PenaltyRuleItemProps {
   id: number;
   rule: string;
   createdDate: string;
-  // getPenaltyRuleList: (number: string) => void;
 }
 
 export interface PenaltyRuleItemType {
   rules: PenaltyRuleItemProps[];
+}
+
+export interface ReturnPenaltyName {
+  [key: string]: string;
 }

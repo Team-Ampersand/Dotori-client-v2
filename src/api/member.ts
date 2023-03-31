@@ -102,7 +102,27 @@ export const passwordChange = async (
     return toast.success('비밀번호가 변경되었습니다');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 400') {
-      toast.warning('입력해주신 정보를 다시 확인해주세요');
+      toast.warning('비밀번호가 일치하지않아요.');
+    }
+    return false;
+  }
+};
+
+export const authPasswordChange = async (
+  currentPassword: string,
+  newPassword: string,
+  email?: string
+) => {
+  try {
+    await apiClient.patch(MemberController.authChangePasswd, {
+      currentPassword,
+      newPassword,
+      email,
+    });
+    return toast.success('비밀번호가 변경되었습니다');
+  } catch (e: any) {
+    if (e.message === 'Request failed with status code 400') {
+      toast.warning('비밀번호가 일치하지않아요.');
     }
     return false;
   }
@@ -127,7 +147,5 @@ export const tokenReissue = async (
     refreshToken = data.refreshToken;
     setToken(newAuthorization, refreshToken, ctx);
     return { newAuthorization };
-  } catch (e: any) {
-    console.log(e);
-  }
+  } catch (e: any) {}
 };

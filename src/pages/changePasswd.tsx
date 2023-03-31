@@ -11,7 +11,7 @@ const ChangePasswdPage: NextPage<{ isLogin: boolean }> = ({ isLogin }) => {
   const [IsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
   return (
     <AuthTemplates>
-      {isLogin || IsemailPasswordCheck ? (
+      {isLogin || IsemailPasswordCheck.isAuth ? (
         <ChangePasswdForm isLogin={isLogin} />
       ) : (
         <PasswdEmailCheck />

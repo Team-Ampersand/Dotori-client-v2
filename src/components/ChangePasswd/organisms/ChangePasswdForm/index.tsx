@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { DotoriLogo } from 'assets/svg';
-import { passwordChange } from 'api/member';
+import { authPasswordChange, passwordChange } from 'api/member';
 import { ChangePasswdForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
 import { AuthInput, AuthButton } from 'components/Common';
@@ -13,10 +13,14 @@ import {
   AuthFormWrapper,
 } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
+import { isemailPasswordCheck } from 'recoilAtoms/recoilAtomContainer';
+import { useRecoilState } from 'recoil';
 
 const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
   const router = useRouter();
   const [isCheck, setIsCheck] = useState(false);
+  const [IsemailPasswordCheck, setIsemailPasswordCheck] =
+    useRecoilState(isemailPasswordCheck);
   const { register, watch, handleSubmit, resetField } =
     useForm<ChangePasswdForm>();
 
@@ -45,8 +49,18 @@ const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
       return toast.error(
         '새로운 비밀번호확인이 새로운 비밀번호와 맞지 않습니다.'
       );
-    if (await passwordChange(state.password, state.newPassword))
+    if (
+      isLogin
+        ? await passwordChange(state.password, state.newPassword)
+        : await authPasswordChange(
+            state.password,
+            state.newPassword,
+            IsemailPasswordCheck.authEmail
+          )
+    ) {
+      setIsemailPasswordCheck({ authEmail: '', isAuth: false });
       router.push('/home');
+    }
   };
 
   return (

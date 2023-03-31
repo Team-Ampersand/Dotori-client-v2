@@ -18,7 +18,8 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
   const [isAuthCheck, setIsAuthEmailCheck] = useState(false);
   const [isAuth, setIsAuth] = useState(true);
   const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
-  const [, setIsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
+  const [IsemailPasswordCheck, setIsemailPasswordCheck] =
+    useRecoilState(isemailPasswordCheck);
   const [, setSignUpStep] = useRecoilState(signUpStep);
   const { register, watch, handleSubmit, resetField } = useForm<SignupForm>({
     defaultValues: {
@@ -68,7 +69,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
       setSignUpStep('last');
       setSignUpObject({ ...SignUpObject, email: state.email });
     } else {
-      setIsemailPasswordCheck(true);
+      setIsemailPasswordCheck({ authEmail: state.email, isAuth: true });
     }
   };
 

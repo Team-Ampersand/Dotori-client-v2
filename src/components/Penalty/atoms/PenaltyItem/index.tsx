@@ -66,10 +66,10 @@ const PenaltyItem = ({ name, gender, number, ruleList }: PenaltyItemProps) => {
             : list.slice(0, 2).join(', ') + ` 외 ${list.length - 2}개`}
         </S.RuleViolationList>
         <S.BtnWrapper>
-          <S.RuleViolationListBtn onClick={() => handelRuleListClick()}>
+          <S.RuleViolationListBtn onClick={handelRuleListClick}>
             <ExclamationMark />
           </S.RuleViolationListBtn>
-          <S.PenaltyRecordBtn onClick={() => handelRecordClick()}>
+          <S.PenaltyRecordBtn onClick={handelRecordClick}>
             <PlusIcon />
           </S.PenaltyRecordBtn>
         </S.BtnWrapper>

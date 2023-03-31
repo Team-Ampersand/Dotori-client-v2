@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { todayDate } from 'utils/todayDate';
+import { getDate } from 'utils/getDate';
 import * as S from './style';
 import Dotori3DImg from 'assets/png/Dotori3D.png';
 import Dotori3DDarkImg from 'assets/png/Dotori3DDark.png';
@@ -25,7 +25,7 @@ import { MassageController, SelfstudyController } from 'utils/Libs/requestUrls';
 
 const TimeBoard = () => {
   const [date, setDate] = useState<string>('');
-  const [year, month, day, minute] = todayDate();
+  const [year, month, day, minute] = getDate();
   const [theme] = UseToggleTheme();
   const [menuModal, setMenuModal] = useRecoilState(menuModalState);
   const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);

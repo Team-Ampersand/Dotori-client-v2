@@ -6,6 +6,8 @@ export const Layer = styled.div`
     border: none;
     line-height: 3.25em;
     text-align: center;
+    z-index: 20;
+    text-decoration: none;
   }
 
   .react-calendar {
@@ -97,5 +99,15 @@ export const Layer = styled.div`
       background: ${Palette.PRIMARY_P10};
       color: ${Palette.NEUTRAL_N10};
     }
+  }
+  position: relative;
+`;
+
+export const XIcon = styled.div`
+  position: absolute;
+  top: 2px;
+  right: 12px;
+  svg {
+    width: 20px;
   }
 `;

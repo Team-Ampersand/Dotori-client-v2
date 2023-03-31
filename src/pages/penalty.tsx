@@ -7,37 +7,67 @@ import CommonHeader from 'components/Common/organisms/CommonHeader';
 import { GetServerSideProps, NextPage } from 'next';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
+import { SWRConfig } from 'swr';
+import { apiClient } from 'utils/Libs/apiClient';
+import { penaltyController } from 'utils/Libs/requestUrls';
+import { PenaltyStuListType } from 'types';
 
-const PenaltyPage:NextPage<{role:string}> = ({role}) => {
+const PenaltyPage: NextPage<{
+  fallback: Record<string, PenaltyStuListType>;
+  role: string;
+}> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <MainTemplates>
-      <SideBar role={role} />
-      <PenaltyTemplates>
-        <CommonHeader />
-        <PenaltyTable />
-      </PenaltyTemplates>
-    </MainTemplates>
+    <SWRConfig value={fallback}>
+      <MainTemplates>
+        <SideBar role={role} />
+        <PenaltyTemplates>
+          <CommonHeader />
+          <PenaltyTable />
+        </PenaltyTemplates>
+      </MainTemplates>
+    </SWRConfig>
   );
 };
 
-export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
-  
+
+  if (!Authorization) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  } else if (role !== 'admin') {
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      },
+    };
+  }
+
   try {
-                
+    const { data: penaltyListData } = await apiClient.get(
+      penaltyController.strRule(role),
+      {
+        headers: { Authorization },
+        params: { memberName: '', stuNum: '' },
+      }
+    );
+
     return {
       props: {
-        fallback: {
-        },
-        role
+        fallback: { [penaltyController.strRule(role)]: penaltyListData },
+        role,
       },
     };
   } catch (e) {
-    console.log(e);
     return { props: {} };
   }
-}
+};
 
 export default PenaltyPage;

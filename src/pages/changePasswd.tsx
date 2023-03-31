@@ -12,7 +12,7 @@ const ChangePasswdPage: NextPage<{ isLogin: boolean }> = ({ isLogin }) => {
   return (
     <AuthTemplates>
       {isLogin || IsemailPasswordCheck ? (
-        <ChangePasswdForm />
+        <ChangePasswdForm isLogin={isLogin} />
       ) : (
         <PasswdEmailCheck />
       )}

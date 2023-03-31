@@ -16,9 +16,8 @@ const NoticeBoard = () => {
       <S.NoticeList>
         {content ? (
           content.map((i, idx) => (
-            <>
+            <S.NoticeBox key={idx}>
               <NoticeItem
-                key={idx}
                 writer={i.roles[0]}
                 date={i.createdDate.slice(0, 10)}
                 title={i.title}
@@ -37,12 +36,13 @@ const NoticeBoard = () => {
                   <hr />
                 </S.DateLine>
               )}
-            </>
+            </S.NoticeBox>
           ))
         ) : (
           <S.EmptyNoticeItem />
         )}
       </S.NoticeList>
+
       <S.NoticeBottom />
     </S.NoticeBoardWrapper>
   );

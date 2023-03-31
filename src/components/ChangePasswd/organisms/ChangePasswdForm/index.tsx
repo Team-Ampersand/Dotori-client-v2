@@ -14,7 +14,7 @@ import {
 } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
 
-const ChangePasswdForm = () => {
+const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
   const router = useRouter();
   const [isCheck, setIsCheck] = useState(false);
   const { register, watch, handleSubmit, resetField } =
@@ -106,7 +106,10 @@ const ChangePasswdForm = () => {
             type={'submit'}
           />
           <p>
-            비밀번호를 변경할 필요가 없다면?<Link href={'/home'}>홈화면</Link>
+            비밀번호를 변경할 필요가 없다면?
+            <Link href={isLogin ? '/home' : '/signin'}>
+              {isLogin ? '홈화면' : '로그인'}
+            </Link>
           </p>
         </AuthBottomWrapper>
       </form>

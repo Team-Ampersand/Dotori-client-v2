@@ -10,9 +10,8 @@ export const signin = async (id: string, password: string) => {
       email: id,
       password: password,
     });
-    toast.success('로그인이 되었습니다.');
     setToken(data.accessToken, data.refreshToken, null);
-    return true;
+    return toast.success('로그인이 되었습니다.');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 404') {
       toast.warning('해당 유저가 없어요.');
@@ -38,8 +37,7 @@ export const signup = async (
       email,
       gender,
     });
-    toast.success('회원가입이 되었습니다');
-    return true;
+    return toast.success('회원가입이 되었습니다');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 409') {
       toast.warning('이미 가입된 유저에요.');
@@ -61,13 +59,25 @@ export const emailCheck = async (email: string) => {
   }
 };
 
+export const emailPasswordCheck = async (email: string) => {
+  try {
+    await apiClient.post(MemberController.emailPasswordCheck, {
+      email,
+    });
+    return true;
+  } catch (e: any) {
+    if (e.message === 'Request failed with status code 409')
+      toast.warning('이미 가입된 유저에요.');
+    return false;
+  }
+};
+
 export const authCheck = async (emailCode: number) => {
   try {
     await apiClient.post(MemberController.authcheck, {
       key: String(emailCode),
     });
-    toast.success('인증되었어요.');
-    return true;
+    return toast.success('인증되었어요.');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 202') {
       toast.warning('인증번호시간이 만료됬어요.');
@@ -86,11 +96,10 @@ export const passwordChange = async (
 ) => {
   try {
     await apiClient.patch(MemberController.changePasswd, {
-      currentPassword: currentPassword,
-      newPassword: newPassword,
+      currentPassword,
+      newPassword,
     });
-    toast.success('비밀번호가 변경되었습니다');
-    return true;
+    return toast.success('비밀번호가 변경되었습니다');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 400') {
       toast.warning('입력해주신 정보를 다시 확인해주세요');

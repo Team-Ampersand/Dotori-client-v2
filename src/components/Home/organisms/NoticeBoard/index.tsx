@@ -8,25 +8,25 @@ import { noticeListType } from 'types/Home';
 const NoticeBoard = () => {
   const role = getRole();
   const { data } = useSWR<noticeListType>(NoticeController.getNotice(role));
-  const content = data?.content;
+  const boardList = data?.boardList;
 
   return (
     <S.NoticeBoardWrapper>
       <p>공지사항</p>
       <S.NoticeList>
-        {content ? (
-          content.map((i, idx) => (
+        {boardList ? (
+          boardList.map((i, idx) => (
             <S.NoticeBox key={idx}>
               <NoticeItem
-                writer={i.roles[0]}
+                writer={i.roles}
                 date={i.createdDate.slice(0, 10)}
                 title={i.title}
                 desc={i.content}
                 isCurrenPage={false}
                 id={i.id}
               />
-              {content[idx]?.createdDate.slice(0, 10) >
-                content[idx + 1]?.createdDate.slice(0, 10) && (
+              {boardList[idx]?.createdDate.slice(0, 10) >
+                boardList[idx + 1]?.createdDate.slice(0, 10) && (
                 <S.DateLine>
                   <hr />
                   {`${i?.createdDate.slice(5, 7)}월 ${i?.createdDate.slice(

@@ -53,10 +53,6 @@ export const selfPenaltySearch = async (
   grade?: string,
   classNum?: string,
   gender?: string
-  // name: string | null,
-  // grade: string | null,
-  // classNum: string | null,
-  // gender: string | null
 ) => {
   try {
     const { data } = await apiClient.get(penaltyController.strRule(role), {

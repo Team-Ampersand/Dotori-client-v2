@@ -65,3 +65,8 @@ export const selectedDate = atom<Date>({
   key: 'selectedCalendar',
   default: new Date(),
 });
+
+export const isemailPasswordCheck = atom<boolean>({
+  key: 'isemailPasswordCheck',
+  default: false,
+});

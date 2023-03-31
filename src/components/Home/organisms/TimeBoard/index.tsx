@@ -42,9 +42,12 @@ const TimeBoard = () => {
   }, []);
 
   const tick = () => {
-    if (new Date().toLocaleTimeString() === '오후 08:00:00') {
+    if (new Date().toLocaleTimeString() === '오후 8:00:00') {
       mutate(SelfstudyController.selfStudyInfo(role));
-    } else if (new Date().toLocaleTimeString() === '오후 08:20:00') {
+    } else if (new Date().toLocaleTimeString() === '오후 8:20:00') {
+      mutate(MassageController.massage(role));
+    } else if (new Date().toLocaleTimeString() === '오후 9:00:00') {
+      mutate(SelfstudyController.selfStudyInfo(role));
       mutate(MassageController.massage(role));
     }
     setDate(new Date().toLocaleTimeString());

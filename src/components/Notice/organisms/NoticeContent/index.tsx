@@ -2,12 +2,13 @@ import ContentHeader from 'components/Notice/molecules/ContentHeader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { isNoticeFetch, noticeContent } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
 import { noticeDetailType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
+import NoticeEmpty from '../NoticeEmpty';
 import * as S from './style';
 
 const NoticeContent = () => {
@@ -31,29 +32,35 @@ const NoticeContent = () => {
 
   return (
     <S.Layer>
-      <ContentHeader data={data} />
-      <S.ContentWrapper>
-        {notice?.content?.split('\n').map((line, key) => (
-          <p key={key}>
-            {line}
-            <br />
-          </p>
-        ))}
-        <S.BottomWrapper>
-          {notice?.boardImage.map((item) => (
-            <div key={item.id}>
-              <Image
-                src={item.url}
-                alt="image"
-                width={200}
-                height={200}
-                layout="fill"
-                objectFit={'cover'}
-              />
-            </div>
-          ))}
-        </S.BottomWrapper>
-      </S.ContentWrapper>
+      {data ? (
+        <>
+          <ContentHeader data={data} />
+          <S.ContentWrapper>
+            {notice?.content?.split('\n').map((line, key) => (
+              <p key={key}>
+                {line}
+                <br />
+              </p>
+            ))}
+            <S.BottomWrapper>
+              {notice?.boardImage.map((item) => (
+                <div key={item.id}>
+                  <Image
+                    src={item.url}
+                    alt="image"
+                    width={200}
+                    height={200}
+                    layout="fill"
+                    objectFit={'cover'}
+                  />
+                </div>
+              ))}
+            </S.BottomWrapper>
+          </S.ContentWrapper>
+        </>
+      ) : (
+        <NoticeEmpty />
+      )}
     </S.Layer>
   );
 };

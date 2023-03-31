@@ -2,17 +2,15 @@ import NoticeItem from 'components/Common/atoms/Items/NoticeItem';
 import ListHeader from 'components/Notice/molecules/ListHeader';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   isNoticeDelete,
   isNoticeFetch,
-  isNoticeWrite,
   noticeChoice,
 } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
 import { noticeListType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
-import requestWriter from 'utils/Libs/requestRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
@@ -23,7 +21,6 @@ const NoticeList = () => {
   );
   const content = data?.content;
   const [noticeFetch, setNoticeFetch] = useRecoilState(isNoticeFetch);
-  const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const noticeDelete = useRecoilValue(isNoticeDelete);
   const [selectedNotice, setSelectedNotice] = useRecoilState(noticeChoice);
   const router = useRouter();
@@ -41,6 +38,7 @@ const NoticeList = () => {
       return;
     }
     setSelectedNotice([...selectedNotice, id]);
+    return;
   };
 
   return (
@@ -53,13 +51,11 @@ const NoticeList = () => {
               <div
                 key={item.id}
                 onClick={() => {
-                  setNoticeWrite(false);
-                  if (noticeDelete) {
-                  }
+                  onChoice(item.id);
                 }}
               >
                 <NoticeItem
-                  writer={requestWriter(item.roles)}
+                  writer={item.roles[0]}
                   date={item.createdDate.slice(0, 10)}
                   title={item.title}
                   desc={item.content}
@@ -67,7 +63,6 @@ const NoticeList = () => {
                     noticeDelete && !!selectedNotice.find((i) => i === item.id)
                   }
                   id={item.id}
-                  onClick={() => onChoice(item.id)}
                 />
               </div>
               {content[key]?.createdDate.slice(1, 10) !==

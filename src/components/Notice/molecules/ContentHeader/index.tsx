@@ -1,4 +1,5 @@
 import { deleteNotice } from 'api/notice';
+import { RoleData } from 'assets/data/RoleData';
 import { EditPencilIcon, TrashCan } from 'assets/svg';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
@@ -9,11 +10,10 @@ import {
 } from 'recoilAtoms/recoilAtomContainer';
 import { noticeDetailType } from 'types/components/NoticePage';
 import { dateRegex } from 'utils/dateRegex';
-import { writerColor } from 'utils/writerColor';
 import * as S from './style';
 
 interface props {
-  data?: noticeDetailType;
+  data: noticeDetailType;
 }
 
 const ContentHeader = ({ data }: props) => {
@@ -23,14 +23,14 @@ const ContentHeader = ({ data }: props) => {
   const setNoticeModify = useSetRecoilState(isNoticeModify);
 
   const koreanRole = () => {
-    if (data?.roles === 'ROLE_ADMIN') return '사감선생님';
-    else if (data?.roles === 'ROLE_COUNCILLOR') return '기숙사자치위원회';
+    if (data.roles[0] === 'ROLE_ADMIN') return '사감선생님';
+    else if (data.roles[0] === 'ROLE_COUNCILLOR') return '기숙사자치위원회';
     else return '도토리';
   };
 
   const englishRole = () => {
-    if (data?.roles === 'ROLE_ADMIN') return 'admin';
-    else if (data?.roles === 'ROLE_COUNCILLOR') return 'councillor';
+    if (data.roles[0] === 'ROLE_ADMIN') return 'admin';
+    else if (data.roles[0] === 'ROLE_COUNCILLOR') return 'councillor';
     else return 'developer';
   };
 
@@ -38,13 +38,15 @@ const ContentHeader = ({ data }: props) => {
     <S.ContentHeader>
       <S.HeaderLeftBox>
         <S.Writer>
-          <S.WriterDot style={{ background: writerColor[koreanRole()] }} />
+          <S.WriterDot
+            style={{ background: RoleData.WRITERCOLOR[data.roles[0]] }}
+          />
           <span>{koreanRole()}</span>
         </S.Writer>
-        <h2>{data?.title}</h2>
+        <h2>{data.title}</h2>
       </S.HeaderLeftBox>
       <S.HeaderRightBox>
-        <small>{dateRegex(data?.createdDate ?? '')}</small>
+        <small>{dateRegex(data.createdDate ?? '')}</small>
         <S.IconBox>
           <button
             onClick={() => {

@@ -14,7 +14,6 @@ export interface noticeDetailType extends Omit<noticePageProps, 'createdTime'> {
   id: number;
   title: string;
   content: string;
-  roles: string;
   createdDate: string;
   modifiedDate: string | null;
   boardImage: {

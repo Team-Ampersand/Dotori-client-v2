@@ -5,7 +5,7 @@ import { PenaltyItemsStyleProps } from 'types';
 export const PenaltyListModalWrapper = styled.div`
   width: 420px;
   height: ${(props: PenaltyItemsStyleProps) =>
-    props.itemCnt >= 8 ? '610px' : '430px'};
+    props.itemCnt && props.itemCnt >= 8 ? '610px' : '430px'};
   background: ${Palette.BACKGROUND_CARD};
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ export const PenaltyListModalWrapper = styled.div`
 
 export const PenaltyItems = styled.div`
   height: ${(props: PenaltyItemsStyleProps) =>
-    props.itemCnt >= 8 ? '500px' : '310px'};
+    props.itemCnt && props.itemCnt >= 8 ? '500px' : '310px'};
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -35,4 +35,11 @@ export const PenaltyModalBtn = styled.button`
   border-radius: 8px;
   font-weight: 700;
   font-size: 16px;
+`;
+
+export const NullPenalty = styled.div`
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -54,4 +54,10 @@ export const penaltyController = {
   strRule(role: string) {
     return `${role}/rule`;
   },
+  studentRule(role: string, stuNum: string) {
+    return `${role}/rule/${stuNum}`;
+  },
+  deletePenalty(role: string, rule_id: number) {
+    return `${role}/rule/${rule_id}`;
+  },
 };

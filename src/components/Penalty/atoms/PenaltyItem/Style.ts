@@ -49,14 +49,6 @@ export const StuNum = styled.span`
   display: flex;
   align-items: center;
   gap: 3px;
-  svg {
-    circle {
-      stroke: ${Palette.NEUTRAL_N20};
-    }
-    path {
-      fill: ${Palette.NEUTRAL_N20};
-    }
-  }
 `;
 
 export const RuleViolationList = styled.div`
@@ -81,7 +73,7 @@ export const RuleViolationListBtn = styled.div`
   cursor: pointer;
 `;
 
-export const PenaltyAddBtn = styled.div`
+export const PenaltyRecordBtn = styled.div`
   width: 36px;
   height: 36px;
   display: flex;

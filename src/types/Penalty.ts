@@ -1,14 +1,12 @@
 export interface PenaltyItemProps {
-  setPenaltyListModal: (penaltyListModal: boolean) => void;
-  setPenaltyRecordModal: (penaltyRecordModal: boolean) => void;
   name: string;
   gender: string;
   number: string;
-  ruleBigViolationList: string[];
+  ruleList: string[];
 }
 
 export interface PenaltyItemsStyleProps {
-  itemCnt: number;
+  itemCnt: number | undefined;
 }
 
 export interface PenaltyMenuProps {
@@ -26,6 +24,33 @@ export interface PenaltyMenuItemStyleProps {
   isClick: boolean;
 }
 
-export interface PenaltyCheckProps {
+export interface PenaltyListProps {
+  id: number;
+  memberName: string;
+  stuNum: string;
+  rule: string[];
+  gender: string;
+}
+
+export interface PenaltyStuListType {
+  students: PenaltyListProps[];
+}
+
+export interface PenaltyStuType {
   name: string;
+  stuNum: string;
+}
+
+export interface PenaltyRuleItemProps {
+  id: number;
+  rule: string;
+  createdDate: string;
+}
+
+export interface PenaltyRuleItemType {
+  rules: PenaltyRuleItemProps[];
+}
+
+export interface ReturnPenaltyName {
+  [key: string]: string;
 }

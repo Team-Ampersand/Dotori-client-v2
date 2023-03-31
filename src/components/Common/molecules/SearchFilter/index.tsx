@@ -13,13 +13,15 @@ import { useDidMountEffect } from 'hooks/useDidMountEffect';
 const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
   const [name, setName] = useState('');
-  const [filterState, setFilterState] = useState(['', '', '', '', '']);
+  const [filterState, setFilterState] = useState<(string | undefined)[]>(
+    Array.from({ length: 5 }, () => undefined)
+  );
   const [modalState, setModalState] = useRecoilState(filterModal);
-  const [lookUp, setLookUp] = useRecoilState(selfStudyLookup);
+  const [, setLookUp] = useRecoilState(selfStudyLookup);
 
   const handelResetClick = () => {
     setName('');
-    setFilterState(['', '', '', '', '']);
+    setFilterState(Array.from({ length: 5 }, () => undefined));
     setLookUp(false);
   };
 

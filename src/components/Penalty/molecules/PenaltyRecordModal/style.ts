@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
+import { ModalStyleProps } from 'types';
 
 export const PenaltyRecordModalWrapper = styled.div`
   width: 420px;
@@ -7,12 +8,23 @@ export const PenaltyRecordModalWrapper = styled.div`
   background: ${Palette.BACKGROUND_CARD};
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   z-index: 10;
   padding: 18px;
   border-radius: 16px;
-  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
   position: relative;
+`;
+
+export const SelectInfoWrapper = styled.div`
+  height: 80%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const SelectWrapper = styled.div`
@@ -42,6 +54,7 @@ export const SelectItem = styled.div`
     cursor: pointer;
   }
 `;
+
 export const PenaltyWrapper = styled.div`
   height: 200px;
   span {
@@ -51,10 +64,8 @@ export const PenaltyWrapper = styled.div`
   }
 `;
 export const PenaltyItemsWrapper = styled.div`
-  height: 65%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
   margin-top: 5px;
   gap: 8px;
 `;
@@ -118,6 +129,7 @@ export const CancelBtn = styled.button`
   border: 1px solid ${Palette.NEUTRAL_N30};
   border-radius: 8px;
 `;
+
 export const NextBtn = styled.button`
   width: 49%;
   height: 40px;
@@ -127,4 +139,12 @@ export const NextBtn = styled.button`
   background-color: ${Palette.PRIMARY_P10};
   border-radius: 8px;
   border: none;
+`;
+
+export const CalenderWrapper = styled.div`
+  display: ${(props: ModalStyleProps) => (props.isClick ? 'flex' : 'none')};
+  position: fixed;
+  bottom: 50vh;
+  left: 50vw;
+  transform: translate(-50%, 50%);
 `;

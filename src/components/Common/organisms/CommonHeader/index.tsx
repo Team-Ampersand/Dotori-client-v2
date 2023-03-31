@@ -1,33 +1,35 @@
-import * as S from './style';
-import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
-import { useRouter } from 'next/router';
 import { MenuData } from 'assets/data/SidebarMenuData';
 import {
-  FilterIcon,
   CalendarIcon,
-  PlusIcon,
-  HanbergerIcon,
   DownloadIcon,
+  FilterIcon,
+  HanbergerIcon,
+  PlusIcon,
 } from 'assets/svg';
-import { useRecoilState } from 'recoil';
-import { filterModal } from 'recoilAtoms/recoilAtomContainer';
-import { useState } from 'react';
+import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
 import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { getRole } from 'utils/Libs/getRole';
+import { useSetRecoilState } from 'recoil';
+import { filterModal } from 'recoilAtoms/recoilAtomContainer';
+import * as S from './style';
 
 const CommonHeader = () => {
+  const role = getRole();
   const { pathname } = useRouter();
-  const [modalState, setModalState] = useRecoilState(filterModal);
+  const setModalState = useSetRecoilState(filterModal);
   const [navigationDrawer, setNavigationDrawer] = useState(false);
 
   return (
     <S.HeaderWrapper>
       <S.Title>
-        {MenuData.filter((i) => i.routerName == pathname)[0].menuTitle}
+        {MenuData.filter((i) => pathname.includes(i.routerName))[0].menuTitle}
       </S.Title>
       <S.MobileTitle>
-        {/* {role !== 'member' && ( */}
-        {/* <HanbergerIcon onClick={() => setNavigationDrawer((pre) => !pre)} /> */}
-        {/* )} */}
+        {role !== 'member' && (
+          <HanbergerIcon onClick={() => setNavigationDrawer((pre) => !pre)} />
+        )}
         <span>DOTORI</span>
       </S.MobileTitle>
       {navigationDrawer && (

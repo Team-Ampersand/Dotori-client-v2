@@ -1,14 +1,22 @@
 import { MenuData } from 'assets/data/SidebarMenuData';
-import { CalendarIcon, DownloadIcon, FilterIcon, PlusIcon } from 'assets/svg';
+import {
+  CalendarIcon,
+  DownloadIcon,
+  FilterIcon,
+  HanbergerIcon,
+  PlusIcon,
+} from 'assets/svg';
 import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
 import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { getRole } from 'utils/Libs/getRole';
 import { useSetRecoilState } from 'recoil';
 import { filterModal } from 'recoilAtoms/recoilAtomContainer';
 import * as S from './style';
 
 const CommonHeader = () => {
+  const role = getRole();
   const { pathname } = useRouter();
   const setModalState = useSetRecoilState(filterModal);
   const [navigationDrawer, setNavigationDrawer] = useState(false);
@@ -19,6 +27,9 @@ const CommonHeader = () => {
         {MenuData.filter((i) => pathname.includes(i.routerName))[0].menuTitle}
       </S.Title>
       <S.MobileTitle>
+        {role !== 'member' && (
+          <HanbergerIcon onClick={() => setNavigationDrawer((pre) => !pre)} />
+        )}
         <span>DOTORI</span>
       </S.MobileTitle>
       {navigationDrawer && (

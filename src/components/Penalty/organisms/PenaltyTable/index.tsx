@@ -37,13 +37,16 @@ const PenaltyTable = () => {
       : toast.warning('학생을 선택해주세요');
   };
 
-  const handelPenaltySearch = async (state: any, name: string) => {
+  const handelPenaltySearch = async (
+    state: (string | undefined)[],
+    name: string
+  ) => {
     await selfPenaltySearch(
       role,
-      name ? name : null,
-      state[0] ? state[0] : null,
-      state[1] ? state[1].slice(0, 1) : null,
-      state[2] ? state[2] : null
+      name,
+      state[0],
+      state[1]?.slice(0, 1),
+      state[2]
     ).then((res) => {
       setPenaltyOBJ(res?.data.students);
     });

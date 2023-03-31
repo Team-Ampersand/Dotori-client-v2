@@ -4,7 +4,6 @@ import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
 import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
 import { getRole } from 'utils/Libs/getRole';
 import { useSetRecoilState } from 'recoil';
 import { filterModal } from 'recoilAtoms/recoilAtomContainer';

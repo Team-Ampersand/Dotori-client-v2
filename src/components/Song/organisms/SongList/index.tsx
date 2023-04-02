@@ -7,14 +7,14 @@ import useSWR from 'swr';
 import { SongListType } from 'types/components/SongPage';
 import { getRole } from 'utils/Libs/getRole';
 import { SongController } from 'utils/Libs/requestUrls';
-import { todayDate } from 'utils/todayDate';
 import * as S from './style';
+import { getDate } from 'utils/getDate';
 
 const SongList = () => {
   const role = getRole();
   const date = useRecoilValue(selectedDate);
-  const postDate = `${todayDate(date)[0]}-${todayDate(date)[1]}-${
-    todayDate(date)[2]
+  const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
+    getDate(date)[2]
   }`;
   const { data, mutate } = useSWR<SongListType>(
     SongController.music(role),

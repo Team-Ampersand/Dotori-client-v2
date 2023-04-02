@@ -13,7 +13,7 @@ import { mutate } from 'swr';
 import { SongController } from 'utils/Libs/requestUrls';
 import { useRecoilValue } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
-import { todayDate } from 'utils/todayDate';
+import { getDate } from 'utils/getDate';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -40,8 +40,8 @@ const SongItem = ({ data }: { data: SongType }) => {
     7
   )}월 ${dateRegex(String(data.createdTime)).slice(9, 11)}일`;
   const date = useRecoilValue(selectedDate);
-  const postDate = `${todayDate(date)[0]}-${todayDate(date)[1]}-${
-    todayDate(date)[2]
+  const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
+    getDate(date)[2]
   }`;
 
   useEffect(() => {

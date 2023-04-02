@@ -1,33 +1,18 @@
 import { SignUpForm } from 'components';
+import SEOHead from 'components/Common/atoms/SEOHead';
 import { AuthTemplates } from 'components/Common/templates/AuthTemplates/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
-import { GetServerSideProps } from 'next';
-import { getToken } from 'utils/Libs/getToken';
 
 const SignUpPage = () => {
   UseThemeEffect();
   return (
-    <AuthTemplates>
-      <SignUpForm />
-    </AuthTemplates>
+    <>
+      <SEOHead title={'회원가입페이지'} />
+      <AuthTemplates>
+        <SignUpForm />
+      </AuthTemplates>
+    </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { Authorization } = await getToken(ctx);
-
-  if (Authorization) {
-    return {
-      redirect: {
-        destination: '/home',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 };
 
 export default SignUpPage;

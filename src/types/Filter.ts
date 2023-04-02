@@ -13,13 +13,13 @@ export interface SearchFilterProps {
   index: number;
   name: string;
   item: string;
-  value: string;
+  value: string | undefined;
   onClick: React.MouseEventHandler;
 }
 
 export interface SearchFilterTypeProps {
   filterType: string;
-  onSubmit: (state: string[], name: string) => void;
+  onSubmit: (state: (string | undefined)[], name: string) => void;
 }
 
 export interface FilterStyleProps {

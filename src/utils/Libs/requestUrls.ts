@@ -1,8 +1,10 @@
 export const MemberController = {
   signup: '/auth/signup',
   auth: '/auth',
+  authChangePasswd: '/auth/password',
   emailCheck: '/email/signup',
   authcheck: '/email/verify-email',
+  emailPasswordCheck: '/email/password',
   changePasswd: '/members/password',
   myProfile: '/home',
 };
@@ -52,5 +54,11 @@ export const MassageController = {
 export const penaltyController = {
   strRule(role: string) {
     return `${role}/rule`;
+  },
+  studentRule(role: string, stuNum: string) {
+    return `${role}/rule/${stuNum}`;
+  },
+  deletePenalty(role: string, rule_id: number) {
+    return `${role}/rule/${rule_id}`;
   },
 };

@@ -11,6 +11,7 @@ import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 import { MassageController } from 'utils/Libs/requestUrls';
 import { massageRankProps } from 'types';
+import SEOHead from 'components/Common/atoms/SEOHead';
 
 const MassagePage: NextPage<{
   fallback: Record<string, massageRankProps>;
@@ -18,30 +19,24 @@ const MassagePage: NextPage<{
 }> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <SWRConfig value={fallback}>
-      <MainTemplates>
-        <SideBar role={role} />
-        <MassageTemplates>
-          <CommonHeader />
-          <MassageTable />
-        </MassageTemplates>
-      </MainTemplates>
-    </SWRConfig>
+    <>
+      <SEOHead title={'안마의자페이지'} />
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar role={role} />
+          <MassageTemplates>
+            <CommonHeader />
+            <MassageTable />
+          </MassageTemplates>
+        </MainTemplates>
+      </SWRConfig>
+    </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
-
-  if (!Authorization) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    };
-  }
 
   try {
     const { data: massageData } = await apiClient.get(

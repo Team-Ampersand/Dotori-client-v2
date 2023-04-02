@@ -1,7 +1,5 @@
 import * as S from './style';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-
-import { ModalProps } from 'types';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import PenaltyRecordMenuItem from 'components/Penalty/atoms/PenaltyRecordMenuItem';
 import { PenaltyMenuData } from 'assets/data/PenaltyMenuData';
@@ -9,8 +7,17 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { penaltySelected } from 'recoilAtoms/recoilAtomContainer';
 import { XtextIcon } from 'assets/svg';
+import { PenaltyRecordModalProps } from 'types';
+import {
+  returnPenaltyValuesEnglish,
+  returnPenaltyValuesKorean,
+} from 'utils/Libs/returnPenaltyValues';
 
-const PenaltyRecordMenuModal = ({ modalState, setModalState }: ModalProps) => {
+const PenaltyRecordMenuModal = ({
+  modalState,
+  setModalState,
+  handleDelete,
+}: PenaltyRecordModalProps) => {
   const [penaltySelect, setPenaltySelect] = useRecoilState(penaltySelected);
   const [currentMenu, setCurrentMenu] = useState('');
   const [currentItem, setCurrentItem] = useState('');
@@ -23,14 +30,6 @@ const PenaltyRecordMenuModal = ({ modalState, setModalState }: ModalProps) => {
     if (!state.includes(select)) {
       setState([...state.filter((i) => i !== ''), select]);
     }
-  };
-
-  const handleDelete = (
-    state: string[],
-    setState: (state: string[]) => void,
-    select: string
-  ) => {
-    setState([...state.filter((i) => i !== select)]);
   };
 
   return (
@@ -57,7 +56,11 @@ const PenaltyRecordMenuModal = ({ modalState, setModalState }: ModalProps) => {
                   key={idx}
                   onClick={() => {
                     setCurrentItem(i);
-                    handleSelect(penaltySelect, setPenaltySelect, i);
+                    handleSelect(
+                      penaltySelect,
+                      setPenaltySelect,
+                      returnPenaltyValuesEnglish[i]
+                    );
                   }}
                   isClick={currentItem === i}
                 >
@@ -69,7 +72,7 @@ const PenaltyRecordMenuModal = ({ modalState, setModalState }: ModalProps) => {
         <S.TagWrapper>
           {penaltySelect.map((i, idx) => (
             <S.TagItem key={idx}>
-              {i}
+              {returnPenaltyValuesKorean[i]}
               <XtextIcon
                 onClick={() => handleDelete(penaltySelect, setPenaltySelect, i)}
               />

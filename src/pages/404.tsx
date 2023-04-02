@@ -7,7 +7,7 @@ const NotFoundPage = () => {
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'404페이지'} />
+      <SEOHead title={'| 404페이지'} />
       <MainTemplates>
         <NotFoundOrganism />
       </MainTemplates>

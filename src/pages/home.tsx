@@ -35,7 +35,7 @@ const HomePage: NextPage<{
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'홈페이지'} />
+      <SEOHead title={'| 홈페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar role={role} />

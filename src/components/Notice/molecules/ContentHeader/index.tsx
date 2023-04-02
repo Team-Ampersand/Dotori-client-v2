@@ -20,9 +20,12 @@ const ContentHeader = ({ data }: props) => {
   const router = useRouter();
   const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const setNoticeModify = useSetRecoilState(isNoticeModify);
-  const writeDate = `${getDate()[0]}년 ${getDate()[1]}월 ${getDate()[2]}일 ${
-    getDate()[3]
-  }시 ${getDate()[4]}분`;
+  const createdDate = new Date(data.createdDate);
+  const writeDate = `${getDate(createdDate)[0]}년 ${
+    getDate(createdDate)[1]
+  }월 ${getDate(createdDate)[2]}일 ${getDate(createdDate)[3]}시 ${
+    getDate(createdDate)[4]
+  }분`;
 
   return (
     <S.ContentHeader>

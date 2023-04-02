@@ -13,7 +13,7 @@ export const Layer = styled.div`
 export const NoticeContainer = styled.div`
   max-height: 726px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   gap: 15px;
   overflow-y: auto;

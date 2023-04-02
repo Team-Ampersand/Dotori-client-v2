@@ -28,7 +28,7 @@ const NoticeList = () => {
       <ListHeader role={role} choice={selectedNotice} />
       <S.NoticeContainer>
         {boardList &&
-          boardList.map((item, key) => (
+          [...boardList].reverse().map((item, key) => (
             <>
               <div
                 key={item.id}
@@ -47,7 +47,7 @@ const NoticeList = () => {
                   id={item.id}
                 />
               </div>
-              {boardList[key].createdDate.slice(1, 10) !==
+              {boardList[key]?.createdDate.slice(1, 10) >
                 boardList[key + 1]?.createdDate.slice(1, 10) && (
                 <S.DateLine>
                   <hr />

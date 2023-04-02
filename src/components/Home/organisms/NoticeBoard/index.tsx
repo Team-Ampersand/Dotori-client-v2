@@ -15,10 +15,10 @@ const NoticeBoard = () => {
       <p>공지사항</p>
       <S.NoticeList>
         {boardList ? (
-          boardList.map((i, idx) => (
+          boardList.reverse().map((i, idx) => (
             <S.NoticeBox key={idx}>
               <NoticeItem
-                writer={i.roles}
+                writer={i.role}
                 date={i.createdDate.slice(0, 10)}
                 title={i.title}
                 desc={i.content}

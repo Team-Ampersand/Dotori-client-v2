@@ -9,7 +9,7 @@ const SEOHead = ({ title }: { title?: string }) => {
         content="GSM 기숙사 관리 웹 서비스 Dotori 입니다."
       />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta property="og:title" content={`DOTORI | ${title || ''}`} />
+      <meta property="og:title" content={`DOTORI ${title}`} />
       <meta
         name="og:description"
         content="GSM 기숙사 관리 웹 서비스 Dotori 입니다."

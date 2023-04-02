@@ -54,7 +54,7 @@ export const emailCheck = async (email: string) => {
     return true;
   } catch (e: any) {
     if (e.message === 'Request failed with status code 404')
-      toast.warning('유처를 찾을 수 없어요.');
+      toast.warning('유저를 찾을 수 없어요.');
     return false;
   }
 };
@@ -67,7 +67,7 @@ export const emailPasswordCheck = async (email: string) => {
     return true;
   } catch (e: any) {
     if (e.message === 'Request failed with status code 404')
-      toast.warning('유처를 찾을 수 없어요.');
+      toast.warning('유저를 찾을 수 없어요.');
     return false;
   }
 };

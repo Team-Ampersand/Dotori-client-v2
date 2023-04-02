@@ -15,7 +15,7 @@ const NoticeBoard = () => {
       <p>공지사항</p>
       <S.NoticeList>
         {boardList ? (
-          boardList.reverse().map((i, idx) => (
+          boardList.map((i, idx) => (
             <S.NoticeBox key={idx}>
               <NoticeItem
                 writer={i.role}

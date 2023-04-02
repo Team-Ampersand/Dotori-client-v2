@@ -20,32 +20,24 @@ const SignInForm = () => {
   const router = useRouter();
   const [isCheck, setIsCheck] = useState(false);
   const usersAreaReset = useResetRecoilState(signUpStep);
-  const { register, watch, handleSubmit, resetField } = useForm<SigninForm>({
-    defaultValues: {
-      email: '@gsm.hs.kr',
-    },
-  });
+  const { register, watch, handleSubmit, resetField } = useForm<SigninForm>();
 
   useEffect(() => {
     usersAreaReset();
   }, []);
 
   useEffect(() => {
-    setIsCheck(
-      isNotNull(watch('email')?.replace('@gsm.hs.kr', '') && watch('password'))
-    );
+    setIsCheck(isNotNull(watch('email') && watch('password')));
   }, [watch(['email', 'password'])]);
 
   const onInvalid: SubmitErrorHandler<SigninForm> = (data) => {
-    if (watch('email') === '@gsm.hs.kr')
-      return toast.error('gsm메일을 입력해주세요.');
-    else if (data.email?.message) return toast.error(data.email?.message);
+    if (data.email?.message) return toast.error(data.email?.message);
     else if (data.password?.message) return toast.error(data.password.message);
   };
 
   const onValid: SubmitHandler<SigninForm> = async (data) => {
     if (!data.email || !data.password) return;
-    const notError = await signin(data.email, data.password);
+    const notError = await signin(data.email + '@gsm.hs.kr', data.password);
     if (notError) router.push('/home');
   };
 
@@ -58,16 +50,17 @@ const SignInForm = () => {
             register={register('email', {
               required: 'GSM메일을 입력해주세요.',
               pattern: {
-                value: /^s[0-9]{5}@gsm.hs.kr$/,
+                value: /^s[0-9]{5}$/,
                 message: 'gsm메일형식에 맞게 입력해주세요.',
               },
             })}
             type="text"
-            placeholder="@gsm.hs.kr"
-            maxLength={16}
+            placeholder=""
+            maxLength={6}
             labelName="persen"
             DeleteBtnClick={() => resetField('email')}
-            isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
+            isValue={isNotNull(watch('email'))}
+            isEmail={true}
           />
           <AuthInput
             register={register('password', {

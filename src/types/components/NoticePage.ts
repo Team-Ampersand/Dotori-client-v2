@@ -7,7 +7,7 @@ export interface noticeFormType {
 }
 
 export interface noticeListType {
-  content: noticePageProps[];
+  boardList: noticePageProps[];
 }
 
 export interface noticeDetailType extends Omit<noticePageProps, 'createdTime'> {

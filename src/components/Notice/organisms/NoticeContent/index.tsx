@@ -1,49 +1,34 @@
 import ContentHeader from 'components/Notice/molecules/ContentHeader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { isNoticeFetch, noticeContent } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
 import { noticeDetailType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
-import NoticeEmpty from '../NoticeEmpty';
 import * as S from './style';
 
 const NoticeContent = () => {
   const router = useRouter();
   const role = getRole();
   const boardId = router.query.boardId ?? '';
-  const { data, mutate } = useSWR<noticeDetailType>(
+  const { data } = useSWR<noticeDetailType>(
     NoticeController.getNoticeDetail(role, boardId[0])
   );
-  const [notice, setNotice] = useRecoilState(noticeContent);
-  const [noticeFetch, setNoticeFetch] = useRecoilState(isNoticeFetch);
-
-  useEffect(() => {
-    if (noticeFetch) {
-      mutate();
-      setNoticeFetch(false);
-    }
-    !!data && setNotice(data);
-    return;
-  });
 
   return (
     <S.Layer>
-      {data ? (
+      {data && (
         <>
-          <ContentHeader data={data} />
+          <ContentHeader data={data} boardId={boardId[0]} />
           <S.ContentWrapper>
-            {notice?.content?.split('\n').map((line, key) => (
+            {data.content.split('\n').map((line, key) => (
               <p key={key}>
                 {line}
                 <br />
               </p>
             ))}
             <S.BottomWrapper>
-              {notice?.boardImage.map((item) => (
+              {data.boardImage.map((item) => (
                 <div key={item.id}>
                   <Image
                     src={item.url}
@@ -58,8 +43,6 @@ const NoticeContent = () => {
             </S.BottomWrapper>
           </S.ContentWrapper>
         </>
-      ) : (
-        <NoticeEmpty />
       )}
     </S.Layer>
   );

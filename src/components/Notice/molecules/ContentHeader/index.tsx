@@ -11,26 +11,34 @@ import {
 import { noticeDetailType } from 'types/components/NoticePage';
 import { dateRegex } from 'utils/dateRegex';
 import * as S from './style';
+import { mutate } from 'swr';
+import { NoticeController } from 'utils/Libs/requestUrls';
+import { getRole } from 'utils/Libs/getRole';
+import { getDate } from 'utils/getDate';
 
 interface props {
   data: noticeDetailType;
+  boardId: string;
 }
 
-const ContentHeader = ({ data }: props) => {
+const ContentHeader = ({ data, boardId }: props) => {
+  const role = getRole();
   const router = useRouter();
   const setNoticeWrite = useSetRecoilState(isNoticeWrite);
-  const setNoticeFetch = useSetRecoilState(isNoticeFetch);
   const setNoticeModify = useSetRecoilState(isNoticeModify);
+  const writeDate = `${getDate()[0]}년 ${getDate()[1]}월 ${getDate()[2]}일 ${
+    getDate()[3]
+  }시 ${getDate()[4]}분`;
 
   const koreanRole = () => {
-    if (data.roles[0] === 'ROLE_ADMIN') return '사감선생님';
-    else if (data.roles[0] === 'ROLE_COUNCILLOR') return '기숙사자치위원회';
+    if (data.role === 'ROLE_ADMIN') return '사감선생님';
+    else if (data.role === 'ROLE_COUNCILLOR') return '기숙사자치위원회';
     else return '도토리';
   };
 
   const englishRole = () => {
-    if (data.roles[0] === 'ROLE_ADMIN') return 'admin';
-    else if (data.roles[0] === 'ROLE_COUNCILLOR') return 'councillor';
+    if (data.role === 'ROLE_ADMIN') return 'admin';
+    else if (data.role === 'ROLE_COUNCILLOR') return 'councillor';
     else return 'developer';
   };
 
@@ -39,14 +47,14 @@ const ContentHeader = ({ data }: props) => {
       <S.HeaderLeftBox>
         <S.Writer>
           <S.WriterDot
-            style={{ background: RoleData.WRITERCOLOR[data.roles[0]] }}
+            style={{ background: RoleData.WRITERCOLOR[data.role] }}
           />
           <span>{koreanRole()}</span>
         </S.Writer>
         <h2>{data.title}</h2>
       </S.HeaderLeftBox>
       <S.HeaderRightBox>
-        <small>{dateRegex(data.createdDate ?? '')}</small>
+        <small>{writeDate}</small>
         <S.IconBox>
           <button
             onClick={() => {
@@ -61,7 +69,7 @@ const ContentHeader = ({ data }: props) => {
             onClick={async () => {
               setNoticeWrite(false);
               data && (await deleteNotice(englishRole(), data.id));
-              setNoticeFetch(true);
+              mutate(NoticeController.getNotice(role));
               router.push('/notice');
             }}
           >

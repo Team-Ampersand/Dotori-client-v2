@@ -1,13 +1,8 @@
 import NoticeItem from 'components/Common/atoms/Items/NoticeItem';
 import ListHeader from 'components/Notice/molecules/ListHeader';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  isNoticeDelete,
-  isNoticeFetch,
-  noticeChoice,
-} from 'recoilAtoms/recoilAtomContainer';
+import { isNoticeDelete, noticeChoice } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
 import { noticeListType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
@@ -19,17 +14,10 @@ const NoticeList = () => {
   const { data, mutate } = useSWR<noticeListType>(
     NoticeController.getNotice(role)
   );
-  const content = data?.content;
-  const [noticeFetch, setNoticeFetch] = useRecoilState(isNoticeFetch);
+  const boardList = data?.boardList;
   const noticeDelete = useRecoilValue(isNoticeDelete);
   const [selectedNotice, setSelectedNotice] = useRecoilState(noticeChoice);
   const router = useRouter();
-
-  useEffect(() => {
-    if (!noticeFetch) return;
-    mutate();
-    setNoticeFetch(false);
-  }, [noticeFetch]);
 
   const onChoice = (id: number) => {
     if (!noticeDelete) router.push(`/notice/${id}`);
@@ -45,8 +33,8 @@ const NoticeList = () => {
     <S.Layer>
       <ListHeader role={role} choice={selectedNotice} />
       <S.NoticeContainer>
-        {content &&
-          content.map((item, key) => (
+        {boardList &&
+          boardList.map((item, key) => (
             <>
               <div
                 key={item.id}
@@ -55,7 +43,7 @@ const NoticeList = () => {
                 }}
               >
                 <NoticeItem
-                  writer={item.roles[0]}
+                  writer={item.role}
                   date={item.createdDate.slice(0, 10)}
                   title={item.title}
                   desc={item.content}
@@ -65,8 +53,8 @@ const NoticeList = () => {
                   id={item.id}
                 />
               </div>
-              {content[key]?.createdDate.slice(1, 10) !==
-                content[key + 1]?.createdDate.slice(1, 10) && (
+              {boardList[key]?.createdDate.slice(1, 10) !==
+                boardList[key + 1]?.createdDate.slice(1, 10) && (
                 <S.DateLine>
                   <hr />
                   {`${item?.createdDate.slice(

@@ -1,6 +1,5 @@
 import NoticeItem from 'components/Common/atoms/Items/NoticeItem';
 import ListHeader from 'components/Notice/molecules/ListHeader';
-import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { isNoticeDelete, noticeChoice } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
@@ -11,22 +10,17 @@ import * as S from './style';
 
 const NoticeList = () => {
   const role = getRole();
-  const { data, mutate } = useSWR<noticeListType>(
-    NoticeController.getNotice(role)
-  );
+  const { data } = useSWR<noticeListType>(NoticeController.getNotice(role));
   const boardList = data?.boardList;
   const noticeDelete = useRecoilValue(isNoticeDelete);
   const [selectedNotice, setSelectedNotice] = useRecoilState(noticeChoice);
-  const router = useRouter();
 
   const onChoice = (id: number) => {
-    if (!noticeDelete) router.push(`/notice/${id}`);
     if (selectedNotice.find((item) => item === id)) {
       setSelectedNotice([...selectedNotice.filter((item) => item !== id)]);
       return;
     }
     setSelectedNotice([...selectedNotice, id]);
-    return;
   };
 
   return (
@@ -53,7 +47,7 @@ const NoticeList = () => {
                   id={item.id}
                 />
               </div>
-              {boardList[key]?.createdDate.slice(1, 10) !==
+              {boardList[key].createdDate.slice(1, 10) !==
                 boardList[key + 1]?.createdDate.slice(1, 10) && (
                 <S.DateLine>
                   <hr />

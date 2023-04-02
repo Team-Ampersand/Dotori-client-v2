@@ -13,10 +13,9 @@ import * as S from './style';
 
 interface props {
   data: noticeDetailType;
-  boardId: string | string[];
 }
 
-const ContentHeader = ({ data, boardId }: props) => {
+const ContentHeader = ({ data }: props) => {
   const role = getRole();
   const router = useRouter();
   const setNoticeWrite = useSetRecoilState(isNoticeWrite);
@@ -25,18 +24,6 @@ const ContentHeader = ({ data, boardId }: props) => {
     getDate()[3]
   }시 ${getDate()[4]}분`;
 
-  const koreanRole = () => {
-    if (data.role === 'ROLE_ADMIN') return '사감선생님';
-    else if (data.role === 'ROLE_COUNCILLOR') return '기숙사자치위원회';
-    else return '도토리';
-  };
-
-  const englishRole = () => {
-    if (data.role === 'ROLE_ADMIN') return 'admin';
-    else if (data.role === 'ROLE_COUNCILLOR') return 'councillor';
-    else return 'developer';
-  };
-
   return (
     <S.ContentHeader>
       <S.HeaderLeftBox>
@@ -44,7 +31,7 @@ const ContentHeader = ({ data, boardId }: props) => {
           <S.WriterDot
             style={{ background: RoleData.WRITERCOLOR[data.role] }}
           />
-          <span>{koreanRole()}</span>
+          <span>{RoleData.WRITER[data.role]}</span>
         </S.Writer>
         <h2>{data.title}</h2>
       </S.HeaderLeftBox>
@@ -55,7 +42,6 @@ const ContentHeader = ({ data, boardId }: props) => {
             onClick={() => {
               setNoticeWrite(true);
               setNoticeModify(true);
-              router.push(`/notice/${router.query.boardId}`);
             }}
           >
             <EditPencilIcon />
@@ -63,7 +49,7 @@ const ContentHeader = ({ data, boardId }: props) => {
           <button
             onClick={async () => {
               setNoticeWrite(false);
-              data && (await deleteNotice(englishRole(), data.id));
+              data && (await deleteNotice(role, data.id));
               mutate(NoticeController.getNotice(role));
               router.push('/notice');
             }}

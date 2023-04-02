@@ -27,7 +27,7 @@ const NoticeContent = () => {
     <S.Layer>
       {data && (
         <>
-          <ContentHeader data={data} boardId={boardId} />
+          <ContentHeader data={data} />
           <S.ContentWrapper>
             {data.content.split('\n').map((line, key) => (
               <p key={key}>

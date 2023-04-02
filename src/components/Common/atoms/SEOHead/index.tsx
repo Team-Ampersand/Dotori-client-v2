@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const CEOHead = ({ title }: { title: string }) => {
+const SEOHead = ({ title }: { title: string }) => {
   return (
     <Head>
       <title>{`DOTORI | ${title}`}</title>
@@ -17,4 +17,4 @@ const CEOHead = ({ title }: { title: string }) => {
   );
 };
 
-export default CEOHead;
+export default SEOHead;

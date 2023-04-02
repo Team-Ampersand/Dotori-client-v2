@@ -1,5 +1,6 @@
 import ChangePasswdForm from 'components/ChangePasswd/organisms/ChangePasswdForm';
 import PasswdEmailCheck from 'components/ChangePasswd/organisms/PasswdEmailCheck';
+import SEOHead from 'components/Common/atoms/SEOHead';
 import { AuthTemplates } from 'components/Common/templates/AuthTemplates/style';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRecoilState } from 'recoil';
@@ -10,13 +11,16 @@ import { getToken } from 'utils/Libs/getToken';
 const ChangePasswdPage: NextPage<{ isLogin: boolean }> = ({ isLogin }) => {
   const [IsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
   return (
-    <AuthTemplates>
-      {isLogin || IsemailPasswordCheck.isAuth ? (
-        <ChangePasswdForm isLogin={isLogin} />
-      ) : (
-        <PasswdEmailCheck />
-      )}
-    </AuthTemplates>
+    <>
+      <SEOHead title={'비밀번호변경페이지'} />
+      <AuthTemplates>
+        {isLogin || IsemailPasswordCheck.isAuth ? (
+          <ChangePasswdForm isLogin={isLogin} />
+        ) : (
+          <PasswdEmailCheck />
+        )}
+      </AuthTemplates>
+    </>
   );
 };
 

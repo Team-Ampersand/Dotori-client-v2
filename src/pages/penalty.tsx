@@ -11,6 +11,7 @@ import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import { penaltyController } from 'utils/Libs/requestUrls';
 import { PenaltyStuListType } from 'types';
+import SEOHead from 'components/Common/atoms/SEOHead';
 
 const PenaltyPage: NextPage<{
   fallback: Record<string, PenaltyStuListType>;
@@ -18,15 +19,18 @@ const PenaltyPage: NextPage<{
 }> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <SWRConfig value={fallback}>
-      <MainTemplates>
-        <SideBar role={role} />
-        <PenaltyTemplates>
-          <CommonHeader />
-          <PenaltyTable />
-        </PenaltyTemplates>
-      </MainTemplates>
-    </SWRConfig>
+    <>
+      <SEOHead title={'규정위반페이지'} />
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar role={role} />
+          <PenaltyTemplates>
+            <CommonHeader />
+            <PenaltyTable />
+          </PenaltyTemplates>
+        </MainTemplates>
+      </SWRConfig>
+    </>
   );
 };
 

@@ -6,6 +6,9 @@ import { noticeDetailType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
+import { useSetRecoilState } from 'recoil';
+import { noticeContent } from 'recoilAtoms/recoilAtomContainer';
+import { useEffect } from 'react';
 
 const NoticeContent = () => {
   const router = useRouter();
@@ -14,6 +17,11 @@ const NoticeContent = () => {
   const { data } = useSWR<noticeDetailType>(
     NoticeController.getNoticeDetail(role, boardId)
   );
+  const setContent = useSetRecoilState(noticeContent);
+
+  useEffect(() => {
+    !!data && setContent(data);
+  });
 
   return (
     <S.Layer>

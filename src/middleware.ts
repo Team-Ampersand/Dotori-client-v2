@@ -3,7 +3,7 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 export const middleware = async (req: NextRequest) => {
   const ua = userAgent(req);
   const RefreshToken = req.cookies.get('RefreshToken');
-  const isAuthPage = ['/signin', '/signup', '/changePasswd'].some(
+  const isAuthPage = ['/signin', '/signup'].some(
     (i) => i == req.nextUrl.pathname
   );
 

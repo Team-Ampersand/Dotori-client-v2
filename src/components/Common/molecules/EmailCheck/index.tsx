@@ -21,20 +21,10 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
   const [IsemailPasswordCheck, setIsemailPasswordCheck] =
     useRecoilState(isemailPasswordCheck);
   const [, setSignUpStep] = useRecoilState(signUpStep);
-  const { register, watch, handleSubmit, resetField } = useForm<SignupForm>({
-    defaultValues: {
-      email: '@gsm.hs.kr',
-    },
-  });
+  const { register, watch, handleSubmit, resetField } = useForm<SignupForm>();
 
   useEffect(() => {
-    setIsCheck(
-      isNotNull(
-        watch('email')?.replace('@gsm.hs.kr', '') &&
-          watch('certiNum') &&
-          !isAuth
-      )
-    );
+    setIsCheck(isNotNull(watch('email') && watch('certiNum') && !isAuth));
     setIsAuthEmailCheck(
       isNotNull(watch('email')?.replace('@gsm.hs.kr', '') && isAuth)
     );
@@ -42,7 +32,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
 
   const handleCertiEmailBtnClick = async () => {
     if (!isAuthCheck) return;
-    else if (!/^s[0-9]{5}@gsm.hs.kr$/.test(watch().email || ''))
+    else if (!/^s[0-9]{5}$/.test(watch().email || ''))
       return toast.error('이메일형식이 잘못되었어요.');
     if (
       isLogin
@@ -57,8 +47,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
 
   const onInvalid: SubmitErrorHandler<SignupForm> = (state) => {
     toast.error(
-      (!isNotNull(watch('email')?.replace('@gsm.hs.kr', '')) &&
-        '이메일을 입력해주세요.') ||
+      (!isNotNull(watch('email')) && '이메일을 입력해주세요.') ||
         state.email?.message ||
         state.certiNum?.message
     );
@@ -82,16 +71,17 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
             register={register('email', {
               required: '이메일을 입력해주세요.',
               pattern: {
-                value: /^s[0-9]{5}@gsm.hs.kr$/,
+                value: /^s[0-9]{5}$/,
                 message: '이메일형식이 잘못되었어요.',
               },
             })}
             type="text"
-            placeholder="@gsm.hs.kr"
-            maxLength={16}
+            placeholder=""
+            maxLength={6}
             isEmailAuth={true}
             DeleteBtnClick={() => resetField('email')}
-            isValue={isNotNull(watch('email')?.replace('@gsm.hs.kr', ''))}
+            isValue={isNotNull(watch('email'))}
+            isEmail={true}
           />
           <AuthButton
             width={120}
@@ -121,7 +111,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
           type={'submit'}
         />
         <p>
-          비밀번호를 변경할 필요가 없다면?
+          {isLogin ? '비밀번호를 변경할 필요가 없다면?' : '이미 회원이라면?'}
           <Link href={'/signin'}>
             <a>로그인</a>
           </Link>

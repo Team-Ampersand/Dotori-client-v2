@@ -16,7 +16,7 @@ const SEOHead = ({ title }: { title?: string }) => {
       />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="assets/png/Dotori3D.png" />
+      <meta property="og:image" content="/DotoriImg.png" />
     </Head>
   );
 };

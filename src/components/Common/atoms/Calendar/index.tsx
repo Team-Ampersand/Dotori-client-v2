@@ -1,4 +1,5 @@
 import { XtextIcon } from 'assets/svg';
+import UseToggleTheme from 'hooks/useToggleTheme';
 import Calendar from 'react-calendar';
 import { useRecoilState } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
@@ -6,8 +7,10 @@ import * as S from './style';
 
 const CalendarBox = ({ setModal }: { setModal?: (state: boolean) => void }) => {
   const [date, setDate] = useRecoilState(selectedDate);
+  const [theme] = UseToggleTheme();
+
   return (
-    <S.Layer>
+    <S.Layer state={theme}>
       {setModal && (
         <S.XIcon onClick={() => setModal(false)}>
           <XtextIcon />

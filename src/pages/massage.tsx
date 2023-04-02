@@ -34,15 +34,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
 
-  if (!Authorization) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    };
-  }
-
   try {
     const { data: massageData } = await apiClient.get(
       MassageController.massageRank(role),

@@ -3,17 +3,21 @@ import { PromotionTemplates } from 'components/Promotion/templates/PromotionTemp
 import PromotionOrganisms from 'components/Promotion/organisms/PromotionOrganisms';
 import { GetServerSideProps } from 'next';
 import { getToken } from 'utils/Libs/getToken';
+import SEOHead from 'components/Common/atoms/SEOHead';
 
 const PromotionPage = () => {
   UseThemeEffect();
   return (
-    <PromotionTemplates>
-      <PromotionOrganisms />
-    </PromotionTemplates>
+    <>
+      <SEOHead title={'프로모션 페이지'} />
+      <PromotionTemplates>
+        <PromotionOrganisms />
+      </PromotionTemplates>
+    </>
   );
 };
 
-export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
 
   if (Authorization) {
@@ -22,12 +26,12 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
         destination: '/home',
         permanent: false,
       },
-    }
+    };
   }
-  
+
   return {
     props: {},
   };
-}
+};
 
-export default PromotionPage
+export default PromotionPage;

@@ -11,6 +11,7 @@ import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { selfstudyListType } from 'types';
+import SEOHead from 'components/Common/atoms/SEOHead';
 
 const SelfStudyPage: NextPage<{
   fallback: Record<string, selfstudyListType>;
@@ -18,15 +19,18 @@ const SelfStudyPage: NextPage<{
 }> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <SWRConfig value={fallback}>
-      <MainTemplates>
-        <SideBar role={role} />
-        <SelfstudyTemplates>
-          <CommonHeader />
-          <SelfStudyTable />
-        </SelfstudyTemplates>
-      </MainTemplates>
-    </SWRConfig>
+    <>
+      <SEOHead title={'자습신청페이지'} />
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar role={role} />
+          <SelfstudyTemplates>
+            <CommonHeader />
+            <SelfStudyTable />
+          </SelfstudyTemplates>
+        </MainTemplates>
+      </SWRConfig>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ const PromotionPage = () => {
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={''} />
+      <SEOHead />
       <PromotionTemplates>
         <PromotionOrganisms />
       </PromotionTemplates>

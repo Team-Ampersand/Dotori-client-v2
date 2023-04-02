@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
-const SEOHead = ({ title }: { title: string }) => {
+const SEOHead = ({ title }: { title?: string }) => {
   return (
     <Head>
-      <title>{`DOTORI ${title}`}</title>
+      <title>{`DOTORI ${title || ''}`}</title>
       <meta
         name="description"
         content="GSM 기숙사 관리 웹 서비스 Dotori 입니다."

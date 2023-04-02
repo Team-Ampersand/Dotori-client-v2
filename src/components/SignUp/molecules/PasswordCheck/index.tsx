@@ -38,7 +38,7 @@ const PasswordCheck = () => {
     if (state.password !== state.passwordCheck)
       return toast.error('비밀번호확인이 비밀번호와 맞지 않습니다.');
     const notError = await signup(
-      SignUpObject.email,
+      SignUpObject.email + '@gsm.hs.kr',
       state.password,
       SignUpObject.name,
       SignUpObject.stuId,

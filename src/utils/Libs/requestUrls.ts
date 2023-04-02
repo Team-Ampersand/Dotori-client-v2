@@ -16,7 +16,7 @@ export const NoticeController = {
   boardId(boardIdx: number) {
     return `/board/${boardIdx}`;
   },
-  getNoticeDetail(role: string, boardIdx: string) {
+  getNoticeDetail(role: string, boardIdx: string | string[]) {
     return `${role}/board/${boardIdx}`;
   },
 };

@@ -12,14 +12,14 @@ const NoticeContent = () => {
   const role = getRole();
   const boardId = router.query.boardId ?? '';
   const { data } = useSWR<noticeDetailType>(
-    NoticeController.getNoticeDetail(role, boardId[0])
+    NoticeController.getNoticeDetail(role, boardId)
   );
 
   return (
     <S.Layer>
       {data && (
         <>
-          <ContentHeader data={data} boardId={boardId[0]} />
+          <ContentHeader data={data} boardId={boardId} />
           <S.ContentWrapper>
             {data.content.split('\n').map((line, key) => (
               <p key={key}>

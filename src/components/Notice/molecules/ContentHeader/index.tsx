@@ -3,22 +3,17 @@ import { RoleData } from 'assets/data/RoleData';
 import { EditPencilIcon, TrashCan } from 'assets/svg';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
-import {
-  isNoticeFetch,
-  isNoticeModify,
-  isNoticeWrite,
-} from 'recoilAtoms/recoilAtomContainer';
-import { noticeDetailType } from 'types/components/NoticePage';
-import { dateRegex } from 'utils/dateRegex';
-import * as S from './style';
+import { isNoticeModify, isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
 import { mutate } from 'swr';
-import { NoticeController } from 'utils/Libs/requestUrls';
+import { noticeDetailType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
+import { NoticeController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
+import * as S from './style';
 
 interface props {
   data: noticeDetailType;
-  boardId: string;
+  boardId: string | string[];
 }
 
 const ContentHeader = ({ data, boardId }: props) => {

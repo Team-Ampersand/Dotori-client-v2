@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   );
 
   const { data: noticeDetailData } = await apiClient.get(
-    NoticeController.getNoticeDetail(role, boardId[0]),
+    NoticeController.getNoticeDetail(role, boardId),
     { headers: { Authorization } }
   );
 
@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       fallback: {
         [NoticeController.getNotice(role)]: noticeData,
-        [NoticeController.getNotice(role)]: noticeDetailData,
+        [NoticeController.getNoticeDetail(role, boardId)]: noticeDetailData,
       },
       role,
     },

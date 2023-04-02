@@ -42,6 +42,9 @@ export const FormContent = styled.div`
     resize: none;
     border-radius: 8px;
   }
+  > input:focus::-webkit-input-placeholder {
+    color: rgb(118, 118, 118);
+  }
   > textarea {
     height: 100%;
     border-radius: 8px;

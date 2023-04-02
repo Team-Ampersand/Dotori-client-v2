@@ -7,7 +7,7 @@ const SignUpPage = () => {
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'회원가입페이지'} />
+      <SEOHead title={'| 회원가입페이지'} />
       <AuthTemplates>
         <SignUpForm />
       </AuthTemplates>

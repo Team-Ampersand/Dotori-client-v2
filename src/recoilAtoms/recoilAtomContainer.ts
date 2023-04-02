@@ -1,11 +1,12 @@
 import { atom } from 'recoil';
 import {
-  SignupForm,
-  selfstudyListProps,
   PenaltyListProps,
-  PenaltyStuType,
   PenaltyRuleItemProps,
+  PenaltyStuType,
+  selfstudyListProps,
+  SignupForm,
 } from 'types';
+import { noticeDetailType } from 'types/components/NoticePage';
 
 export const signUpObject = atom<SignupForm>({
   key: 'signUpObject',
@@ -67,8 +68,37 @@ export const selfStudyLookup = atom<boolean>({
   default: false,
 });
 
+export const noticeContent = atom<noticeDetailType | null>({
+  key: 'noticeContent',
+  default: null,
+});
+
+export const isNoticeWrite = atom<boolean>({
+  key: 'isNoticeWrite',
+  default: false,
+});
+export const isNoticeDelete = atom<boolean>({
+  key: 'isNoticeDeletes',
+  default: false,
+});
+
+export const isNoticeFetch = atom<boolean>({
+  key: 'isNoticeFetch',
+  default: false,
+});
+
+export const isNoticeModify = atom<boolean>({
+  key: 'isNoticeModify',
+  default: false,
+});
+
+export const noticeChoice = atom<number[]>({
+  key: 'noticeChoice',
+  default: [],
+});
+
 export const selectedDate = atom<Date>({
-  key: 'selectedCalendar',
+  key: 'selectedDate',
   default: new Date(),
 });
 

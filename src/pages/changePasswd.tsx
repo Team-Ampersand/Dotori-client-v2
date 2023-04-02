@@ -12,7 +12,7 @@ const ChangePasswdPage: NextPage<{ isLogin: boolean }> = ({ isLogin }) => {
   const [IsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
   return (
     <>
-      <SEOHead title={'비밀번호변경페이지'} />
+      <SEOHead title={'| 비밀번호변경페이지'} />
       <AuthTemplates>
         {isLogin || IsemailPasswordCheck.isAuth ? (
           <ChangePasswdForm isLogin={isLogin} />

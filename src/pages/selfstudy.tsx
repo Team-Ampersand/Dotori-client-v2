@@ -20,7 +20,7 @@ const SelfStudyPage: NextPage<{
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'자습신청페이지'} />
+      <SEOHead title={'| 자습신청페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar role={role} />

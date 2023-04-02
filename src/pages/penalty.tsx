@@ -20,7 +20,7 @@ const PenaltyPage: NextPage<{
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'규정위반페이지'} />
+      <SEOHead title={'| 규정위반페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar role={role} />

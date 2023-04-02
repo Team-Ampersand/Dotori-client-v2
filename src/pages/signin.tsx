@@ -7,7 +7,7 @@ const SignInPage = () => {
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'로그인페이지'} />
+      <SEOHead title={'| 로그인페이지'} />
       <AuthTemplates>
         <SignInForm />
       </AuthTemplates>

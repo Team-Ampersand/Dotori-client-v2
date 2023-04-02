@@ -47,37 +47,32 @@ const Notice: NextPage<{
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
-  const role = await getRole(ctx);
+  const role = getRole(ctx);
   const boardId = ctx.params?.boardId ?? '';
 
-  const { data: noticeData } = await apiClient.get(
-    NoticeController.getNotice(role),
-    { headers: { Authorization } }
-  );
+  try {
+    const { data: noticeData } = await apiClient.get(
+      NoticeController.getNotice(role),
+      { headers: { Authorization } }
+    );
 
-  const { data: noticeDetailData } = await apiClient.get(
-    NoticeController.getNoticeDetail(role, boardId),
-    { headers: { Authorization } }
-  );
+    const { data: noticeDetailData } = await apiClient.get(
+      NoticeController.getNoticeDetail(role, boardId),
+      { headers: { Authorization } }
+    );
 
-  if (!Authorization) {
     return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
+      props: {
+        fallback: {
+          [NoticeController.getNotice(role)]: noticeData,
+          [NoticeController.getNoticeDetail(role, boardId)]: noticeDetailData,
+        },
+        role,
       },
     };
+  } catch (e) {
+    return { props: {} };
   }
-
-  return {
-    props: {
-      fallback: {
-        [NoticeController.getNotice(role)]: noticeData,
-        [NoticeController.getNoticeDetail(role, boardId)]: noticeDetailData,
-      },
-      role,
-    },
-  };
 };
 
 export default Notice;

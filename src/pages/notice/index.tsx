@@ -49,28 +49,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
 
-  if (!Authorization) {
+  try {
+    const { data: noticeData } = await apiClient.get(
+      SelfstudyController.selfStudyInfo(role),
+      { headers: { Authorization } }
+    );
+
     return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
+      props: {
+        fallback: {
+          [NoticeController.getNotice(role)]: noticeData,
+        },
+        role,
       },
     };
+  } catch (e) {
+    return { props: {} };
   }
-
-  const { data: noticeData } = await apiClient.get(
-    SelfstudyController.selfStudyInfo(role),
-    { headers: { Authorization } }
-  );
-
-  return {
-    props: {
-      fallback: {
-        [NoticeController.getNotice(role)]: noticeData,
-      },
-      role,
-    },
-  };
 };
 
 export default Notice;

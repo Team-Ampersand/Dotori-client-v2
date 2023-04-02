@@ -24,7 +24,6 @@ export const config = {
     '/signup',
     '/home',
     '/selfstudy',
-    '/changePasswd',
     '/massage',
     '/penalty',
     '/notice',

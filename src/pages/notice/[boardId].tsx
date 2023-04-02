@@ -13,12 +13,18 @@ import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
+import { SWRConfig } from 'swr';
+import { noticeDetailType, noticeListType } from 'types/components/NoticePage';
+import { apiClient } from 'utils/Libs/apiClient';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
+import { NoticeController } from 'utils/Libs/requestUrls';
 
 const Notice: NextPage<{
+  fallback: Record<string, noticeListType> & Record<string, noticeDetailType>;
   role: string;
-}> = ({ role }) => {
+}> = ({ fallback, role }) => {
+  ('');
   UseThemeEffect();
 
   const isWrite = useRecoilValue(isNoticeWrite);
@@ -26,16 +32,18 @@ const Notice: NextPage<{
   return (
     <>
       <SEOHead title="공지사항페이지" />
-      <MainTemplates>
-        <SideBar role={role} />
-        <NoticeTemplate>
-          <CommonHeader />
-          <NoticeWrapper>
-            <NoticeList />
-            {isWrite ? <NoticeWrite /> : <NoticeContent />}
-          </NoticeWrapper>
-        </NoticeTemplate>
-      </MainTemplates>
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar role={role} />
+          <NoticeTemplate>
+            <CommonHeader />
+            <NoticeWrapper>
+              <NoticeList />
+              {isWrite ? <NoticeWrite /> : <NoticeContent />}
+            </NoticeWrapper>
+          </NoticeTemplate>
+        </MainTemplates>
+      </SWRConfig>
     </>
   );
 };
@@ -43,6 +51,17 @@ const Notice: NextPage<{
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = await getRole(ctx);
+  const boardId = ctx.params?.boardId ?? '';
+
+  const { data: noticeData } = await apiClient.get(
+    NoticeController.getNotice(role),
+    { headers: { Authorization } }
+  );
+
+  const { data: noticeDetailData } = await apiClient.get(
+    NoticeController.getNoticeDetail(role, boardId[0]),
+    { headers: { Authorization } }
+  );
 
   if (!Authorization) {
     return {
@@ -55,6 +74,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      fallback: {
+        [NoticeController.getNotice(role)]: noticeData,
+        [NoticeController.getNotice(role)]: noticeDetailData,
+      },
       role,
     },
   };

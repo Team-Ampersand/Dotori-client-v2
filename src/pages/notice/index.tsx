@@ -1,3 +1,4 @@
+import SEOHead from 'components/Common/atoms/SEOHead';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
@@ -20,13 +21,13 @@ import { getToken } from 'utils/Libs/getToken';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 
 const Notice: NextPage<{
-  fallback: Record<string, noticePageProps>;
   role: string;
-}> = ({ fallback, role }) => {
+}> = ({ role }) => {
   UseThemeEffect();
   const isWrite = useRecoilValue(isNoticeWrite);
   return (
-    <SWRConfig value={fallback}>
+    <>
+      <SEOHead title="공지사항페이지" />
       <MainTemplates>
         <SideBar role={role} />
         <NoticeTemplate>
@@ -37,7 +38,7 @@ const Notice: NextPage<{
           </NoticeWrapper>
         </NoticeTemplate>
       </MainTemplates>
-    </SWRConfig>
+    </>
   );
 };
 
@@ -54,16 +55,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 
-  const { data: selfStudyData } = await apiClient.get(
-    SelfstudyController.selfStudyInfo(role),
-    { headers: { Authorization } }
-  );
-
   return {
     props: {
-      fallback: {
-        [SelfstudyController.selfStudyInfo(role)]: selfStudyData,
-      },
       role,
     },
   };

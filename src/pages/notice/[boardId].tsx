@@ -1,3 +1,4 @@
+import SEOHead from 'components/Common/atoms/SEOHead';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
@@ -23,16 +24,19 @@ const Notice: NextPage<{
   const isWrite = useRecoilValue(isNoticeWrite);
 
   return (
-    <MainTemplates>
-      <SideBar role={role} />
-      <NoticeTemplate>
-        <CommonHeader />
-        <NoticeWrapper>
-          <NoticeList />
-          {isWrite ? <NoticeWrite /> : <NoticeContent />}
-        </NoticeWrapper>
-      </NoticeTemplate>
-    </MainTemplates>
+    <>
+      <SEOHead title="공지사항페이지" />
+      <MainTemplates>
+        <SideBar role={role} />
+        <NoticeTemplate>
+          <CommonHeader />
+          <NoticeWrapper>
+            <NoticeList />
+            {isWrite ? <NoticeWrite /> : <NoticeContent />}
+          </NoticeWrapper>
+        </NoticeTemplate>
+      </MainTemplates>
+    </>
   );
 };
 

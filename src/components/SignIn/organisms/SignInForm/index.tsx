@@ -72,11 +72,6 @@ const SignInForm = () => {
           <AuthInput
             register={register('password', {
               required: '비밀번호를 입력해주세요.',
-              pattern: {
-                value:
-                  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
-                message: '영문, 숫자, 특수문자포함 8~20자로 입력하세요.',
-              },
             })}
             type="password"
             placeholder="비밀번호"

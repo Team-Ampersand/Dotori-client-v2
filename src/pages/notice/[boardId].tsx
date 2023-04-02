@@ -24,11 +24,8 @@ const Notice: NextPage<{
   fallback: Record<string, noticeListType> & Record<string, noticeDetailType>;
   role: string;
 }> = ({ fallback, role }) => {
-  ('');
   UseThemeEffect();
-
   const isWrite = useRecoilValue(isNoticeWrite);
-
   return (
     <>
       <SEOHead title="공지사항페이지" />

@@ -20,7 +20,7 @@ const MassagePage: NextPage<{
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'안마의자페이지'} />
+      <SEOHead title={'| 안마의자페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar role={role} />

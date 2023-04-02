@@ -36,8 +36,8 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
       return toast.error('이메일형식이 잘못되었어요.');
     if (
       isLogin
-        ? await emailCheck(watch().email || '')
-        : await emailPasswordCheck(watch().email || '')
+        ? await emailCheck(`${watch().email}@gsm.hs.kr`)
+        : await emailPasswordCheck(`${watch().email}@gsm.hs.kr`)
     ) {
       toast.success('인증번호가 이메일로 전송되었습니다.');
       setIsAuthEmailCheck(false);

@@ -1,7 +1,7 @@
 import { AuthFormWrapper } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import StepHeader from 'components/SignUp/molecules/StepHeader';
 import StuInfo from 'components/SignUp/molecules/StuInfo';
-import EmailCheck from 'components/SignUp/molecules/EmailCheck';
+import EmailCheck from 'components/Common/molecules/EmailCheck';
 import PasswordCheck from 'components/SignUp/molecules/PasswordCheck';
 import { useRecoilState } from 'recoil';
 import { signUpStep } from 'recoilAtoms';
@@ -14,7 +14,7 @@ const SignUpForm = () => {
       {SignupStep === 'first' ? (
         <StuInfo />
       ) : SignupStep === 'second' ? (
-        <EmailCheck />
+        <EmailCheck isLogin={true} />
       ) : (
         <PasswordCheck />
       )}

@@ -22,13 +22,13 @@ export interface ModalProps {
 }
 
 export interface PenaltyItemType {
-  id?:number
+  id?: number;
   name: string;
   createDate: string;
 }
 
 export interface PenaltyListType {
-  rules : PenaltyItemType[]
+  rules: PenaltyItemType[];
 }
 
 export interface ModalHeaderProps {
@@ -45,9 +45,19 @@ export interface CommonCheckModalProps extends ModalProps {
 export interface ApplyModifyModalProps extends ModalProps {
   name: string;
   maxCount: number;
-  onClick: (n:number) => void;
+  onClick: (n: number) => void;
 }
 
 export interface PromotionStyleProps {
   isShow: boolean;
+}
+
+export interface PenaltyRecordModalProps {
+  modalState: boolean;
+  setModalState: (state: boolean) => void;
+  handleDelete: (
+    state: string[],
+    setState: (state: string[]) => void,
+    select: string
+  ) => void;
 }

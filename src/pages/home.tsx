@@ -23,6 +23,7 @@ import {
 } from 'utils/Libs/requestUrls';
 import { applyPageProps, myProfileType, noticePageProps } from 'types';
 import ChannelBtn from 'components/Home/molecules/ChannelBtn';
+import SEOHead from 'components/Common/atoms/SEOHead';
 
 const HomePage: NextPage<{
   fallback: Record<string, myProfileType> &
@@ -33,35 +34,29 @@ const HomePage: NextPage<{
 }> = ({ fallback, role }) => {
   UseThemeEffect();
   return (
-    <SWRConfig value={fallback}>
-      <MainTemplates>
-        <SideBar role={role} />
-        <HomeTemplates>
-          <TimeBoard />
-          <Profile />
-          <MealBoard />
-          <NoticeBoard />
-          <SelfStudyBoard />
-          <MassageBoard />
-        </HomeTemplates>
-      </MainTemplates>
-      <ChannelBtn />
-    </SWRConfig>
+    <>
+      <SEOHead title={'| 홈페이지'} />
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar role={role} />
+          <HomeTemplates>
+            <TimeBoard />
+            <Profile />
+            <MealBoard />
+            <NoticeBoard />
+            <SelfStudyBoard />
+            <MassageBoard />
+          </HomeTemplates>
+        </MainTemplates>
+        <ChannelBtn />
+      </SWRConfig>
+    </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
-
-  if (!Authorization) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    };
-  }
 
   try {
     const { data: myData } = await apiClient.get(MemberController.myProfile, {

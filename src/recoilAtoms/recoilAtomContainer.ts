@@ -102,6 +102,14 @@ export const selectedDate = atom<Date>({
   default: new Date(),
 });
 
+export const isemailPasswordCheck = atom<{
+  isAuth: boolean;
+  authEmail?: string;
+}>({
+  key: 'isemailPasswordCheck',
+  default: { isAuth: false, authEmail: '' },
+});
+
 export const penaltyListModalState = atom<boolean>({
   key: 'penaltyListModal',
   default: false,

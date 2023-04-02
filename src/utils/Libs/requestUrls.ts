@@ -1,8 +1,10 @@
 export const MemberController = {
   signup: '/auth/signup',
   auth: '/auth',
+  authChangePasswd: '/auth/password',
   emailCheck: '/email/signup',
   authcheck: '/email/verify-email',
+  emailPasswordCheck: '/email/password',
   changePasswd: '/members/password',
   myProfile: '/home',
 };

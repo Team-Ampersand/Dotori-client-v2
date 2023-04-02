@@ -46,6 +46,10 @@ export const NoticeList = styled.div`
   }
 `;
 
+export const NoticeBox = styled.div`
+  width: 100%;
+`;
+
 export const NoticeBottom = styled.div`
   position: absolute;
   right: 0.5px;

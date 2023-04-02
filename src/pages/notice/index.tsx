@@ -14,30 +14,33 @@ import { GetServerSideProps, NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
 import { SWRConfig } from 'swr';
-import { noticePageProps } from 'types';
+import { noticeListType } from 'types/components/NoticePage';
 import { apiClient } from 'utils/Libs/apiClient';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
-import { SelfstudyController } from 'utils/Libs/requestUrls';
+import { NoticeController, SelfstudyController } from 'utils/Libs/requestUrls';
 
 const Notice: NextPage<{
+  fallback: Record<string, noticeListType>;
   role: string;
-}> = ({ role }) => {
+}> = ({ fallback, role }) => {
   UseThemeEffect();
   const isWrite = useRecoilValue(isNoticeWrite);
   return (
     <>
       <SEOHead title="공지사항페이지" />
-      <MainTemplates>
-        <SideBar role={role} />
-        <NoticeTemplate>
-          <CommonHeader />
-          <NoticeWrapper>
-            <NoticeList />
-            {isWrite ? <NoticeWrite /> : <NoticeEmpty />}
-          </NoticeWrapper>
-        </NoticeTemplate>
-      </MainTemplates>
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar role={role} />
+          <NoticeTemplate>
+            <CommonHeader />
+            <NoticeWrapper>
+              <NoticeList />
+              {isWrite ? <NoticeWrite /> : <NoticeEmpty />}
+            </NoticeWrapper>
+          </NoticeTemplate>
+        </MainTemplates>
+      </SWRConfig>
     </>
   );
 };
@@ -46,20 +49,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
 
-  if (!Authorization) {
+  try {
+    const { data: noticeData } = await apiClient.get(
+      SelfstudyController.selfStudyInfo(role),
+      { headers: { Authorization } }
+    );
+
     return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
+      props: {
+        fallback: {
+          [NoticeController.getNotice(role)]: noticeData,
+        },
+        role,
       },
     };
+  } catch (e) {
+    return { props: {} };
   }
-
-  return {
-    props: {
-      role,
-    },
-  };
 };
 
 export default Notice;

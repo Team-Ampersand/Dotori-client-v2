@@ -24,6 +24,7 @@ export const AuthInput = styled.div`
     font-size: 16px;
     border: none;
     border-radius: 8px;
+    transition: all 0.3s ease-in-out;
     padding: 0
       ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)};
 
@@ -64,4 +65,24 @@ export const AuthInput = styled.div`
       margin: 0 auto;
     }
   }
+`;
+
+export const EmailBack = styled.span`
+  font-weight: 500;
+  font-size: 16px;
+  color: ${(props: AuthInputStyleProps) =>
+    props.isValue && props.isFocus
+      ? `${Palette.NEUTRAL_N10}`
+      : `${Palette.NEUTRAL_N30}`};
+  position: absolute;
+  bottom: 18px;
+  transition: all 0.3s ease-in-out;
+  left: ${(props: AuthInputStyleProps) =>
+    props.isRabel
+      ? props.isValue || props.isFocus
+        ? '110px'
+        : '48px'
+      : props.isValue || props.isFocus
+      ? '80px'
+      : '20px'};
 `;

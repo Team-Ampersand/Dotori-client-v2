@@ -3,10 +3,13 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 export const middleware = async (req: NextRequest) => {
   const ua = userAgent(req);
   const RefreshToken = req.cookies.get('RefreshToken');
+  const isAuthPage = ['/signin', '/signup', '/changePasswd'].some(
+    (i) => i == req.nextUrl.pathname
+  );
 
-  if (RefreshToken && req.nextUrl.pathname.includes('sign')) {
+  if (RefreshToken && isAuthPage) {
     return NextResponse.redirect(new URL('/home', req.url));
-  } else if (!RefreshToken && !req.nextUrl.pathname.includes('sign')) {
+  } else if (!RefreshToken && !isAuthPage) {
     return NextResponse.redirect(new URL('/signin', req.url));
   }
 

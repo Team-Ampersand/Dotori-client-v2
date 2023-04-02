@@ -27,6 +27,7 @@ export const config = {
     '/changePasswd',
     '/massage',
     '/penalty',
+    '/notice',
     '/notice/:path*',
   ],
 };

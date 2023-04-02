@@ -1,12 +1,14 @@
-import { PenaltyItemType } from "types";
-import { dateRegex } from "utils/dateRegex";
-import * as S from "./style";
+import { PenaltyItemType } from 'types';
+import { dateRegex } from 'utils/dateRegex';
+import * as S from './style';
 
-const PenaltyItem = ({name, createDate}:PenaltyItemType) => (
+const PenaltyItem = ({ rule, createdDate }: PenaltyItemType) => {
+  return (
     <S.PenaltyItemWrapper>
-        <span>{name}</span>
-        <S.PenaltyItemDate>{dateRegex(createDate)}</S.PenaltyItemDate>
+      <span>{rule}</span>
+      <S.PenaltyItemDate>{dateRegex(createdDate)}</S.PenaltyItemDate>
     </S.PenaltyItemWrapper>
-)
+  );
+};
 
 export default PenaltyItem;

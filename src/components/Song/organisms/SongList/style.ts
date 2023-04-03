@@ -40,4 +40,8 @@ export const ListContainer = styled.div`
   height: calc(100% - 2rem);
   border-radius: 1rem;
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;

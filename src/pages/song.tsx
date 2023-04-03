@@ -16,7 +16,7 @@ import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 import { SongController } from 'utils/Libs/requestUrls';
 
-const Song: NextPage<{
+const SongPage: NextPage<{
   fallback: Record<string, SongListType>;
 }> = ({ fallback }) => {
   UseThemeEffect();
@@ -68,4 +68,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 };
 
-export default Song;
+export default SongPage;

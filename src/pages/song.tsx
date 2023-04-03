@@ -16,11 +16,11 @@ import { SongController } from 'utils/Libs/requestUrls';
 const Song: NextPage<{
   fallback: Record<string, SongListType>;
   role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
   return (
     <MainTemplates>
-      <SideBar role={role} />
+      <SideBar />
       <S.SongTemplate>
         <CommonHeader />
         <S.SongLayer>
@@ -53,7 +53,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         fallback: { [SongController.music(role)]: songData },
-        role,
       },
     };
   } catch (e) {

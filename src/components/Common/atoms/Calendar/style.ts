@@ -10,7 +10,6 @@ export const Layer = styled.div`
   }
 
   .react-calendar {
-    min-width: 380px;
     max-width: 380px;
     background: ${Palette.BACKGROUND_CARD};
     color: #222;
@@ -26,7 +25,7 @@ export const Layer = styled.div`
 
     button {
       color: ${Palette.NEUTRAL_N10};
-      min-width: 44px;
+      min-width: 15%;
       background: none;
       font-size: 16px;
       margin-top: 8px;
@@ -38,6 +37,10 @@ export const Layer = styled.div`
 
     abbr[title] {
       text-decoration: none;
+    }
+
+    span {
+      word-break: keep-all;
     }
   }
 

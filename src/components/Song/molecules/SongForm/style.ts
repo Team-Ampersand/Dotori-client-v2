@@ -10,6 +10,10 @@ export const Layer = styled.form`
   background: ${Palette.BACKGROUND_CARD};
   border-radius: 1em;
 
+  @media (max-width: 950px) {
+    max-width: 380px;
+  }
+
   > * {
     box-sizing: border-box;
     border-radius: 0.5em;

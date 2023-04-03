@@ -9,6 +9,10 @@ export const Layer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 950px) {
+    width: 100%;
+  }
 `;
 
 export const ListHeader = styled.div`
@@ -36,4 +40,8 @@ export const ListContainer = styled.div`
   height: calc(100% - 2rem);
   border-radius: 1rem;
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;

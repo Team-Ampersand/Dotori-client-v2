@@ -3,7 +3,7 @@ import { Palette } from 'styles/globals';
 
 export const Layer = styled.div`
   width: 100%;
-  height: 64px;
+  height: 9%;
   display: flex;
   justify-content: space-between;
   align-items: center;

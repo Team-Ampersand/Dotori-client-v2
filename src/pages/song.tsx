@@ -16,18 +16,16 @@ import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 import { SongController } from 'utils/Libs/requestUrls';
 
-const Song: NextPage<{
+const SongPage: NextPage<{
   fallback: Record<string, SongListType>;
-  role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
-
   return (
     <>
       <SEOHead title="| 기상음악페이지" />
       <SWRConfig value={fallback}>
         <MainTemplates>
-          <SideBar role={role} />
+          <SideBar />
           <S.SongTemplate>
             <CommonHeader />
             <S.SongLayer>
@@ -63,7 +61,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         fallback: { [SongController.music(role)]: songData },
-        role,
       },
     };
   } catch (e) {
@@ -71,4 +68,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 };
 
-export default Song;
+export default SongPage;

@@ -22,8 +22,7 @@ import { NoticeController } from 'utils/Libs/requestUrls';
 
 const Notice: NextPage<{
   fallback: Record<string, noticeListType> & Record<string, noticeDetailType>;
-  role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
   const isWrite = useRecoilValue(isNoticeWrite);
   return (
@@ -31,7 +30,7 @@ const Notice: NextPage<{
       <SEOHead title="공지사항페이지" />
       <SWRConfig value={fallback}>
         <MainTemplates>
-          <SideBar role={role} />
+          <SideBar />
           <NoticeTemplate>
             <CommonHeader />
             <NoticeWrapper>
@@ -67,7 +66,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           [NoticeController.getNotice(role)]: noticeData,
           [NoticeController.getNoticeDetail(role, boardId)]: noticeDetailData,
         },
-        role,
       },
     };
   } catch (e) {

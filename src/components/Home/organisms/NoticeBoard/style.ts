@@ -37,9 +37,9 @@ export const NoticeList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
   overflow-y: auto;
   margin: 0 auto;
+  gap: 20px;
 
   ::-webkit-scrollbar {
     width: 0px;
@@ -66,18 +66,18 @@ export const NoticeBottom = styled.div`
 `;
 
 export const DateLine = styled.div`
-  height: 20px;
+  height: 33px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 1vw;
   font-weight: 500;
   font-size: 12px;
   color: ${Palette.NEUTRAL_N20};
 
   hr {
     border: 0.5px solid ${Palette.NEUTRAL_N40};
-    width: 100px;
+    width: 30%;
     margin: 0;
   }
 `;

@@ -1,27 +1,22 @@
-import { DotoriIcon, DotoriLogo } from 'assets/svg';
+import { DotoriIcon } from 'assets/svg';
 import LogoutButton from 'components/Common/atoms/Buttons/LogoutButton';
-import SideBarList from 'components/Common/molecules/SidebarList';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import * as S from './style';
 import Link from 'next/link';
 import { MenuData } from 'assets/data/SidebarMenuData';
+import { getRole } from 'utils/Libs/getRole';
+import dynamic from 'next/dynamic';
 
-const SideBar = ({ role }: { role: string }) => {
+const SideBarList = dynamic(
+  () => import('../../../Common/molecules/SidebarList'),
+  { ssr: false }
+);
+
+const SideBar = () => {
   const { pathname } = useRouter();
   const [currentRouter, setCurrentRouter] = useState(pathname);
-
-  const mappingSidebarMenu = useMemo(
-    () => (
-      <SideBarList
-        role={role}
-        menuDataList={MenuData}
-        currentRouter={currentRouter}
-        setCurrentRouter={setCurrentRouter}
-      />
-    ),
-    [currentRouter]
-  );
+  const role = getRole();
 
   return (
     <S.SideBarWrapper>
@@ -33,7 +28,12 @@ const SideBar = ({ role }: { role: string }) => {
           </S.DototiTitle>
         </a>
       </Link>
-      {mappingSidebarMenu}
+      <SideBarList
+        role={role}
+        menuDataList={MenuData}
+        currentRouter={currentRouter}
+        setCurrentRouter={setCurrentRouter}
+      />
       <LogoutButton />
     </S.SideBarWrapper>
   );

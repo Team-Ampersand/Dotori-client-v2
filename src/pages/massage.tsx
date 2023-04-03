@@ -15,15 +15,14 @@ import SEOHead from 'components/Common/atoms/SEOHead';
 
 const MassagePage: NextPage<{
   fallback: Record<string, massageRankProps>;
-  role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
   return (
     <>
       <SEOHead title={'| 안마의자페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
-          <SideBar role={role} />
+          <SideBar />
           <MassageTemplates>
             <CommonHeader />
             <MassageTable />
@@ -46,11 +45,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         fallback: { [MassageController.massageRank(role)]: massageData },
-        role,
       },
     };
   } catch (e) {
-    console.log(e);
     return { props: {} };
   }
 };

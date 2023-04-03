@@ -30,15 +30,14 @@ const HomePage: NextPage<{
     Record<string, noticePageProps> &
     Record<string, applyPageProps> &
     Record<string, applyPageProps>;
-  role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
   return (
     <>
       <SEOHead title={'| 홈페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
-          <SideBar role={role} />
+          <SideBar />
           <HomeTemplates>
             <TimeBoard />
             <Profile />
@@ -83,7 +82,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           [SelfstudyController.selfStudyInfo(role)]: selfStudyData,
           [MassageController.massage(role)]: massageData,
         },
-        role,
       },
     };
   } catch (e) {

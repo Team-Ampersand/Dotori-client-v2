@@ -6,7 +6,7 @@ export const Layer = styled.div`
   height: 100%;
   border-radius: 16px;
   background: ${Palette.BACKGROUND_CARD};
-  padding: 6px 24px 0 24px;
+  padding: 12px 24px 0 24px;
   overflow: hidden;
 `;
 

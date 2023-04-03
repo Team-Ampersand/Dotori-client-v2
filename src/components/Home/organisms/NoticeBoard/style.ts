@@ -39,6 +39,7 @@ export const NoticeList = styled.div`
   align-items: center;
   overflow-y: auto;
   margin: 0 auto;
+  gap: 20px;
 
   ::-webkit-scrollbar {
     width: 0px;

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Palette } from 'styles/globals';
 
 export const PromotionTemplates = styled.div`
   position: fixed;

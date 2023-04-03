@@ -1,7 +1,13 @@
-import { SignInForm } from 'components';
+import { DotoriLogo } from 'assets/svg';
 import SEOHead from 'components/Common/atoms/SEOHead';
 import { AuthTemplates } from 'components/Common/templates/AuthTemplates/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
+import dynamic from 'next/dynamic';
+
+const SignInForm = dynamic(
+  () => import('../components/SignIn/organisms/SignInForm'),
+  { ssr: false, loading: () => <DotoriLogo /> }
+);
 
 const SignInPage = () => {
   UseThemeEffect();

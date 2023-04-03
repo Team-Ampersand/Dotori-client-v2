@@ -92,7 +92,13 @@ const TimeBoard = () => {
         />
       )}
       <S.BoardBottom>
-        <Image src={GradationImg} layout="fill" priority alt="GradationImg" />
+        <Image
+          src={GradationImg}
+          layout="fill"
+          priority
+          alt="GradationImg"
+          placeholder="blur"
+        />
         <span>현재시간</span>
         <S.CurrentTime>{date}</S.CurrentTime>
         <S.DotoriImgBox>
@@ -102,10 +108,17 @@ const TimeBoard = () => {
             priority
             layout="fill"
             objectFit={'cover'}
+            // placeholder="blur"
           />
         </S.DotoriImgBox>
         <S.ShadowImgBox>
-          <Image src={ShadowImg} layout="fill" priority alt="그림자이미지" />
+          <Image
+            src={ShadowImg}
+            layout="fill"
+            priority
+            alt="그림자이미지"
+            placeholder="blur"
+          />
         </S.ShadowImgBox>
       </S.BoardBottom>
     </S.TimeBoardWrapper>

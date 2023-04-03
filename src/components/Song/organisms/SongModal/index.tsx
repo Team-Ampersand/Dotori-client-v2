@@ -14,7 +14,6 @@ const SongModal = () => {
 
   useEffect(() => {
     addEventListener('resize', (e: any) => {
-      console.log(e.target?.innerWidth);
       if (e.target.innerWidth >= 950) setModal(false);
     });
   }, []);

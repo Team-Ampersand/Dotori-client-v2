@@ -55,7 +55,7 @@ const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
         : await authPasswordChange(
             state.password,
             state.newPassword,
-            IsemailPasswordCheck.authEmail
+            IsemailPasswordCheck.authEmail + '@gsm.hs.kr'
           )
     ) {
       setIsemailPasswordCheck({ authEmail: '', isAuth: false });

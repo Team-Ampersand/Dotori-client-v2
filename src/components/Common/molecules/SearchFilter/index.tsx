@@ -29,7 +29,7 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
     value === '남자'
       ? (value = 'MAN')
       : value === '여자'
-      ? (value = 'WOMEN')
+      ? (value = 'WOMAN')
       : '';
     const copy = [...filterState];
     copy[idx] = value;

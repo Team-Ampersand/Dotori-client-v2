@@ -35,10 +35,8 @@ const SongItem = ({ data }: { data: SongType }) => {
   const role = getRole();
   const youtubeId = youtube_parser(data.url);
   const [title, setTitle] = useState('');
-  const createDate = `${dateRegex(String(data.createdTime)).slice(
-    6,
-    7
-  )}월 ${dateRegex(String(data.createdTime)).slice(9, 11)}일`;
+  const createdDate = new Date(data.createdTime);
+  const songDate = `${getDate(createdDate)[1]}월 ${getDate(createdDate)[2]}일`;
   const date = useRecoilValue(selectedDate);
   const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
     getDate(date)[2]
@@ -73,7 +71,7 @@ const SongItem = ({ data }: { data: SongType }) => {
         <p>{data.stuNum}</p>
         <p>{data.username}</p>
       </S.StuInfo>
-      <S.CreateDate>{createDate}</S.CreateDate>
+      <S.CreateDate>{songDate}</S.CreateDate>
       <S.ButtonContainer>
         {role !== 'member' && (
           <button

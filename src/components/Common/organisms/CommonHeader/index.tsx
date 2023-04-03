@@ -12,13 +12,17 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getRole } from 'utils/Libs/getRole';
 import { useSetRecoilState } from 'recoil';
-import { filterModal } from 'recoilAtoms/recoilAtomContainer';
+import {
+  calendarModalState,
+  filterModal,
+} from 'recoilAtoms/recoilAtomContainer';
 import * as S from './style';
 
 const CommonHeader = () => {
   const role = getRole();
   const { pathname } = useRouter();
   const setModalState = useSetRecoilState(filterModal);
+  const setCalendarModalState = useSetRecoilState(calendarModalState);
   const [navigationDrawer, setNavigationDrawer] = useState(false);
 
   return (
@@ -58,13 +62,23 @@ const CommonHeader = () => {
               </S.ModalBtn>
             </>
           )}
-          {pathname === 'song' && (
+          {pathname === '/song' && (
             <>
-              <S.ModalBtn>
+              <S.ModalBtn
+                onClick={() => {
+                  setCalendarModalState(true);
+                  setModalState(true);
+                }}
+              >
                 <CalendarIcon />
                 <span>달력</span>
               </S.ModalBtn>
-              <S.ModalBtn>
+              <S.ModalBtn
+                onClick={() => {
+                  setCalendarModalState(false);
+                  setModalState(true);
+                }}
+              >
                 <PlusIcon />
                 <span>음악신청</span>
               </S.ModalBtn>

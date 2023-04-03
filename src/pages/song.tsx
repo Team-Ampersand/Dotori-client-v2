@@ -12,24 +12,32 @@ import { apiClient } from 'utils/Libs/apiClient';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 import { SongController } from 'utils/Libs/requestUrls';
+import { SWRConfig } from 'swr';
+import { useRecoilValue } from 'recoil';
+import { calendarModalState } from 'recoilAtoms/recoilAtomContainer';
+import SongModal from 'components/Song/organisms/SongModal';
 
 const Song: NextPage<{
   fallback: Record<string, SongListType>;
   role: string;
 }> = ({ fallback, role }) => {
+  const calendarState = useRecoilValue(calendarModalState);
   UseThemeEffect();
   return (
-    <MainTemplates>
-      <SideBar role={role} />
-      <S.SongTemplate>
-        <CommonHeader />
-        <S.SongLayer>
-          <SongList />
-          <SongRightLayer />
-        </S.SongLayer>
-      </S.SongTemplate>
-      <NoticeModal />
-    </MainTemplates>
+    <SWRConfig value={fallback}>
+      <MainTemplates>
+        <SideBar role={role} />
+        <S.SongTemplate>
+          <CommonHeader />
+          <S.SongLayer>
+            <SongList />
+            <SongRightLayer />
+          </S.SongLayer>
+        </S.SongTemplate>
+        <NoticeModal />
+        <SongModal />
+      </MainTemplates>
+    </SWRConfig>
   );
 };
 
@@ -57,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   } catch (e) {
-    return { props: {} };
+    return { props: { role } };
   }
 };
 

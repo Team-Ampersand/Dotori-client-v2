@@ -9,6 +9,10 @@ export const Layer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 950px) {
+    width: 100%;
+  }
 `;
 
 export const ListHeader = styled.div`

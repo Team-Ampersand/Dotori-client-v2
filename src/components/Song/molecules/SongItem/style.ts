@@ -7,7 +7,6 @@ export const Layer = styled.div`
   align-items: center;
   width: 100%;
   height: 72px;
-  gap: 4em;
 `;
 
 export const LeftWrapper = styled.div`
@@ -16,6 +15,7 @@ export const LeftWrapper = styled.div`
   align-items: center;
   height: 100%;
   gap: 1em;
+  width: 45%;
 `;
 
 export const ImgBox = styled.div`
@@ -38,16 +38,25 @@ export const ImgBox = styled.div`
 
 export const Title = styled.h4`
   color: ${Palette.NEUTRAL_N10};
+  width: 70%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 1em;
 `;
 
 export const StuInfo = styled.div`
   display: flex;
   gap: 0.5em;
   color: ${Palette.NEUTRAL_N20};
+  width: 20%;
+  font-size: 0.875em;
 `;
 
 export const CreateDate = styled.p`
   color: ${Palette.NEUTRAL_N20};
+  font-size: 0.875em;
 `;
 
 export const ButtonContainer = styled.div`

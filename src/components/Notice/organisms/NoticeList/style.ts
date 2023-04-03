@@ -11,7 +11,7 @@ export const Layer = styled.div`
 `;
 
 export const NoticeContainer = styled.div`
-  height: 100%;
+  height: 91%;
   display: flex;
   flex-direction: column;
   align-items: center;

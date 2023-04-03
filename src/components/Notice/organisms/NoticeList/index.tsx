@@ -25,7 +25,7 @@ const NoticeList = () => {
 
   return (
     <S.Layer>
-      {role !== 'member' && <ListHeader role={role} choice={selectedNotice} />}
+      <ListHeader role={role} choice={selectedNotice} />
       <S.NoticeContainer>
         {boardList &&
           [...boardList].map((item, key) => (

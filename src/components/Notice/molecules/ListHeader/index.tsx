@@ -23,48 +23,50 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
   return (
     <S.Layer>
       <span>전체</span>
-      <S.ButtonBox>
-        <NoticeOptionBtn
-          color={Palette.NEUTRAL_N20}
-          border={Palette.NEUTRAL_N20}
-          borderRadius="1em"
-          onClick={() => {
-            setNoticeDelete(!noticeDelete);
-            setSelectedNotice([]);
-          }}
-        >
-          {noticeDelete ? '취소' : '편집'}
-        </NoticeOptionBtn>
+      {role !== 'member' && (
+        <S.ButtonBox>
+          <NoticeOptionBtn
+            color={Palette.NEUTRAL_N20}
+            border={Palette.NEUTRAL_N20}
+            borderRadius="1em"
+            onClick={() => {
+              setNoticeDelete(!noticeDelete);
+              setSelectedNotice([]);
+            }}
+          >
+            {noticeDelete ? '취소' : '편집'}
+          </NoticeOptionBtn>
 
-        {noticeDelete ? (
-          <NoticeOptionBtn
-            color={Palette.SYSTEM_ERROR}
-            border={Palette.SYSTEM_ERROR}
-            borderRadius="1em"
-            onClick={() => {
-              choice.map(async (item) => {
-                await deleteNotice(role, item);
-                setNoticeFetch(true);
-              });
-            }}
-          >
-            삭제
-          </NoticeOptionBtn>
-        ) : (
-          <NoticeOptionBtn
-            bgColor={Palette.PRIMARY_P10}
-            color={Palette.WHITE}
-            borderRadius="1em"
-            onClick={() => {
-              setNoticeWrite(true);
-              setNoticeContent(null);
-              router.push('/notice');
-            }}
-          >
-            + 작성
-          </NoticeOptionBtn>
-        )}
-      </S.ButtonBox>
+          {noticeDelete ? (
+            <NoticeOptionBtn
+              color={Palette.SYSTEM_ERROR}
+              border={Palette.SYSTEM_ERROR}
+              borderRadius="1em"
+              onClick={() => {
+                choice.map(async (item) => {
+                  await deleteNotice(role, item);
+                  setNoticeFetch(true);
+                });
+              }}
+            >
+              삭제
+            </NoticeOptionBtn>
+          ) : (
+            <NoticeOptionBtn
+              bgColor={Palette.PRIMARY_P10}
+              color={Palette.WHITE}
+              borderRadius="1em"
+              onClick={() => {
+                setNoticeWrite(true);
+                setNoticeContent(null);
+                router.push('/notice');
+              }}
+            >
+              + 작성
+            </NoticeOptionBtn>
+          )}
+        </S.ButtonBox>
+      )}
     </S.Layer>
   );
 };

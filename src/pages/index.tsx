@@ -1,7 +1,13 @@
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { PromotionTemplates } from 'components/Promotion/templates/PromotionTemplates/style';
-import PromotionOrganisms from 'components/Promotion/organisms/PromotionOrganisms';
 import SEOHead from 'components/Common/atoms/SEOHead';
+import dynamic from 'next/dynamic';
+import React from 'react';
+
+const PromotionOrganisms = dynamic(
+  () => import('../components/Promotion/organisms/PromotionOrganisms'),
+  { ssr: false }
+);
 
 const PromotionPage = () => {
   UseThemeEffect();

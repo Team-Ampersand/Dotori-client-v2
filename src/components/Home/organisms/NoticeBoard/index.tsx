@@ -4,12 +4,18 @@ import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import { noticeListType } from 'types/Home';
+import { useEffect } from 'react';
 
 const NoticeBoard = () => {
   const role = getRole();
-  const { data } = useSWR<noticeListType>(NoticeController.getNotice(role));
+  const { data, mutate } = useSWR<noticeListType>(
+    NoticeController.getNotice(role)
+  );
   const boardList = data?.boardList;
-  console.log(boardList && boardList[0].createdDate.slice(0, 7));
+
+  useEffect(() => {
+    mutate();
+  }, []);
 
   return (
     <S.NoticeBoardWrapper>

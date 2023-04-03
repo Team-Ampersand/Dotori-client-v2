@@ -24,6 +24,10 @@ const SelfStudyBoard = () => {
   );
 
   useEffect(() => {
+    mutate();
+  }, []);
+
+  useEffect(() => {
     if (role === ('admin' || 'councillor'))
       return setInfo({ applyStatus: '인원수정' });
     switch (data?.selfStudyStatus) {

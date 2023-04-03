@@ -9,6 +9,7 @@ const NoticeBoard = () => {
   const role = getRole();
   const { data } = useSWR<noticeListType>(NoticeController.getNotice(role));
   const boardList = data?.boardList;
+  console.log(boardList && boardList[0].createdDate.slice(0, 7));
 
   return (
     <S.NoticeBoardWrapper>
@@ -25,14 +26,14 @@ const NoticeBoard = () => {
                 isCurrenPage={false}
                 id={i.id}
               />
-              {boardList[idx]?.createdDate.slice(0, 10) >
-                boardList[idx + 1]?.createdDate.slice(0, 10) && (
+              {boardList[idx]?.createdDate.slice(0, 7) >
+                boardList[idx + 1]?.createdDate.slice(0, 7) && (
                 <S.DateLine>
                   <hr />
-                  {`${i?.createdDate.slice(5, 7)}월 ${i?.createdDate.slice(
-                    8,
-                    10
-                  )}일`}
+                  {`${i?.createdDate.slice(0, 4)}년 ${i?.createdDate.slice(
+                    5,
+                    7
+                  )}월`}
                   <hr />
                 </S.DateLine>
               )}

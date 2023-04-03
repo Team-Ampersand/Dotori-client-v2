@@ -6,7 +6,6 @@ export const Layer = styled.div`
     border: none;
     line-height: 3.25em;
     text-align: center;
-    z-index: 20;
     text-decoration: none;
   }
 
@@ -17,7 +16,7 @@ export const Layer = styled.div`
     color: #222;
     border-radius: 0.5em;
     padding: 1.5em;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
     font-family: Arial, Helvetica, sans-serif;
   }
 
@@ -64,19 +63,22 @@ export const Layer = styled.div`
       background: #ed7878;
       border-radius: 0.5em;
       font-weight: bold;
-      color: ${Palette.NEUTRAL_N10};
-      font-size: 12px;
+      color: ${(props: { state: string }) =>
+        props.state === 'light' ? '#F2F2F4' : '#fff'};
+      font-size: 14px;
 
       :enabled:hover,
       :enabled:focus {
         background: #ed7878;
-        color: ${Palette.NEUTRAL_N10};
+        color: ${(props: { state: string }) =>
+          props.state === 'light' ? '#F2F2F4' : '#fff'};
       }
     }
 
     .react-calendar__tile--range {
       background: ${Palette.PRIMARY_P10};
-      color: ${Palette.NEUTRAL_N10};
+      color: ${(props: { state: string }) =>
+        props.state === 'light' ? '#F2F2F4' : '#fff'};
     }
   }
 
@@ -91,13 +93,15 @@ export const Layer = styled.div`
     background: ${Palette.PRIMARY_P10};
     border-radius: 0.5em;
     font-weight: bold;
-    color: ${Palette.NEUTRAL_N10};
+    color: ${(props: { state: string }) =>
+      props.state === 'light' ? '#F2F2F4' : '#fff'};
     font-size: 12px;
 
     :enabled:hover,
     :enabled:focus {
       background: ${Palette.PRIMARY_P10};
-      color: ${Palette.NEUTRAL_N10};
+      color: ${(props: { state: string }) =>
+        props.state === 'light' ? '#F2F2F4' : '#fff'};
     }
   }
   position: relative;

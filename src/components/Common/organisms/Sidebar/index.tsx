@@ -1,7 +1,7 @@
-import { DotoriIcon, DotoriLogo } from 'assets/svg';
+import { DotoriIcon } from 'assets/svg';
 import LogoutButton from 'components/Common/atoms/Buttons/LogoutButton';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import * as S from './style';
 import Link from 'next/link';
 import { MenuData } from 'assets/data/SidebarMenuData';
@@ -18,18 +18,6 @@ const SideBar = () => {
   const [currentRouter, setCurrentRouter] = useState(pathname);
   const role = getRole();
 
-  const mappingSidebarMenu = useMemo(
-    () => (
-      <SideBarList
-        role={role}
-        menuDataList={MenuData}
-        currentRouter={currentRouter}
-        setCurrentRouter={setCurrentRouter}
-      />
-    ),
-    [currentRouter]
-  );
-
   return (
     <S.SideBarWrapper>
       <Link href="/home">
@@ -40,7 +28,12 @@ const SideBar = () => {
           </S.DototiTitle>
         </a>
       </Link>
-      {mappingSidebarMenu}
+      <SideBarList
+        role={role}
+        menuDataList={MenuData}
+        currentRouter={currentRouter}
+        setCurrentRouter={setCurrentRouter}
+      />
       <LogoutButton />
     </S.SideBarWrapper>
   );

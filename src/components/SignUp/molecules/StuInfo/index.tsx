@@ -1,3 +1,4 @@
+import { RegexsData } from 'assets/data/RegexsData';
 import { AuthButton, AuthInput } from 'components/Common';
 import { AuthBottomWrapper } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import GenderBtn from 'components/SignUp/atoms/GenderBtn';
@@ -50,7 +51,7 @@ const StuInfo = () => {
           register={register('name', {
             required: '이름을 입력해주세요.',
             pattern: {
-              value: /^[가-힣]{2,4}$/,
+              value: RegexsData.NAME,
               message: '이름형식에 맞게 입력해주세요.',
             },
           })}
@@ -68,7 +69,7 @@ const StuInfo = () => {
               message: '학번을 입력해주세요.',
             },
             pattern: {
-              value: /^[1-3]{1}[1-4]{1}[0-1]{1}[0-9]{1}$/,
+              value: RegexsData.STUID,
               message: '정확한 학번을 입력해주세요.',
             },
           })}

@@ -1,4 +1,5 @@
 import { authCheck, emailCheck, emailPasswordCheck } from 'api/member';
+import { RegexsData } from 'assets/data/RegexsData';
 import { AuthButton, AuthInput } from 'components/Common';
 import { AuthBottomWrapper } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
@@ -18,8 +19,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
   const [isAuthCheck, setIsAuthEmailCheck] = useState(false);
   const [isAuth, setIsAuth] = useState(true);
   const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
-  const [IsemailPasswordCheck, setIsemailPasswordCheck] =
-    useRecoilState(isemailPasswordCheck);
+  const [, setIsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
   const [, setSignUpStep] = useRecoilState(signUpStep);
   const { register, watch, handleSubmit, resetField } = useForm<SignupForm>();
 
@@ -32,7 +32,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
 
   const handleCertiEmailBtnClick = async () => {
     if (!isAuthCheck) return;
-    else if (!/^s[0-9]{5}$/.test(watch().email || ''))
+    else if (!RegexsData.EMAIL.test(watch().email || ''))
       return toast.error('이메일형식이 잘못되었어요.');
     if (
       isLogin
@@ -54,11 +54,13 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
   };
 
   const onValid: SubmitHandler<SignupForm> = async (state) => {
-    if ((await authCheck(state.certiNum || 0)) && isLogin) {
-      setSignUpStep('last');
-      setSignUpObject({ ...SignUpObject, email: state.email });
-    } else {
-      setIsemailPasswordCheck({ authEmail: state.email, isAuth: true });
+    if (await authCheck(state.certiNum || 0)) {
+      if (isLogin) {
+        setSignUpStep('last');
+        setSignUpObject({ ...SignUpObject, email: state.email });
+      } else {
+        setIsemailPasswordCheck({ authEmail: state.email, isAuth: true });
+      }
     }
   };
 
@@ -71,7 +73,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
             register={register('email', {
               required: '이메일을 입력해주세요.',
               pattern: {
-                value: /^s[0-9]{5}$/,
+                value: RegexsData.EMAIL,
                 message: '이메일형식이 잘못되었어요.',
               },
             })}

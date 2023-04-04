@@ -15,6 +15,7 @@ import {
 import * as S from './style';
 import { useResetRecoilState } from 'recoil';
 import { signUpStep } from 'recoilAtoms';
+import { RegexsData } from 'assets/data/RegexsData';
 
 const SignInForm = () => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const SignInForm = () => {
             register={register('email', {
               required: 'GSM메일을 입력해주세요.',
               pattern: {
-                value: /^s[0-9]{5}$/,
+                value: RegexsData.EMAIL,
                 message: 'gsm메일형식에 맞게 입력해주세요.',
               },
             })}

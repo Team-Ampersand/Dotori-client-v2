@@ -10,9 +10,7 @@ export const getMusic = async (role: string, date: string) => {
       },
     });
     return data;
-  } catch (e: any) {
-    throw new Error(e);
-  }
+  } catch (e: any) {}
 };
 
 export const postMusic = async (role: string, url: string) => {

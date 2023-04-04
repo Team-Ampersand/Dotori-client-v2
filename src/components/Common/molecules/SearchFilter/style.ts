@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
-import { FilterStyleProps, ModalStyleProps } from 'types';
+import { FilterStyleProps } from 'types';
 
 export const FilterWrapper = styled.div`
   min-width: 250px;
@@ -50,48 +50,12 @@ export const ResetBtn = styled.div`
 `;
 
 export const SearchBox = styled.div`
-  height: 50px;
-  background-color: ${Palette.NEUTRAL_N50};
-  border-radius: 8px;
-  margin: 16px 0 35px 0;
+  height: 100px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 12px;
 `;
 
-export const Search = styled.input`
-  width: 80%;
-  height: 90%;
-  border: none;
-  font-weight: 500;
-  font-size: 16px;
-  color: ${Palette.NEUTRAL_N10};
-  background-color: ${Palette.NEUTRAL_N50};
-  ::placeholder {
-    font-weight: 500;
-    font-size: 16px;
-    color: ${Palette.NEUTRAL_N30};
-    transition: all 0.2s ease-in-out;
-  }
-`;
-
-export const SearchBtn = styled.div`
-  cursor: pointer;
-  display: flex;
-  ${Search}:focus + & {
-    svg {
-      circle {
-        stroke: ${Palette.NEUTRAL_N10};
-        transition: all 0.2s ease-in-out;
-      }
-      path {
-        stroke: ${Palette.NEUTRAL_N10};
-        transition: all 0.2s ease-in-out;
-      }
-    }
-  }
-`;
 export const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;

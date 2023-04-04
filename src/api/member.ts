@@ -55,6 +55,8 @@ export const emailCheck = async (email: string) => {
   } catch (e: any) {
     if (e.message === 'Request failed with status code 404')
       toast.warning('유저를 찾을 수 없어요.');
+    if (e.message === 'Request failed with status code 409')
+      toast.warning('이미 가입된 유저입니다.');
     return false;
   }
 };

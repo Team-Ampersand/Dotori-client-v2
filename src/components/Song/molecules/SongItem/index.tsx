@@ -1,19 +1,19 @@
+import { deleteMusic, getMusic } from 'api/music';
+import NewPageIcon from 'assets/svg/NewPageIcon';
+import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { SongType } from 'types/components/SongPage';
-import * as S from './style';
-import { dateRegex } from 'utils/dateRegex';
-import TrashcanIcon from 'assets/svg/TrashcanIcon';
-import NewPageIcon from 'assets/svg/NewPageIcon';
-import { getRole } from 'utils/Libs/getRole';
-import { deleteMusic, getMusic } from 'api/music';
-import { mutate } from 'swr';
-import { SongController } from 'utils/Libs/requestUrls';
 import { useRecoilValue } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
+import useSWR, { mutate } from 'swr';
+import { SongType } from 'types/components/SongPage';
+import { getRole } from 'utils/Libs/getRole';
 import { getDate } from 'utils/getDate';
+import * as S from './style';
+import { MemberController, SongController } from 'utils/Libs/requestUrls';
+import { myProfileType } from 'types';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -31,11 +31,13 @@ const youtube_parser = (url: string) => {
   return '';
 };
 
-const SongItem = ({ data }: { data: SongType }) => {
+const SongItem = ({ data: songData }: { data: SongType }) => {
   const role = getRole();
-  const youtubeId = youtube_parser(data.url);
+  const youtubeId = youtube_parser(songData.url);
   const [title, setTitle] = useState('');
-  const createdDate = new Date(data.createdTime);
+  const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
+
+  const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[1]}월 ${getDate(createdDate)[2]}일`;
   const date = useRecoilValue(selectedDate);
   const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
@@ -68,21 +70,22 @@ const SongItem = ({ data }: { data: SongType }) => {
         <S.Title>{title}</S.Title>
       </S.LeftWrapper>
       <S.StuInfo>
-        <p>{data.stuNum}</p>
-        <p>{data.username}</p>
+        <p>{songData.stuNum}</p>
+        <p>{songData.username}</p>
       </S.StuInfo>
       <S.CreateDate>{songDate}</S.CreateDate>
       <S.ButtonContainer>
-        {role !== 'member' && (
+        {(role !== 'member' ||
+          String(songData.stuNum) === userData?.stuNum) && (
           <button
             onClick={() => {
-              onDelete(data.id);
+              onDelete(songData.id);
             }}
           >
             <TrashcanIcon />
           </button>
         )}
-        <Link href={data.url}>
+        <Link href={songData.url}>
           <a>
             <NewPageIcon />
           </a>

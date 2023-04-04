@@ -41,14 +41,18 @@ export const FormContent = styled.div`
     color: ${Palette.NEUTRAL_N10};
     resize: none;
     border-radius: 8px;
-  }
-  > input:focus::-webkit-input-placeholder {
-    color: rgb(118, 118, 118);
     font-family: 'SUIT';
+    font-size: 1em;
+
+    :focus::-webkit-input-placeholder {
+      color: transparent;
+      transition: 0.25s;
+    }
   }
+
   > textarea {
     height: 100%;
     border-radius: 8px;
-    font-family: 'SUIT';
+    font-size: 0.875em;
   }
 `;

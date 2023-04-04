@@ -1,7 +1,6 @@
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import {
-  TimeBoard,
   Profile,
   NoticeBoard,
   SelfStudyBoard,
@@ -24,6 +23,12 @@ import {
 import { applyPageProps, myProfileType, noticePageProps } from 'types';
 import ChannelBtn from 'components/Home/molecules/ChannelBtn';
 import SEOHead from 'components/Common/atoms/SEOHead';
+import dynamic from 'next/dynamic';
+
+const TimeBoard = dynamic(
+  () => import('../components/Home/organisms/TimeBoard'),
+  { ssr: false }
+);
 
 const HomePage: NextPage<{
   fallback: Record<string, myProfileType> &
@@ -35,20 +40,20 @@ const HomePage: NextPage<{
   return (
     <>
       <SEOHead title={'| 홈페이지'} />
-      <SWRConfig value={fallback}>
-        <MainTemplates>
-          <SideBar />
-          <HomeTemplates>
-            <TimeBoard />
+      <MainTemplates>
+        <SideBar />
+        <HomeTemplates>
+          <TimeBoard />
+          <SWRConfig value={fallback}>
             <Profile />
             <MealBoard />
             <NoticeBoard />
             <SelfStudyBoard />
             <MassageBoard />
-          </HomeTemplates>
-        </MainTemplates>
-        <ChannelBtn />
-      </SWRConfig>
+          </SWRConfig>
+        </HomeTemplates>
+      </MainTemplates>
+      <ChannelBtn />
     </>
   );
 };

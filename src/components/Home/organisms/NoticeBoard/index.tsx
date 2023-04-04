@@ -24,16 +24,8 @@ const NoticeBoard = () => {
         {boardList ? (
           boardList.map((i, idx) => (
             <S.NoticeBox key={idx}>
-              <NoticeItem
-                writer={i.role}
-                date={i.createdDate.slice(0, 10)}
-                title={i.title}
-                desc={i.content}
-                isCurrenPage={false}
-                id={i.id}
-              />
-              {boardList[idx]?.createdDate.slice(0, 7) >
-                boardList[idx + 1]?.createdDate.slice(0, 7) && (
+              {boardList[idx]?.createdDate.slice(0, 7) <
+                boardList[idx - 1]?.createdDate.slice(0, 7) && (
                 <S.DateLine>
                   <hr />
                   {`${i?.createdDate.slice(0, 4)}년 ${i?.createdDate.slice(
@@ -43,6 +35,14 @@ const NoticeBoard = () => {
                   <hr />
                 </S.DateLine>
               )}
+              <NoticeItem
+                writer={i.role}
+                date={i.createdDate.slice(0, 10)}
+                title={i.title}
+                desc={i.content}
+                isCurrenPage={false}
+                id={i.id}
+              />
             </S.NoticeBox>
           ))
         ) : (

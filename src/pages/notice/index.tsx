@@ -27,7 +27,7 @@ const Notice: NextPage<{
   const isWrite = useRecoilValue(isNoticeWrite);
   return (
     <>
-      <SEOHead title="공지사항페이지" />
+      <SEOHead title="| 공지사항페이지" />
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar />

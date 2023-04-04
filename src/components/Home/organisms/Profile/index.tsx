@@ -34,8 +34,8 @@ const Profile = () => {
       <S.ProfileBox>
         <DefaultProfile />
         <S.StudentInfo>
-          <S.Name>{`반가워요, ${data?.name}님`}</S.Name>
-          <S.StudId>{data?.stuNum}</S.StudId>
+          <S.Name>{`반가워요, ${data?.name ?? ''}님`}</S.Name>
+          <S.StudId>{data?.stuNum ?? ''}</S.StudId>
         </S.StudentInfo>
         <div>
           <div onClick={() => setMenuModal((pre) => !pre)}>

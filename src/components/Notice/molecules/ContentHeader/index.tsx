@@ -49,22 +49,24 @@ const ContentHeader = ({ data }: props) => {
         </S.Writer>
         <h2>{data.title}</h2>
       </S.HeaderLeftBox>
-      <S.HeaderRightBox>
-        <small>{writeDate}</small>
-        <S.IconBox>
-          <button
-            onClick={() => {
-              setNoticeWrite(true);
-              setNoticeModify(true);
-            }}
-          >
-            <EditPencilIcon />
-          </button>
-          <button onClick={() => setModal(true)}>
-            <TrashCan />
-          </button>
-        </S.IconBox>
-      </S.HeaderRightBox>
+      {role !== 'member' && (
+        <S.HeaderRightBox>
+          <small>{writeDate}</small>
+          <S.IconBox>
+            <button
+              onClick={() => {
+                setNoticeWrite(true);
+                setNoticeModify(true);
+              }}
+            >
+              <EditPencilIcon />
+            </button>
+            <button onClick={() => setModal(true)}>
+              <TrashCan />
+            </button>
+          </S.IconBox>
+        </S.HeaderRightBox>
+      )}
       <CommonCheckModal
         title="공지사항 삭제"
         content="정말로 해당 공지사항을 삭제하겠습니까?"

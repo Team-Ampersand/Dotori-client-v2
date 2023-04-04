@@ -15,6 +15,7 @@ import {
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
 import { isemailPasswordCheck } from 'recoilAtoms/recoilAtomContainer';
 import { useRecoilState } from 'recoil';
+import { RegexsData } from 'assets/data/RegexsData';
 
 const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
   const router = useRouter();
@@ -27,7 +28,9 @@ const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
   useEffect(() => {
     setIsCheck(
       isNotNull(
-        watch('password') && watch('newPassword') && watch('newPasswordCheck')
+        watch('newPassword') &&
+          watch('newPasswordCheck') &&
+          (watch('password') || !isLogin)
       )
     );
   }, [watch(['password', 'newPassword', 'newPasswordCheck'])]);
@@ -42,8 +45,7 @@ const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
   };
 
   const onValid: SubmitHandler<ChangePasswdForm> = async (state) => {
-    if (!state.password || !state.newPassword) return;
-    if (state.password === state.newPassword)
+    if (state.password === state.newPassword && isLogin)
       return toast.error('비밀번호확인이 현재 비밀번호와 똑같습니다.');
     else if (state.newPassword !== state.newPasswordCheck)
       return toast.error(
@@ -51,10 +53,9 @@ const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
       );
     if (
       isLogin
-        ? await passwordChange(state.password, state.newPassword)
+        ? await passwordChange(state.password ?? '', state.newPassword ?? '')
         : await authPasswordChange(
-            state.password,
-            state.newPassword,
+            state.newPassword ?? '',
             IsemailPasswordCheck.authEmail + '@gsm.hs.kr'
           )
     ) {
@@ -68,34 +69,36 @@ const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
       <DotoriLogo />
       <form>
         <InputsWrapper>
-          <p>현재 비밀번호</p>
-          <AuthInput
-            register={register('password', {
-              required: '비밀번호를 입력해주세요.',
-              pattern: {
-                value:
-                  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
-                message: '영문, 숫자, 특수문자 포함 8~20자로 입력하세요.',
-              },
-            })}
-            type="password"
-            placeholder="영문,숫자,특수문자 포함 8~20자"
-            maxLength={20}
-            DeleteBtnClick={() => resetField('password')}
-            isValue={isNotNull(watch('password'))}
-          />
+          {isLogin && (
+            <>
+              <p>현재 비밀번호</p>
+              <AuthInput
+                register={register('password', {
+                  required: '비밀번호를 입력해주세요.',
+                  pattern: {
+                    value: RegexsData.PASSWORD,
+                    message: '영문, 숫자, 특수문자 포함 8~20자로 입력하세요.',
+                  },
+                })}
+                type="password"
+                placeholder="영문,숫자,특수문자 포함 8~20자"
+                maxLength={20}
+                DeleteBtnClick={() => resetField('password')}
+                isValue={isNotNull(watch('password'))}
+              />
+            </>
+          )}
           <p>새로운 비밀번호</p>
           <AuthInput
             register={register('newPassword', {
               required: '비밀번호확인칸을 입력해주세요.',
               pattern: {
-                value:
-                  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
+                value: RegexsData.PASSWORD,
                 message: '영문, 숫자, 특수문자 포함 8~20자로 입력하세요.',
               },
             })}
             type="password"
-            placeholder="특수문자 포함 9~20"
+            placeholder="특수문자 포함 8~20"
             maxLength={20}
             DeleteBtnClick={() => resetField('newPassword')}
             isValue={isNotNull(watch('newPassword'))}

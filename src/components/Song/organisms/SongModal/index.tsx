@@ -21,12 +21,13 @@ const SongModal = () => {
   return (
     <ResponseOverayWrapper
       isClick={modal}
-      onClick={(e) => {
+      onClick={() => {
         setModal(false);
-        e.stopPropagation();
       }}
     >
-      {modal && (calendarModal ? <CalendarBox /> : <SongForm />)}
+      <div onClick={(e) => e.stopPropagation()}>
+        {modal && (calendarModal ? <CalendarBox /> : <SongForm />)}
+      </div>
     </ResponseOverayWrapper>
   );
 };

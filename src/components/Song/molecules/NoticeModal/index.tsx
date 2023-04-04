@@ -8,7 +8,7 @@ const NoticeModal = () => {
 
   return (
     <ModalOverayWrapper isClick={isModal} onClick={() => setModal(false)}>
-      <S.Layer>
+      <S.Layer onClick={(e) => e.stopPropagation()}>
         <S.Header>
           <h3>※ 음악 신청 시 공지사항</h3>
         </S.Header>

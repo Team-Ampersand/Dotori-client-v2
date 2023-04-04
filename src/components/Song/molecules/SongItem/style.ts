@@ -62,6 +62,8 @@ export const CreateDate = styled.p`
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 1em;
+  width: 96px;
+  justify-content: end;
 
   button,
   a {

@@ -1,3 +1,4 @@
+import { getMusic } from 'api/music';
 import SEOHead from 'components/Common/atoms/SEOHead';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
@@ -9,12 +10,14 @@ import SongRightLayer from 'components/Song/organisms/SongRightLayer';
 import * as S from 'components/Song/template/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
+import { useRecoilValue } from 'recoil';
 import { SWRConfig } from 'swr';
 import { SongListType } from 'types/components/SongPage';
 import { apiClient } from 'utils/Libs/apiClient';
 import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 import { SongController } from 'utils/Libs/requestUrls';
+import { getDate } from 'utils/getDate';
 
 const SongPage: NextPage<{
   fallback: Record<string, SongListType>;
@@ -33,8 +36,8 @@ const SongPage: NextPage<{
               <SongRightLayer />
             </S.SongLayer>
           </S.SongTemplate>
-          <NoticeModal />
           <SongModal />
+          <NoticeModal />
         </MainTemplates>
       </SWRConfig>
     </>
@@ -44,6 +47,9 @@ const SongPage: NextPage<{
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
+  const date = `${getDate(new Date())[0]}-${getDate(new Date())[1]}-${
+    getDate(new Date())[2]
+  }`;
 
   if (!Authorization) {
     return {
@@ -57,6 +63,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const { data: songData } = await apiClient.get(SongController.music(role), {
       headers: { Authorization },
+      params: {
+        date: date,
+      },
     });
     return {
       props: {

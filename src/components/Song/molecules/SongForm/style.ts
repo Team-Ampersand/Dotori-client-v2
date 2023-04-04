@@ -11,7 +11,7 @@ export const Layer = styled.form`
   border-radius: 1em;
 
   @media (max-width: 950px) {
-    max-width: 380px;
+    width: 380px;
   }
 
   > * {
@@ -46,8 +46,18 @@ export const Input = styled.input`
   flex-basis: 52px;
   padding: 16px 12px;
   background: ${Palette.NEUTRAL_N50};
-  border: 1px solid ${Palette.PRIMARY_P10};
   color: ${Palette.NEUTRAL_N10};
+
+  ::-webkit-input-placeholder {
+    transition: color 0.25s;
+  }
+
+  :focus {
+    border: 1px solid ${Palette.PRIMARY_P10};
+    ::-webkit-input-placeholder {
+      color: transparent;
+    }
+  }
 `;
 
 export const Submit = styled.button`

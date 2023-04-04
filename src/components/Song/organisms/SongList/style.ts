@@ -9,6 +9,8 @@ export const Layer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
 
   @media (max-width: 950px) {
     width: 100%;
@@ -38,8 +40,10 @@ export const ListHeader = styled.div`
 export const ListContainer = styled.div`
   width: 100%;
   height: calc(100% - 2rem);
-  border-radius: 1rem;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   ::-webkit-scrollbar {
     width: 0;

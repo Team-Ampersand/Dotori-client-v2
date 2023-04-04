@@ -20,7 +20,10 @@ const SelfStudyTable = () => {
     SelfstudyController.selfStudyRank(role)
   );
 
-  const handelSelfstudySearch = async (state: any, name: string) => {
+  const handelSelfstudySearch = async (
+    state: (string | undefined)[],
+    name?: string
+  ) => {
     await selfStudySearch(
       role,
       name ? name : null,

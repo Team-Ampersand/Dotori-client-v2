@@ -12,10 +12,12 @@ export interface AuthInputProps
   isEmailAuth?: boolean;
   isEmail?: boolean;
   DeleteBtnClick: () => void;
+  isSearch?: boolean;
 }
 export interface AuthInputStyleProps {
   isRabel?: boolean;
   isEmailAuth?: boolean;
   isValue?: boolean;
   isFocus?: boolean;
+  isSearch?: boolean;
 }

@@ -1,6 +1,6 @@
 import '../styles/globals.tsx';
 import type { AppProps } from 'next/app';
-import GlobalStyle from '../styles/globals';
+import GlobalStyle, { Palette } from '../styles/globals';
 import '../../public/static/fonts/style.css';
 import { Slide, toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,6 +27,10 @@ export default function App({ Component, pageProps }: AppProps) {
           pauseOnHover={true}
           position={toast.POSITION.TOP_RIGHT}
           transition={Slide}
+          toastStyle={{
+            backgroundColor: Palette.BACKGROUND_CARD,
+            color: Palette.NEUTRAL_N10,
+          }}
         />
       </RecoilRoot>
     </SWRConfig>

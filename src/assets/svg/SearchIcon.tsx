@@ -1,25 +1,17 @@
-import { Palette } from 'styles/globals';
-
 const SearchIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <circle
-        cx="9"
-        cy="9"
-        r="8"
-        stroke={Palette.NEUTRAL_N30}
-        strokeWidth="2"
-      />
+      <circle cx="11" cy="11" r="8" stroke={props.color} strokeWidth="2" />
       <path
-        d="M18.2426 18.2426L15 15"
-        stroke={Palette.NEUTRAL_N30}
+        d="M20.2426 20.2426L17 17"
+        stroke={props.color}
         strokeWidth="2"
         strokeLinecap="round"
       />

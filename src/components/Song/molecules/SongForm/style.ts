@@ -11,7 +11,7 @@ export const Layer = styled.form`
   border-radius: 1em;
 
   @media (max-width: 950px) {
-    max-width: 380px;
+    width: 380px;
   }
 
   > * {

@@ -36,8 +36,8 @@ const SongPage: NextPage<{
               <SongRightLayer />
             </S.SongLayer>
           </S.SongTemplate>
-          <NoticeModal />
           <SongModal />
+          <NoticeModal />
         </MainTemplates>
       </SWRConfig>
     </>

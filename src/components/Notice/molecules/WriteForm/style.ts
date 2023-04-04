@@ -44,9 +44,11 @@ export const FormContent = styled.div`
   }
   > input:focus::-webkit-input-placeholder {
     color: rgb(118, 118, 118);
+    font-family: 'SUIT';
   }
   > textarea {
     height: 100%;
     border-radius: 8px;
+    font-family: 'SUIT';
   }
 `;

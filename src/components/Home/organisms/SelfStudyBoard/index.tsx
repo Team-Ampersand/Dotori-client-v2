@@ -7,7 +7,7 @@ import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import ApplyBox from 'components/Home/molecules/ApplyBox';
 import ApplyModifyModal from 'components/Home/molecules/ApplyModifyModal';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { applyBoardState, applyPageProps, applyStyleProps } from 'types';
+import { applyPageProps, applyStyleProps } from 'types';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
@@ -22,6 +22,10 @@ const SelfStudyBoard = () => {
   const { data, mutate } = useSWR<applyPageProps>(
     SelfstudyController.selfStudyInfo(role)
   );
+
+  useEffect(() => {
+    mutate();
+  }, []);
 
   useEffect(() => {
     if (role === ('admin' || 'councillor'))

@@ -7,6 +7,7 @@ import { noticeListType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
+import { getDate } from 'utils/getDate';
 
 const NoticeList = () => {
   const role = getRole();
@@ -25,11 +26,21 @@ const NoticeList = () => {
 
   return (
     <S.Layer>
-      {role !== 'member' && <ListHeader role={role} choice={selectedNotice} />}
+      <ListHeader role={role} choice={selectedNotice} />
       <S.NoticeContainer>
         {boardList &&
           [...boardList].map((item, key) => (
             <>
+              {boardList[key - 1]?.createdDate.slice(0, 7) >
+                boardList[key]?.createdDate.slice(0, 7) && (
+                <S.DateLine>
+                  <hr />
+                  {`${getDate(new Date(item.createdDate))[0]}년 ${
+                    getDate(new Date(item.createdDate))[1]
+                  }월`}
+                  <hr />
+                </S.DateLine>
+              )}
               <div
                 key={item.id}
                 onClick={() => {
@@ -47,17 +58,6 @@ const NoticeList = () => {
                   id={item.id}
                 />
               </div>
-              {boardList[key]?.createdDate.slice(1, 10) >
-                boardList[key + 1]?.createdDate.slice(1, 10) && (
-                <S.DateLine>
-                  <hr />
-                  {`${item?.createdDate.slice(
-                    5,
-                    7
-                  )}월 ${item?.createdDate.slice(8, 10)}일`}
-                  <hr />
-                </S.DateLine>
-              )}
             </>
           ))}
       </S.NoticeContainer>

@@ -15,15 +15,14 @@ import SEOHead from 'components/Common/atoms/SEOHead';
 
 const SelfStudyPage: NextPage<{
   fallback: Record<string, selfstudyListType>;
-  role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
   return (
     <>
       <SEOHead title={'| 자습신청페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
-          <SideBar role={role} />
+          <SideBar />
           <SelfstudyTemplates>
             <CommonHeader />
             <SelfStudyTable />
@@ -47,11 +46,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         fallback: { [SelfstudyController.selfStudyRank(role)]: selfStudyData },
-        role,
       },
     };
   } catch (e) {
-    console.log(e);
     return { props: {} };
   }
 };

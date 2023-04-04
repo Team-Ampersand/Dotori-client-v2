@@ -15,15 +15,14 @@ import SEOHead from 'components/Common/atoms/SEOHead';
 
 const PenaltyPage: NextPage<{
   fallback: Record<string, PenaltyStuListType>;
-  role: string;
-}> = ({ fallback, role }) => {
+}> = ({ fallback }) => {
   UseThemeEffect();
   return (
     <>
       <SEOHead title={'| 규정위반페이지'} />
       <SWRConfig value={fallback}>
         <MainTemplates>
-          <SideBar role={role} />
+          <SideBar />
           <PenaltyTemplates>
             <CommonHeader />
             <PenaltyTable />
@@ -59,7 +58,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         fallback: { [penaltyController.strRule(role)]: penaltyListData },
-        role,
       },
     };
   } catch (e) {

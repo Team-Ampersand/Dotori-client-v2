@@ -12,8 +12,12 @@ export const Layer = styled.div`
   align-items: center;
   gap: 10px;
 
-  > * {
+  > h2 {
     color: ${Palette.NEUTRAL_N10};
+  }
+
+  > p {
+    color: ${Palette.NEUTRAL_N20};
   }
 
   > svg {

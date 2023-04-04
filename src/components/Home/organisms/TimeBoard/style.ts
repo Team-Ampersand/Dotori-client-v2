@@ -118,6 +118,14 @@ export const BoardBottom = styled.div`
   font-weight: 600;
   font-size: 30px;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  background: radial-gradient(
+    198.73% 2092.94% at 17.26% 9.06%,
+    #5966e9 0%,
+    #9f5bf7 42.38%,
+    #c955ff 94.62%,
+    #f2b5b5 100%
+  );
 
   span {
     padding-left: 10px;
@@ -147,15 +155,15 @@ export const BoardBottom = styled.div`
 
 export const ShadowImgBox = styled.div`
   position: absolute;
-  right: -0.7vw;
-  bottom: -4vh;
+  right: -2.7vw;
+  bottom: -2vh;
   width: 50vh;
   height: 44vh;
   border-radius: 50%;
   z-index: 0;
 
   @media (max-width: 1130px) {
-    right: -3.7vw;
+    right: -4.7vw;
     bottom: -1vh;
     width: 42vh;
     height: 40vh;

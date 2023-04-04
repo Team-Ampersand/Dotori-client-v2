@@ -34,7 +34,9 @@ const ApplyBox = ({
         />
         <S.NotApplyLine
           style={{
-            width: `calc(${((maxCount - count) / maxCount) * 100}% - 0.7%)`,
+            width: `calc(${
+              maxCount ? ((maxCount - count) / maxCount) * 100 : 100
+            }% - 0.7%)`,
           }}
         />
       </S.CountLine>

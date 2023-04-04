@@ -1,4 +1,5 @@
 import { signup } from 'api/member';
+import { RegexsData } from 'assets/data/RegexsData';
 import { AuthButton, AuthInput } from 'components/Common';
 import { AuthBottomWrapper } from 'components/Common/atoms/Wrappers/AuthWrapper/style';
 import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
@@ -7,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { signUpObject, signUpStep } from 'recoilAtoms/recoilAtomContainer';
 import { SignupForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
@@ -17,7 +18,7 @@ const PasswordCheck = () => {
   const { register, watch, handleSubmit, resetField } = useForm<SignupForm>();
   const [isCheck, setIsCheck] = useState(false);
   const [SignUpObject] = useRecoilState(signUpObject);
-  const [, setSignUpStep] = useRecoilState(signUpStep);
+  const setSignUpStep = useSetRecoilState(signUpStep);
 
   useEffect(() => {
     setIsCheck(isNotNull(watch('password') && watch('passwordCheck')));
@@ -58,8 +59,7 @@ const PasswordCheck = () => {
           register={register('password', {
             required: '비밀번호를 입력해주세요.',
             pattern: {
-              value:
-                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
+              value: RegexsData.PASSWORD,
               message: '영문, 숫자, 특수문자 포함 8~20자로 입력하세요.',
             },
           })}

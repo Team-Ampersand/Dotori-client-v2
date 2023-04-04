@@ -12,7 +12,6 @@ import MenuModal from 'components/Home/molecules/MenuModal';
 import PenaltyModal from 'components/Home/molecules/PenaltyModal';
 import ProileImgModal from 'components/Home/molecules/ProfileImgModal';
 import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
-import GradationImg from '../../../../assets/png/Gradation.png';
 import { useRecoilState } from 'recoil';
 import {
   menuModalState,
@@ -25,7 +24,7 @@ import { MassageController, SelfstudyController } from 'utils/Libs/requestUrls';
 
 const TimeBoard = () => {
   const [date, setDate] = useState<string>('');
-  const [year, month, day, minute] = getDate();
+  const [year, month, day] = getDate();
   const [theme] = UseToggleTheme();
   const [menuModal, setMenuModal] = useRecoilState(menuModalState);
   const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);
@@ -42,18 +41,18 @@ const TimeBoard = () => {
   }, []);
 
   const tick = () => {
-    if (new Date().toLocaleTimeString() === '오후 8:00:00') {
+    const CurrentDate = new Date().toLocaleTimeString();
+    if (CurrentDate === '오후 8:00:00') {
       mutate(SelfstudyController.selfStudyInfo(role));
-    } else if (new Date().toLocaleTimeString() === '오후 8:20:00') {
+    } else if (CurrentDate === '오후 8:20:00') {
       mutate(MassageController.massage(role));
-    } else if (new Date().toLocaleTimeString() === '오후 9:00:00') {
+    } else if (CurrentDate === '오후 9:00:00') {
       mutate(SelfstudyController.selfStudyInfo(role));
       mutate(MassageController.massage(role));
     }
-    setDate(new Date().toLocaleTimeString());
+    setDate(CurrentDate);
   };
 
-  if (!date) return <></>;
   return (
     <S.TimeBoardWrapper>
       <S.BoardTop>
@@ -92,13 +91,6 @@ const TimeBoard = () => {
         />
       )}
       <S.BoardBottom>
-        <Image
-          src={GradationImg}
-          layout="fill"
-          priority
-          alt="GradationImg"
-          placeholder="blur"
-        />
         <span>현재시간</span>
         <S.CurrentTime>{date}</S.CurrentTime>
         <S.DotoriImgBox>
@@ -107,8 +99,7 @@ const TimeBoard = () => {
             alt="도토리"
             priority
             layout="fill"
-            objectFit={'cover'}
-            // placeholder="blur"
+            placeholder="blur"
           />
         </S.DotoriImgBox>
         <S.ShadowImgBox>

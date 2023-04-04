@@ -12,3 +12,4 @@ export * from './List';
 export * from './Penalty';
 export * from './Selfstudy';
 export * from './Massage';
+export * from './Assets';

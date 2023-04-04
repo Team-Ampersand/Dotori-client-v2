@@ -3,6 +3,7 @@ import {
   EyeSelectedIcon,
   LockIcon,
   PersonIcon,
+  SearchIcon,
   XmarkIcon,
 } from 'assets/svg';
 import { useState } from 'react';
@@ -23,6 +24,7 @@ const AuthInput = ({
   onSubmit,
   readOnly,
   isEmail,
+  isSearch,
 }: AuthInputProps) => {
   const [isFocus, setIsFocus] = useState(false);
   const [seePassword, setSeePassword] = useState(false);
@@ -37,14 +39,17 @@ const AuthInput = ({
       isRabel={isNotNull(labelName)}
       isEmailAuth={isNotNull(isEmailAuth)}
       onSubmit={onSubmit}
+      isSearch={isSearch}
     >
       <label>
-        {labelName === 'persen' ? (
+        {labelName === 'persen' && (
           <PersonIcon color={iconColor} className="frontIcon" />
-        ) : (
-          labelName === 'lock' && (
-            <LockIcon color={iconColor} className="frontIcon" />
-          )
+        )}
+        {labelName === 'lock' && (
+          <LockIcon color={iconColor} className="frontIcon" />
+        )}
+        {labelName === 'search' && (
+          <SearchIcon color={iconColor} className="frontIcon" />
         )}
         <input
           readOnly={readOnly}

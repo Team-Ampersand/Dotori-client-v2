@@ -6,14 +6,26 @@ export const AuthInput = styled.div`
   position: relative;
   height: 55px;
   width: ${(props: AuthInputStyleProps) =>
-    props.isRabel ? `385px` : props.isEmailAuth ? `255px` : `385px`};
+    props.isSearch
+      ? '250px'
+      : props.isRabel
+      ? `385px`
+      : props.isEmailAuth
+      ? `255px`
+      : `385px`};
   display: flex;
   justify-content: center;
   align-items: center;
 
   input {
     width: ${(props: AuthInputStyleProps) =>
-      props.isRabel ? `280px` : props.isEmailAuth ? `215px` : `340px`};
+      props.isSearch
+        ? '145px'
+        : props.isRabel
+        ? `280px`
+        : props.isEmailAuth
+        ? `215px`
+        : `340px`};
     height: 52px;
     display: flex;
     align-items: center;

@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { signUpObject, signUpStep } from 'recoilAtoms';
 import { isemailPasswordCheck } from 'recoilAtoms/recoilAtomContainer';
 import { SignupForm } from 'types';
@@ -19,8 +19,8 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
   const [isAuthCheck, setIsAuthEmailCheck] = useState(false);
   const [isAuth, setIsAuth] = useState(true);
   const [SignUpObject, setSignUpObject] = useRecoilState(signUpObject);
-  const [, setIsemailPasswordCheck] = useRecoilState(isemailPasswordCheck);
-  const [, setSignUpStep] = useRecoilState(signUpStep);
+  const setIsemailPasswordCheck = useSetRecoilState(isemailPasswordCheck);
+  const setSignUpStep = useSetRecoilState(signUpStep);
   const { register, watch, handleSubmit, resetField } = useForm<SignupForm>();
 
   useEffect(() => {

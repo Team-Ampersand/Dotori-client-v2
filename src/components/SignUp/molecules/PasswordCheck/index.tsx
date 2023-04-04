@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { signUpObject, signUpStep } from 'recoilAtoms/recoilAtomContainer';
 import { SignupForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
@@ -18,7 +18,7 @@ const PasswordCheck = () => {
   const { register, watch, handleSubmit, resetField } = useForm<SignupForm>();
   const [isCheck, setIsCheck] = useState(false);
   const [SignUpObject] = useRecoilState(signUpObject);
-  const [, setSignUpStep] = useRecoilState(signUpStep);
+  const setSignUpStep = useSetRecoilState(signUpStep);
 
   useEffect(() => {
     setIsCheck(isNotNull(watch('password') && watch('passwordCheck')));

@@ -81,10 +81,8 @@ export const authCheck = async (emailCode: number) => {
   } catch (e: any) {
     if (e.message === 'Request failed with status code 202') {
       toast.warning('인증번호시간이 만료됬어요.');
-    } else if (e.message === 'Request failed with status code 400') {
-      toast.warning('인증 키가 달라요.');
     } else if (e.message === 'Request failed with status code 404') {
-      toast.warning('인증번호가 존재하지 않아요.');
+      toast.warning('인증번호가 달라요.');
     }
     return false;
   }
@@ -109,21 +107,17 @@ export const passwordChange = async (
 };
 
 export const authPasswordChange = async (
-  currentPassword: string,
   newPassword: string,
   email?: string
 ) => {
   try {
     await apiClient.patch(MemberController.authChangePasswd, {
-      currentPassword,
       newPassword,
       email,
     });
     return toast.success('비밀번호가 변경되었습니다');
   } catch (e: any) {
-    if (e.message === 'Request failed with status code 400') {
-      toast.warning('비밀번호가 일치하지않아요.');
-    } else if (e.message === 'Request failed with status code 404') {
+    if (e.message === 'Request failed with status code 404') {
       toast.warning('유저를 찾을 수 없어요.');
     }
     return false;

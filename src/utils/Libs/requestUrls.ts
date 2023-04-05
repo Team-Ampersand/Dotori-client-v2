@@ -74,3 +74,15 @@ export const SongController = {
     return `${role}/music/${musicId}`;
   },
 };
+
+export const StuInfoController = {
+  stuInfo(role: string) {
+    return `${role}/student-info`;
+  },
+  searchStuInfo(role: string) {
+    return `${role}/student-info/search`;
+  },
+  modifyStuInfo(role: string) {
+    return `${role}/student-info/modify`;
+  },
+};

@@ -14,6 +14,9 @@ export const PenaltyListModalWrapper = styled.div`
   padding: 18px;
   border-radius: 16px;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+  @media (max-width: 420px) {
+    width: 90vw;
+  }
 `;
 
 export const PenaltyItems = styled.div`

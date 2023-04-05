@@ -60,7 +60,12 @@ export const RuleViolationList = styled.div`
   font-size: 14px;
   color: ${Palette.NEUTRAL_N20};
   @media (max-width: 1634px) {
-    width: 50%;
+    width: 40%;
+  }
+  @media (max-width: 420px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 

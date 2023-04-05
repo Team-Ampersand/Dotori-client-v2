@@ -11,6 +11,7 @@ export const Layer = styled.div`
   span {
     font-size: 1.3em;
     color: ${Palette.NEUTRAL_N10};
+    font-weight: bold;
   }
 `;
 

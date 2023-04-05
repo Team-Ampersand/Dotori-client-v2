@@ -43,7 +43,7 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
           <NoticeOptionBtn
             color={Palette.NEUTRAL_N20}
             border={Palette.NEUTRAL_N20}
-            borderRadius="1em"
+            borderRadius="2em"
             onClick={() => {
               setNoticeDelete(!noticeDelete);
               setSelectedNotice([]);
@@ -56,7 +56,7 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
             <NoticeOptionBtn
               color={Palette.SYSTEM_ERROR}
               border={Palette.SYSTEM_ERROR}
-              borderRadius="1em"
+              borderRadius="2em"
               onClick={() => choice.length > 0 && setModal(true)}
             >
               삭제
@@ -65,7 +65,7 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
             <NoticeOptionBtn
               bgColor={Palette.PRIMARY_P10}
               color={Palette.WHITE}
-              borderRadius="1em"
+              borderRadius="2em"
               onClick={() => {
                 setNoticeWrite(true);
                 setNoticeContent(null);

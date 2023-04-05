@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
-import { NoticeController, StuInfoController } from 'utils/Libs/requestUrls';
+import { StuInfoController } from 'utils/Libs/requestUrls';
 
 export const getStuInfo = async (role: string) => {
   try {

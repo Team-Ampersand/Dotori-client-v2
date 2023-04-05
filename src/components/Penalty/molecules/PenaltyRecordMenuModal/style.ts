@@ -13,11 +13,20 @@ export const PenaltyRecordInfoModalWrapper = styled.div`
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+  @media (max-width: 420px) {
+    width: 90vw;
+    .select {
+      overflow: auto;
+    }
+  }
 `;
 
 export const SelectWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 420px) {
+    width: 470px;
+  }
 `;
 
 export const SelectBox = styled.div`
@@ -63,8 +72,18 @@ export const TagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 18px 18px 0;
+  padding: 18px;
   overflow: auto;
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${Palette.NEUTRAL_N30};
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: ${Palette.NEUTRAL_N50};
+  }
 `;
 
 export const TagItem = styled.div`

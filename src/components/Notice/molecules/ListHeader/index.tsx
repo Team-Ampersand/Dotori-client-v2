@@ -38,7 +38,7 @@ const ListHeader = ({ role, choice }: { role: string; choice: number[] }) => {
       <span>
         {noticeDelete && choice.length > 0 ? `${choice.length}개 삭제` : '전체'}
       </span>
-      {role === 'member' && (
+      {role !== 'member' && (
         <S.ButtonBox>
           <NoticeOptionBtn
             color={Palette.NEUTRAL_N20}

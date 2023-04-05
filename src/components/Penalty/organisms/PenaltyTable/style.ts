@@ -31,7 +31,6 @@ export const ListWrapper = styled.div`
   @media (max-width: 950px) {
     padding-top: 16px;
     width: 100%;
-    /* overflow-y: visible; */
   }
 `;
 

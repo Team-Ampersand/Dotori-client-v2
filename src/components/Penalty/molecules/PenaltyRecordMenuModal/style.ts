@@ -17,6 +17,9 @@ export const PenaltyRecordInfoModalWrapper = styled.div`
     width: 90vw;
     .select {
       overflow: auto;
+      ::-webkit-scrollbar {
+        height: 0;
+      }
     }
   }
 `;
@@ -67,22 +70,15 @@ export const MenuList = styled.li`
 export const TagWrapper = styled.div`
   border-top: 1px solid ${Palette.NEUTRAL_N40};
   width: calc(100% + 36px);
-  height: 80px;
+  height: 90px;
   margin-left: -18px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 18px;
+  padding: 10px 18px 0;
   overflow: auto;
   ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: ${Palette.NEUTRAL_N30};
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: ${Palette.NEUTRAL_N50};
+    width: 0;
   }
 `;
 

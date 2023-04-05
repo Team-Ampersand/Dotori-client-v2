@@ -39,7 +39,7 @@ const PenaltyTable = () => {
 
   const handelPenaltySearch = async (
     state: (string | undefined)[],
-    name: string
+    name?: string
   ) => {
     await selfPenaltySearch(
       role,

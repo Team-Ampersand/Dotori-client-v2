@@ -1,5 +1,3 @@
-import { ModalProps } from './Modals';
-
 export interface filterListProps {
   filterTitle: string;
   filterList:
@@ -19,7 +17,7 @@ export interface SearchFilterProps {
 
 export interface SearchFilterTypeProps {
   filterType: string;
-  onSubmit: (state: (string | undefined)[], name: string) => void;
+  onSubmit: (state: (string | undefined)[], name?: string) => void;
 }
 
 export interface FilterStyleProps {

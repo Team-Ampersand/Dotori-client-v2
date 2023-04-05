@@ -15,7 +15,7 @@ const FilterItem = ({
         value={item}
         name={name}
         checked={
-          (value === 'MAN' ? '남자' : value === 'WOMEN' ? '여자' : value) ===
+          (value === 'MAN' ? '남자' : value === 'WOMAN' ? '여자' : value) ===
           item
         }
         onClick={onClick}

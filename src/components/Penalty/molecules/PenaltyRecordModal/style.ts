@@ -8,11 +8,13 @@ export const PenaltyRecordModalWrapper = styled.div`
   background: ${Palette.BACKGROUND_CARD};
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   z-index: 10;
   padding: 18px;
   border-radius: 16px;
   position: relative;
+  @media (max-width: 420px) {
+    width: 90vw;
+  }
 `;
 
 export const SelectInfoWrapper = styled.div`
@@ -50,6 +52,11 @@ export const SelectItem = styled.div`
   font-size: 16px;
   color: ${Palette.NEUTRAL_N10};
   border-radius: 8px;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   svg {
     cursor: pointer;
   }

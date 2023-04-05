@@ -5,12 +5,15 @@ export const TableWrapper = styled.div`
   height: 87.5vh;
   display: flex;
   justify-content: space-between;
-  margin: 23px 0 16px 0;
   gap: 30px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  ::-webkit-scrollbar {
-    display: none;
+  @media (max-width: 950px) {
+    gap: 0;
+  }
+  @media (max-width: 420px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 16px;
   }
 `;
 
@@ -19,14 +22,17 @@ export const ListWrapper = styled.div`
   height: 100%;
   padding: 0 16px 16px;
   overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  ::-webkit-scrollbar {
-    display: none;
-  }
   background: ${Palette.BACKGROUND_CARD};
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
   border-radius: 16px;
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+  @media (max-width: 950px) {
+    padding-top: 16px;
+    width: 100%;
+    /* overflow-y: visible; */
+  }
 `;
 
 export const ListHeader = styled.div`
@@ -35,6 +41,9 @@ export const ListHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 420px) {
+    display: none;
+  }
 `;
 
 export const StudentConst = styled.div`
@@ -77,10 +86,15 @@ export const PenaltyBtn = styled.div`
 export const TagWrapper = styled.div`
   border-top: 1px solid ${Palette.NEUTRAL_N50};
   width: calc(100% + 32px);
-  margin-left: -16px;
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  padding: 16px;
+  padding: 16px 0;
+  @media (max-width: 420px) {
+    border: none;
+    padding: 0;
+  }
 `;
 
 export const TagItem = styled.div`
@@ -102,6 +116,7 @@ export const TagItem = styled.div`
 `;
 
 export const CSVWrapper = styled.div`
+  min-width: 250px;
   width: 280px;
   color: ${Palette.NEUTRAL_N10};
   background-color: ${Palette.BACKGROUND_CARD};
@@ -115,10 +130,15 @@ export const CSVWrapper = styled.div`
     font-weight: 700;
     font-size: 18px;
   }
+  @media (max-width: 1200px) {
+    width: 23.5vw;
+  }
+  @media (max-width: 950px) {
+    display: none;
+  }
 `;
 
 export const CSVLink = styled.div`
-  width: 240px;
   height: 45px;
   display: flex;
   justify-content: center;
@@ -134,5 +154,32 @@ export const CSVLink = styled.div`
     border: none;
     color: ${Palette.BACKGROUND_CARD};
     background-color: ${Palette.SYSTEM_POSITIVE};
+  }
+`;
+
+export const ResponseHeader = styled.div`
+  width: calc(100% + 6vw);
+  margin-left: -3vw;
+  display: none;
+  font-weight: 700;
+  font-size: 18px;
+  color: ${Palette.NEUTRAL_N10};
+  justify-content: space-between;
+  background-color: ${Palette.BACKGROUND_CARD};
+  padding: 13px 20px;
+  margin-bottom: 16px;
+  svg {
+    cursor: pointer;
+  }
+  @media (max-width: 420px) {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 `;

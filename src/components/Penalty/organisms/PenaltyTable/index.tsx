@@ -3,11 +3,12 @@ import PenaltyList from 'components/Penalty/molecules/PenaltyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
+  filterModal,
   penaltyList,
   penaltyRecordModalState,
   penaltyStudent,
 } from 'recoilAtoms/recoilAtomContainer';
-import { XtextIcon } from 'assets/svg';
+import { DownloadIcon, FilterIcon, XtextIcon } from 'assets/svg';
 import { toast } from 'react-toastify';
 import { selfPenaltySearch } from 'api/penalty';
 import { getRole } from 'utils/Libs/getRole';
@@ -22,6 +23,7 @@ const PenaltyTable = () => {
   const setPenaltyRecordModal = useSetRecoilState(penaltyRecordModalState);
   const setPenaltyOBJ = useSetRecoilState(penaltyList);
   const { data } = useSWR<PenaltyStuListType>(penaltyController.strRule(role));
+  const setModal = useSetRecoilState(filterModal);
 
   useEffect(() => {
     setPenaltyOBJ(data?.students);
@@ -54,6 +56,14 @@ const PenaltyTable = () => {
 
   return (
     <S.TableWrapper>
+      <S.ResponseHeader>
+        규정위반
+        <div>
+          <S.PenaltyBtn onClick={ClickPenaltyBtn}>규정 위반 기록</S.PenaltyBtn>
+          <DownloadIcon />
+          <FilterIcon onClick={() => setModal(true)} />
+        </div>
+      </S.ResponseHeader>
       <S.ListWrapper>
         <S.ListHeader>
           <S.StudentConst>
@@ -66,9 +76,9 @@ const PenaltyTable = () => {
         {penaltyStu.length >= 1 && (
           <S.TagWrapper>
             {penaltyStu.map((i, idx) => (
-              <S.TagItem key={idx}>
+              <S.TagItem key={idx} onClick={() => handelStuCheck(i.name)}>
                 {i.name}
-                <XtextIcon onClick={() => handelStuCheck(i.name)} />
+                <XtextIcon />
               </S.TagItem>
             ))}
           </S.TagWrapper>

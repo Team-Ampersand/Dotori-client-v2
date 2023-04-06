@@ -39,7 +39,10 @@ export const AuthInput = styled.div`
     transition: all 0.3s ease-in-out;
     padding: 0
       ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)};
-
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px white inset;
+      -webkit-text-fill-color: ${Palette.NEUTRAL_N30} !important;
+    }
     ::placeholder {
       color: ${Palette.NEUTRAL_N30};
     }

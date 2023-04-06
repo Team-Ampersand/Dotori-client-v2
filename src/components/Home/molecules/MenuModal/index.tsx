@@ -1,4 +1,5 @@
 import MenuOption from 'components/Home/atoms/MenuOption';
+import UseToggleTheme from 'hooks/useToggleTheme';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { MenuModal } from 'types';
@@ -11,6 +12,7 @@ const MenuModal = ({
   setPenaltyModal,
   setProfileImgModal,
 }: MenuModal) => {
+  const [theme] = UseToggleTheme();
   const router = useRouter();
   const menuArr: (
     | '프로필수정'
@@ -48,7 +50,12 @@ const MenuModal = ({
       <S.MenuModal>
         {isClick &&
           menuArr.map((i) => (
-            <MenuOption key={i} name={i} onClick={() => handleClick(i)} />
+            <MenuOption
+              key={i}
+              name={i}
+              onClick={() => handleClick(i)}
+              theme={theme}
+            />
           ))}
       </S.MenuModal>
     </>

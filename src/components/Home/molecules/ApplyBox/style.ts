@@ -138,7 +138,7 @@ export const ApplyBtn = styled.div`
   color: ${(props: applyStyleProps) =>
     props.applyStatus === '신청취소'
       ? `${Palette.NEUTRAL_N30}`
-      : props.applyStatus === '신청불가'
+      : props.theme === 'dark'
       ? `${Palette.NEUTRAL_N20}`
       : `white`};
   background: ${(props: applyStyleProps) =>

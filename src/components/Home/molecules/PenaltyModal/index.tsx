@@ -13,8 +13,11 @@ const PenaltyModal = ({ role }: { role: string }) => {
   const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);
   const { data } = useSWR<PenaltyListType>(penaltyController.strRule(role));
   return (
-    <ModalOverayWrapper isClick={penaltyModal}>
-      <S.PenaltyModalWrapper>
+    <ModalOverayWrapper
+      isClick={penaltyModal}
+      onClick={() => setPenaltyModal(false)}
+    >
+      <S.PenaltyModalWrapper onClick={(e) => e.stopPropagation()}>
         <ModalHeader name={'규정 위반 내역'} setState={setPenaltyModal} />
         <S.PenaltyItems>
           {data?.rules && data.rules.length > 0 ? (

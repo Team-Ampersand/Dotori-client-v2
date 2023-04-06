@@ -1,5 +1,6 @@
 export interface applyStyleProps {
   applyStatus: '신청취소' | '신청불가' | '자습신청' | '안마의자' | '인원수정';
+  theme?: 'dark' | 'light';
 }
 
 export interface applyBoardState extends applyStyleProps {

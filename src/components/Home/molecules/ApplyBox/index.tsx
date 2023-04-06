@@ -10,6 +10,7 @@ const ApplyBox = ({
   maxCount,
   applyStatus,
   onClick,
+  theme,
 }: applyBoxProps) => (
   <S.ApplyBoxWrapper style={{ gridArea: name }}>
     <S.ApplyBoardHeader>
@@ -52,7 +53,7 @@ const ApplyBox = ({
           </p>
         </S.ApplyDesc>
       )}
-      <S.ApplyBtn onClick={onClick} applyStatus={applyStatus}>
+      <S.ApplyBtn onClick={onClick} applyStatus={applyStatus} theme={theme}>
         {applyStatus}
       </S.ApplyBtn>
     </S.ApplyBottom>

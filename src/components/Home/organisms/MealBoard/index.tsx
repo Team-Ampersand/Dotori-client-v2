@@ -1,5 +1,6 @@
 import { LeftChevron, RightChevron } from 'assets/svg';
 import axios from 'axios';
+import UseToggleTheme from 'hooks/useToggleTheme';
 import { useEffect, useState } from 'react';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
@@ -45,6 +46,7 @@ const MealBoard = () => {
   const [list, setList] = useState<string[]>();
   const week = ['일', '월', '화', '수', '목', '금', '토'];
   const mealHourArr = ['조식', '중식', '석식'];
+  const [theme] = UseToggleTheme();
 
   const getDateStr = (myDate: Date) => {
     const month = String(myDate.getMonth() + 1).padStart(2, '0');
@@ -99,7 +101,10 @@ const MealBoard = () => {
             {i}
           </div>
         ))}
-        <S.SelectBtn style={{ left: `${mealCode * 11 * 3 + 1}%` }}>
+        <S.SelectBtn
+          theme={theme}
+          style={{ left: `${mealCode * 11 * 3 + 1}%` }}
+        >
           {mealHourArr[mealCode]}
         </S.SelectBtn>
       </S.HourMealChooseBox>

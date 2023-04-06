@@ -11,6 +11,7 @@ import { applyPageProps, applyStyleProps } from 'types';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
+import UseToggleTheme from 'hooks/useToggleTheme';
 
 const SelfStudyBoard = () => {
   const [info, setInfo] = useState<applyStyleProps>({
@@ -19,13 +20,10 @@ const SelfStudyBoard = () => {
   const [checkModal, setCheckModal] = useState(false);
   const [applyModifyModal, setApplyModifyModal] = useState(false);
   const role = getRole();
+  const [theme] = UseToggleTheme();
   const { data, mutate } = useSWR<applyPageProps>(
     SelfstudyController.selfStudyInfo(role)
   );
-
-  useEffect(() => {
-    mutate();
-  }, []);
 
   useEffect(() => {
     if (role === ('admin' || 'councillor'))
@@ -82,6 +80,7 @@ const SelfStudyBoard = () => {
         maxCount={data?.limit || 0}
         applyStatus={info.applyStatus}
         onClick={handleApplyBtnClick}
+        theme={theme}
       />
       {checkModal && (
         <CommonCheckModal

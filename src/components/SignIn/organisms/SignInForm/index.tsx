@@ -16,6 +16,7 @@ import * as S from './style';
 import { useResetRecoilState } from 'recoil';
 import { signUpStep } from 'recoilAtoms';
 import { RegexsData } from 'assets/data/RegexsData';
+import { useSWRConfig } from 'swr';
 
 const SignInForm = () => {
   const router = useRouter();
@@ -38,8 +39,9 @@ const SignInForm = () => {
 
   const onValid: SubmitHandler<SigninForm> = async (data) => {
     if (!data.email || !data.password) return;
-    const notError = await signin(data.email + '@gsm.hs.kr', data.password);
-    if (notError) router.push('/home');
+    if (await signin(data.email + '@gsm.hs.kr', data.password)) {
+      router.push('/home');
+    }
   };
 
   return (

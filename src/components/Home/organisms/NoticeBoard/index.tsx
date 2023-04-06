@@ -8,14 +8,8 @@ import { useEffect } from 'react';
 
 const NoticeBoard = () => {
   const role = getRole();
-  const { data, mutate } = useSWR<noticeListType>(
-    NoticeController.getNotice(role)
-  );
+  const { data } = useSWR<noticeListType>([NoticeController.getNotice(role)]);
   const boardList = data?.boardList;
-
-  useEffect(() => {
-    mutate();
-  }, []);
 
   return (
     <S.NoticeBoardWrapper>

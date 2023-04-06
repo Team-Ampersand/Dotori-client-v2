@@ -1,9 +1,8 @@
 import MenuOption from 'components/Home/atoms/MenuOption';
 import UseToggleTheme from 'hooks/useToggleTheme';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import { MenuModal } from 'types';
-import { removeToken } from 'utils/Libs/removeToken';
+import { logout } from 'utils/Libs/logout';
 import * as S from './style';
 
 const MenuModal = ({
@@ -32,16 +31,14 @@ const MenuModal = ({
         return setPenaltyModal(true);
       case '비밀번호 변경':
         return router.push('/changePasswd');
-
       case '로그아웃':
-        return logout();
+        return handleClickLogout();
     }
   };
 
-  const logout = () => {
-    removeToken();
+  const handleClickLogout = () => {
+    logout();
     router.push('/signin');
-    toast.info('로그아웃되었습니다.');
   };
 
   return (

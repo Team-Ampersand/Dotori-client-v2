@@ -21,8 +21,11 @@ const ApplyModifyModal = ({
   });
 
   return (
-    <ModalOverayWrapper isClick={modalState}>
-      <S.ApplyModifyModalWrapper>
+    <ModalOverayWrapper
+      isClick={modalState}
+      onClick={() => setModalState(false)}
+    >
+      <S.ApplyModifyModalWrapper onClick={(e) => e.stopPropagation()}>
         <ModalHeader name={`${name} 인원 수정`} setState={setModalState} />
         <div>
           <p>{`${name} 인원`}</p>

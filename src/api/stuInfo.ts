@@ -38,18 +38,18 @@ export const getSearchStuInfo = async (
 
 export const putStuInfo = async (
   role: string,
-  userId?: number,
-  memberName?: string,
-  stuNum?: string,
-  gender?: 'MAN' | 'WOMAN',
-  stuRole?: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER'
+  userId: number,
+  memberName: string,
+  stuNum: string,
+  gender: 'MAN' | 'WOMAN',
+  stuRole: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER'
 ) => {
   try {
     await apiClient.put(StuInfoController.modifyStuInfo(role), {
-      gender: gender,
       userId: userId,
       memberName: memberName,
       stuNum: stuNum,
+      gender: gender,
       role: stuRole,
     });
     toast.success('학생정보 수정이 완료되었습니다');

@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
-
-interface ButtonBoxProps {
-  status: boolean;
-  hide: boolean;
-}
+import { ButtonProps } from 'types/components/StuInfoPage';
 
 export const Layer = styled.div`
   width: 100%;
@@ -58,34 +54,33 @@ export const Role = styled.div`
   border: 1px solid var(--color);
   border-radius: 2.5em;
   color: var(--color);
-  span {
-    width: 0.5em;
-    height: 0.5em;
-    background: var(--color);
-    border-radius: 0.5em;
-  }
 `;
 
-export const ButtonBox = styled.div<ButtonBoxProps>`
+export const ColorDot = styled.span`
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--color);
+  border-radius: 0.5em;
+`;
+
+export const ButtonBox = styled.div`
   display: flex;
   gap: 1em;
+`;
 
-  div {
-    width: 2.25em;
-    height: 2.25em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: ${Palette.BACKGROUND_BG};
-    border-radius: 0.5em;
-    padding: 0.5em 0.25em;
-    cursor: pointer;
+export const Button = styled.button<ButtonProps>`
+  width: 2.25em;
+  height: 2.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${Palette.BACKGROUND_BG};
+  border-radius: 0.5em;
+  border: none;
+  padding: 0.5em 0.25em;
+  visibility: ${({ hide }) => hide && 'collapse'};
 
-    :nth-of-type(1) {
-      visibility: ${({ hide }) => hide && 'collapse'};
-      path {
-        stroke: ${({ status }) => status && Palette.PRIMARY_P10};
-      }
-    }
+  path {
+    stroke: ${({ status }) => status && Palette.PRIMARY_P10};
   }
 `;

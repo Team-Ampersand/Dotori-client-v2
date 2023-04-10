@@ -2,36 +2,32 @@ import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
 import { StuInfoController } from 'utils/Libs/requestUrls';
 
-export const getStuInfo = async (role: string) => {
+export const getStuInfo = async () => {
   try {
-    const { data } = await apiClient.get(StuInfoController.stuInfo(role));
+    const { data } = await apiClient.get(StuInfoController.stuInfo);
     return { data };
   } catch (e: any) {}
 };
 
 export const getSearchStuInfo = async (
-  role: string,
-  name?: string,
-  gender?: string,
-  classNum?: string,
-  grade?: number,
-  stuRole?: string,
-  selfStudyCheck?: boolean
+  name: string | null,
+  gender: string | null,
+  classNum: string | null,
+  grade: number | null,
+  stuRole: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER' | null,
+  selfStudyCheck: boolean | null
 ) => {
   try {
-    const { data } = await apiClient.get(
-      StuInfoController.searchStuInfo(role),
-      {
-        params: {
-          name: name,
-          gender: gender,
-          classNum: classNum,
-          grade: grade,
-          role: stuRole,
-          selfStudyCheck: selfStudyCheck,
-        },
-      }
-    );
+    const { data } = await apiClient.get(StuInfoController.searchStuInfo, {
+      params: {
+        name: name,
+        gender: gender,
+        classNum: classNum,
+        grade: grade,
+        role: stuRole,
+        selfStudyCheck: selfStudyCheck,
+      },
+    });
     return { data };
   } catch (e: any) {}
 };

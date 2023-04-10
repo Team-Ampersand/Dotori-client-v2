@@ -10,14 +10,13 @@ import {
 } from 'components/StuInfo/template/style';
 import { GetServerSideProps, NextPage } from 'next';
 import { SWRConfig } from 'swr';
-import { SongListType } from 'types/components/SongPage';
+import { StuInfoType } from 'types/components/StuInfoPage';
 import { apiClient } from 'utils/Libs/apiClient';
-import { getRole } from 'utils/Libs/getRole';
 import { getToken } from 'utils/Libs/getToken';
 import { StuInfoController } from 'utils/Libs/requestUrls';
 
 const StudsDetail: NextPage<{
-  fallback: Record<string, SongListType>;
+  fallback: Record<string, StuInfoType[]>;
 }> = ({ fallback }) => {
   return (
     <>
@@ -39,17 +38,24 @@ const StudsDetail: NextPage<{
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const role = getRole();
   const { Authorization } = await getToken(ctx);
 
   try {
-    const { data: stuInfo } = await apiClient.get(
-      StuInfoController.stuInfo(role),
-      { headers: { Authorization } }
+    const { data: stuInfo } = await apiClient.get(StuInfoController.stuInfo, {
+      headers: { Authorization },
+    });
+    const { data: searchStuInfo } = await apiClient.get(
+      StuInfoController.stuInfo,
+      {
+        headers: { Authorization },
+      }
     );
     return {
       props: {
-        fallback: { [StuInfoController.stuInfo(role)]: stuInfo },
+        fallback: {
+          [StuInfoController.stuInfo]: stuInfo,
+          [StuInfoController.searchStuInfo]: searchStuInfo,
+        },
       },
     };
   } catch (e) {

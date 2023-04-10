@@ -1,3 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Layer = styled.div``;
+export const Positioner = styled.div`
+  width: 30%;
+`;

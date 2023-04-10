@@ -6,6 +6,7 @@ import {
   FemaleIcon,
   ExclamationMark,
   PlusIcon,
+  EllipsisVerticalIcon,
 } from 'assets/svg';
 import { PenaltyItemProps } from 'types';
 import { getRole } from 'utils/Libs/getRole';
@@ -73,6 +74,9 @@ const PenaltyItem = ({ name, gender, number, ruleList }: PenaltyItemProps) => {
             <PlusIcon />
           </S.PenaltyRecordBtn>
         </S.BtnWrapper>
+        <S.ResponseBtn>
+          <EllipsisVerticalIcon onClick={handelRuleListClick} />
+        </S.ResponseBtn>
       </S.PenaltyItemWrappter>
     </>
   );

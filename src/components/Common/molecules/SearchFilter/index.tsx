@@ -35,9 +35,15 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
       : value === '여자'
       ? (value = 'WOMAN')
       : '';
-    const copy = [...filterState];
-    copy[idx] = value;
-    setFilterState(copy);
+    if (filterState[idx] === value) {
+      const copy = [...filterState];
+      copy[idx] = undefined;
+      setFilterState(copy);
+    } else {
+      const copy = [...filterState];
+      copy[idx] = value;
+      setFilterState(copy);
+    }
   };
 
   useDidMountEffect(() => {

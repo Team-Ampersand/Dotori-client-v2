@@ -28,8 +28,10 @@ const ApplyBox = ({
           style={{
             width: `calc(${(count / maxCount) * 100}% - 0.7%)`,
             background:
-              name === '자습신청'
+              Math.floor(maxCount / 2) >= count
                 ? `${Palette.SUB_GREEN}`
+                : Math.floor(maxCount * (6.5 / 8)) > count
+                ? `${Palette.SUB_YELLOW}`
                 : `${Palette.SUB_RED}`,
           }}
         />

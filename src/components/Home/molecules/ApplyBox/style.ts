@@ -138,7 +138,7 @@ export const ApplyBtn = styled.div`
   color: ${(props: applyStyleProps) =>
     props.applyStatus === '신청취소'
       ? `${Palette.NEUTRAL_N30}`
-      : props.theme === 'dark' && !(props.applyStatus === '인원수정')
+      : props.applyStatus === '신청불가' && props.theme === 'dark'
       ? `${Palette.NEUTRAL_N20}`
       : `white`};
   background: ${(props: applyStyleProps) =>
@@ -147,8 +147,9 @@ export const ApplyBtn = styled.div`
       : props.applyStatus === '신청불가'
       ? `${Palette.PRIMARY_P30}`
       : `${Palette.PRIMARY_P10}`};
-  border: ${(props: applyStyleProps) =>
-    props.applyStatus === '신청취소' && `1px solid ${Palette.NEUTRAL_N20}`};
+  border: 1px solid
+    ${(props: applyStyleProps) =>
+      props.applyStatus === '신청취소' ? `${Palette.NEUTRAL_N30}` : `none`};
 
   @media (max-width: 420px) {
     width: 100%;

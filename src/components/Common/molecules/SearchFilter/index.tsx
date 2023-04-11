@@ -24,9 +24,11 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   });
 
   const handelResetClick = () => {
-    setValue('name', '');
-    setFilterState(Array.from({ length: 5 }, () => undefined));
-    setLookUp(false);
+    if (!filterState.every((i, _, arr) => i === arr[0])) {
+      setValue('name', '');
+      setFilterState(Array.from({ length: 5 }, () => undefined));
+      setLookUp(false);
+    }
   };
 
   const filterChange = (idx: number, value: string) => {
@@ -35,15 +37,9 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
       : value === '여자'
       ? (value = 'WOMAN')
       : '';
-    if (filterState[idx] === value) {
-      const copy = [...filterState];
-      copy[idx] = undefined;
-      setFilterState(copy);
-    } else {
-      const copy = [...filterState];
-      copy[idx] = value;
-      setFilterState(copy);
-    }
+    const copy = [...filterState];
+    copy[idx] = filterState[idx] === value ? undefined : value;
+    setFilterState(copy);
   };
 
   useDidMountEffect(() => {

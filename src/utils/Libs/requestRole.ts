@@ -1,14 +1,14 @@
-import { userRole } from 'types/common/userRole';
-
-const requestWriter = (role: Omit<userRole, 'ROLE_MEMBER'>) => {
+const requestRole = (role?: string) => {
   switch (role) {
-    case 'ROLE_ADMIN':
-      return '사감선생님';
-    case 'ROLE_COUNCILLOR':
-      return '기숙사자치위원회';
+    case '학생':
+      return 'ROLE_MEMBER';
+    case '개발자':
+      return 'ROLE_DEVELOPER';
+    case '자치위원':
+      return 'ROLE_COUNCILLOR';
     default:
-      return '도토리';
+      return null;
   }
 };
 
-export default requestWriter;
+export default requestRole;

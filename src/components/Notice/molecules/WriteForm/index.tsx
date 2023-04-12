@@ -5,7 +5,7 @@ import * as S from './style';
 
 interface Props {
   register: UseFormRegister<noticeFormType>;
-  role: string;
+  role: string | null;
 }
 
 const WriteForm = ({ register, role }: Props) => {

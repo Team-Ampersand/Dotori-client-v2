@@ -40,6 +40,12 @@ export const SelfstudyController = {
   selfStudyCheck(role: string, memberId: number | undefined) {
     return `/${role}/self-study/check/${memberId}`;
   },
+  selfStudyBan(role: string, userId: number) {
+    return `/${role}/self-study/ban/${userId}`;
+  },
+  cancelSelfStudyBan(role: string, userId: number) {
+    return `/${role}/self-study/ban/cancel/${userId}`;
+  },
 };
 
 export const MassageController = {
@@ -73,4 +79,10 @@ export const SongController = {
   deleteMusic(role: string, musicId: number) {
     return `${role}/music/${musicId}`;
   },
+};
+
+export const StuInfoController = {
+  stuInfo: 'student-info',
+  searchStuInfo: 'student-info/search',
+  modifyStuInfo: '/student-info/modify',
 };

@@ -84,7 +84,5 @@ export const SongController = {
 export const StuInfoController = {
   stuInfo: 'student-info',
   searchStuInfo: 'student-info/search',
-  modifyStuInfo(role: string) {
-    return `${role}/student-info/modify`;
-  },
+  modifyStuInfo: '/student-info/modify',
 };

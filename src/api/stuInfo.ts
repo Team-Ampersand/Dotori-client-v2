@@ -38,10 +38,10 @@ export const putStuInfo = async (
   memberName: string,
   stuNum: string,
   gender: 'MAN' | 'WOMAN',
-  stuRole: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER'
+  stuRole: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER' | 'ROLE_ADMIN'
 ) => {
   try {
-    await apiClient.put(StuInfoController.modifyStuInfo(role), {
+    await apiClient.put(StuInfoController.modifyStuInfo, {
       userId: userId,
       memberName: memberName,
       stuNum: stuNum,

@@ -10,6 +10,7 @@ import { StuInfoType } from 'types/components/StuInfoPage';
 import { getRole } from 'utils/Libs/getRole';
 import { StuInfoController } from 'utils/Libs/requestUrls';
 import * as S from './style';
+import EditModal from 'components/StuInfo/organisms/EditModal';
 
 interface Props {
   data: StuInfoType;
@@ -17,7 +18,8 @@ interface Props {
 
 const StuInfoItem = ({ data: stuInfoData }: Props) => {
   const role = getRole();
-  const [modal, setModal] = useState(false);
+  const [checkModal, setCheckModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const isAbleSelfStudy = stuInfoData.selfStudyStatus === 'CAN';
@@ -40,11 +42,11 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
     setContent(
       `${stuInfoData.memberName} 학생을 자습 금지${isClear}하겠습니까?`
     );
-    setModal(true);
+    setCheckModal(true);
   };
 
   const onSubmit = async (selfStudyStatus: boolean) => {
-    setModal(false);
+    setCheckModal(false);
 
     const failed = selfStudyStatus
       ? await selfStudyBan(role, stuInfoData.id)
@@ -77,7 +79,12 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
           >
             {isAbleSelfStudy ? <BookIcon /> : <BookBenIcon />}
           </S.Button>
-          <S.Button onClick={() => {}}>
+          <S.Button
+            hide={stuInfoData.role === 'ROLE_ADMIN'}
+            onClick={() => {
+              setEditModal(true);
+            }}
+          >
             <EditPencilIcon side={17} color={Palette.NEUTRAL_N20} />
           </S.Button>
         </S.ButtonBox>
@@ -86,9 +93,15 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
       <CommonCheckModal
         title={title}
         content={content}
-        modalState={modal}
-        setModalState={setModal}
+        modalState={checkModal}
+        setModalState={setCheckModal}
         onClick={() => onSubmit(isAbleSelfStudy)}
+      />
+
+      <EditModal
+        isClick={editModal}
+        onClick={() => setEditModal(false)}
+        data={stuInfoData}
       />
     </>
   );

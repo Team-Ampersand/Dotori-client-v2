@@ -14,7 +14,7 @@ interface ParamDataType {
 }
 
 const StuInfoForm = () => {
-  const setParamData = useSetRecoilState<ParamDataType>(stuInfoParams);
+  const setParamData = useSetRecoilState(stuInfoParams);
 
   const handleSubmit = async (state: (string | undefined)[], name?: string) => {
     const stuName = name?.trim() !== '' ? name?.trim() ?? null : null;

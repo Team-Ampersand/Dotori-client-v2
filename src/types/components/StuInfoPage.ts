@@ -20,7 +20,7 @@ export interface ButtonProps {
 
 export interface StuInfoParamsType {
   name: string | null;
-  gender: 'MAN' | 'WOMAN' | null;
+  gender: string | null;
   classNum: string | null;
   grade: number | null;
   stuRole: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER' | null;

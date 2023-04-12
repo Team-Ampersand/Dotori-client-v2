@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         fetcher: (url: string) =>
           apiClient.get(url).then((response) => response.data),
         revalidateIfStale: false,
-        revalidateOnFocus: false,
+        revalidateOnFocus: true,
         revalidateOnReconnect: false,
       }}
     >

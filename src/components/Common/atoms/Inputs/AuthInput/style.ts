@@ -31,6 +31,7 @@ export const AuthInput = styled.div`
     align-items: center;
     justify-content: flex-start;
     background: ${Palette.NEUTRAL_N50};
+    box-shadow: 0 0 0 1000px ${Palette.NEUTRAL_N50} inset;
     color: ${Palette.NEUTRAL_N30};
     font-weight: 500;
     font-size: 16px;
@@ -39,7 +40,10 @@ export const AuthInput = styled.div`
     transition: all 0.3s ease-in-out;
     padding: 0
       ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)};
-
+    :-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px ${Palette.NEUTRAL_N50} inset !important;
+      -webkit-text-fill-color: ${Palette.NEUTRAL_N30} !important;
+    }
     ::placeholder {
       color: ${Palette.NEUTRAL_N30};
     }

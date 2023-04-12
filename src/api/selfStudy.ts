@@ -79,3 +79,25 @@ export const selfStudyCheck = async (
     return { data };
   } catch (e: any) {}
 };
+
+export const selfStudyBan = async (role: string, userId: number) => {
+  try {
+    await apiClient.put(SelfstudyController.selfStudyBan(role, userId));
+    return toast.success('자습금지를 성공했어요');
+  } catch (e: any) {
+    if (e.response.status === 404)
+      toast.error('자습금지 할 학생을 찾지 못했어요');
+    return false;
+  }
+};
+
+export const cancelSelfStudyBan = async (role: string, userId: number) => {
+  try {
+    await apiClient.put(SelfstudyController.cancelSelfStudyBan(role, userId));
+    return toast.success('자습금지가 취소되었어요');
+  } catch (e: any) {
+    if (e.response.status === 404)
+      toast.error('자습금지해제 할 학생을 찾지 못했어요');
+    return false;
+  }
+};

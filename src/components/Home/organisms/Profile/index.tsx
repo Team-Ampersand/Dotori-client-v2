@@ -14,7 +14,6 @@ import {
   profileModalState,
 } from 'recoilAtoms/recoilAtomContainer';
 import { getRole } from 'utils/Libs/getRole';
-import { useEffect } from 'react';
 
 const Profile = () => {
   const [menuModal, setMenuModal] = useRecoilState(menuModalState);
@@ -22,11 +21,7 @@ const Profile = () => {
   const [profileImgModal, setProfileImgModal] =
     useRecoilState(profileModalState);
   const role = getRole();
-  const { data, mutate } = useSWR<myProfileType>(MemberController.myProfile);
-
-  useEffect(() => {
-    mutate();
-  }, []);
+  const { data } = useSWR<myProfileType>(MemberController.myProfile);
 
   return (
     <S.ProfileWrapper>

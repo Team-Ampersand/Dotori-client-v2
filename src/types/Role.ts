@@ -21,12 +21,14 @@ export interface WriterRoleType {
   ROLE_DEVELOPER: '도토리';
   ROLE_COUNCILLOR: '기숙사자치위원회';
   ROLE_ADMIN: '사감선생님';
+  ROLE_MEMBER: '학생';
 }
 
 export interface BaseRoleType {
   ROLE_DEVELOPER: string;
   ROLE_COUNCILLOR: string;
   ROLE_ADMIN: string;
+  ROLE_MEMBER: string;
 }
 
 export interface TokenRoleType {

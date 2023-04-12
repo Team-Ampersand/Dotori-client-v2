@@ -1,7 +1,7 @@
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import { useSetRecoilState } from 'recoil';
 import { stuInfoParams } from 'recoilAtoms/recoilAtomContainer';
-import requestRole from 'utils/Libs/requestRole';
+import { requestFilterRole } from 'utils/Libs/requestRole';
 import * as S from './style';
 
 interface ParamDataType {
@@ -21,7 +21,7 @@ const StuInfoForm = () => {
     const gender = state[2] ?? null;
     const classNum = state[1]?.trim() ?? null;
     const grade = !!Number(state[0]) ? Number(state[0]) : null;
-    const stuRole = requestRole(state[3]);
+    const stuRole = requestFilterRole(state[3]);
     const selfStudyCheck =
       state[4] === '자습가능' ? true : state[4] === '자습금지' ? false : null;
 

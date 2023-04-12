@@ -15,9 +15,9 @@ import {
 import { mutate } from 'swr';
 import { noticeFormType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
-import requestWriter from 'utils/Libs/requestRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
+import { requestWriterRole } from 'utils/Libs/requestRole';
 
 const NoticeWrite = () => {
   const { register, watch, handleSubmit, setValue, resetField } =
@@ -74,7 +74,7 @@ const NoticeWrite = () => {
 
   return (
     <S.Layer onSubmit={handleSubmit(onSubmit, onError)}>
-      <WriteForm register={register} role={requestWriter(role)} />
+      <WriteForm register={register} role={requestWriterRole(role)} />
       <ImgForm
         register={register('img', {
           onChange: () => {

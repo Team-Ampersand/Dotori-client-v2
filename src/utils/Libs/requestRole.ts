@@ -1,10 +1,10 @@
 import { userRole } from 'types/common/userRole';
 
-const requestWriter = (role: Omit<userRole, 'ROLE_MEMBER'>) => {
+const requestWriter = (role: Omit<userRole, 'member'>) => {
   switch (role) {
-    case 'ROLE_ADMIN':
+    case 'admin':
       return '사감선생님';
-    case 'ROLE_COUNCILLOR':
+    case 'councillor':
       return '기숙사자치위원회';
     default:
       return '도토리';

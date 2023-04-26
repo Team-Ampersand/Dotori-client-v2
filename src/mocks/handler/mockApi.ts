@@ -1,4 +1,4 @@
 const mockApi = (path: string) =>
-  new URL(path, process.env.NEXT_PUBLIC_BASE_URL).toString();
+  process.env.NEXT_PUBLIC_BASE_URL + path.slice(1);
 
 export default mockApi;

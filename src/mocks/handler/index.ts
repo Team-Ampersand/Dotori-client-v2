@@ -1,13 +1,4 @@
-import { rest } from 'msw';
-import mockApi from './mockApi';
+import postRefreshToken from './auth/patch';
+import postLogin from './auth/post';
 
-export const handlers = [
-  rest.get(mockApi(''), (_req, res, ctx) => {
-    return res(
-      ctx.json({
-        ok: true,
-        message: 'sccuess',
-      })
-    );
-  }),
-];
+export const handlers = [postLogin, postRefreshToken];

@@ -1,4 +1,3 @@
-import { parseCookies } from 'nookies';
 import encodeBuffer from 'utils/Libs/encodeBuffer';
 import { getUserToken } from 'utils/Libs/getRole';
 import jwtSignature from 'utils/Libs/jwtSignature';
@@ -32,7 +31,6 @@ const useJwt = (email: string | null, type: 'accessToken' | 'refreshToken') => {
   });
 
   const signature = jwtSignature(header, payload);
-  console.log(role(), getUserToken(), parseCookies());
   return `${header}.${payload}.${signature}`;
 };
 

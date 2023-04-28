@@ -2,6 +2,8 @@ import getBoardDetail from './[role]/board/[board_id]/get';
 import getBoard from './[role]/board/get';
 import getMassageInfo from './[role]/massage/get';
 import getSelfStudyInfo from './[role]/self-study/info/get';
+import getSelfStudySearch from './[role]/self-study/rank/get';
+import getSelfStudyRank from './[role]/self-study/rank/get';
 import postRefreshToken from './auth/patch';
 import postLogin from './auth/post';
 import getUserInfo from './home/get';
@@ -14,4 +16,6 @@ export const handlers = [
   getSelfStudyInfo,
   getMassageInfo,
   getBoardDetail,
+  getSelfStudyRank,
+  getSelfStudySearch,
 ];

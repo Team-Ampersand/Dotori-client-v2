@@ -17,7 +17,7 @@ export const NoticeController = {
     return `/board/${boardIdx}`;
   },
   getNoticeDetail(role: string, boardIdx: string | string[]) {
-    return `${role}/board/${boardIdx}`;
+    return `/${role}/board/${boardIdx}`;
   },
 };
 

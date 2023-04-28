@@ -1,3 +1,4 @@
+import getBoardDetail from './[role]/board/[board_id]/get';
 import getBoard from './[role]/board/get';
 import getMassageInfo from './[role]/massage/get';
 import getSelfStudyInfo from './[role]/self-study/info/get';
@@ -12,4 +13,5 @@ export const handlers = [
   getBoard,
   getSelfStudyInfo,
   getMassageInfo,
+  getBoardDetail,
 ];

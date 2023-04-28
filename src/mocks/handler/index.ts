@@ -1,6 +1,7 @@
 import getBoardDetail from './[role]/board/[board_id]/get';
 import getBoard from './[role]/board/get';
 import getMassageInfo from './[role]/massage/get';
+import getSongList from './[role]/music/get';
 import getSelfStudyInfo from './[role]/self-study/info/get';
 import getSelfStudySearch from './[role]/self-study/rank/get';
 import getSelfStudyRank from './[role]/self-study/rank/get';
@@ -18,4 +19,5 @@ export const handlers = [
   getBoardDetail,
   getSelfStudyRank,
   getSelfStudySearch,
+  getSongList,
 ];

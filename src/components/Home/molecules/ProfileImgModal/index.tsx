@@ -55,10 +55,18 @@ const ProileImgModal = () => {
     }
   }, []);
 
+  const handleImgModalOverayClick = () => {
+    setImgBase64('');
+    setProfileImgModal(false);
+  };
+
   return (
     <>
-      <ModalOverayWrapper isClick={profileImgModal}>
-        <S.ProileImgModalWrapper>
+      <ModalOverayWrapper
+        isClick={profileImgModal}
+        onClick={handleImgModalOverayClick}
+      >
+        <S.ProileImgModalWrapper onClick={(e) => e.stopPropagation()}>
           <ModalHeader
             name={imgBase64 ? '이미지 편집' : '프로필 이미지 선택'}
             setState={setProfileImgModal}

@@ -4,6 +4,7 @@ export interface MenuOptionStyleProps {
 
 export interface MenuOptionProps extends MenuOptionStyleProps {
   onClick: () => void;
+  theme: 'dark' | 'light';
 }
 
 export interface ModalStyleProps {

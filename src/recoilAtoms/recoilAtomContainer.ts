@@ -7,6 +7,7 @@ import {
   SignupForm,
 } from 'types';
 import { noticeDetailType } from 'types/components/NoticePage';
+import { StuInfoParamsType } from 'types/components/StuInfoPage';
 
 export const signUpObject = atom<SignupForm>({
   key: 'signUpObject',
@@ -143,4 +144,16 @@ export const penaltyStuNumber = atom<string>({
 export const calendarModalState = atom<boolean>({
   key: 'calendarModalState',
   default: false,
+});
+
+export const stuInfoParams = atom<StuInfoParamsType>({
+  key: 'getStuInfoParams',
+  default: {
+    name: null,
+    gender: null,
+    classNum: null,
+    grade: null,
+    stuRole: null,
+    selfStudyCheck: null,
+  },
 });

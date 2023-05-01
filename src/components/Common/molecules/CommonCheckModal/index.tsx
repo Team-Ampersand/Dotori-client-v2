@@ -9,16 +9,16 @@ const CommonCheckModal = ({
   content,
   onClick,
 }: CommonCheckModalProps) => (
-    <ModalOverayWrapper isClick={modalState}>
-      <S.CheckModalWrapper>
-        <S.CheckTitle>{title}</S.CheckTitle>
-        <S.CheckContent>{content}</S.CheckContent>
-        <S.BtnWrapper>
-          <S.CancelBtn onClick={() => setModalState(false)}>취소</S.CancelBtn>
-          <S.CheckBtn onClick={onClick}>확인</S.CheckBtn>
-        </S.BtnWrapper>
-      </S.CheckModalWrapper>
-    </ModalOverayWrapper>
+  <ModalOverayWrapper isClick={modalState} onClick={() => setModalState(false)}>
+    <S.CheckModalWrapper onClick={(e) => e.stopPropagation()}>
+      <S.CheckTitle>{title}</S.CheckTitle>
+      <S.CheckContent>{content}</S.CheckContent>
+      <S.BtnWrapper>
+        <S.CancelBtn onClick={() => setModalState(false)}>취소</S.CancelBtn>
+        <S.CheckBtn onClick={onClick}>확인</S.CheckBtn>
+      </S.BtnWrapper>
+    </S.CheckModalWrapper>
+  </ModalOverayWrapper>
 );
 
 export default CommonCheckModal;

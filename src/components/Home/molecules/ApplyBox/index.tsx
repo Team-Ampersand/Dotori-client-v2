@@ -10,6 +10,7 @@ const ApplyBox = ({
   maxCount,
   applyStatus,
   onClick,
+  theme,
 }: applyBoxProps) => (
   <S.ApplyBoxWrapper style={{ gridArea: name }}>
     <S.ApplyBoardHeader>
@@ -27,8 +28,10 @@ const ApplyBox = ({
           style={{
             width: `calc(${(count / maxCount) * 100}% - 0.7%)`,
             background:
-              name === '자습신청'
+              Math.floor(maxCount / 2) >= count
                 ? `${Palette.SUB_GREEN}`
+                : Math.floor(maxCount * (6.5 / 8)) > count
+                ? `${Palette.SUB_YELLOW}`
                 : `${Palette.SUB_RED}`,
           }}
         />
@@ -52,7 +55,7 @@ const ApplyBox = ({
           </p>
         </S.ApplyDesc>
       )}
-      <S.ApplyBtn onClick={onClick} applyStatus={applyStatus}>
+      <S.ApplyBtn onClick={onClick} applyStatus={applyStatus} theme={theme}>
         {applyStatus}
       </S.ApplyBtn>
     </S.ApplyBottom>

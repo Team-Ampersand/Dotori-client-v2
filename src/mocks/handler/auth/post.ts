@@ -1,7 +1,7 @@
-import useJwt from 'hooks/useJwt';
+import useJwt from 'mocks/utils/mockJwt';
 import { RestHandler, RestRequest, rest } from 'msw';
 import { MemberController } from 'utils/Libs/requestUrls';
-import mockApi from '../mockApi';
+import mockApi from '../../utils/mockApi';
 
 const postLogin: RestHandler<RestRequest> = rest.post(
   mockApi(MemberController.auth),

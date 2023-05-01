@@ -1,6 +1,6 @@
 import { RestHandler, RestRequest, rest } from 'msw';
 import { StuInfoController } from 'utils/Libs/requestUrls';
-import mockApi from '../mockApi';
+import mockApi from '../../utils/mockApi';
 
 const getStuInfoList: RestHandler<RestRequest> = rest.get(
   mockApi(StuInfoController.stuInfo),

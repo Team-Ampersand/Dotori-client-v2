@@ -1,4 +1,4 @@
-import mockApi from 'mocks/handler/mockApi';
+import mockApi from 'mocks/utils/mockApi';
 import { RestHandler, RestRequest, rest } from 'msw';
 import { getRole } from 'utils/Libs/getRole';
 import { SongController } from 'utils/Libs/requestUrls';

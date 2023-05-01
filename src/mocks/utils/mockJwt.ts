@@ -1,6 +1,6 @@
-import encodeBuffer from 'utils/Libs/encodeBuffer';
+import encodeBuffer from 'mocks/utils/encodeBuffer';
 import { getUserToken } from 'utils/Libs/getRole';
-import jwtSignature from 'utils/Libs/jwtSignature';
+import jwtSignature from 'mocks/utils/jwtSignature';
 
 const useJwt = (email: string | null, type: 'accessToken' | 'refreshToken') => {
   const header = encodeBuffer({

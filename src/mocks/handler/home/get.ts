@@ -1,6 +1,6 @@
 import { RestHandler, RestRequest, rest } from 'msw';
 import { MemberController } from 'utils/Libs/requestUrls';
-import mockApi from '../mockApi';
+import mockApi from '../../utils/mockApi';
 
 const getUserInfo: RestHandler<RestRequest> = rest.get(
   mockApi(MemberController.myProfile),

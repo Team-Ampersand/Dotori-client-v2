@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 
-const boardId = window.location.pathname.slice(-1);
+const boardId = window?.location.pathname.slice(-1);
 
 const getBoardDetail = rest.get(
   mockApi(NoticeController.getNoticeDetail(getRole(), boardId ?? '1')),

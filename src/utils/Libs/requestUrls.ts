@@ -82,7 +82,7 @@ export const SongController = {
 };
 
 export const StuInfoController = {
-  stuInfo: 'student-info',
-  searchStuInfo: 'student-info/search',
+  stuInfo: '/student-info',
+  searchStuInfo: '/student-info/search',
   modifyStuInfo: '/student-info/modify',
 };

@@ -8,6 +8,8 @@ import getSelfStudyRank from './[role]/self-study/rank/get';
 import postRefreshToken from './auth/patch';
 import postLogin from './auth/post';
 import getUserInfo from './home/get';
+import getStuInfoList from './student-info/get';
+import getSearchStuInfo from './student-info/search/get';
 
 export const handlers = [
   postLogin,
@@ -20,4 +22,6 @@ export const handlers = [
   getSelfStudyRank,
   getSelfStudySearch,
   getSongList,
+  getStuInfoList,
+  getSearchStuInfo,
 ];

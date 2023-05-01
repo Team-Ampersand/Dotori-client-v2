@@ -62,13 +62,13 @@ export const MassageController = {
 
 export const penaltyController = {
   strRule(role: string) {
-    return `${role}/rule`;
+    return `/${role}/rule`;
   },
   studentRule(role: string, stuNum: string) {
-    return `${role}/rule/${stuNum}`;
+    return `/${role}/rule/${stuNum}`;
   },
   deletePenalty(role: string, rule_id: number) {
-    return `${role}/rule/${rule_id}`;
+    return `/${role}/rule/${rule_id}`;
   },
 };
 

@@ -1,9 +1,9 @@
 import mockApi from 'mocks/handler/mockApi';
-import { rest } from 'msw';
+import { RestHandler, RestRequest, rest } from 'msw';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 
-const getBoard = rest.get(
+const getBoard: RestHandler<RestRequest> = rest.get(
   mockApi(NoticeController.getNotice(getRole())),
   (_req, res, ctx) => {
     return res(

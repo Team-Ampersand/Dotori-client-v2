@@ -1,11 +1,11 @@
 import mockApi from 'mocks/handler/mockApi';
-import { RestHandler, rest } from 'msw';
+import { RestHandler, RestRequest, rest } from 'msw';
 import { getRole } from 'utils/Libs/getRole';
 import { penaltyController } from 'utils/Libs/requestUrls';
 
 const stuNum: string = '3106';
 
-const getRuleList: RestHandler = rest.get(
+const getRuleList: RestHandler<RestRequest> = rest.get(
   mockApi(penaltyController.studentRule(getRole(), stuNum)),
   (_req, res, ctx) => {
     return res(

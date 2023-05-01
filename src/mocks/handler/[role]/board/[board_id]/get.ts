@@ -1,11 +1,11 @@
 import mockApi from 'mocks/handler/mockApi';
-import { rest } from 'msw';
+import { RestHandler, RestRequest, rest } from 'msw';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 
 const boardId = window?.location.pathname.slice(-1);
 
-const getBoardDetail = rest.get(
+const getBoardDetail: RestHandler<RestRequest> = rest.get(
   mockApi(NoticeController.getNoticeDetail(getRole(), boardId ?? '1')),
   (_req, res, ctx) => {
     return res(

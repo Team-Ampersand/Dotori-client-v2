@@ -1,9 +1,9 @@
 import useJwt from 'hooks/useJwt';
-import { rest } from 'msw';
+import { RestHandler, RestRequest, rest } from 'msw';
 import { MemberController } from 'utils/Libs/requestUrls';
 import mockApi from '../mockApi';
 
-const postLogin = rest.post(
+const postLogin: RestHandler<RestRequest> = rest.post(
   mockApi(MemberController.auth),
   async (req, res, ctx) => {
     const { email }: { email: string } = await req.json();

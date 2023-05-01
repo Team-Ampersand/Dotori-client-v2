@@ -1,9 +1,9 @@
-import { rest } from 'msw';
+import { RestHandler, RestRequest, rest } from 'msw';
 import mockApi from '../mockApi';
 import { MemberController } from 'utils/Libs/requestUrls';
 import useJwt from 'hooks/useJwt';
 
-const postRefreshToken = rest.patch(
+const postRefreshToken: RestHandler<RestRequest> = rest.patch(
   mockApi(MemberController.auth),
   (_req, res, ctx) => {
     return res(

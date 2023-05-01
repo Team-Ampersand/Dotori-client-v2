@@ -1,9 +1,9 @@
 import mockApi from 'mocks/handler/mockApi';
-import { rest } from 'msw';
+import { RestHandler, RestRequest, rest } from 'msw';
 import { getRole } from 'utils/Libs/getRole';
 import { MassageController } from 'utils/Libs/requestUrls';
 
-const getMassageInfo = rest.get(
+const getMassageInfo: RestHandler<RestRequest> = rest.get(
   mockApi(MassageController.massage(getRole())),
   (_req, res, ctx) => {
     return res(

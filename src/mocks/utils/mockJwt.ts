@@ -1,14 +1,8 @@
 import encodeBuffer from 'mocks/utils/encodeBuffer';
 import jwtSignature from 'mocks/utils/jwtSignature';
-import { RestRequest } from 'msw';
+import MockJwtProps from 'types/utils/mockJwt';
 
-interface Props {
-  type: 'accessToken' | 'refreshToken';
-  email?: string;
-  ctx?: RestRequest;
-}
-
-const mockJwt = ({ type, email, ctx }: Props) => {
+const mockJwt = ({ type, email, ctx }: MockJwtProps) => {
   const token = type === 'accessToken' ? 'authorization' : 'refreshToken';
   if (!!ctx) return ctx.cookies[token];
 

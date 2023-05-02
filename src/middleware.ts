@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
+import { removeToken } from 'utils/Libs/removeToken';
 
 export const middleware = async (req: NextRequest) => {
   const ua = userAgent(req);
@@ -14,6 +15,7 @@ export const middleware = async (req: NextRequest) => {
   }
 
   if (ua.isBot) {
+    removeToken();
     return NextResponse.redirect(new URL('/signin', req.url));
   }
 };

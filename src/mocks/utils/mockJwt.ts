@@ -1,15 +1,23 @@
 import encodeBuffer from 'mocks/utils/encodeBuffer';
-import { getUserToken } from 'utils/Libs/getRole';
 import jwtSignature from 'mocks/utils/jwtSignature';
+import { RestRequest } from 'msw';
 
-const useJwt = (email: string | null, type: 'accessToken' | 'refreshToken') => {
+interface Props {
+  type: 'accessToken' | 'refreshToken';
+  email?: string;
+  ctx?: RestRequest;
+}
+
+const mockJwt = ({ type, email, ctx }: Props) => {
+  const token = type === 'accessToken' ? 'authorization' : 'refreshToken';
+  if (!!ctx) return ctx.cookies[token];
+
   const header = encodeBuffer({
     alg: 'HS256',
   });
 
   const role = () => {
     if (type === 'refreshToken') return undefined;
-    if (!email) return [getUserToken()];
     switch (email?.slice(5, 6)) {
       case '0':
         return ['ROLE_ADMIN'];
@@ -34,4 +42,4 @@ const useJwt = (email: string | null, type: 'accessToken' | 'refreshToken') => {
   return `${header}.${payload}.${signature}`;
 };
 
-export default useJwt;
+export default mockJwt;

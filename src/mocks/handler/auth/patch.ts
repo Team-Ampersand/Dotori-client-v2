@@ -1,13 +1,13 @@
 import { RestHandler, RestRequest, rest } from 'msw';
 import mockApi from '../../utils/mockApi';
 import { MemberController } from 'utils/Libs/requestUrls';
-import useJwt from 'mocks/utils/mockJwt';
+import mockJwt from 'mocks/utils/mockJwt';
 
 const postRefreshToken: RestHandler<RestRequest> = rest.patch(
   mockApi(MemberController.auth),
-  (_req, res, ctx) => {
-    const accessToken = useJwt(null, 'accessToken');
-    const refreshToken = useJwt(null, 'refreshToken');
+  (req, res, ctx) => {
+    const accessToken = mockJwt({ type: 'accessToken', ctx: req });
+    const refreshToken = mockJwt({ type: 'refreshToken', ctx: req });
     return res(
       ctx.status(200),
       ctx.json({

@@ -11,7 +11,7 @@ const XmarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
   >
     <path
       d="M9.87871 9.87868L14.1213 14.1213M9.87871 14.1213L14.1213 9.87868"
-      stroke={Palette.NEUTRAL_N20}
+      stroke={props.color ?? Palette.NEUTRAL_N20}
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -22,7 +22,7 @@ const XmarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
       width="16"
       height="16"
       rx="8"
-      stroke={Palette.NEUTRAL_N20}
+      stroke={props.color ?? Palette.NEUTRAL_N20}
       strokeWidth="1.5"
     />
   </svg>

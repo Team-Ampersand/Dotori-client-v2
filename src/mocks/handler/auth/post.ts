@@ -7,12 +7,14 @@ const postLogin: RestHandler<RestRequest> = rest.post(
   mockApi(MemberController.auth),
   async (req, res, ctx) => {
     const { email }: { email: string } = await req.json();
+    const accessToken = useJwt(email, 'accessToken');
+    const refreshToken = useJwt(email, 'refreshToken');
 
     return res(
       ctx.status(200),
       ctx.json({
-        accessToken: useJwt(email, 'accessToken'),
-        refreshToken: useJwt(email, 'refreshToken'),
+        accessToken: accessToken,
+        refreshToken: refreshToken,
         expiresAt: 'yyyy-MM-ddTHH:mm:ss',
       })
     );

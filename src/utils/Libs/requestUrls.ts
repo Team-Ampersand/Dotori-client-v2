@@ -17,7 +17,7 @@ export const NoticeController = {
     return `/board/${boardIdx}`;
   },
   getNoticeDetail(role: string, boardIdx: string | string[]) {
-    return `${role}/board/${boardIdx}`;
+    return `/${role}/board/${boardIdx}`;
   },
 };
 
@@ -62,27 +62,27 @@ export const MassageController = {
 
 export const penaltyController = {
   strRule(role: string) {
-    return `${role}/rule`;
+    return `/${role}/rule`;
   },
   studentRule(role: string, stuNum: string) {
-    return `${role}/rule/${stuNum}`;
+    return `/${role}/rule/${stuNum}`;
   },
   deletePenalty(role: string, rule_id: number) {
-    return `${role}/rule/${rule_id}`;
+    return `/${role}/rule/${rule_id}`;
   },
 };
 
 export const SongController = {
   music(role: string) {
-    return `${role}/music`;
+    return `/${role}/music`;
   },
   deleteMusic(role: string, musicId: number) {
-    return `${role}/music/${musicId}`;
+    return `/${role}/music/${musicId}`;
   },
 };
 
 export const StuInfoController = {
-  stuInfo: 'student-info',
-  searchStuInfo: 'student-info/search',
+  stuInfo: '/student-info',
+  searchStuInfo: '/student-info/search',
   modifyStuInfo: '/student-info/modify',
 };

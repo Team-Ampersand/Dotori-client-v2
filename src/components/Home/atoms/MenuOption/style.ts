@@ -16,7 +16,6 @@ export const MenuOptionWrapper = styled.div`
     props.theme === 'light'
       ? `${Palette.BACKGROUND_CARD}`
       : `${Palette.NEUTRAL_N40}`};
-  border-bottom: 1px solid ${Palette.NEUTRAL_N40};
   font-weight: 600;
   font-size: 14px;
   gap: 10px;
@@ -35,8 +34,8 @@ export const MenuOptionWrapper = styled.div`
 
   svg {
     path {
-      ${(paops: MenuOptionStyleProps) =>
-        paops.name !== '비밀번호 변경' ? `stroke: ${Palette.NEUTRAL_N20}` : ''}
+      ${(props: MenuOptionStyleProps) =>
+        props.name !== '비밀번호 변경' ? `stroke: ${Palette.NEUTRAL_N20}` : ''}
     }
     width: 25px;
     height: 20px;

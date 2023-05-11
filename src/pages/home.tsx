@@ -52,8 +52,8 @@ const HomePage: NextPage<{
             <MassageBoard />
           </HomeTemplates>
         </MainTemplates>
+        <ChannelBtn />
       </SWRConfig>
-      <ChannelBtn />
     </>
   );
 };

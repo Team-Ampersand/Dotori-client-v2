@@ -26,6 +26,7 @@ const CalendarBox = ({ setModal }: { setModal?: (state: boolean) => void }) => {
         formatDay={(_locale, date) =>
           date.toLocaleString('en', { day: 'numeric' })
         }
+        calendarType="US"
       />
     </S.Layer>
   );

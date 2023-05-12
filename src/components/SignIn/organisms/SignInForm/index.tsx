@@ -16,7 +16,6 @@ import * as S from './style';
 import { useResetRecoilState } from 'recoil';
 import { signUpStep } from 'recoilAtoms';
 import { RegexsData } from 'assets/data/RegexsData';
-import { useSWRConfig } from 'swr';
 
 const SignInForm = () => {
   const router = useRouter();

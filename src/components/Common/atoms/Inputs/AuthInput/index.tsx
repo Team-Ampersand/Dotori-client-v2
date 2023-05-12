@@ -59,7 +59,7 @@ const AuthInput = ({
           maxLength={maxLength}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          autoComplete="off"
+          autoComplete="false"
         />
         {isEmail && (
           <S.EmailBack
@@ -78,7 +78,7 @@ const AuthInput = ({
             <EyeSelectedIcon onClick={handleEyeIconClick} color={iconColor} />
           ))}
         {isValue && type !== 'password' && (
-          <XmarkIcon onClick={DeleteBtnClick} />
+          <XmarkIcon color={iconColor} onClick={DeleteBtnClick} />
         )}
       </label>
     </S.AuthInput>

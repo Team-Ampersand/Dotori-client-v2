@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { DotoriLogo } from 'assets/svg';
 import { signin } from 'api/member';
 import { SigninForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
@@ -16,6 +15,7 @@ import * as S from './style';
 import { useResetRecoilState } from 'recoil';
 import { signUpStep } from 'recoilAtoms';
 import { RegexsData } from 'assets/data/RegexsData';
+import DotoriLogo from 'components/Common/atoms/DotoriLogo';
 
 const SignInForm = () => {
   const router = useRouter();

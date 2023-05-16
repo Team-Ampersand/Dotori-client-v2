@@ -11,6 +11,7 @@ import {
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { MassageController } from 'utils/Libs/requestUrls';
+import UseToggleTheme from 'hooks/useToggleTheme';
 
 const MassageBoard = () => {
   const [info, setInfo] = useState<applyStyleProps>({
@@ -19,13 +20,10 @@ const MassageBoard = () => {
   const [checkModal, setCheckModal] = useState(false);
   const [applyModifyModal, setApplyModifyModal] = useState(false);
   const role = getRole();
+  const [theme] = UseToggleTheme();
   const { data, mutate } = useSWR<applyPageProps>(
     MassageController.massage(role)
   );
-
-  useEffect(() => {
-    mutate();
-  }, []);
 
   useEffect(() => {
     if (role === ('admin' || 'councillor'))
@@ -78,6 +76,7 @@ const MassageBoard = () => {
       <ApplyBox
         name={'안마의자'}
         url={'/massage'}
+        theme={theme}
         count={data?.count || 0}
         maxCount={data?.limit || 0}
         applyStatus={info.applyStatus}

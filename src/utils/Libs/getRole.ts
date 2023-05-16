@@ -4,7 +4,7 @@ import { RoleType } from 'types';
 import { GetServerSidePropsContext } from 'next';
 import { RoleData } from 'assets/data/RoleData';
 
-function getUserToken(ctx?: GetServerSidePropsContext) {
+export function getUserToken(ctx?: GetServerSidePropsContext) {
   let token = ctx
     ? ctx.req.cookies['Authorization']
     : parseCookies().Authorization;

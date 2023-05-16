@@ -40,20 +40,20 @@ const HomePage: NextPage<{
   return (
     <>
       <SEOHead title={'| 홈페이지'} />
-      <MainTemplates>
-        <SideBar />
-        <HomeTemplates>
-          <TimeBoard />
-          <SWRConfig value={fallback}>
+      <SWRConfig value={fallback}>
+        <MainTemplates>
+          <SideBar />
+          <HomeTemplates>
+            <TimeBoard />
             <Profile />
             <MealBoard />
             <NoticeBoard />
             <SelfStudyBoard />
             <MassageBoard />
-          </SWRConfig>
-        </HomeTemplates>
-      </MainTemplates>
-      <ChannelBtn />
+          </HomeTemplates>
+        </MainTemplates>
+        <ChannelBtn />
+      </SWRConfig>
     </>
   );
 };
@@ -61,23 +61,24 @@ const HomePage: NextPage<{
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
+  const header = {
+    headers: { Authorization },
+  };
+
+  const promises = [
+    apiClient.get(MemberController.myProfile, header),
+    apiClient.get(NoticeController.getNotice(role), header),
+    apiClient.get(SelfstudyController.selfStudyInfo(role), header),
+    apiClient.get(MassageController.massage(role), header),
+  ];
 
   try {
-    const { data: myData } = await apiClient.get(MemberController.myProfile, {
-      headers: { Authorization },
-    });
-    const { data: noticeData } = await apiClient.get(
-      NoticeController.getNotice(role),
-      { headers: { Authorization } }
-    );
-    const { data: selfStudyData } = await apiClient.get(
-      SelfstudyController.selfStudyInfo(role),
-      { headers: { Authorization } }
-    );
-    const { data: massageData } = await apiClient.get(
-      MassageController.massage(role),
-      { headers: { Authorization } }
-    );
+    const [
+      { data: myData },
+      { data: noticeData },
+      { data: selfStudyData },
+      { data: massageData },
+    ] = await Promise.all(promises);
 
     return {
       props: {

@@ -29,12 +29,14 @@ const NoticeContent = () => {
         <>
           <ContentHeader data={data} />
           <S.ContentWrapper>
-            {data.content.split('\n').map((line, key) => (
-              <p key={key}>
-                {line}
-                <br />
-              </p>
-            ))}
+            <div>
+              {data.content.split('\n').map((line, key) => (
+                <p key={key}>
+                  {line}
+                  <br />
+                </p>
+              ))}
+            </div>
             <S.BottomWrapper>
               {data.boardImage.map((item) => (
                 <div key={item.id}>

@@ -19,6 +19,9 @@ export const StuInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  @media (max-width: 950px) {
+    gap: 2vw;
+  }
 `;
 
 export const Profile = styled.div`
@@ -56,11 +59,25 @@ export const RuleViolationList = styled.div`
   font-weight: 600;
   font-size: 14px;
   color: ${Palette.NEUTRAL_N20};
+  @media (max-width: 1634px) {
+    width: 40%;
+  }
+  @media (max-width: 420px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 16px;
+  @media (max-width: 950px) {
+    gap: 2vw;
+  }
+  @media (max-width: 420px) {
+    display: none;
+  }
 `;
 export const RuleViolationListBtn = styled.div`
   width: 36px;
@@ -82,4 +99,11 @@ export const PenaltyRecordBtn = styled.div`
   border-radius: 8px;
   background-color: ${Palette.BACKGROUND_BG};
   cursor: pointer;
+`;
+
+export const ResponseBtn = styled.div`
+  display: none;
+  @media (max-width: 420px) {
+    display: flex;
+  }
 `;

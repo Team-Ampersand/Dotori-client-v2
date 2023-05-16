@@ -7,6 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { RecoilRoot } from 'recoil';
 import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
+import InitMocks from '../mocks';
+
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  InitMocks();
+}
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         fetcher: (url: string) =>
           apiClient.get(url).then((response) => response.data),
         revalidateIfStale: false,
-        revalidateOnFocus: false,
+        revalidateOnFocus: true,
         revalidateOnReconnect: false,
       }}
     >

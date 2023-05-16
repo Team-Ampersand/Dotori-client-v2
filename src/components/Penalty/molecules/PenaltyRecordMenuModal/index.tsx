@@ -36,46 +36,49 @@ const PenaltyRecordMenuModal = ({
     <ModalOverayWrapper isClick={modalState}>
       <S.PenaltyRecordInfoModalWrapper>
         <ModalHeader name={'규정 위반 기록'} setState={setModalState} />
-        <S.SelectWrapper>
-          <S.SelectBox>
-            {PenaltyMenuData.map((i, idx) => (
-              <PenaltyRecordMenuItem
-                key={idx}
-                title={i.penaltyTitle}
-                currentMenu={currentMenu}
-                setCurrentMenu={setCurrentMenu}
-              />
-            ))}
-          </S.SelectBox>
-          <S.SelectBox2>
-            {currentMenu &&
-              PenaltyMenuData.filter(
-                (i) => i.penaltyTitle == currentMenu
-              )[0].menuList.map((i, idx) => (
-                <S.MenuList
+        <div className="select">
+          <S.SelectWrapper>
+            <S.SelectBox>
+              {PenaltyMenuData.map((i, idx) => (
+                <PenaltyRecordMenuItem
                   key={idx}
-                  onClick={() => {
-                    setCurrentItem(i);
-                    handleSelect(
-                      penaltySelect,
-                      setPenaltySelect,
-                      returnPenaltyValuesEnglish[i]
-                    );
-                  }}
-                  isClick={currentItem === i}
-                >
-                  <span>{i}</span>
-                </S.MenuList>
+                  title={i.penaltyTitle}
+                  currentMenu={currentMenu}
+                  setCurrentMenu={setCurrentMenu}
+                />
               ))}
-          </S.SelectBox2>
-        </S.SelectWrapper>
+            </S.SelectBox>
+            <S.SelectBox2>
+              {currentMenu &&
+                PenaltyMenuData.filter(
+                  (i) => i.penaltyTitle == currentMenu
+                )[0].menuList.map((i, idx) => (
+                  <S.MenuList
+                    key={idx}
+                    onClick={() => {
+                      setCurrentItem(i);
+                      handleSelect(
+                        penaltySelect,
+                        setPenaltySelect,
+                        returnPenaltyValuesEnglish[i]
+                      );
+                    }}
+                    isClick={currentItem === i}
+                  >
+                    <span>{i}</span>
+                  </S.MenuList>
+                ))}
+            </S.SelectBox2>
+          </S.SelectWrapper>
+        </div>
         <S.TagWrapper>
           {penaltySelect.map((i, idx) => (
-            <S.TagItem key={idx}>
+            <S.TagItem
+              key={idx}
+              onClick={() => handleDelete(penaltySelect, setPenaltySelect, i)}
+            >
               {returnPenaltyValuesKorean[i]}
-              <XtextIcon
-                onClick={() => handleDelete(penaltySelect, setPenaltySelect, i)}
-              />
+              <XtextIcon />
             </S.TagItem>
           ))}
         </S.TagWrapper>

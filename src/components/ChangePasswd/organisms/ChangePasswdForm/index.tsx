@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { DotoriLogo } from 'assets/svg';
 import { authPasswordChange, passwordChange } from 'api/member';
 import { ChangePasswdForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
@@ -16,6 +15,7 @@ import { InputsWrapper } from 'components/SignUp/atoms/Wrapper/style';
 import { isemailPasswordCheck } from 'recoilAtoms/recoilAtomContainer';
 import { useRecoilState } from 'recoil';
 import { RegexsData } from 'assets/data/RegexsData';
+import DotoriLogo from 'components/Common/atoms/DotoriLogo';
 
 const ChangePasswdForm = ({ isLogin }: { isLogin: boolean }) => {
   const router = useRouter();

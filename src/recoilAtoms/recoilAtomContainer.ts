@@ -153,7 +153,7 @@ export const stuInfoParams = atom<StuInfoParamsType>({
     gender: null,
     classNum: null,
     grade: null,
-    stuRole: null,
-    selfStudyCheck: null,
+    role: null,
+    selfStudyStatus: null,
   },
 });

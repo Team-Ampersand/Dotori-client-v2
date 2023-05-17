@@ -1,4 +1,4 @@
-import { DotoriLogo } from 'assets/svg';
+import DotoriLogo from 'components/Common/atoms/DotoriLogo';
 import SEOHead from 'components/Common/atoms/SEOHead';
 import { AuthTemplates } from 'components/Common/templates/AuthTemplates/style';
 import dynamic from 'next/dynamic';

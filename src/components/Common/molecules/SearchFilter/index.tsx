@@ -1,16 +1,16 @@
-import * as S from './style';
-import { useState } from 'react';
-import FilterItem from 'components/Common/atoms/Items/FilterItem';
-import { SearchFilterTypeProps, SignupForm } from 'types';
 import { FilterMenuData } from 'assets/data/FilterMenuData';
-import UseToggleTheme from 'hooks/useToggleTheme';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
+import AuthInput from 'components/Common/atoms/Inputs/AuthInput';
+import FilterItem from 'components/Common/atoms/Items/FilterItem';
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { useDidMountEffect } from 'hooks/useDidMountEffect';
-import AuthInput from 'components/Common/atoms/Inputs/AuthInput';
+import UseToggleTheme from 'hooks/useToggleTheme';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
+import { SearchFilterTypeProps, SignupForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
+import * as S from './style';
 
 const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();

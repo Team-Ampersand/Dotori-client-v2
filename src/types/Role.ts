@@ -15,6 +15,7 @@ export interface RoleDataType {
   TOKEN: TokenRoleType;
   WRITER: WriterRoleType;
   WRITERCOLOR: BaseRoleType;
+  USERFILTER: { [role: string]: string };
 }
 
 export interface WriterRoleType {

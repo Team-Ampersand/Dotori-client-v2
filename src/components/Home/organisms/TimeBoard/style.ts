@@ -6,7 +6,8 @@ export const TimeBoardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-top: 5.55vh;
+  margin-top: 4vh;
+  gap: 1.55vh;
   grid-area: 시간;
 
   @media (max-width: 950px) {
@@ -215,7 +216,7 @@ export const DotoriImgBox = styled.div`
     width: 230px;
     height: 220px;
     right: -65px;
-    top: 27px;
+    top: 12px;
     img {
       clip: rect(0, 165px, 175px, 0);
       clip-path: ellipse(160px 155px at 30.1% 20%);

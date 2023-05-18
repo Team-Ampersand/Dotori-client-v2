@@ -10,6 +10,5 @@ export const CommonPageWrapper = styled.div`
   }
   @media (max-width: 420px) {
     padding: 0 5vw 3vh 5vw;
-    gap: 1.5vh;
   }
 `;

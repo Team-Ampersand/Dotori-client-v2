@@ -37,7 +37,6 @@ export const ProfileBox = styled.div`
 
   svg {
     cursor: pointer;
-    /* width: 5vw; */
   }
 `;
 

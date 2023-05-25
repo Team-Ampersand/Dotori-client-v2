@@ -38,7 +38,7 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
 
   const createdDate = new Date(songData.createdTime);
-  const songDate = `${getDate(createdDate)[1]}월 ${getDate(createdDate)[2]}일`;
+  const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
   const date = useRecoilValue(selectedDate);
   const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
     getDate(date)[2]

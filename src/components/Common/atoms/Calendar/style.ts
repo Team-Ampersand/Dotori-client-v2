@@ -10,13 +10,16 @@ export const Layer = styled.div`
   }
 
   .react-calendar {
-    max-width: 380px;
     background: ${Palette.BACKGROUND_CARD};
     color: #222;
-    border-radius: 0.5em;
+    border-radius: 1em;
     padding: 1.5em;
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
     font-family: Arial, Helvetica, sans-serif;
+
+    @media (max-width: 951px) {
+      max-width: 380px;
+    }
   }
 
   .react-calendar__navigation {
@@ -70,9 +73,8 @@ export const Layer = styled.div`
         props.state === 'light' ? '#F2F2F4' : '#fff'};
       font-size: 14px;
 
-      :enabled:hover,
       :enabled:focus {
-        background: #ed7878;
+        background: ${Palette.PRIMARY_P10};
         color: ${(props: { state: string }) =>
           props.state === 'light' ? '#F2F2F4' : '#fff'};
       }
@@ -90,6 +92,7 @@ export const Layer = styled.div`
     background: ${Palette.NEUTRAL_N40};
     color: #6d92c4;
     border-radius: 0.5em;
+    font-weight: normal;
   }
 
   .react-calendar__tile--active {
@@ -107,7 +110,6 @@ export const Layer = styled.div`
         props.state === 'light' ? '#F2F2F4' : '#fff'};
     }
   }
-  position: relative;
 `;
 
 export const XIcon = styled.div`

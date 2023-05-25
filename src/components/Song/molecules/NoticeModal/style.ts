@@ -23,7 +23,7 @@ export const ContentBox = styled.div`
   height: 100%;
   padding: 1rem;
   background: ${Palette.NEUTRAL_N40};
-  border-radius: 1rem;
+  border-radius: 0.5em;
 `;
 
 export const ContentList = styled.ul`

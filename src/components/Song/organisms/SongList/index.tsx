@@ -7,8 +7,8 @@ import useSWR from 'swr';
 import { SongListType } from 'types/components/SongPage';
 import { getRole } from 'utils/Libs/getRole';
 import { SongController } from 'utils/Libs/requestUrls';
-import * as S from './style';
 import { getDate } from 'utils/getDate';
+import * as S from './style';
 
 const SongList = () => {
   const role = getRole();

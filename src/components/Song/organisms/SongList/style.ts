@@ -48,4 +48,22 @@ export const ListContainer = styled.div`
   ::-webkit-scrollbar {
     width: 0;
   }
+
+  & > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    transition: 0.2s;
+    border-radius: 0.5em;
+    padding: 0.5em 0.5em 0.5em 0;
+
+    :hover {
+      background: ${Palette.NEUTRAL_N50};
+    }
+  }
+  & > a:-webkit-any-link {
+    text-decoration: none;
+  }
 `;

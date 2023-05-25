@@ -4,16 +4,16 @@ import TrashcanIcon from 'assets/svg/TrashcanIcon';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
 import useSWR, { mutate } from 'swr';
+import { myProfileType } from 'types';
 import { SongType } from 'types/components/SongPage';
 import { getRole } from 'utils/Libs/getRole';
+import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
-import { MemberController, SongController } from 'utils/Libs/requestUrls';
-import { myProfileType } from 'types';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -57,41 +57,47 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   };
 
   return (
-    <S.Layer>
-      <S.LeftWrapper>
-        <S.ImgBox>
-          <Image
-            src={`https://img.youtube.com/vi/${youtubeId}/sddefault.jpg`}
-            alt={'image'}
-            layout="fill"
-            objectFit="cover"
-          />
-        </S.ImgBox>
-        <S.Title>{title}</S.Title>
-      </S.LeftWrapper>
-      <S.StuInfo>
-        <p>{songData.stuNum}</p>
-        <p>{songData.username}</p>
-      </S.StuInfo>
-      <S.CreateDate>{songDate}</S.CreateDate>
-      <S.ButtonContainer>
-        {(role !== 'member' ||
-          String(songData.stuNum) === userData?.stuNum) && (
-          <button
-            onClick={() => {
-              onDelete(songData.id);
-            }}
-          >
-            <TrashcanIcon />
-          </button>
-        )}
-        <Link href={songData.url}>
-          <a>
+    <Link
+      href={songData.url}
+      onClick={(e: MouseEvent) => {
+        e.preventDefault();
+      }}
+    >
+      <a target="_blank">
+        <S.LeftWrapper>
+          <S.ImgBox>
+            <Image
+              src={`https://img.youtube.com/vi/${youtubeId}/sddefault.jpg`}
+              alt={'image'}
+              layout="fill"
+              objectFit="cover"
+            />
+          </S.ImgBox>
+          <S.Title>{title}</S.Title>
+        </S.LeftWrapper>
+        <S.StuInfo>
+          <p>{songData.stuNum}</p>
+          <p>{songData.username}</p>
+        </S.StuInfo>
+        <S.CreateDate>{songDate}</S.CreateDate>
+        <S.ButtonContainer>
+          {(role !== 'member' ||
+            String(songData.stuNum) === userData?.stuNum) && (
+            <button
+              onClick={(e: MouseEvent) => {
+                e.preventDefault();
+                onDelete(songData.id);
+              }}
+            >
+              <TrashcanIcon />
+            </button>
+          )}
+          <div>
             <NewPageIcon />
-          </a>
-        </Link>
-      </S.ButtonContainer>
-    </S.Layer>
+          </div>
+        </S.ButtonContainer>
+      </a>
+    </Link>
   );
 };
 

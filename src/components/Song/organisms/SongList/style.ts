@@ -79,5 +79,9 @@ export const EmptySongBox = styled.div`
 
   h2 {
     margin-top: 0.75em;
+    color: ${Palette.NEUTRAL_N10};
+  }
+  p {
+    color: ${Palette.NEUTRAL_N20};
   }
 `;

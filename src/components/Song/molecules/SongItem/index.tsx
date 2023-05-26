@@ -1,16 +1,17 @@
 import { deleteMusic, getMusic } from 'api/music';
-import NewPageIcon from 'assets/svg/NewPageIcon';
-import TrashcanIcon from 'assets/svg/TrashcanIcon';
+import { NewPageIcon, TrashcanIcon } from 'assets/svg';
 import axios from 'axios';
+import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
 import useSWR, { mutate } from 'swr';
 import { myProfileType } from 'types';
 import { SongType } from 'types/components/SongPage';
 import { getRole } from 'utils/Libs/getRole';
+import { preventEvent } from 'utils/Libs/preventEvent';
 import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
@@ -34,8 +35,9 @@ const youtube_parser = (url: string) => {
 const SongItem = ({ data: songData }: { data: SongType }) => {
   const role = getRole();
   const youtubeId = youtube_parser(songData.url);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState<string>('');
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
@@ -57,12 +59,7 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   };
 
   return (
-    <Link
-      href={songData.url}
-      onClick={(e: MouseEvent) => {
-        e.preventDefault();
-      }}
-    >
+    <Link href={songData.url}>
       <a target="_blank">
         <S.LeftWrapper>
           <S.ImgBox>
@@ -84,9 +81,9 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
           {(role !== 'member' ||
             String(songData.stuNum) === userData?.stuNum) && (
             <button
-              onClick={(e: MouseEvent) => {
-                e.preventDefault();
-                onDelete(songData.id);
+              onClick={(e) => {
+                preventEvent(e);
+                setDeleteModal(true);
               }}
             >
               <TrashcanIcon />
@@ -96,6 +93,14 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
             <NewPageIcon />
           </div>
         </S.ButtonContainer>
+
+        <CommonCheckModal
+          title="신청 음악 삭제"
+          content="신청 음악을 정말 삭제하시겠습니까?"
+          modalState={deleteModal}
+          setModalState={setDeleteModal}
+          onClick={() => onDelete(songData.id)}
+        />
       </a>
     </Link>
   );

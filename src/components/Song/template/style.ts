@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const SongTemplate = styled.div`
-  padding: 0 72px;
+  padding: 0 72px 56px 72px;
   width: calc(100% - 240px);
   height: 100%;
   display: flex;

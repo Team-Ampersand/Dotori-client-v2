@@ -1,19 +1,20 @@
 import { deleteMusic, getMusic } from 'api/music';
-import NewPageIcon from 'assets/svg/NewPageIcon';
-import TrashcanIcon from 'assets/svg/TrashcanIcon';
+import { NewPageIcon, TrashcanIcon } from 'assets/svg';
 import axios from 'axios';
+import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
 import useSWR, { mutate } from 'swr';
+import { myProfileType } from 'types';
 import { SongType } from 'types/components/SongPage';
 import { getRole } from 'utils/Libs/getRole';
+import { preventEvent } from 'utils/Libs/preventEvent';
+import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
-import { MemberController, SongController } from 'utils/Libs/requestUrls';
-import { myProfileType } from 'types';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -34,11 +35,12 @@ const youtube_parser = (url: string) => {
 const SongItem = ({ data: songData }: { data: SongType }) => {
   const role = getRole();
   const youtubeId = youtube_parser(songData.url);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState<string>('');
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const createdDate = new Date(songData.createdTime);
-  const songDate = `${getDate(createdDate)[1]}월 ${getDate(createdDate)[2]}일`;
+  const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
   const date = useRecoilValue(selectedDate);
   const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
     getDate(date)[2]
@@ -57,41 +59,50 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   };
 
   return (
-    <S.Layer>
-      <S.LeftWrapper>
-        <S.ImgBox>
-          <Image
-            src={`https://img.youtube.com/vi/${youtubeId}/sddefault.jpg`}
-            alt={'image'}
-            layout="fill"
-            objectFit="cover"
-          />
-        </S.ImgBox>
-        <S.Title>{title}</S.Title>
-      </S.LeftWrapper>
-      <S.StuInfo>
-        <p>{songData.stuNum}</p>
-        <p>{songData.username}</p>
-      </S.StuInfo>
-      <S.CreateDate>{songDate}</S.CreateDate>
-      <S.ButtonContainer>
-        {(role !== 'member' ||
-          String(songData.stuNum) === userData?.stuNum) && (
-          <button
-            onClick={() => {
-              onDelete(songData.id);
-            }}
-          >
-            <TrashcanIcon />
-          </button>
-        )}
-        <Link href={songData.url}>
-          <a>
+    <Link href={songData.url}>
+      <a target="_blank">
+        <S.LeftWrapper>
+          <S.ImgBox>
+            <Image
+              src={`https://img.youtube.com/vi/${youtubeId}/sddefault.jpg`}
+              alt={'image'}
+              layout="fill"
+              objectFit="cover"
+            />
+          </S.ImgBox>
+          <S.Title>{title}</S.Title>
+        </S.LeftWrapper>
+        <S.StuInfo>
+          <p>{songData.stuNum}</p>
+          <p>{songData.username}</p>
+        </S.StuInfo>
+        <S.CreateDate>{songDate}</S.CreateDate>
+        <S.ButtonContainer>
+          {(role !== 'member' ||
+            String(songData.stuNum) === userData?.stuNum) && (
+            <button
+              onClick={(e) => {
+                preventEvent(e);
+                setDeleteModal(true);
+              }}
+            >
+              <TrashcanIcon />
+            </button>
+          )}
+          <div>
             <NewPageIcon />
-          </a>
-        </Link>
-      </S.ButtonContainer>
-    </S.Layer>
+          </div>
+        </S.ButtonContainer>
+
+        <CommonCheckModal
+          title="신청 음악 삭제"
+          content="신청 음악을 정말 삭제하시겠습니까?"
+          modalState={deleteModal}
+          setModalState={setDeleteModal}
+          onClick={() => onDelete(songData.id)}
+        />
+      </a>
+    </Link>
   );
 };
 

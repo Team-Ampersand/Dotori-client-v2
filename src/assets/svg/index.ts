@@ -50,3 +50,5 @@ export { default as EyeIcon } from './EyeIcon';
 export { default as EyeSelectedIcon } from './EyeSelectedIcon';
 export { default as MusicalNoteIcon } from './MusicNoteIcon';
 export { default as EllipsisVerticalIcon } from './EllipsisVerticalIcon';
+export { default as NewPageIcon } from './NewPageIcon';
+export { default as TrashcanIcon } from './TrashcanIcon';

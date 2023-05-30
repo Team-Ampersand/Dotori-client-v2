@@ -1,13 +1,11 @@
 import SEOHead from 'components/Common/atoms/SEOHead';
+import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import StuInfoForm from 'components/StuInfo/organisms/StuInfoForm';
 import StuInfoList from 'components/StuInfo/organisms/StuInfoList';
-import {
-  StuInfoLayer,
-  StuInfoTemplate,
-} from 'components/StuInfo/template/style';
+import { StuInfoLayer } from 'components/StuInfo/template/style';
 import { GetServerSideProps, NextPage } from 'next';
 import { SWRConfig } from 'swr';
 import { StuInfoType } from 'types/components/StuInfoPage';
@@ -24,13 +22,13 @@ const StudsDetail: NextPage<{
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar />
-          <StuInfoTemplate>
+          <CommonPageWrapper>
             <CommonHeader />
             <StuInfoLayer>
               <StuInfoList />
               <StuInfoForm />
             </StuInfoLayer>
-          </StuInfoTemplate>
+          </CommonPageWrapper>
         </MainTemplates>
       </SWRConfig>
     </>

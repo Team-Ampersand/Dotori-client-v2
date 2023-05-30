@@ -11,7 +11,7 @@ export const Layer = styled.div`
   font-size: 0.875em;
   color: ${Palette.NEUTRAL_N20};
   border-radius: 1em;
-  padding: 0 0.5em;
+  padding: 1em 0.5em;
 
   :hover {
     background: ${Palette.BACKGROUND_BG};

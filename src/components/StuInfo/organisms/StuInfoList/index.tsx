@@ -43,10 +43,12 @@ const StuInfoList = () => {
           <span>{infoList?.length}</span> 명
         </p>
       </S.ListHeader>
-      {!!infoList &&
-        infoList?.map((item: StuInfoType) => (
-          <StuInfoItem key={item.id} data={item} />
-        ))}
+      <S.ListContent>
+        {!!infoList &&
+          infoList.map((item: StuInfoType) => (
+            <StuInfoItem key={item.id} data={item} />
+          ))}
+      </S.ListContent>
     </S.Layer>
   );
 };

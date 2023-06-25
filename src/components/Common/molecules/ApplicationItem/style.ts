@@ -64,7 +64,7 @@ export const StuNum = styled.span`
 
 export const Medal = styled.div`
   position: absolute;
-  right: -2px;
+  right: 8px;
   bottom: -20px;
 
   svg {

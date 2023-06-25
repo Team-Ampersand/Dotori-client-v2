@@ -1,18 +1,14 @@
 import * as S from './style';
-import {
-  BronzeMedalIcon,
-  DefaultProfile,
-  FemaleIcon,
-  GoldMedalIcon,
-  MaleIcon,
-  SilverMedalIcon,
-  StampIcon,
-} from 'assets/svg';
+import { DefaultProfile, FemaleIcon, MaleIcon, StampIcon } from 'assets/svg';
 import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
 import { ApplicationItemProps } from 'types';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
 import { getRole } from 'utils/Libs/getRole';
+import Image from 'next/image';
+import Goldmedal from 'assets/png/GoldMedalIcon.png';
+import Silvermedal from 'assets/png/SilverMedalIcon.png';
+import BronzeMedal from 'assets/png/BronzeMedalIcon.png';
 
 const ApplicationItem = ({
   id,
@@ -24,7 +20,7 @@ const ApplicationItem = ({
   listType,
 }: ApplicationItemProps) => {
   const role = getRole();
-  const [lookUp, setLookUp] = useRecoilState(selfStudyLookup);
+  const lookUp = useRecoilValue(selfStudyLookup);
 
   return (
     <S.ApplicationItemWrapper>
@@ -33,9 +29,33 @@ const ApplicationItem = ({
         <>
           {!lookUp && (
             <S.Medal>
-              {rank === 1 && <GoldMedalIcon />}
-              {rank === 2 && <SilverMedalIcon />}
-              {rank === 3 && <BronzeMedalIcon />}
+              {rank === 1 && (
+                <Image
+                  src={Goldmedal}
+                  alt="goldmedal"
+                  priority
+                  width={44}
+                  height={64}
+                />
+              )}
+              {rank === 2 && (
+                <Image
+                  src={Silvermedal}
+                  alt="Silvermedal"
+                  priority
+                  width={44}
+                  height={64}
+                />
+              )}
+              {rank === 3 && (
+                <Image
+                  src={BronzeMedal}
+                  alt="BronzeMedal"
+                  priority
+                  width={44}
+                  height={64}
+                />
+              )}
               {rank === 50 && <StampIcon />}
             </S.Medal>
           )}

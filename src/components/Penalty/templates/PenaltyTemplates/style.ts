@@ -19,3 +19,13 @@ export const PenaltyTemplates = styled.div`
     width: 0;
   }
 `;
+
+export const PenatlyWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+
+  @media (max-width: 950px) {
+    gap: 0;
+  }
+`;

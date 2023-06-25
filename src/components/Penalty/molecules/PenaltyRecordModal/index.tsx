@@ -15,7 +15,7 @@ import {
 import { recordPenalty } from 'api/penalty';
 import { getRole } from 'utils/Libs/getRole';
 import { toast } from 'react-toastify';
-import { returnPenaltyValuesKorean } from 'utils/Libs/returnPenaltyValues';
+import { returnPenaltyValuesKorean } from 'assets/data/PenaltyValuesData';
 import { mutate } from 'swr';
 import { penaltyController } from 'utils/Libs/requestUrls';
 import CalendarBox from 'components/Common/atoms/Calendar';
@@ -82,7 +82,12 @@ const PenaltyRecordModal = () => {
                 {year == Tyear && month == Tmonth && day == Tday && ' (오늘)'}
                 <CalendarIcon onClick={() => setCalenderModal(true)} />
                 {calendarModal && (
-                  <ModalOverayWrapper isClick={calendarModal}>
+                  <ModalOverayWrapper
+                    isClick={calendarModal}
+                    onClick={() => {
+                      setCalenderModal(false);
+                    }}
+                  >
                     <CalendarBox setModal={setCalenderModal} />
                   </ModalOverayWrapper>
                 )}

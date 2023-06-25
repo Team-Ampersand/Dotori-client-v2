@@ -32,6 +32,12 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   };
 
   const filterChange = (idx: number, value: string) => {
+    if (
+      filterState.filter((e) => e === undefined).length == 4 &&
+      filterState[idx] === value
+    )
+      setLookUp(false);
+    else setLookUp(true);
     value === '남자'
       ? (value = 'MAN')
       : value === '여자'
@@ -77,10 +83,7 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
                     name={i.filterTitle}
                     item={j}
                     value={filterState[idx]}
-                    onClick={() => {
-                      filterChange(idx, j);
-                      setLookUp(true);
-                    }}
+                    onClick={() => filterChange(idx, j)}
                   />
                 ))}
               </S.SelectBox>

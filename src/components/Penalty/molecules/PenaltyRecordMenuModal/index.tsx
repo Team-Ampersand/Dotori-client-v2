@@ -11,7 +11,7 @@ import { PenaltyRecordModalProps } from 'types';
 import {
   returnPenaltyValuesEnglish,
   returnPenaltyValuesKorean,
-} from 'utils/Libs/returnPenaltyValues';
+} from 'assets/data/PenaltyValuesData';
 
 const PenaltyRecordMenuModal = ({
   modalState,

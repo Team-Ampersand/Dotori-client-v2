@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import { penaltyController } from 'utils/Libs/requestUrls';
 import { penaltyModalState } from 'recoilAtoms/recoilAtomContainer';
 import { useRecoilState } from 'recoil';
-import { returnPenaltyValuesKorean } from 'utils/Libs/returnPenaltyValues';
+import { returnPenaltyValuesKorean } from 'assets/data/PenaltyValuesData';
 
 const PenaltyModal = ({ role }: { role: string }) => {
   const [penaltyModal, setPenaltyModal] = useRecoilState(penaltyModalState);

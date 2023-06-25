@@ -19,7 +19,7 @@ import {
   penaltyStuNumber,
 } from 'recoilAtoms/recoilAtomContainer';
 import { getPenaltyRule } from 'api/penalty';
-import { returnPenaltyValuesKorean } from 'utils/Libs/returnPenaltyValues';
+import { returnPenaltyValuesKorean } from 'assets/data/PenaltyValuesData';
 
 const PenaltyItem = ({ name, gender, number, ruleList }: PenaltyItemProps) => {
   const role = getRole();

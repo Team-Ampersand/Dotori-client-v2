@@ -23,6 +23,6 @@ export interface StuInfoParamsType {
   gender: string | null;
   classNum: string | null;
   grade: number | null;
-  stuRole: 'ROLE_MEMBER' | 'ROLE_COUNCILLOR' | 'ROLE_DEVELOPER' | null;
-  selfStudyCheck: boolean | null;
+  role: string | null;
+  selfStudyStatus: string | null;
 }

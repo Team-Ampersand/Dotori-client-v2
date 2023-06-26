@@ -20,4 +20,10 @@ export const RoleData: RoleDataType = {
     ROLE_ADMIN: `${Palette.SUB_YELLOW}`,
     ROLE_MEMBER: Palette.NEUTRAL_N20,
   },
+  USERFILTER: {
+    학생: 'ROLE_MEMBER',
+    도토리: 'ROLE_DEVELOPER',
+    자치위원: 'ROLE_COUNCILLOR',
+    사감선생님: 'ROLE_ADMIN',
+  },
 };

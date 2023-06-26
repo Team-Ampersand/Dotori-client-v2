@@ -1,6 +1,5 @@
 import * as S from './style';
 import PenaltyList from 'components/Penalty/molecules/PenaltyList';
-import SearchFilter from 'components/Common/molecules/SearchFilter';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   filterModal,
@@ -10,7 +9,6 @@ import {
 } from 'recoilAtoms/recoilAtomContainer';
 import { DownloadIcon, FilterIcon, XtextIcon } from 'assets/svg';
 import { toast } from 'react-toastify';
-import { selfPenaltySearch } from 'api/penalty';
 import { getRole } from 'utils/Libs/getRole';
 import { useEffect } from 'react';
 import useSWR from 'swr';
@@ -21,7 +19,7 @@ const PenaltyTable = () => {
   const role = getRole();
   const [penaltyStu, setPenaltyStu] = useRecoilState(penaltyStudent);
   const setPenaltyRecordModal = useSetRecoilState(penaltyRecordModalState);
-  const setPenaltyOBJ = useSetRecoilState(penaltyList);
+  const [penaltyOBJ, setPenaltyOBJ] = useRecoilState(penaltyList);
   const { data } = useSWR<PenaltyStuListType>(penaltyController.strRule(role));
   const setModal = useSetRecoilState(filterModal);
 
@@ -39,21 +37,6 @@ const PenaltyTable = () => {
       : toast.warning('학생을 선택해주세요');
   };
 
-  const handelPenaltySearch = async (
-    state: (string | undefined)[],
-    name?: string
-  ) => {
-    await selfPenaltySearch(
-      role,
-      name,
-      state[0],
-      state[1]?.slice(0, 1),
-      state[2]
-    ).then((res) => {
-      setPenaltyOBJ(res?.data.students);
-    });
-  };
-
   return (
     <S.TableWrapper>
       <S.ResponseHeader>
@@ -68,7 +51,7 @@ const PenaltyTable = () => {
         <S.ListHeader>
           <S.StudentConst>
             <span>학생</span>
-            357
+            {penaltyOBJ?.length}
             <p>명</p>
           </S.StudentConst>
           <S.PenaltyBtn onClick={ClickPenaltyBtn}>규정 위반 기록</S.PenaltyBtn>
@@ -85,13 +68,6 @@ const PenaltyTable = () => {
         )}
         <PenaltyList />
       </S.ListWrapper>
-      <div>
-        <SearchFilter filterType={'penalty'} onSubmit={handelPenaltySearch} />
-        <S.CSVWrapper>
-          <span>내보내기</span>
-          <S.CSVLink>엑셀 다운로드</S.CSVLink>
-        </S.CSVWrapper>
-      </div>
     </S.TableWrapper>
   );
 };

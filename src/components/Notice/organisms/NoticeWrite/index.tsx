@@ -1,4 +1,5 @@
 import { postNotice, putNotice } from 'api/notice';
+import { RoleData } from 'assets/data/RoleData';
 import BottomBtnBox from 'components/Notice/molecules/BottomBtnBox';
 import ImgForm from 'components/Notice/molecules/ImgForm';
 import WriteForm from 'components/Notice/molecules/WriteForm';
@@ -14,23 +15,26 @@ import {
 } from 'recoilAtoms/recoilAtomContainer';
 import { mutate } from 'swr';
 import { noticeFormType } from 'types/components/NoticePage';
-import { getRole } from 'utils/Libs/getRole';
-import requestWriter from 'utils/Libs/requestRole';
+import { getUserToken } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
 const NoticeWrite = () => {
+  const router = useRouter();
   const { register, watch, handleSubmit, setValue, resetField } =
     useForm<noticeFormType>({
       defaultValues: { title: '', content: '' },
     });
+
   const [imgList, setImgList] = useState<string[]>([]);
   const [postImgList, setPostImgList] = useState<File[]>([]);
-  const role = getRole();
-  const router = useRouter();
-  const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const [content, setContent] = useRecoilState(noticeContent);
+  const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const noticeModify = useRecoilValue(isNoticeModify);
+
+  const baseRole = getUserToken();
+  const role = baseRole !== '' ? RoleData.TOKEN[baseRole] : '';
+  const writerRole = baseRole !== '' ? RoleData.WRITER[baseRole] : '';
 
   useEffect(() => {
     if (!content) return;
@@ -74,7 +78,7 @@ const NoticeWrite = () => {
 
   return (
     <S.Layer onSubmit={handleSubmit(onSubmit, onError)}>
-      <WriteForm register={register} role={requestWriter(role)} />
+      <WriteForm register={register} role={writerRole} />
       <ImgForm
         register={register('img', {
           onChange: () => {

@@ -39,6 +39,7 @@ export const deleteMusic = async (role: string, musicId: number) => {
     toast.success('음악삭제를 성공하셨습니다');
     return true;
   } catch (e) {
+    toast.error('삭제하려는 음악을 찾지 못했습니다');
     return false;
   }
 };

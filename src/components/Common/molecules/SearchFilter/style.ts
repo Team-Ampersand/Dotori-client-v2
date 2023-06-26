@@ -101,7 +101,7 @@ export const SelectBox = styled.div`
     background-color: ${Palette.PRIMARY_P10};
     border: 1px solid ${Palette.PRIMARY_P10};
   }
-  input:hover + label {
+  input + label:hover {
     color: ${(props: FilterStyleProps) =>
       props.darkmode === 'light' ? '#FDFDFD' : '#CDCDD5'};
     background-color: ${Palette.PRIMARY_P10};

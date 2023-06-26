@@ -10,7 +10,7 @@ const CalendarBox = ({ setModal }: { setModal?: (state: boolean) => void }) => {
   const [theme] = UseToggleTheme();
 
   return (
-    <S.Layer state={theme}>
+    <S.Layer state={theme} onClick={(e) => e.stopPropagation()}>
       {setModal && (
         <S.XIcon onClick={() => setModal(false)}>
           <XtextIcon />

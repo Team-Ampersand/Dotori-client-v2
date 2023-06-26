@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import { Palette } from 'styles/globals';
 
-export const Layer = styled.div`
+export const Layer = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,7 +67,7 @@ export const ButtonContainer = styled.div`
   justify-content: end;
 
   button,
-  a {
+  div {
     border: none;
     border-radius: 0.5em;
     background: ${Palette.BACKGROUND_BG};

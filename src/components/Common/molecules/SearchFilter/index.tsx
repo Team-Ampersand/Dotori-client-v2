@@ -1,16 +1,16 @@
-import * as S from './style';
-import { useState } from 'react';
-import FilterItem from 'components/Common/atoms/Items/FilterItem';
-import { SearchFilterTypeProps, SignupForm } from 'types';
 import { FilterMenuData } from 'assets/data/FilterMenuData';
-import UseToggleTheme from 'hooks/useToggleTheme';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
+import AuthInput from 'components/Common/atoms/Inputs/AuthInput';
+import FilterItem from 'components/Common/atoms/Items/FilterItem';
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { useDidMountEffect } from 'hooks/useDidMountEffect';
-import AuthInput from 'components/Common/atoms/Inputs/AuthInput';
+import UseToggleTheme from 'hooks/useToggleTheme';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
+import { SearchFilterTypeProps, SignupForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
+import * as S from './style';
 
 const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
@@ -32,6 +32,12 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   };
 
   const filterChange = (idx: number, value: string) => {
+    if (
+      filterState.filter((e) => e === undefined).length == 4 &&
+      filterState[idx] === value
+    )
+      setLookUp(false);
+    else setLookUp(true);
     value === '남자'
       ? (value = 'MAN')
       : value === '여자'
@@ -77,10 +83,7 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
                     name={i.filterTitle}
                     item={j}
                     value={filterState[idx]}
-                    onClick={() => {
-                      filterChange(idx, j);
-                      setLookUp(true);
-                    }}
+                    onClick={() => filterChange(idx, j)}
                   />
                 ))}
               </S.SelectBox>

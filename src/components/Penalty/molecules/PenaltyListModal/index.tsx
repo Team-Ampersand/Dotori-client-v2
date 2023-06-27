@@ -7,7 +7,7 @@ import {
   penaltyListModalState,
 } from 'recoilAtoms/recoilAtomContainer';
 import { useRecoilState } from 'recoil';
-import { returnPenaltyValuesKorean } from 'utils/Libs/returnPenaltyValues';
+import { returnPenaltyValuesKorean } from 'assets/data/PenaltyValuesData';
 
 const PenaltyListModal = () => {
   const [penaltyListModal, setPenaltyListModal] = useRecoilState(

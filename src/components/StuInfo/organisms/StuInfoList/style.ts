@@ -7,6 +7,14 @@ export const Layer = styled.div`
   background: ${Palette.BACKGROUND_CARD};
   border-radius: 1rem;
   padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const ListHeader = styled.div`

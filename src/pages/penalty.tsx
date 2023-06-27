@@ -1,7 +1,10 @@
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import { PenaltyTable } from 'components/Penalty/organisms';
-import { PenaltyTemplates } from 'components/Penalty/templates/PenaltyTemplates/style';
+import {
+  PenaltyTemplates,
+  PenatlyWrapper,
+} from 'components/Penalty/templates/PenaltyTemplates/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import { GetServerSideProps, NextPage } from 'next';
@@ -12,6 +15,7 @@ import { apiClient } from 'utils/Libs/apiClient';
 import { penaltyController } from 'utils/Libs/requestUrls';
 import { PenaltyStuListType } from 'types';
 import SEOHead from 'components/Common/atoms/SEOHead';
+import PenaltyForm from 'components/Penalty/organisms/PenaltyForm';
 
 const PenaltyPage: NextPage<{
   fallback: Record<string, PenaltyStuListType>;
@@ -25,7 +29,10 @@ const PenaltyPage: NextPage<{
           <SideBar />
           <PenaltyTemplates>
             <CommonHeader />
-            <PenaltyTable />
+            <PenatlyWrapper>
+              <PenaltyTable />
+              <PenaltyForm />
+            </PenatlyWrapper>
           </PenaltyTemplates>
         </MainTemplates>
       </SWRConfig>

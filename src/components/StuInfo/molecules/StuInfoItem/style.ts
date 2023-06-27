@@ -4,7 +4,7 @@ import { ButtonProps } from 'types/components/StuInfoPage';
 
 export const Layer = styled.div`
   width: 100%;
-  height: 72px;
+  min-height: 72px;
   display: flex;
   justify-content: space-between;
   align-items: center;

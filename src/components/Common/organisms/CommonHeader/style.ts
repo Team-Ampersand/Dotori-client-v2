@@ -4,7 +4,7 @@ import { Palette } from 'styles/globals';
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 5.55vh;
   padding-bottom: 24px;
 
   span {

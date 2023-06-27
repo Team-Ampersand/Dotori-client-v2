@@ -10,6 +10,11 @@ export const Layer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const ListHeader = styled.div`

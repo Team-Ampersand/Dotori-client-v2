@@ -9,7 +9,7 @@ export const Layer = styled.div`
   padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.25em;
   overflow-y: auto;
 
   ::-webkit-scrollbar {

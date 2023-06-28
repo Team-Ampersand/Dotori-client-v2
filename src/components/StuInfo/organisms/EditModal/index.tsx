@@ -57,20 +57,9 @@ const EditModal = ({
     mutate(StuInfoController.stuInfo);
   };
 
-  const onError = (e: any) => {
-    console.log(e);
-  };
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <ModalOverayWrapper isClick={isClick} onClick={onClose}>
-      <S.Layer
-        onClick={(e) => e.stopPropagation()}
-        onSubmit={handleSubmit(onSubmit, onError)}
-      >
+      <S.Layer onClick={(e) => e.stopPropagation()}>
         <S.ModalHeader>
           <h3>학생 정보 수정</h3>
           <XtextIcon onClick={onClick} />
@@ -114,7 +103,7 @@ const EditModal = ({
               setValue('role', value);
           }}
         />
-        <S.SubmitBtn type="submit">저장</S.SubmitBtn>
+        <S.SubmitBtn onClick={handleSubmit(onSubmit)}>저장</S.SubmitBtn>
       </S.Layer>
     </ModalOverayWrapper>
   );

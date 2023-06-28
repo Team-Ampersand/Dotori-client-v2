@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
-export const Layer = styled.form`
+export const Layer = styled.div`
   max-width: 428px;
   max-height: 570px;
   width: 100%;

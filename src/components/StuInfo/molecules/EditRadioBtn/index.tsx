@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import * as S from './style';
 
 const EditRadioBtn = ({
@@ -14,8 +13,6 @@ const EditRadioBtn = ({
   onClick: (value: string) => void;
   watch: string;
 }) => {
-  const [a, setA] = useState('');
-
   return (
     <S.Layer>
       <h3>{name}</h3>
@@ -25,13 +22,13 @@ const EditRadioBtn = ({
             <div key={key}>
               <S.Button
                 type="radio"
-                onChange={() => onClick(i)}
-                onClick={() => onClick(i)}
                 checked={watch === i}
-                name={name}
                 id={label[key]}
+                name={name}
               />
-              <label htmlFor={label[key]}>{label[key]}</label>
+              <label htmlFor={label[key]} onClick={() => onClick(i)}>
+                {label[key]}
+              </label>
             </div>
           );
         })}

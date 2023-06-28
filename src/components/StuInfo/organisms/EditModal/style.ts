@@ -38,4 +38,6 @@ export const SubmitBtn = styled.button`
   background: ${Palette.PRIMARY_P10};
   border-radius: 0.5rem;
   border: none;
+  padding: 14px 0;
+  color: ${Palette.NEUTRAL_N10};
 `;

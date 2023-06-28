@@ -17,7 +17,7 @@ export const SelectList = styled.div`
 `;
 
 export const Button = styled.input`
-  /* display: none; */
+  display: none;
 
   + label {
     display: block;
@@ -25,7 +25,7 @@ export const Button = styled.input`
     color: ${Palette.NEUTRAL_N30};
     text-align: center;
     border-radius: 0.25rem;
-    padding: 0.25em 0;
+    padding: 0.75em 0;
     cursor: pointer;
   }
 

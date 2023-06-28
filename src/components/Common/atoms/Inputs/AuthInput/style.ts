@@ -37,7 +37,7 @@ export const AuthInput = styled.div`
     font-size: 16px;
     border: none;
     border-radius: 8px;
-    transition: all 0.3s ease-in-out;
+    transition: border, color 0.3s ease-in-out;
     padding: 0
       ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)};
     :-webkit-autofill {

@@ -12,6 +12,7 @@ import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { MassageController } from 'utils/Libs/requestUrls';
 import UseToggleTheme from 'hooks/useToggleTheme';
+import { toast } from 'react-toastify';
 
 const MassageBoard = () => {
   const [info, setInfo] = useState<applyStyleProps>({
@@ -42,19 +43,19 @@ const MassageBoard = () => {
   const handleApplyBtnClick = () => {
     switch (info.applyStatus) {
       case '안마의자':
-      case '신청불가':
         return StudyControll();
       case '신청취소':
         return setCheckModal(true);
       case '인원수정':
         return setApplyModifyModal(true);
+      case '신청불가':
+        return toast.error('안마의자 신청을 할 수 없는 상태에요');
     }
   };
 
   const StudyControll = async (n?: number) => {
     switch (info.applyStatus) {
       case '안마의자':
-      case '신청불가':
         return (await applyMassage(role)) && mutate();
       case '신청취소':
         return (await applyCancelMassage(role)) && mutate();

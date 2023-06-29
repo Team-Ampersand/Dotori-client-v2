@@ -20,12 +20,7 @@ const EditRadioBtn = ({
         {data.map((i, key) => {
           return (
             <div key={key}>
-              <S.Button
-                type="radio"
-                checked={watch === i}
-                id={label[key]}
-                name={name}
-              />
+              <S.Button type="radio" checked={watch === i} id={label[key]} />
               <label htmlFor={label[key]} onClick={() => onClick(i)}>
                 {label[key]}
               </label>

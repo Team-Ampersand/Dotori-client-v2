@@ -1,8 +1,8 @@
-name: "🐛 Bug"
+name: "🐞 Bug"
 description: "버그가 생겼어요"
-title: "🐛 [BUG] - <title>"
+title: "🐞 [BUG] - <title>"
 labels: [
-  "🐛 Type: Bug"
+  "🐞 Type: Bug"
 ]
 body:
   - type: textarea

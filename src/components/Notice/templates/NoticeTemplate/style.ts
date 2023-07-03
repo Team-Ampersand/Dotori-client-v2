@@ -6,13 +6,14 @@ export const NoticeTemplate = styled.div`
   height: 100vh;
   max-height: 100vh;
   background: ${Palette.BACKGROUND_BG};
-  padding: 0 56px 72px 56px;
+  padding: 0 3vw 72px 3vw;
   display: flex;
   flex-direction: column;
   gap: 24px;
 
   @media (max-width: 1634px) {
     width: calc(100% - 72px);
+    padding: 0 2.5vw 72px 2.5vw;
   }
 `;
 

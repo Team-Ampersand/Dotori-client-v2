@@ -45,12 +45,7 @@ const StuInfoList = () => {
       </S.ListHeader>
       {!!infoList &&
         infoList?.map((item: StuInfoType) => (
-          <>
-            <StuInfoItem key={item.id} data={item} />
-            <StuInfoItem key={item.id} data={item} />
-            <StuInfoItem key={item.id} data={item} />
-            <StuInfoItem key={item.id} data={item} />
-          </>
+          <StuInfoItem key={item.id} data={item} />
         ))}
     </S.Layer>
   );

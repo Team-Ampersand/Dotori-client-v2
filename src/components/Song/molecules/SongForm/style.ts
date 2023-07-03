@@ -9,6 +9,7 @@ export const Layer = styled.form`
   gap: 0.5em;
   background: ${Palette.BACKGROUND_CARD};
   border-radius: 1em;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   @media (max-width: 950px) {
     width: 380px;

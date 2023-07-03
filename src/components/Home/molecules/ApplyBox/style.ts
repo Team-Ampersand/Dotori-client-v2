@@ -11,6 +11,7 @@ export const ApplyBoxWrapper = styled.div`
   padding: 20px 25px;
   background: ${Palette.BACKGROUND_CARD};
   border-radius: 16px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   @media (min-width: 1950px) {
     width: 34.5vw;

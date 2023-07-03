@@ -11,6 +11,7 @@ export const Layer = styled.div`
   gap: 1rem;
   border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   @media (max-width: 950px) {
     width: 100%;

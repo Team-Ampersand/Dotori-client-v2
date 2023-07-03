@@ -11,6 +11,7 @@ export const Layer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   > h2 {
     color: ${Palette.NEUTRAL_N10};

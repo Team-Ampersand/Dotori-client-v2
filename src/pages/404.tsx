@@ -9,7 +9,7 @@ const NotFoundPage = () => {
     <>
       <SEOHead title={'| 404페이지'} />
       <MainTemplates>
-        <NotFoundOrganism />
+        <NotFoundOrganism statusCode={404} />
       </MainTemplates>
     </>
   );

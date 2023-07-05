@@ -1,18 +1,18 @@
-import UseThemeEffect from 'hooks/useThemeEffect';
+import SEOHead from 'components/Common/atoms/SEOHead';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import NotFoundOrganism from 'components/NotFound/organisms/NotFoundOrganisms';
-import SEOHead from 'components/Common/atoms/SEOHead';
+import UseThemeEffect from 'hooks/useThemeEffect';
 
-const NotFoundPage = () => {
+const Custom500Page = () => {
   UseThemeEffect();
   return (
     <>
-      <SEOHead title={'| 404페이지'} />
+      <SEOHead title={'| 500페이지'} />
       <MainTemplates>
-        <NotFoundOrganism statusCode={404} />
+        <NotFoundOrganism statusCode={500} />
       </MainTemplates>
     </>
   );
 };
 
-export default NotFoundPage;
+export default Custom500Page;

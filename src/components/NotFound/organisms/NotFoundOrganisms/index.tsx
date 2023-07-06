@@ -8,13 +8,13 @@ const NotFoundOrganism = ({ statusCode }: { statusCode: number }) => {
   const router = useRouter();
   return (
     <S.NotFoundWrapper>
-      {statusCode === 500 ? (
+      {statusCode === 404 ? (
         <Image src={NotFoundImg} alt="404이미지" width={500} height={290} />
       ) : (
         <Image src={Custom500Img} alt="500이미지" width={500} height={250} />
       )}
       <S.NotFoundDecs>
-        {statusCode === 500 ? (
+        {statusCode === 404 ? (
           <>
             <h2>요청하신 페이지를 찾을수 없습니다.</h2>
             <h5>입력한 주소가 맞는지 다시 한번 확인해 주시기를 바랍니다.</h5>
@@ -25,7 +25,7 @@ const NotFoundOrganism = ({ statusCode }: { statusCode: number }) => {
             <h5>문제를 해결하고 있습니다. 잠시 후에 다시 시도해 주세요.</h5>
           </>
         )}
-        {statusCode === 500 && (
+        {statusCode === 404 && (
           <S.HomeUrlBtn onClick={() => router.back()}>이전화면</S.HomeUrlBtn>
         )}
       </S.NotFoundDecs>

@@ -11,6 +11,7 @@ export const Layer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   svg {
     path {

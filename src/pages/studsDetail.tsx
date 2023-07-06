@@ -8,6 +8,7 @@ import {
   StuInfoLayer,
   StuInfoTemplate,
 } from 'components/StuInfo/template/style';
+import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
 import { SWRConfig } from 'swr';
 import { StuInfoType } from 'types/components/StuInfoPage';
@@ -18,6 +19,7 @@ import { StuInfoController } from 'utils/Libs/requestUrls';
 const StudsDetail: NextPage<{
   fallback: Record<string, StuInfoType[]>;
 }> = ({ fallback }) => {
+  UseThemeEffect();
   return (
     <>
       <SEOHead title="| 학생정보페이지" />

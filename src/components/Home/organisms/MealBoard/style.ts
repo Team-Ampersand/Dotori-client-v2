@@ -11,6 +11,7 @@ export const MealBoardWrapper = styled.div`
   border-radius: 16px;
   padding: 20px;
   gap: 3.2vh;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   span {
     font-weight: 700;

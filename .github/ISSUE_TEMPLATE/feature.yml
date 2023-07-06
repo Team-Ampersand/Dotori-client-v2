@@ -1,0 +1,39 @@
+name: "💡 To do"
+description: 해야 할 것이 생겼어요
+title: "💡 [ToDo] - <title>"
+labels: [
+  "💡 Type: Want"
+]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Summary"
+      description: 해야 할 것을 입력해주세요
+      placeholder: 로그인을 구현해야 돼요
+    validations:
+      required: true
+  - type: input
+    id: start_date
+    attributes:
+      label: "Start Date"
+      description: 개발 시작일을 입력해주세요
+      placeholder: "month/day/year"
+    validations:
+      required: false
+  - type: textarea
+    id: implementation_pr
+    attributes:
+      label: "Implementation PR"
+      description: 이 이슈와 연관된 pr을 입력해주세요
+      placeholder: "#1"
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: "additional"
+      description: 추가로 작성할 내용
+      placeholder: ~한 코드를 추가하면 좋을 것 같아요
+    validations:
+      required: false

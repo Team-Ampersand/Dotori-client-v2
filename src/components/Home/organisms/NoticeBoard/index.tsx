@@ -4,7 +4,6 @@ import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import { noticeListType } from 'types/Home';
-import { useEffect } from 'react';
 
 const NoticeBoard = () => {
   const role = getRole();

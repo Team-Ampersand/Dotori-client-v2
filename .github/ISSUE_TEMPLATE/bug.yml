@@ -1,0 +1,70 @@
+name: "🐞 Bug"
+description: "버그가 생겼어요"
+title: "🐞 [BUG] - <title>"
+labels: [
+  "🐞 Type: Bug"
+]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Summary"
+      description: 버그에 대한 간략한 설명을 기록
+      placeholder: 로그인이 안돼요
+    validations:
+      required: true
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Reproduction steps"
+      description: 버그를 발생시키는 방법을 기록
+      placeholder: |
+        1. 로그인 페이지로 이동
+        2. id, pw 입력
+        3. '로그인' 버튼 클릭
+        4. 에러 발생
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "Screenshots"
+      description: 버그와 관련된 이미지/영상을 첨부
+      render: bash
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: "additional"
+      description: 추가로 작성할 내용
+      placeholder: ~한 코드를 추가하면 좋을 것 같아요
+    validations:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: "Browsers"
+      description: What browsers are you seeing the problem on ?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Opera
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      description: What is the impacted environment ?
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - Mac
+    validations:
+      required: false

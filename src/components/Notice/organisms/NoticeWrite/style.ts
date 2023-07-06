@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Palette } from 'styles/globals';
 
 export const Layer = styled.form`
   width: 69%;

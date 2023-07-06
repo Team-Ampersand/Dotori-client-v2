@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
-export const Layer = styled.form`
+export const Layer = styled.div`
   max-width: 428px;
   max-height: 570px;
   width: 100%;
@@ -38,4 +38,6 @@ export const SubmitBtn = styled.button`
   background: ${Palette.PRIMARY_P10};
   border-radius: 0.5rem;
   border: none;
+  padding: 14px 0;
+  color: ${Palette.NEUTRAL_N10};
 `;

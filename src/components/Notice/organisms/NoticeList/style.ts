@@ -8,6 +8,7 @@ export const Layer = styled.div`
   background: ${Palette.BACKGROUND_CARD};
   padding: 6px 24px;
   overflow: hidden;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 `;
 
 export const NoticeContainer = styled.div`

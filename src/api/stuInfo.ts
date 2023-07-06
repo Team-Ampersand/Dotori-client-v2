@@ -48,8 +48,7 @@ export const putStuInfo = async (
       gender: gender,
       role: stuRole,
     });
-    toast.success('학생정보 수정이 완료되었습니다');
-    return;
+    return toast.success('학생정보 수정이 완료되었습니다');
   } catch (e: any) {
     if (e.response.status === 404) toast.error('존재하지 않는 학생입니다');
     else toast.error('학생정보 수정을 실패하였습니다');

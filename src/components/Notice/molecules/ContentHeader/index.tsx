@@ -24,11 +24,9 @@ const ContentHeader = ({ data }: props) => {
   const setNoticeModify = useSetRecoilState(isNoticeModify);
   const [modal, setModal] = useState(false);
   const createdDate = new Date(data.createdDate);
-  const writeDate = `${getDate(createdDate)[0]}년 ${
-    getDate(createdDate)[1]
-  }월 ${getDate(createdDate)[2]}일 ${getDate(createdDate)[3]}시 ${
-    getDate(createdDate)[4]
-  }분`;
+  const writeDate = `${getDate(createdDate)[0]}년 ${getDate(createdDate)[1]
+    }월 ${getDate(createdDate)[2]}일 ${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]
+    }분`;
 
   const onDelete = async () => {
     setNoticeWrite(false);
@@ -47,7 +45,7 @@ const ContentHeader = ({ data }: props) => {
           />
           <span>{RoleData.WRITER[data.role]}</span>
         </S.Writer>
-        <h2>{data.title}</h2>
+        <S.Title>{data.title}</S.Title>
       </S.HeaderLeftBox>
       {role !== 'member' && (
         <S.HeaderRightBox>

@@ -29,6 +29,10 @@ export const Writer = styled.div`
   color: ${Palette.NEUTRAL_N10};
 `;
 
+export const Title = styled.h2`
+  width: 60vw;
+`;
+
 export const WriterDot = styled.div`
   width: 0.6em;
   height: 0.6em;

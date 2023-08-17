@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const SideBarListWrapper = styled.nav`
-  height: 75vh;
+  height: 75dvh;
   width: 100%;
   display: flex;
   flex-direction: column;

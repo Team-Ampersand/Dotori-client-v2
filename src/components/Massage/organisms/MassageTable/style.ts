@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
 export const TableWrapper = styled.div`
-  height: 87.5vh;
+  height: 87.5dvh;
   @media (max-width: 420px) {
     height: auto;
   }

@@ -4,7 +4,7 @@ import { PromotionStyleProps } from 'types';
 
 export const DecsPartOverlay = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background: ${(props: PromotionStyleProps) =>
     props.isShow ? 'rgba(0, 0, 0, 0.4)' : ''};
   backdrop-filter: blur(
@@ -21,15 +21,15 @@ export const DecsPartOverlay = styled.div`
 export const DecsPartWrapper = styled.div`
   z-index: 3;
   position: absolute;
-  top: ${(props: PromotionStyleProps) => (props.isShow ? '0' : '80vh')};
+  top: ${(props: PromotionStyleProps) => (props.isShow ? '0' : '80dvh')};
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: ${(props: PromotionStyleProps) => (props.isShow ? '30px' : '60px')};
   opacity: ${(props: PromotionStyleProps) => (props.isShow ? '1' : '0')};
-  padding-top: 33vh;
+  padding-top: 33dvh;
   justify-content: flex-start;
   color: white;
   transition: all 1.7s ease-out;

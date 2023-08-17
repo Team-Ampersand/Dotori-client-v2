@@ -7,12 +7,12 @@ export const ProfileWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-top: 4.4vh;
-  gap: 3vh;
+  margin-top: 4.4dvh;
+  gap: 3dvh;
   grid-area: 프로필;
 
   @media (min-width: 1950px) {
-    margin-top: 6.2vh;
+    margin-top: 6.2dvh;
   }
   @media (max-width: 1634px) {
     width: 23vw;
@@ -24,7 +24,7 @@ export const ProfileWrapper = styled.div`
 
 export const ProfileBox = styled.div`
   width: 100%;
-  height: 13vh;
+  height: 13dvh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,7 +42,7 @@ export const ProfileBox = styled.div`
 
 export const StudentInfo = styled.div`
   width: 12.5vw;
-  height: 7.233vh;
+  height: 7.233dvh;
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
 export const TableWrapper = styled.div`
-  height: 86vh;
+  height: 86dvh;
   display: flex;
   justify-content: space-between;
   gap: 15px;

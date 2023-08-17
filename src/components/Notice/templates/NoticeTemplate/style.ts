@@ -3,8 +3,8 @@ import { Palette } from 'styles/globals';
 
 export const NoticeTemplate = styled.div`
   width: calc(100% - 240px);
-  height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   background: ${Palette.BACKGROUND_BG};
   padding: 0 3vw 3vw 3vw;
   display: flex;

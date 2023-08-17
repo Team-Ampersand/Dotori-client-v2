@@ -4,7 +4,7 @@ import { applyStyleProps } from 'types';
 
 export const ApplyBoxWrapper = styled.div`
   width: 31vw;
-  height: 25.65vh;
+  height: 25.65dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -130,7 +130,7 @@ export const ApplyDesc = styled.div`
 
 export const ApplyBtn = styled.div`
   width: 100px;
-  height: 4.2vh;
+  height: 4.2dvh;
   border-radius: 8px;
   display: flex;
   align-items: center;

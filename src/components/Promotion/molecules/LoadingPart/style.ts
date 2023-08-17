@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 export const LoadingPartWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 10vh;
+  padding-bottom: 10dvh;
   background: #16182f;
   p {
     font-weight: 500;

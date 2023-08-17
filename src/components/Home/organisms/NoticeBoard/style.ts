@@ -3,7 +3,7 @@ import { Palette } from 'styles/globals';
 
 export const NoticeBoardWrapper = styled.div`
   width: 23vw;
-  height: 55.4vh;
+  height: 55.4dvh;
   display: flex;
   flex-direction: column;
   padding: 15px 20px 0 20px;

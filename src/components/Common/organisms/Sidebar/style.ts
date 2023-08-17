@@ -3,7 +3,7 @@ import { Palette } from 'styles/globals';
 
 export const SideBarWrapper = styled.aside`
   width: 240px;
-  height: 100vh;
+  height: 100dvh;
   background: ${Palette.BACKGROUND_CARD};
   display: flex;
   flex-direction: column;

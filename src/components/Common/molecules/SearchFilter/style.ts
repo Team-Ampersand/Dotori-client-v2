@@ -15,7 +15,7 @@ export const FilterWrapper = styled.div`
   @media (max-width: 950px) {
     width: 280px;
     position: fixed;
-    bottom: 50vh;
+    bottom: 50dvh;
     left: 50vw;
     transform: translate(-50%, 50%);
     z-index: 11;

@@ -24,11 +24,11 @@ export const NullApplicstionWrapper = styled.div`
   }
   @media (max-width: 420px) {
     position: fixed;
-    bottom: 50vh;
+    bottom: 50dvh;
     left: 50vw;
     transform: translate(-50%, 50%);
     span {
-      margin-top: 2vh;
+      margin-top: 2dvh;
       font-weight: 700;
       font-size: 16px;
     }

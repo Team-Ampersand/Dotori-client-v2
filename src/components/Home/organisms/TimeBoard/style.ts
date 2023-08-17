@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
 export const TimeBoardWrapper = styled.div`
-  height: 33vh;
+  height: 33dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-top: 4vh;
-  gap: 1.55vh;
+  margin-top: 4dvh;
+  gap: 1.55dvh;
   grid-area: 시간;
 
   @media (max-width: 950px) {
@@ -109,7 +109,7 @@ export const TodayDate = styled.div`
 
 export const BoardBottom = styled.div`
   position: relative;
-  height: 27vh;
+  height: 27dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,17 +157,17 @@ export const BoardBottom = styled.div`
 export const ShadowImgBox = styled.div`
   position: absolute;
   right: -2.7vw;
-  bottom: -2vh;
-  width: 50vh;
-  height: 44vh;
+  bottom: -2dvh;
+  width: 50dvh;
+  height: 44dvh;
   border-radius: 50%;
   z-index: 0;
 
   @media (max-width: 1130px) {
     right: -4.7vw;
-    bottom: -1vh;
-    width: 42vh;
-    height: 40vh;
+    bottom: -1dvh;
+    width: 42dvh;
+    height: 40dvh;
   }
   @media (max-width: 950px) {
     display: none;
@@ -200,16 +200,16 @@ export const CurrentTime = styled.p`
 export const DotoriImgBox = styled.div`
   position: absolute;
   right: 1.5vw;
-  bottom: 2vh;
-  width: 34vh;
-  height: 34vh;
+  bottom: 2dvh;
+  width: 34dvh;
+  height: 34dvh;
   z-index: 1;
 
   @media (max-width: 1260px) {
-    width: 28vh;
-    height: 28vh;
+    width: 28dvh;
+    height: 28dvh;
     right: 1vw;
-    bottom: 3vh;
+    bottom: 3dvh;
   }
 
   @media (max-width: 950px) {

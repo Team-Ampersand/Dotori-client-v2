@@ -14,6 +14,7 @@ const ApplyBox = ({
   applyStatus,
   onClick,
   theme,
+  setApplyModifyModal,
 }: applyBoxProps) => {
   const [role, setRole] = useState('');
 
@@ -27,7 +28,11 @@ const ApplyBox = ({
         <S.TitleWrapper>
           <div>{name}</div>
           {(role === 'councillor' || role === 'developer') && (
-            <div>
+            <div
+              onClick={() => {
+                setApplyModifyModal(true);
+              }}
+            >
               <SettingIcon fill={theme === 'light' ? '#292E3D' : '#CDCDD5'} />
             </div>
           )}

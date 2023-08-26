@@ -52,15 +52,17 @@ const MassageBoard = () => {
     }
   };
 
-  const StudyControll = async (n?: number) => {
+  const StudyControll = async () => {
     switch (info.applyStatus) {
       case '안마의자':
         return (await applyMassage(role)) && mutate();
       case '신청취소':
         return (await applyCancelMassage(role)) && mutate();
-      case '인원수정':
-        return (await applyModifyMassage(role, n || 50)) && mutate();
     }
+  };
+
+  const clickApplyModify = async (n?: number) => {
+    return (await applyModifyMassage(role, n || 50)) && mutate();
   };
 
   const handleModalClick = (
@@ -68,7 +70,7 @@ const MassageBoard = () => {
     n?: number
   ) => {
     setState(false);
-    StudyControll(n);
+    n ? clickApplyModify(n) : StudyControll();
   };
 
   return (
@@ -81,6 +83,7 @@ const MassageBoard = () => {
         maxCount={data?.limit || 0}
         applyStatus={info.applyStatus}
         onClick={handleApplyBtnClick}
+        setApplyModifyModal={setApplyModifyModal}
       />
       {checkModal && (
         <CommonCheckModal

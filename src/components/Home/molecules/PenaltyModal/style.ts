@@ -20,13 +20,14 @@ export const PenaltyModalWrapper = styled.div`
 `;
 
 export const PenaltyItems = styled.div`
+  background-color: ${Palette.BACKGROUND_BG};
   height: 280px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
   margin: 15px 0 10px 0;
-
+  border-radius: 8px;
   ::-webkit-scrollbar {
     width: 0px;
   }
@@ -48,5 +49,5 @@ export const NullPenalty = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${Palette.NEUTRAL_N10};
+  color: ${Palette.NEUTRAL_N30};
 `;

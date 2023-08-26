@@ -3,14 +3,13 @@ import { Palette } from 'styles/globals';
 
 export const ContentHeader = styled.div`
   width: 100%;
-  height: 8%;
   display: flex;
   justify-content: space-between;
 `;
 
 export const HeaderLeftBox = styled.div`
-  width: 50%;
-  height: 100%;
+  width: 11vw;
+  height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,7 +29,8 @@ export const Writer = styled.div`
 `;
 
 export const Title = styled.h2`
-  width: 60vw;
+  width: 47vw;
+  word-break: break-all;
 `;
 
 export const WriterDot = styled.div`
@@ -49,7 +49,7 @@ export const HeaderRightBox = styled(HeaderLeftBox)`
 
 export const IconBox = styled.div`
   display: flex;
-  gap: 1.2em;
+  gap: 1.2rem;
 
   button {
     background: transparent;

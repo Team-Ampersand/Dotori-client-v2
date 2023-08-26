@@ -41,6 +41,7 @@ export const PenaltyModalBtn = styled.button`
 `;
 
 export const NullPenalty = styled.div`
+  color: ${Palette.NEUTRAL_N30};
   height: 280px;
   display: flex;
   align-items: center;

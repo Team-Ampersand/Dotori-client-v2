@@ -24,6 +24,8 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+  overflow-y: auto;
 `;
 
 export const BottomWrapper = styled.div`

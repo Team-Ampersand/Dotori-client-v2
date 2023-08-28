@@ -3,8 +3,8 @@ import { Palette } from 'styles/globals';
 
 export const NotFoundWrapper = styled.div`
   width: 100%;
-  height: 100vh;
-  padding: 0 30px 12vh 30px;
+  height: 100dvh;
+  padding: 0 30px 12dvh 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

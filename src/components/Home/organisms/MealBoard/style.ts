@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
 export const MealBoardWrapper = styled.div`
-  height: 68.65vh;
+  height: 68.65dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,7 +10,7 @@ export const MealBoardWrapper = styled.div`
   background: ${Palette.BACKGROUND_CARD};
   border-radius: 16px;
   padding: 20px;
-  gap: 3.2vh;
+  gap: 3.2dvh;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
 
   span {
@@ -21,7 +21,7 @@ export const MealBoardWrapper = styled.div`
 
   @media (max-width: 1634px) {
     width: 23vw;
-    height: 68.5vh;
+    height: 68.5dvh;
   }
   @media (max-width: 950px) {
     width: 100%;
@@ -75,7 +75,7 @@ export const ControlDate = styled.div`
 
 export const HourMealChooseBox = styled.div`
   position: relative;
-  height: 5vh;
+  height: 5dvh;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -99,7 +99,7 @@ export const HourMealChooseBox = styled.div`
 export const SelectBtn = styled.button`
   position: absolute;
   width: 32%;
-  height: 4vh;
+  height: 4dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,12 +118,12 @@ export const SelectBtn = styled.button`
 `;
 
 export const MealList = styled.div`
-  height: 52vh;
+  height: 52dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 3vh 0 3vh 30px;
+  padding: 3dvh 0 3dvh 30px;
   background: ${Palette.NEUTRAL_N50};
   border-radius: 8px;
 `;

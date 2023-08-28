@@ -151,7 +151,7 @@ export const NextBtn = styled.button`
 export const CalenderWrapper = styled.div`
   display: ${(props: ModalStyleProps) => (props.isClick ? 'flex' : 'none')};
   position: fixed;
-  bottom: 50vh;
+  bottom: 50dvh;
   left: 50vw;
   transform: translate(-50%, 50%);
 `;

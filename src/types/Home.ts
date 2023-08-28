@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface applyStyleProps {
   applyStatus: '신청취소' | '신청불가' | '자습신청' | '안마의자' | '인원수정';
   theme?: 'dark' | 'light';
@@ -12,6 +14,7 @@ export interface applyBoxProps extends applyBoardState {
   url: string;
   maxCount: number;
   onClick: () => void;
+  setApplyModifyModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface returnMealdataType {

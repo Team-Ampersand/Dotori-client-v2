@@ -27,8 +27,7 @@ const SelfStudyBoard = () => {
   );
 
   useEffect(() => {
-    if (role === ('admin' || 'councillor'))
-      return setInfo({ applyStatus: '인원수정' });
+    if (role === 'admin') return setInfo({ applyStatus: '인원수정' });
     switch (data?.selfStudyStatus) {
       case 'CAN':
         return setInfo({ applyStatus: '자습신청' });
@@ -53,15 +52,17 @@ const SelfStudyBoard = () => {
     }
   };
 
-  const StudyControll = async (n?: number) => {
+  const StudyControll = async () => {
     switch (info.applyStatus) {
       case '자습신청':
         return (await applySelfStudy(role)) && mutate();
       case '신청취소':
         return (await applyCancelStudy(role)) && mutate();
-      case '인원수정':
-        return (await applyModifyStudy(role, n || 50)) && mutate();
     }
+  };
+
+  const clickApplyModify = async (n?: number) => {
+    return (await applyModifyStudy(role, n || 50)) && mutate();
   };
 
   const handleModalClick = (
@@ -69,7 +70,7 @@ const SelfStudyBoard = () => {
     n?: number
   ) => {
     setState(false);
-    StudyControll(n);
+    n ? clickApplyModify(n) : StudyControll();
   };
 
   return (
@@ -82,6 +83,7 @@ const SelfStudyBoard = () => {
         applyStatus={info.applyStatus}
         onClick={handleApplyBtnClick}
         theme={theme}
+        setApplyModifyModal={setApplyModifyModal}
       />
       {checkModal && (
         <CommonCheckModal

@@ -3,7 +3,7 @@ import { Palette } from 'styles/globals';
 
 export const TableWrapper = styled.div`
   width: 100%;
-  height: 87.5vh;
+  height: 87.5dvh;
   display: flex;
   justify-content: space-between;
 

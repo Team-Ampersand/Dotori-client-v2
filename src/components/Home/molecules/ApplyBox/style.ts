@@ -51,6 +51,15 @@ export const ApplyBoardHeader = styled.div`
   }
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  gap: 4px;
+
+  svg {
+    cursor: pointer;
+  }
+`;
+
 export const ApplyCountWrapper = styled.div`
   display: flex;
   flex-direction: column;

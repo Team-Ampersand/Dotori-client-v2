@@ -64,8 +64,8 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
         <S.LeftWrapper>
           <S.ImgBox>
             <Image
-              src={`https://img.youtube.com/vi/${youtubeId}/sddefault.jpg`}
-              alt={'image'}
+              src={`https://img.youtube.com/vi/${youtubeId}/0.jpg`}
+              alt="thumbnail"
               layout="fill"
               objectFit="cover"
             />

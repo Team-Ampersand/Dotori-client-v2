@@ -113,7 +113,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
           type={'submit'}
         />
         <p>
-          {isLogin ? '비밀번호를 변경할 필요가 없다면?' : '이미 회원이라면?'}
+          {isLogin ? '이미 회원이라면?' : '비밀번호를 변경할 필요가 없다면?'}
           <Link href={'/signin'}>
             <a>로그인</a>
           </Link>

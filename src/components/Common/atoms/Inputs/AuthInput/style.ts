@@ -16,7 +16,6 @@ export const AuthInput = styled.div`
   display: flex;
   justify-content:start;
   align-items: center;
-  background: ${Palette.NEUTRAL_N50};
   border-radius: 8px;
   input {
     width: ${(props: AuthInputStyleProps) =>
@@ -33,6 +32,7 @@ export const AuthInput = styled.div`
     justify-content: flex-start;
     box-shadow: 0 0 0 1000px ${Palette.NEUTRAL_N50} inset;
     color: ${Palette.NEUTRAL_N30};
+    background: ${Palette.NEUTRAL_N50};
     font-weight: 500;
     font-size: 16px;
     border: none;

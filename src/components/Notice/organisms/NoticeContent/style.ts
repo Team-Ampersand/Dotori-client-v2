@@ -17,6 +17,7 @@ export const ContentWrapper = styled.div`
   width: 100%;
   height: 92%;
   padding: 16px 12px;
+  border-radius: 8px;
   background: ${Palette.BACKGROUND_BG};
   color: ${Palette.NEUTRAL_N10};
   font-weight: 300;

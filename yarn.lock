@@ -371,10 +371,10 @@
     lodash.debounce "^4.0.8"
     react-merge-refs "^2.0.1"
 
-"@splinetool/runtime@^0.9.263":
-  version "0.9.263"
-  resolved "https://registry.yarnpkg.com/@splinetool/runtime/-/runtime-0.9.263.tgz#2a74b5062448cd43533df8fc990dc9e285435bde"
-  integrity sha512-odlkxpVajfrhzOOP1wuY7J7jW1Rt/LwZW4yJSsm1EYcZq7ljzaRRcHeNqpLgVM49ff0X5R1GKcgPAGt3CVweLw==
+"@splinetool/runtime@^0.9.492":
+  version "0.9.492"
+  resolved "https://registry.yarnpkg.com/@splinetool/runtime/-/runtime-0.9.492.tgz#f4f556b3acefe4a21f6d41343534d508246f305f"
+  integrity sha512-5k02HefxIFt2ZcTrV9RRLoWjtYXdo1CrOnssACPUZ4931mWanjpCcSyvigWiOVNPTjDAWvxp32qtPUJPA/apIw==
   dependencies:
     on-change "^4.0.0"
     semver-compare "^1.0.0"
@@ -750,10 +750,10 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-caniuse-lite@^1.0.30001406:
-  version "1.0.30001445"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001445.tgz#cf2d4eb93f2bcdf0310de9dd6d18be271bc0b447"
-  integrity sha512-8sdQIdMztYmzfTMO6KfLny878Ln9c2M0fc7EH60IjlP4Dc4PiCy7K2Vl3ITmWgOyPgVQKa5x+UP/KqFsxj4mBg==
+caniuse-lite@^1.0.30001406, caniuse-lite@^1.0.30001559:
+  version "1.0.30001559"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001559.tgz#95a982440d3d314c471db68d02664fb7536c5a30"
+  integrity sha512-cPiMKZgqgkg5LY3/ntGeLFUpi6tzddBNS58A4tnTgQw1zON7u2sZMU7SzOeVH4tj20++9ggL+V6FDOFMTaFFYA==
 
 chalk@4.1.1:
   version "4.1.1"

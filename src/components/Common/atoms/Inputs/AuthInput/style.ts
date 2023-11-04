@@ -9,23 +9,22 @@ export const AuthInput = styled.div`
     props.isSearch
       ? '250px'
       : props.isRabel
-        ? `385px`
-        : props.isEmailAuth
-          ? `255px`
-          : `385px`};
+      ? `385px`
+      : props.isEmailAuth
+      ? `255px`
+      : `385px`};
   display: flex;
-  justify-content:start;
   align-items: center;
   border-radius: 8px;
   input {
     width: ${(props: AuthInputStyleProps) =>
-    props.isSearch
-      ? '185px'
-      : props.isRabel
+      props.isSearch
+        ? '185px'
+        : props.isRabel
         ? `330px`
         : props.isEmailAuth
-          ? `255px`
-          : `390px`};
+        ? `255px`
+        : `390px`};
     height: 52px;
     display: flex;
     align-items: center;
@@ -39,7 +38,7 @@ export const AuthInput = styled.div`
     border-radius: 8px;
     transition: border, color 0.3s ease-in-out;
     padding: 0 0 0
-      ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)} ;
+      ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)};
     :-webkit-autofill {
       -webkit-box-shadow: 0 0 0 1000px ${Palette.NEUTRAL_N50} inset !important;
       -webkit-text-fill-color: ${Palette.NEUTRAL_N30} !important;
@@ -70,14 +69,14 @@ export const AuthInput = styled.div`
 
   @media (max-width: 420px) {
     width: ${(props: AuthInputStyleProps) =>
-    props.isRabel ? `90vw` : props.isEmailAuth ? `70vw` : `90vw`};
+      props.isRabel ? `90vw` : props.isEmailAuth ? `70vw` : `90vw`};
     input {
       width: ${(props: AuthInputStyleProps) =>
-    props.isRabel
-      ? `calc(90vw - 100px)`
-      : props.isEmailAuth
-        ? `50vw`
-        : `calc(90vw - 40px)`};
+        props.isRabel
+          ? `calc(90vw - 100px)`
+          : props.isEmailAuth
+          ? `50vw`
+          : `calc(90vw - 40px)`};
       margin: 0 auto;
     }
   }
@@ -99,6 +98,6 @@ export const EmailBack = styled.span`
         ? '110px'
         : '48px'
       : props.isValue || props.isFocus
-        ? '80px'
-        : '20px'};
+      ? '80px'
+      : '20px'};
 `;

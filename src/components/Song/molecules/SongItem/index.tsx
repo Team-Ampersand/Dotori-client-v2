@@ -1,5 +1,5 @@
 import { deleteMusic, getMusic } from 'api/music';
-import { NewPageIcon, TrashcanIcon } from 'assets/svg';
+import { EllipsisVerticalIcon, NewPageIcon, TrashcanIcon } from 'assets/svg';
 import axios from 'axios';
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ import { preventEvent } from 'utils/Libs/preventEvent';
 import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
+import ResponsiveModal from '../ResponsiveModal';
 
 const songTitle = async (url: string) => {
   const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -38,6 +39,7 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   const [title, setTitle] = useState<string>('');
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [modalState, setMdoalState] = useState<boolean>(false);
 
   const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
@@ -70,7 +72,12 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
               objectFit="cover"
             />
           </S.ImgBox>
-          <S.Title>{title}</S.Title>
+          <S.ResponseWrapper>
+            <S.Title>{title}</S.Title>
+            <S.Info>
+              {songData.stuNum + ' ' + songData.username + '•' + songDate}
+            </S.Info>
+          </S.ResponseWrapper>
         </S.LeftWrapper>
         <S.StuInfo>
           <p>{songData.stuNum}</p>
@@ -94,12 +101,25 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
           </div>
         </S.ButtonContainer>
 
+        <S.ResponsiveBtn>
+          <EllipsisVerticalIcon
+            onClick={(e) => {
+              preventEvent(e);
+              setMdoalState(true);
+            }}
+          />
+        </S.ResponsiveBtn>
         <CommonCheckModal
           title="신청 음악 삭제"
           content="신청 음악을 정말 삭제하시겠습니까?"
           modalState={deleteModal}
           setModalState={setDeleteModal}
           onClick={() => onDelete(songData.id)}
+        />
+        <ResponsiveModal
+          modalState={modalState}
+          setModalState={setMdoalState}
+          setDelModalState={setDeleteModal}
         />
       </a>
     </Link>

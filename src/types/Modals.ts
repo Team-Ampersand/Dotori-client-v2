@@ -62,3 +62,7 @@ export interface PenaltyRecordModalProps {
     select: string
   ) => void;
 }
+
+export interface SongResponsiveModalProps extends ModalProps {
+  setDelModalState: (state: boolean) => void;
+}

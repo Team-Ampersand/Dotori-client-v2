@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Palette } from 'styles/globals';
 
 export const TableWrapper = styled.div`
   height: 87.5dvh;
@@ -33,27 +32,5 @@ export const ListWrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: 170px;
     padding: 0 0 20px;
-  }
-`;
-
-export const ResponseHeader = styled.div`
-  width: calc(100% + 6vw);
-  margin-left: -3vw;
-  display: none;
-  font-weight: 700;
-  font-size: 18px;
-  color: ${Palette.NEUTRAL_N10};
-  justify-content: space-between;
-  background-color: ${Palette.BACKGROUND_CARD};
-  padding: 13px 20px;
-  margin-bottom: 16px;
-  svg {
-    cursor: pointer;
-  }
-  @media (max-width: 420px) {
-    display: flex;
-    position: sticky;
-    top: 0;
-    z-index: 1;
   }
 `;

@@ -2,18 +2,18 @@ import * as S from './style';
 import PenaltyList from 'components/Penalty/molecules/PenaltyList';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
-  filterModal,
   penaltyList,
   penaltyRecordModalState,
   penaltyStudent,
 } from 'recoilAtoms/recoilAtomContainer';
-import { DownloadIcon, FilterIcon, XtextIcon } from 'assets/svg';
+import { XtextIcon } from 'assets/svg';
 import { toast } from 'react-toastify';
 import { getRole } from 'utils/Libs/getRole';
 import { useEffect } from 'react';
 import useSWR from 'swr';
 import { PenaltyStuListType } from 'types';
 import { penaltyController } from 'utils/Libs/requestUrls';
+import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
 
 const PenaltyTable = () => {
   const role = getRole();
@@ -21,7 +21,6 @@ const PenaltyTable = () => {
   const setPenaltyRecordModal = useSetRecoilState(penaltyRecordModalState);
   const [penaltyOBJ, setPenaltyOBJ] = useRecoilState(penaltyList);
   const { data } = useSWR<PenaltyStuListType>(penaltyController.strRule(role));
-  const setModal = useSetRecoilState(filterModal);
 
   useEffect(() => {
     setPenaltyOBJ(data?.students);
@@ -39,14 +38,7 @@ const PenaltyTable = () => {
 
   return (
     <S.TableWrapper>
-      <S.ResponseHeader>
-        규정위반
-        <div>
-          <S.PenaltyBtn onClick={ClickPenaltyBtn}>규정 위반 기록</S.PenaltyBtn>
-          <DownloadIcon />
-          <FilterIcon onClick={() => setModal(true)} />
-        </div>
-      </S.ResponseHeader>
+      <ResponsiveHeader />
       <S.ListWrapper>
         <S.ListHeader>
           <S.StudentConst>

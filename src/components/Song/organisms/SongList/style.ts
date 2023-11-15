@@ -63,6 +63,10 @@ export const ListContainer = styled.div`
     :hover {
       background: ${Palette.NEUTRAL_N50};
     }
+
+    @media (max-width: 420px) {
+      padding: 0;
+    }
   }
   & > a:-webkit-any-link {
     text-decoration: none;

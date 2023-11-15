@@ -111,30 +111,3 @@ export const TagItem = styled.div`
     cursor: pointer;
   }
 `;
-
-export const ResponseHeader = styled.div`
-  width: calc(100% + 6vw);
-  margin-left: -3vw;
-  display: none;
-  font-weight: 700;
-  font-size: 18px;
-  color: ${Palette.NEUTRAL_N10};
-  justify-content: space-between;
-  background-color: ${Palette.BACKGROUND_CARD};
-  padding: 13px 20px;
-  margin-bottom: 16px;
-  svg {
-    cursor: pointer;
-  }
-  @media (max-width: 420px) {
-    display: flex;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-  div {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-`;

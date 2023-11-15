@@ -14,31 +14,30 @@ export const AuthInput = styled.div`
       ? `255px`
       : `385px`};
   display: flex;
-  justify-content: center;
   align-items: center;
-
+  border-radius: 8px;
   input {
     width: ${(props: AuthInputStyleProps) =>
       props.isSearch
-        ? '145px'
+        ? '185px'
         : props.isRabel
-        ? `280px`
+        ? `330px`
         : props.isEmailAuth
-        ? `215px`
-        : `340px`};
+        ? `255px`
+        : `390px`};
     height: 52px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background: ${Palette.NEUTRAL_N50};
     box-shadow: 0 0 0 1000px ${Palette.NEUTRAL_N50} inset;
     color: ${Palette.NEUTRAL_N30};
+    background: ${Palette.NEUTRAL_N50};
     font-weight: 500;
     font-size: 16px;
     border: none;
     border-radius: 8px;
     transition: border, color 0.3s ease-in-out;
-    padding: 0
+    padding: 0 0 0
       ${(props: AuthInputStyleProps) => (props.isRabel ? `50px` : `20px`)};
     :-webkit-autofill {
       -webkit-box-shadow: 0 0 0 1000px ${Palette.NEUTRAL_N50} inset !important;

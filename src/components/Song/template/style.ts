@@ -6,4 +6,9 @@ export const SongLayer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 2rem;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;

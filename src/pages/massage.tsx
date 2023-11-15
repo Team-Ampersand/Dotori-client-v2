@@ -2,7 +2,7 @@ import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import { MassageTable } from 'components/Massage/organisms';
-import { SelfstudyTemplates } from 'components/SelfStudy/templates/SelfstudyTemplates/style';
+import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
 import { SWRConfig } from 'swr';
@@ -23,10 +23,10 @@ const MassagePage: NextPage<{
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar />
-          <SelfstudyTemplates>
+          <CommonPageWrapper>
             <CommonHeader />
             <MassageTable />
-          </SelfstudyTemplates>
+          </CommonPageWrapper>
         </MainTemplates>
       </SWRConfig>
     </>

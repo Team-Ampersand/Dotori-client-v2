@@ -44,7 +44,7 @@ const CommonHeader = () => {
       )}
       <S.RightWrapper>
         <S.ModalBtnWrapper>
-          {(pathname === '/selfstudy' || pathname === '/studentDetail') && (
+          {(pathname === '/selfstudy' || pathname === '/studsDetail') && (
             <S.ModalBtn onClick={() => setModalState(true)}>
               <FilterIcon />
               <span>필터</span>

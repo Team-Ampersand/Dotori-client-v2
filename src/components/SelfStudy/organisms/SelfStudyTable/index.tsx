@@ -2,19 +2,18 @@ import * as S from './style';
 import SelfStudyList from 'components/SelfStudy/molecules/SelfStudyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import NullApplicstionItem from 'components/Common/molecules/NullApplicationItem';
-import { FilterIcon } from 'assets/svg';
-import { filterModal, selfStudyList } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { selfStudyList } from 'recoilAtoms/recoilAtomContainer';
+import { useRecoilState } from 'recoil';
 import { selfstudyListType } from 'types';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { useEffect } from 'react';
 import { selfStudySearch } from 'api/selfStudy';
+import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
 
 const SelfStudyTable = () => {
   const [userList, setUserList] = useRecoilState(selfStudyList);
-  const setModal = useSetRecoilState(filterModal);
   const role = getRole();
   const { data } = useSWR<selfstudyListType>(
     SelfstudyController.selfStudyRank(role)
@@ -41,10 +40,7 @@ const SelfStudyTable = () => {
 
   return (
     <S.TableWrapper>
-      <S.ResponseHeader>
-        자습신청
-        <FilterIcon onClick={() => setModal(true)} />
-      </S.ResponseHeader>
+      <ResponsiveHeader />
       {userList && userList.length > 0 ? (
         <S.ListWrapper>
           <SelfStudyList />

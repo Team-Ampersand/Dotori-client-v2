@@ -17,8 +17,15 @@ export const Layer = styled.div`
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
     font-family: Arial, Helvetica, sans-serif;
 
-    @media (max-width: 951px) {
+    @media (max-width: 951px) and (min-width: 420px) {
       max-width: 380px;
+    }
+    @media (max-width: 420px) {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      border-radius: 1em 1em 0 0;
     }
   }
 

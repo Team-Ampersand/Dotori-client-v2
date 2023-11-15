@@ -1,3 +1,4 @@
+import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
 import SEOHead from 'components/Common/atoms/SEOHead';
 import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
@@ -30,6 +31,7 @@ const SongPage: NextPage<{
           <SideBar />
           <CommonPageWrapper>
             <CommonHeader />
+            <ResponsiveHeader />
             <SongLayer>
               <SongList />
               <SongRightLayer />

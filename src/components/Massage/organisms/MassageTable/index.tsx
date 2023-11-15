@@ -5,6 +5,7 @@ import { massageListType } from 'types';
 import { MassageController } from 'utils/Libs/requestUrls';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
+import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
 
 const MassageTable = () => {
   const role = getRole();
@@ -12,7 +13,7 @@ const MassageTable = () => {
 
   return (
     <S.TableWrapper>
-      <S.ResponseHeader>안마의자</S.ResponseHeader>
+      <ResponsiveHeader />
       {data?.list && data.list.length > 0 ? (
         <S.ListWrapper>
           <MassageList />

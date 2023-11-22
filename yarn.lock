@@ -371,10 +371,10 @@
     lodash.debounce "^4.0.8"
     react-merge-refs "^2.0.1"
 
-"@splinetool/runtime@^0.9.492":
-  version "0.9.492"
-  resolved "https://registry.yarnpkg.com/@splinetool/runtime/-/runtime-0.9.492.tgz#f4f556b3acefe4a21f6d41343534d508246f305f"
-  integrity sha512-5k02HefxIFt2ZcTrV9RRLoWjtYXdo1CrOnssACPUZ4931mWanjpCcSyvigWiOVNPTjDAWvxp32qtPUJPA/apIw==
+"@splinetool/runtime@^0.9.507":
+  version "0.9.507"
+  resolved "https://registry.yarnpkg.com/@splinetool/runtime/-/runtime-0.9.507.tgz#6e35f42e444b55374bfb101121cca23a443e194c"
+  integrity sha512-JLk7NZv+qyFZuRXK18RfUA5khAjYns3F00ueGVVlWHpTkhm4xAhdnkjGD1Qo7skwTf0eotDgMwcDemgi//teDg==
   dependencies:
     on-change "^4.0.0"
     semver-compare "^1.0.0"
@@ -2691,9 +2691,9 @@ react-is@^16.13.1, react-is@^16.7.0:
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react-merge-refs@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-2.0.1.tgz#a1f8c2dadefa635333e9b91ec59f30b65228b006"
-  integrity sha512-pywF6oouJWuqL26xV3OruRSIqai31R9SdJX/I3gP2q8jLxUnA1IwXcLW8werUHLZOrp4N7YOeQNZrh/BKrHI4A==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-2.1.1.tgz#e46763f8f1b881c0226ee54a1a2a10ffefba0233"
+  integrity sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag==
 
 react-toastify@^9.1.1:
   version "9.1.1"

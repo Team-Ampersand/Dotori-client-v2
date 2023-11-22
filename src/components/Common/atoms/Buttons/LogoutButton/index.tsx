@@ -7,7 +7,7 @@ const LogoutButton = () => {
   const router = useRouter();
   const handleClickLogout = () => {
     logout();
-    router.push('/signin');
+    router.push('/');
   };
 
   return (

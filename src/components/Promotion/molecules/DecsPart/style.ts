@@ -5,11 +5,9 @@ import { PromotionStyleProps } from 'types';
 export const DecsPartOverlay = styled.div`
   width: 100%;
   height: 100dvh;
-  background: ${(props: PromotionStyleProps) =>
-    props.isShow ? 'rgba(0, 0, 0, 0.4)' : ''};
-  backdrop-filter: blur(
-    ${(props: PromotionStyleProps) => (props.isShow ? '50' : '0')}px
-  );
+  background: rgba(0, 0, 0, 0.4);
+  filter: blur(2px);
+  backdrop-filter: blur(20px);
   visibility: ${(props: PromotionStyleProps) =>
     props.isShow ? 'visible' : 'hidden'};
   transition: all 1s ease-in;
@@ -78,8 +76,8 @@ export const PomotionDesc = styled.div`
 `;
 
 export const SignInBtn = styled.div`
-  width: 110px;
-  height: 44px;
+  width: 148px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,9 +88,10 @@ export const SignInBtn = styled.div`
   cursor: pointer;
   font-size: 16px;
 
-  a {
+  p {
     text-decoration: none;
     color: white;
+    font-weight: 600;
   }
 
   @media (max-width: 950px) {

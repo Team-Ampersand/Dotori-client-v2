@@ -44,9 +44,7 @@ const DecsPart = ({
           </p>
         </S.PomotionDesc>
         <S.SignInBtn>
-          <Link href={'/signin'}>
-            <a>로그인</a>
-          </Link>
+          <p>GAuth로 로그인</p>
         </S.SignInBtn>
       </S.DecsPartWrapper>
     </>

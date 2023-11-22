@@ -1,5 +1,5 @@
 export interface MenuOptionStyleProps {
-  name: '프로필수정' | '규정위반 내역' | '비밀번호 변경' | '로그아웃';
+  name: '프로필수정' | '규정위반 내역' | '로그아웃';
 }
 
 export interface MenuOptionProps extends MenuOptionStyleProps {

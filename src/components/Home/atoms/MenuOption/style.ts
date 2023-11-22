@@ -10,7 +10,7 @@ export const MenuOptionWrapper = styled.div`
     props.name === '로그아웃' ? 'none' : 'flex'};
   align-items: center;
   padding: ${(props: MenuOptionStyleProps) =>
-      props.name === '프로필수정' || '비밀번호 변경' ? '25px' : '8px'}
+      props.name === '프로필수정' || '규정위반 내역' ? '25px' : '8px'}
     20px;
   background: ${(props) =>
     props.theme === 'light'
@@ -23,7 +23,7 @@ export const MenuOptionWrapper = styled.div`
   border-radius: ${(props: MenuOptionStyleProps) =>
     props.name === '프로필수정'
       ? '16px 16px 0 0'
-      : props.name === '비밀번호 변경'
+      : props.name === '규정위반 내역'
       ? '0 0 16px 16px'
       : ''};
 
@@ -35,7 +35,7 @@ export const MenuOptionWrapper = styled.div`
   svg {
     path {
       ${(props: MenuOptionStyleProps) =>
-        props.name !== '비밀번호 변경' ? `stroke: ${Palette.NEUTRAL_N20}` : ''}
+        props.name !== '규정위반 내역' ? `stroke: ${Palette.NEUTRAL_N20}` : ''}
     }
     width: 25px;
     height: 20px;

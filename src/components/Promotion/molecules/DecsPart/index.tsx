@@ -1,6 +1,8 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { gauthUrl } from 'utils/Libs/gauthUrl';
 import * as S from './style';
+import { Login } from 'api/member';
 
 const DecsPart = ({
   isShow,
@@ -16,6 +18,8 @@ const DecsPart = ({
       setIsShow(false);
     }
   };
+  const router = useRouter();
+  Login();
   return (
     <>
       <S.DecsPartOverlay isShow={isShow} />
@@ -43,7 +47,7 @@ const DecsPart = ({
             있도록 만들어졌습니다.
           </p>
         </S.PomotionDesc>
-        <S.SignInBtn>
+        <S.SignInBtn onClick={() => router.replace(gauthUrl)}>
           <p>GAuth로 로그인</p>
         </S.SignInBtn>
       </S.DecsPartWrapper>

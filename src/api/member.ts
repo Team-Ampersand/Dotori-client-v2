@@ -1,4 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
 import { MemberController } from 'utils/Libs/requestUrls';
@@ -20,6 +22,32 @@ export const signin = async (id: string, password: string) => {
     }
     return false;
   }
+};
+
+export const Login = () => {
+  const router = useRouter();
+  const gauthCode = router.query.code?.toString();
+  const fetch = async (gauthCode: { code: string }) => {
+    try {
+      const { data: tokens } = await apiClient.post(
+        MemberController.auth,
+        gauthCode
+      );
+      setToken(tokens.accessToken, tokens.refreshToken, null);
+      router.push('/home');
+      toast.success('로그인이 되었습니다.');
+    } catch (e: any) {
+      if (e.message === 'Request failed with status code 404') {
+        toast.warning('해당 유저가 없어요.');
+      } else if (e.message === 'Request failed with status code 500') {
+        toast.warning('로그인을 할 수 없어요.');
+      }
+    }
+  };
+  useEffect(() => {
+    if (!gauthCode) return;
+    fetch({ code: gauthCode });
+  }, [gauthCode]);
 };
 
 export const tokenReissue = async (

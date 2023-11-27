@@ -1,6 +1,5 @@
-import { destroyCookie } from 'nookies'
-
+import { destroyCookie } from 'nookies';
 export const removeToken = (): void => {
-    destroyCookie(null, 'Authorization');
-    destroyCookie(null, 'RefreshToken');   
-}
+  destroyCookie(null, 'Authorization');
+  destroyCookie(null, 'RefreshToken');
+};

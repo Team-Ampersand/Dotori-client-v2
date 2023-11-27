@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
-import { SearchFilterTypeProps, SignupForm } from 'types';
+import { SearchFilterTypeProps, UserForm } from 'types';
 import { isNotNull } from 'utils/isNotNull';
 import * as S from './style';
 
@@ -19,7 +19,7 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   );
   const [modalState, setModalState] = useRecoilState(filterModal);
   const setLookUp = useSetRecoilState(selfStudyLookup);
-  const { register, setValue, watch, resetField } = useForm<SignupForm>({
+  const { register, setValue, watch, resetField } = useForm<UserForm>({
     defaultValues: { name: '' },
   });
 

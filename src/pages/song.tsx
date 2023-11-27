@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!Authorization) {
     return {
       redirect: {
-        destination: '/signin',
+        destination: '/',
         permanent: false,
       },
     };

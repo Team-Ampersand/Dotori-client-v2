@@ -4,9 +4,20 @@ import {
   PenaltyRuleItemProps,
   PenaltyStuType,
   selfstudyListProps,
+  SignupForm,
 } from 'types';
 import { noticeDetailType } from 'types/components/NoticePage';
 import { StuInfoParamsType } from 'types/components/StuInfoPage';
+
+export const signUpObject = atom<SignupForm>({
+  key: 'signUpObject',
+  default: {},
+});
+
+export const signUpStep = atom<string>({
+  key: 'signUpStep',
+  default: 'first',
+});
 
 export const darkMode = atom<'dark' | 'light'>({
   key: 'darkMode',

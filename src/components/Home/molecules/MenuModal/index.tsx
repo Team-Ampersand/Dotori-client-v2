@@ -33,7 +33,7 @@ const MenuModal = ({
 
   const handleClickLogout = () => {
     logout();
-    router.push('/');
+    router.push('/signin');
   };
 
   return (

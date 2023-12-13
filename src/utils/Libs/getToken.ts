@@ -1,6 +1,6 @@
-import { tokenReissue } from 'api/member';
 import { GetServerSidePropsContext } from 'next';
 import { parseCookies } from 'nookies';
+import { tokenReissue } from 'api/member';
 
 export const getToken = async (ctx: GetServerSidePropsContext | null) => {
   if (ctx) {
@@ -12,6 +12,7 @@ export const getToken = async (ctx: GetServerSidePropsContext | null) => {
       const { newAuthorization }: any = await tokenReissue(RefreshToken, ctx);
       Authorization = newAuthorization;
     }
+
     return { Authorization, RefreshToken };
   } else {
     const { Authorization, RefreshToken } = parseCookies();

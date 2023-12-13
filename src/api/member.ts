@@ -24,6 +24,7 @@ export const Login = () => {
       } else if (e.message === 'Request failed with status code 500') {
         toast.warning('로그인을 할 수 없어요.');
       }
+      router.replace('');
     }
   };
   useEffect(() => {

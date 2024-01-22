@@ -16,15 +16,12 @@ export const AuthInput = styled.div`
   display: flex;
   align-items: center;
   border-radius: 8px;
+
+  label {
+    width: 100%;
+  }
   input {
-    width: ${(props: AuthInputStyleProps) =>
-      props.isSearch
-        ? '185px'
-        : props.isRabel
-        ? `330px`
-        : props.isEmailAuth
-        ? `255px`
-        : `390px`};
+    width: 100%;
     height: 52px;
     display: flex;
     align-items: center;

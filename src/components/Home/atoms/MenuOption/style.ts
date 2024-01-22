@@ -10,7 +10,7 @@ export const MenuOptionWrapper = styled.div`
     props.name === '로그아웃' ? 'none' : 'flex'};
   align-items: center;
   padding: ${(props: MenuOptionStyleProps) =>
-      props.name === '프로필수정' || '비밀번호 변경' ? '25px' : '8px'}
+      props.name === '프로필 수정' || '비밀번호 변경' ? '25px' : '8px'}
     20px;
   background: ${(props) =>
     props.theme === 'light'
@@ -21,7 +21,7 @@ export const MenuOptionWrapper = styled.div`
   gap: 10px;
   color: ${Palette.NEUTRAL_N10};
   border-radius: ${(props: MenuOptionStyleProps) =>
-    props.name === '프로필수정'
+    props.name === '프로필 수정'
       ? '16px 16px 0 0'
       : props.name === '비밀번호 변경'
       ? '0 0 16px 16px'

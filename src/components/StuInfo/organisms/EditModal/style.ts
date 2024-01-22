@@ -18,6 +18,10 @@ export const Layer = styled.div`
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const CloseButton = styled.button`

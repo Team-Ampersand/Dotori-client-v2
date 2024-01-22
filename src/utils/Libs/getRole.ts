@@ -10,7 +10,7 @@ export function getUserToken(ctx?: GetServerSidePropsContext) {
     : parseCookies().Authorization;
   if (!token) return '';
   const user: RoleType = jwt(token.replace('Bearer', ''));
-  return user.roles[0];
+  return user.authority;
 }
 
 export const getRole = (ctx?: GetServerSidePropsContext) => {

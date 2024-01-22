@@ -1,10 +1,9 @@
 export interface RoleType {
-  roles: (
+  authority:
     | 'ROLE_DEVELOPER'
     | 'ROLE_COUNCILLOR'
     | 'ROLE_ADMIN'
-    | 'ROLE_MEMBER'
-  )[];
+    | 'ROLE_MEMBER';
   userEmail: string;
   tokenType: string;
   iat: number;

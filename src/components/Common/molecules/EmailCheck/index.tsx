@@ -99,7 +99,7 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
             required: '인증번호를 입력해주세요.',
           })}
           type="number"
-          placeholder={`${isAuth ? '인증먼저 해주세요.' : '인증번호'}`}
+          placeholder={`${isAuth ? '인증 먼저 해주세요.' : '인증번호'}`}
           DeleteBtnClick={() => resetField('certiNum')}
           isValue={isNotNull(watch('certiNum'))}
           readOnly={isAuth}

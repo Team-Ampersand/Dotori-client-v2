@@ -6,6 +6,7 @@ export interface ApplicationItemProps {
   gender: string;
   stuNum: string;
   listType: string;
+  lastRank?: number;
 }
 
 export interface NullApplicationItemProps {

@@ -17,6 +17,7 @@ const SelfStudyList = () => {
             memberName={item.memberName}
             gender={item.gender}
             stuNum={item.stuNum}
+            lastRank={userList.length > 3 ? userList.length : 0}
             listType="selfstudy"
           />
         ))}

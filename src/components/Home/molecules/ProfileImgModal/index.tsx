@@ -1,24 +1,23 @@
+import { postProfileImage } from 'api/member';
 import { CameraIcon } from 'assets/svg';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { useCallback, useState } from 'react';
-import * as S from './style';
 import Cropper, { Area } from 'react-easy-crop';
-import { Palette } from 'styles/globals';
-import { getCroppedImg } from 'utils/canvas';
-import { ModalProps } from 'types';
+import { toast } from 'react-toastify';
+import { useRecoilState } from 'recoil';
 import {
   imgBase64profile,
   profileModalState,
 } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState } from 'recoil';
-import { toast } from 'react-toastify';
+import { Palette } from 'styles/globals';
+import { getCroppedImg } from 'utils/canvas';
+import * as S from './style';
 
-const ProileImgModal = () => {
+const ProfileImgModal = () => {
   const [profileImgModal, setProfileImgModal] =
     useRecoilState(profileModalState);
   const [imgBase64, setImgBase64] = useRecoilState(imgBase64profile);
-  const [file, setFile] = useState('');
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
 
@@ -34,8 +33,9 @@ const ProileImgModal = () => {
   const handleSubmitClick = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels);
-      toast.info('다음 릴리즈 때 추가됩니다.');
-      setFile(croppedImage || '');
+      postProfileImage(croppedImage ?? '')
+      toast.success('프로필 이미지를 추가했습니다');
+      setProfileImgModal(false)
     } catch (e) {
       console.error(e);
     }
@@ -51,7 +51,6 @@ const ProileImgModal = () => {
     };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
-      setFile(event.target.files[0]);
     }
   }, []);
 
@@ -124,4 +123,4 @@ const ProileImgModal = () => {
   );
 };
 
-export default ProileImgModal;
+export default ProfileImgModal;

@@ -1,9 +1,5 @@
 /* eslint-disable @next/next/inline-script-id */
-import UseToggleTheme from 'hooks/useToggleTheme';
 import Script from 'next/script';
-import { myProfileType } from 'types';
-import useSWR from 'swr';
-import { MemberController } from 'utils/Libs/requestUrls';
 
 const ChannelIOScript = ({stunumName,theme}:{stunumName:string,theme:string}) => (
       <Script

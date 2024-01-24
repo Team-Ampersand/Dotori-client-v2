@@ -75,6 +75,17 @@ export const BoardTopRightWrapper = styled.div`
   }
 `;
 
+export const ResponsiveProfileImage = styled.div<{ image: string }>`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-position: center;
+  background-image: url(${(props) => props.image});
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+`;
+
 export const MobileTitle = styled.div`
   display: none;
   align-items: center;

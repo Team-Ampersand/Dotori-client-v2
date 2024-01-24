@@ -28,8 +28,7 @@ const returnMealdata = async (
     });
 
     const mealList = result.DDISH_NM.toString()
-      .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)/g, '`')
-      .replace(/[*<br/>a-z.() ]/g, '`')
+      .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)|[*<br/>a-z.() ]/g, '`')
       .split('`')
       .filter((value: string) => {
         return value !== '';

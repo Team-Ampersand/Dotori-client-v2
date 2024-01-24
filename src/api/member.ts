@@ -162,3 +162,18 @@ export const postProfileImage = async (image: Blob | string) => {
     console.log(e);
   }
 };
+
+export const patchProfileImage = async (image: Blob | string) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', image);
+    const { data } = await apiClient.patch(
+      MemberController.profileImage,
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
+    return { data };
+  } catch (e) {
+    console.log(e);
+  }
+};

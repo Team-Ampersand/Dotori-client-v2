@@ -1,8 +1,12 @@
-import { postProfileImage } from 'api/member';
+import {
+  patchProfileImage,
+  postProfileImage
+} from 'api/member';
 import { CameraIcon } from 'assets/svg';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
@@ -11,6 +15,9 @@ import {
   profileModalState,
 } from 'recoilAtoms/recoilAtomContainer';
 import { Palette } from 'styles/globals';
+import useSWR from 'swr';
+import { myProfileType } from 'types';
+import { MemberController } from 'utils/Libs/requestUrls';
 import { getCroppedImg } from 'utils/canvas';
 import * as S from './style';
 
@@ -20,8 +27,10 @@ const ProfileImgModal = () => {
   const [imgBase64, setImgBase64] = useRecoilState(imgBase64profile);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const router = useRouter();
 
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area>();
+  const { data } = useSWR<myProfileType>(MemberController.myProfile);
 
   const onCropComplete = useCallback(
     (croppedArea: Area, croppedAreaPixels: Area) => {
@@ -30,16 +39,36 @@ const ProfileImgModal = () => {
     []
   );
 
+  useEffect(() => {
+    if (data?.profileImage) setImgBase64(data?.profileImage);
+  }, [data?.profileImage, setImgBase64]);
+
   const handleSubmitClick = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels);
-      postProfileImage(croppedImage ?? '')
-      toast.success('프로필 이미지를 추가했습니다');
-      setProfileImgModal(false)
+      if (data?.profileImage) {
+        patchProfileImage(croppedImage ?? '');
+        setProfileImgModal(false);
+        toast.success('프로필 이미지를 수정했습니다');
+      } else {
+        postProfileImage(croppedImage ?? '');
+        setProfileImgModal(false);
+        toast.success('프로필 이미지를 추가했습니다');
+      }
+      
+      setTimeout(() => {
+        router.reload();
+      }, 1000)
     } catch (e) {
-      console.error(e);
+      toast.warning('새로운 이미지를 선택해주세요');
     }
-  }, [imgBase64, croppedAreaPixels]);
+  }, [
+    imgBase64,
+    croppedAreaPixels,
+    data?.profileImage,
+    setProfileImgModal,
+    router,
+  ]);
 
   const handleChangeFile = useCallback((event: any) => {
     event.preventDefault();

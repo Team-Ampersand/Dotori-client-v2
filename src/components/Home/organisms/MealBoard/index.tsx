@@ -14,16 +14,26 @@ const returnMealdata = async (
     `https://open.neis.go.kr/hub/mealServiceDietInfo?key=${process.env.NEXT_PUBLIC_NEIS_API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=F10&SD_SCHUL_CODE=7380292&MLSV_YMD=${datestr}`
   );
   try {
-    const result = !!data.mealServiceDietInfo[1].row[mealCode]
-      ? data.mealServiceDietInfo[1].row[mealCode].DDISH_NM.toString()
-          .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)/g, '`')
-          .replace(/[*<br/>a-z.() ]/g, '`')
-          .split('`')
-          .filter((value: string) => {
-            return value !== '';
-          })
+    const row = !!data.mealServiceDietInfo[1].row
+      ? data.mealServiceDietInfo[1].row
       : [];
-    setList(result);
+
+    const result = row.find((i: any) => {
+      const mealTime = Number(i.MMEAL_SC_CODE);
+      return (
+        (mealTime === 1 && mealCode === 0) ||
+        (mealTime === 2 && mealCode === 1) ||
+        (mealTime === 3 && mealCode === 2)
+      );
+    });
+
+    const mealList = result.DDISH_NM.toString()
+      .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)|[*<br/>a-z.() ]/g, '`')
+      .split('`')
+      .filter((value: string) => {
+        return value !== '';
+      });
+    setList(mealList);
   } catch (e: any) {
     setList([]);
   }

@@ -177,3 +177,12 @@ export const patchProfileImage = async (image: Blob | string) => {
     console.log(e);
   }
 };
+
+export const deleteProfileImage = async () => {
+  try {
+    const { data } = await apiClient.delete(MemberController.profileImage);
+    return { data };
+  } catch (e) {
+    console.log(e);
+  }
+};

@@ -55,10 +55,10 @@ const ProfileImgModal = () => {
         setProfileImgModal(false);
         toast.success('프로필 이미지를 추가했습니다');
       }
-      
+
       setTimeout(() => {
         router.reload();
-      }, 1000)
+      }, 1000);
     } catch (e) {
       toast.warning('새로운 이미지를 선택해주세요');
     }

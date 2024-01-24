@@ -19,6 +19,7 @@ const SelfStudyList = () => {
             stuNum={item.stuNum}
             lastRank={userList.length > 3 ? userList.length : 0}
             listType="selfstudy"
+            profileImage={item.profileImage}
           />
         ))}
     </>

@@ -60,7 +60,11 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
     <>
       <S.Layer>
         <S.LeftBox>
-          <S.ImgBox></S.ImgBox>
+          {stuInfoData.profileImage ? (
+            <S.ImgBox image={stuInfoData.profileImage} />
+          ) : (
+            <S.ImgBox />
+          )}
           <p>{stuInfoData.memberName}</p>
         </S.LeftBox>
         <S.StuNum>{stuInfoData.stuNum}</S.StuNum>

@@ -18,6 +18,7 @@ const ApplicationItem = ({
   gender,
   stuNum,
   listType,
+  lastRank,
 }: ApplicationItemProps) => {
   const role = getRole();
   const lookUp = useRecoilValue(selfStudyLookup);
@@ -56,7 +57,7 @@ const ApplicationItem = ({
                   height={64}
                 />
               )}
-              {rank === 50 && <StampIcon />}
+              {rank === lastRank && <StampIcon />}
             </S.Medal>
           )}
           {role !== 'member' && (

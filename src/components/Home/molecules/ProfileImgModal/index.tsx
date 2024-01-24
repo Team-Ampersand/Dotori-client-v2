@@ -34,7 +34,7 @@ const ProileImgModal = () => {
   const handleSubmitClick = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels);
-      toast.info('다음릴리즈때 추가됩니다.');
+      toast.info('다음 릴리즈 때 추가됩니다.');
       setFile(croppedImage || '');
     } catch (e) {
       console.error(e);

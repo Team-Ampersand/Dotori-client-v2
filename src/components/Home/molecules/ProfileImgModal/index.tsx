@@ -1,8 +1,9 @@
 import {
+  deleteProfileImage,
   patchProfileImage,
-  postProfileImage
+  postProfileImage,
 } from 'api/member';
-import { CameraIcon } from 'assets/svg';
+import { CameraIcon, TrashcanIcon } from 'assets/svg';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { useRouter } from 'next/router';
@@ -83,16 +84,20 @@ const ProfileImgModal = () => {
     }
   }, []);
 
-  const handleImgModalOverayClick = () => {
-    setImgBase64('');
+  const handleRemoveClick = () => {
+    deleteProfileImage();
     setProfileImgModal(false);
+    toast.success('프로필 이미지를 삭제했습니다.');
+    setTimeout(() => {
+      router.reload();
+    }, 1000);
   };
 
   return (
     <>
       <ModalOverayWrapper
         isClick={profileImgModal}
-        onClick={handleImgModalOverayClick}
+        onClick={() => setProfileImgModal(false)}
       >
         <S.ProileImgModalWrapper onClick={(e) => e.stopPropagation()}>
           <ModalHeader
@@ -124,14 +129,19 @@ const ProfileImgModal = () => {
                   },
                 }}
               />
+              {data?.profileImage && (
+                <S.TrashIconBox onClick={handleRemoveClick}>
+                  <TrashcanIcon />
+                </S.TrashIconBox>
+              )}
             </S.ImgCrop>
           ) : (
-            <label htmlFor="change_img">
+            <label htmlFor="add_img">
               <S.AddImgBtn>
                 <CameraIcon />
                 <span>이미지 추가</span>
                 <input
-                  id="change_img"
+                  id="add_img"
                   type="file"
                   style={{ display: 'none' }}
                   onChange={handleChangeFile}
@@ -142,7 +152,16 @@ const ProfileImgModal = () => {
           )}
           {imgBase64 && (
             <S.BottomBtns>
-              <S.CancelBtn onClick={() => setImgBase64('')}>취소</S.CancelBtn>
+              <S.CancelBtn htmlFor="change_img">
+                수정
+                <input
+                  id="change_img"
+                  type="file"
+                  style={{ display: 'none' }}
+                  onChange={handleChangeFile}
+                  accept="image/*"
+                />
+              </S.CancelBtn>
               <S.SubmitBtn onClick={handleSubmitClick}>확인</S.SubmitBtn>
             </S.BottomBtns>
           )}

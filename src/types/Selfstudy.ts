@@ -7,6 +7,7 @@ export interface selfstudyListProps {
   gender: 'MAN' | 'WOMAN';
   role?: string;
   selfStudyCheck: boolean;
+  profileImage: string | null
 }
 
 export interface selfstudyListType {

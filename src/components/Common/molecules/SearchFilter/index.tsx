@@ -79,7 +79,6 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
                 {i.filterList.map((j, ind) => (
                   <FilterItem
                     key={ind}
-                    index={idx}
                     name={i.filterTitle}
                     item={j}
                     value={filterState[idx]}

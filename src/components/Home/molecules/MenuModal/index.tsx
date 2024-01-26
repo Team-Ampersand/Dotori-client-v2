@@ -14,18 +14,18 @@ const MenuModal = ({
   const [theme] = UseToggleTheme();
   const router = useRouter();
   const menuArr: (
-    | '프로필수정'
+    | '프로필 수정'
     | '규정위반 내역'
     | '비밀번호 변경'
     | '로그아웃'
-  )[] = ['프로필수정', '규정위반 내역', '비밀번호 변경', '로그아웃'];
+  )[] = ['프로필 수정', '규정위반 내역', '비밀번호 변경', '로그아웃'];
 
   const handleClick = (
-    name: '프로필수정' | '규정위반 내역' | '비밀번호 변경' | '로그아웃'
+    name: '프로필 수정' | '규정위반 내역' | '비밀번호 변경' | '로그아웃'
   ) => {
     setIsClick(!isClick);
     switch (name) {
-      case '프로필수정':
+      case '프로필 수정':
         return setProfileImgModal(true);
       case '규정위반 내역':
         return setPenaltyModal(true);

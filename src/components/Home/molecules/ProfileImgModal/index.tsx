@@ -1,28 +1,37 @@
-import { CameraIcon } from 'assets/svg';
+import {
+  deleteProfileImage,
+  patchProfileImage,
+  postProfileImage,
+} from 'api/member';
+import { CameraIcon, TrashcanIcon } from 'assets/svg';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { useCallback, useState } from 'react';
-import * as S from './style';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
-import { Palette } from 'styles/globals';
-import { getCroppedImg } from 'utils/canvas';
-import { ModalProps } from 'types';
+import { toast } from 'react-toastify';
+import { useRecoilState } from 'recoil';
 import {
   imgBase64profile,
   profileModalState,
 } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState } from 'recoil';
-import { toast } from 'react-toastify';
+import { Palette } from 'styles/globals';
+import useSWR from 'swr';
+import { myProfileType } from 'types';
+import { MemberController } from 'utils/Libs/requestUrls';
+import { getCroppedImg } from 'utils/canvas';
+import * as S from './style';
 
-const ProileImgModal = () => {
+const ProfileImgModal = () => {
   const [profileImgModal, setProfileImgModal] =
     useRecoilState(profileModalState);
   const [imgBase64, setImgBase64] = useRecoilState(imgBase64profile);
-  const [file, setFile] = useState('');
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const router = useRouter();
 
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area>();
+  const { data } = useSWR<myProfileType>(MemberController.myProfile);
 
   const onCropComplete = useCallback(
     (croppedArea: Area, croppedAreaPixels: Area) => {
@@ -31,15 +40,36 @@ const ProileImgModal = () => {
     []
   );
 
+  useEffect(() => {
+    if (data?.profileImage) setImgBase64(data?.profileImage);
+  }, [data?.profileImage, setImgBase64]);
+
   const handleSubmitClick = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels);
-      toast.info('다음 릴리즈 때 추가됩니다.');
-      setFile(croppedImage || '');
+      if (data?.profileImage) {
+        patchProfileImage(croppedImage ?? '');
+        setProfileImgModal(false);
+        toast.success('프로필 이미지를 수정했습니다');
+      } else {
+        postProfileImage(croppedImage ?? '');
+        setProfileImgModal(false);
+        toast.success('프로필 이미지를 추가했습니다');
+      }
+
+      setTimeout(() => {
+        router.reload();
+      }, 1000);
     } catch (e) {
-      console.error(e);
+      toast.warning('새로운 이미지를 선택해주세요');
     }
-  }, [imgBase64, croppedAreaPixels]);
+  }, [
+    imgBase64,
+    croppedAreaPixels,
+    data?.profileImage,
+    setProfileImgModal,
+    router,
+  ]);
 
   const handleChangeFile = useCallback((event: any) => {
     event.preventDefault();
@@ -51,20 +81,23 @@ const ProileImgModal = () => {
     };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
-      setFile(event.target.files[0]);
     }
   }, []);
 
-  const handleImgModalOverayClick = () => {
-    setImgBase64('');
+  const handleRemoveClick = () => {
+    deleteProfileImage();
     setProfileImgModal(false);
+    toast.success('프로필 이미지를 삭제했습니다.');
+    setTimeout(() => {
+      router.reload();
+    }, 1000);
   };
 
   return (
     <>
       <ModalOverayWrapper
         isClick={profileImgModal}
-        onClick={handleImgModalOverayClick}
+        onClick={() => setProfileImgModal(false)}
       >
         <S.ProileImgModalWrapper onClick={(e) => e.stopPropagation()}>
           <ModalHeader
@@ -96,14 +129,19 @@ const ProileImgModal = () => {
                   },
                 }}
               />
+              {data?.profileImage && (
+                <S.TrashIconBox onClick={handleRemoveClick}>
+                  <TrashcanIcon />
+                </S.TrashIconBox>
+              )}
             </S.ImgCrop>
           ) : (
-            <label htmlFor="change_img">
+            <label htmlFor="add_img">
               <S.AddImgBtn>
                 <CameraIcon />
                 <span>이미지 추가</span>
                 <input
-                  id="change_img"
+                  id="add_img"
                   type="file"
                   style={{ display: 'none' }}
                   onChange={handleChangeFile}
@@ -114,7 +152,16 @@ const ProileImgModal = () => {
           )}
           {imgBase64 && (
             <S.BottomBtns>
-              <S.CancelBtn onClick={() => setImgBase64('')}>취소</S.CancelBtn>
+              <S.CancelBtn htmlFor="change_img">
+                수정
+                <input
+                  id="change_img"
+                  type="file"
+                  style={{ display: 'none' }}
+                  onChange={handleChangeFile}
+                  accept="image/*"
+                />
+              </S.CancelBtn>
               <S.SubmitBtn onClick={handleSubmitClick}>확인</S.SubmitBtn>
             </S.BottomBtns>
           )}
@@ -124,4 +171,4 @@ const ProileImgModal = () => {
   );
 };
 
-export default ProileImgModal;
+export default ProfileImgModal;

@@ -1,12 +1,11 @@
 import {
   deleteProfileImage,
   patchProfileImage,
-  postProfileImage,
+  postProfileImage
 } from 'api/member';
 import { CameraIcon, TrashcanIcon } from 'assets/svg';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
 import { toast } from 'react-toastify';
@@ -18,21 +17,25 @@ import {
 import { Palette } from 'styles/globals';
 import useSWR from 'swr';
 import { myProfileType } from 'types';
+import { apiClient } from 'utils/Libs/apiClient';
 import { MemberController } from 'utils/Libs/requestUrls';
 import { getCroppedImg } from 'utils/canvas';
 import * as S from './style';
-import { apiClient } from 'utils/Libs/apiClient';
-import { mutate } from 'swr';
+
 const ProfileImgModal = () => {
   const [profileImgModal, setProfileImgModal] =
     useRecoilState(profileModalState);
   const [imgBase64, setImgBase64] = useRecoilState(imgBase64profile);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const router = useRouter();
 
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area>();
-  const { data } = useSWR<myProfileType>(MemberController.myProfile);
+
+  const { data, mutate } = useSWR<myProfileType>(
+    MemberController.myProfile,
+    async () => await apiClient.get(MemberController.myProfile),
+    { keepPreviousData: true }
+  );
 
   const onCropComplete = useCallback(
     (croppedArea: Area, croppedAreaPixels: Area) => {
@@ -58,19 +61,11 @@ const ProfileImgModal = () => {
         toast.success('프로필 이미지를 추가했습니다');
       }
 
-      const { data: homeData } = await apiClient.get(
-        MemberController.myProfile
-      );
-      mutate(MemberController.myProfile, { ...data, profileImage: homeData.profileImage });
+      mutate();
     } catch (e) {
       toast.warning('새로운 이미지를 선택해주세요');
     }
-  }, [
-    data,
-    imgBase64,
-    croppedAreaPixels,
-    setProfileImgModal,
-  ]);
+  }, [data, imgBase64, croppedAreaPixels, setProfileImgModal, mutate]);
 
   const handleChangeFile = useCallback((event: any) => {
     event.preventDefault();
@@ -89,7 +84,7 @@ const ProfileImgModal = () => {
     await deleteProfileImage();
     setProfileImgModal(false);
     toast.success('프로필 이미지를 삭제했습니다.');
-    mutate(MemberController.myProfile, { ...data, profileImage: null });
+    mutate();
   };
 
   return (

@@ -21,7 +21,8 @@ import { myProfileType } from 'types';
 import { MemberController } from 'utils/Libs/requestUrls';
 import { getCroppedImg } from 'utils/canvas';
 import * as S from './style';
-
+import { apiClient } from 'utils/Libs/apiClient';
+import { mutate } from 'swr';
 const ProfileImgModal = () => {
   const [profileImgModal, setProfileImgModal] =
     useRecoilState(profileModalState);
@@ -48,27 +49,27 @@ const ProfileImgModal = () => {
     try {
       const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels);
       if (data?.profileImage) {
-        patchProfileImage(croppedImage ?? '');
+        await patchProfileImage(croppedImage ?? '');
         setProfileImgModal(false);
         toast.success('프로필 이미지를 수정했습니다');
       } else {
-        postProfileImage(croppedImage ?? '');
+        await postProfileImage(croppedImage ?? '');
         setProfileImgModal(false);
         toast.success('프로필 이미지를 추가했습니다');
       }
 
-      setTimeout(() => {
-        router.reload();
-      }, 1000);
+      const { data: homeData } = await apiClient.get(
+        MemberController.myProfile
+      );
+      mutate(MemberController.myProfile, { ...data, profileImage: homeData.profileImage });
     } catch (e) {
       toast.warning('새로운 이미지를 선택해주세요');
     }
   }, [
+    data,
     imgBase64,
     croppedAreaPixels,
-    data?.profileImage,
     setProfileImgModal,
-    router,
   ]);
 
   const handleChangeFile = useCallback((event: any) => {
@@ -84,13 +85,11 @@ const ProfileImgModal = () => {
     }
   }, []);
 
-  const handleRemoveClick = () => {
-    deleteProfileImage();
+  const handleRemoveClick = async () => {
+    await deleteProfileImage();
     setProfileImgModal(false);
     toast.success('프로필 이미지를 삭제했습니다.');
-    setTimeout(() => {
-      router.reload();
-    }, 1000);
+    mutate(MemberController.myProfile, { ...data, profileImage: null });
   };
 
   return (

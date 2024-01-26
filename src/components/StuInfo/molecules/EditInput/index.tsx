@@ -15,7 +15,7 @@ const EditInput = ({
 }) => {
   return (
     <S.Layer>
-      <h3>{name}</h3>
+      <span>{name}</span>
       <AuthInput
         register={register}
         isValue={watch !== ''}

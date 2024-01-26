@@ -9,7 +9,6 @@ import { StuInfoType } from 'types/components/StuInfoPage';
 import { getRole } from 'utils/Libs/getRole';
 import { StuInfoController } from 'utils/Libs/requestUrls';
 import * as S from './style';
-import { useEffect } from 'react';
 
 const EditModal = ({
   isClick,
@@ -44,7 +43,6 @@ const EditModal = ({
 
   const onSubmit = async () => {
     const isFailure = await putStuInfo(
-      role,
       data.id,
       watch('memberName'),
       watch('stuNum'),

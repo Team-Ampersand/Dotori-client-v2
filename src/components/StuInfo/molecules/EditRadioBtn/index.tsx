@@ -26,6 +26,7 @@ const EditRadioBtn = ({
                 type="radio"
                 checked={watch === i}
                 id={label[key]}
+                readOnly
                 darkMode={theme}
               />
               <label htmlFor={label[key]} onClick={() => onClick(i)}>

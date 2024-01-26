@@ -158,9 +158,7 @@ export const postProfileImage = async (image: Blob | string) => {
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
     return { data };
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e: any) {}
 };
 
 export const patchProfileImage = async (image: Blob | string) => {
@@ -173,16 +171,12 @@ export const patchProfileImage = async (image: Blob | string) => {
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
     return { data };
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e: any) {}
 };
 
 export const deleteProfileImage = async () => {
   try {
     const { data } = await apiClient.delete(MemberController.profileImage);
     return { data };
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e: any) {}
 };

@@ -40,6 +40,16 @@ export const ProfileBox = styled.div`
   }
 `;
 
+export const ProfileImage = styled.div<{image: string}>`
+  width: 82px;
+  height: 82px;
+  border-radius: 8px;
+  background-position: center;
+  background-image: url(${(props) => props.image});
+  background-repeat: no-repeat;
+  background-size: cover;
+`
+
 export const StudentInfo = styled.div`
   width: 12.5vw;
   height: 7.233dvh;

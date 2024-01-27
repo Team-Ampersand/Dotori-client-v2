@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { Palette } from 'styles/globals';
 import { ButtonProps } from 'types/components/StuInfoPage';
 
@@ -25,11 +26,20 @@ export const LeftBox = styled.div`
   flex-basis: 10em;
 `;
 
-export const ImgBox = styled.div`
+export const ImgBox = styled.div<{ image?: string | null }>`
   height: 40px;
   aspect-ratio: 1 / 1;
   border-radius: 100%;
-  background: ${Palette.NEUTRAL_N40};
+  background-color: ${(props) => props.image === null && Palette.NEUTRAL_N40};
+
+  ${(props) =>
+    props.image &&
+    css`
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url(${props.image});
+    `}
 `;
 
 export const StuNum = styled.p`

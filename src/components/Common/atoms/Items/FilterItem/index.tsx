@@ -1,7 +1,6 @@
 import { SearchFilterProps } from 'types';
 
 const FilterItem = ({
-  index,
   name,
   item,
   value,

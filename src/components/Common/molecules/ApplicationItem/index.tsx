@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Goldmedal from 'assets/png/GoldMedalIcon.png';
 import Silvermedal from 'assets/png/SilverMedalIcon.png';
 import BronzeMedal from 'assets/png/BronzeMedalIcon.png';
+import { ProfileImage } from 'components/Home/organisms/Profile/style';
 
 const ApplicationItem = ({
   id,
@@ -19,6 +20,7 @@ const ApplicationItem = ({
   stuNum,
   listType,
   lastRank,
+  profileImage,
 }: ApplicationItemProps) => {
   const role = getRole();
   const lookUp = useRecoilValue(selfStudyLookup);
@@ -72,7 +74,7 @@ const ApplicationItem = ({
         </>
       )}
       <S.Profile>
-        <DefaultProfile />
+        {profileImage ? <ProfileImage image={profileImage} /> : <DefaultProfile />}
       </S.Profile>
       <S.StuInfo>
         <S.Name>

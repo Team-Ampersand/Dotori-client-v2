@@ -5,6 +5,7 @@ export interface StuInfoType {
   stuNum: string;
   role: 'ROLE_DEVELOPER' | 'ROLE_COUNCILLOR' | 'ROLE_ADMIN' | 'ROLE_MEMBER';
   selfStudyStatus: 'CAN' | 'IMPOSSIBLE';
+  profileImage: string | null
 }
 
 export interface SearchStuInfoType

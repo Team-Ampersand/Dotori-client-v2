@@ -8,11 +8,10 @@ export interface filterListProps {
 }
 
 export interface SearchFilterProps {
-  index: number;
   name: string;
   item: string;
   value: string | undefined;
-  onClick: React.MouseEventHandler;
+  onClick: any;
 }
 
 export interface SearchFilterTypeProps {

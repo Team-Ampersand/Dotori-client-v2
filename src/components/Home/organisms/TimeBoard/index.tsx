@@ -1,26 +1,31 @@
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { getDate } from 'utils/getDate';
-import * as S from './style';
 import Dotori3DImg from 'assets/png/Dotori3D.png';
 import Dotori3DDarkImg from 'assets/png/Dotori3DDark.png';
 import ShadowImg from 'assets/png/shadow.png';
-import UseToggleTheme from 'hooks/useToggleTheme';
-import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
 import { DefaultProfile, HanbergerIcon } from 'assets/svg';
+import DarkModeButton from 'components/Common/atoms/Buttons/DarkModeBtn';
+import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
 import MenuModal from 'components/Home/molecules/MenuModal';
 import PenaltyModal from 'components/Home/molecules/PenaltyModal';
 import ProileImgModal from 'components/Home/molecules/ProfileImgModal';
-import NavigationDrawer from 'components/Common/organisms/NavigationDrawer';
+import UseToggleTheme from 'hooks/useToggleTheme';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import {
   menuModalState,
   penaltyModalState,
   profileModalState,
 } from 'recoilAtoms/recoilAtomContainer';
+import useSWR, { useSWRConfig } from 'swr';
+import { myProfileType } from 'types';
 import { getRole } from 'utils/Libs/getRole';
-import { useSWRConfig } from 'swr';
-import { MassageController, SelfstudyController } from 'utils/Libs/requestUrls';
+import {
+  MassageController,
+  MemberController,
+  SelfstudyController,
+} from 'utils/Libs/requestUrls';
+import { getDate } from 'utils/getDate';
+import * as S from './style';
 
 const TimeBoard = () => {
   const [date, setDate] = useState<string>('');
@@ -33,6 +38,7 @@ const TimeBoard = () => {
   const [navigationDrawer, setNavigationDrawer] = useState(false);
   const { mutate } = useSWRConfig();
   const role = getRole();
+  const { data } = useSWR<myProfileType>(MemberController.myProfile);
 
   useEffect(() => tick(), []);
 
@@ -68,12 +74,19 @@ const TimeBoard = () => {
         </S.MobileTitle>
         <S.BoardTopRightWrapper>
           <DarkModeButton />
-          <DefaultProfile
-            width={40}
-            height={40}
-            onClick={() => setMenuModal((pre) => !pre)}
-            className="defaultProfileImg"
-          />
+          {data?.profileImage ? (
+            <S.ResponsiveProfileImage
+              image={data?.profileImage}
+              onClick={() => setMenuModal((pre) => !pre)}
+            />
+          ) : (
+            <DefaultProfile
+              width={40}
+              height={40}
+              onClick={() => setMenuModal((pre) => !pre)}
+              className="defaultProfileImg"
+            />
+          )}
           <MenuModal
             isClick={menuModal}
             setIsClick={setMenuModal}

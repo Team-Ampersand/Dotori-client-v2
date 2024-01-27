@@ -147,3 +147,36 @@ export const tokenReissue = async (
     return { newAuthorization };
   } catch (e: any) {}
 };
+
+export const postProfileImage = async (image: Blob | string) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', image);
+    const { data } = await apiClient.post(
+      MemberController.profileImage,
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
+    return { data };
+  } catch (e: any) {}
+};
+
+export const patchProfileImage = async (image: Blob | string) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', image);
+    const { data } = await apiClient.patch(
+      MemberController.profileImage,
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
+    return { data };
+  } catch (e: any) {}
+};
+
+export const deleteProfileImage = async () => {
+  try {
+    const { data } = await apiClient.delete(MemberController.profileImage);
+    return { data };
+  } catch (e: any) {}
+};

@@ -27,3 +27,7 @@ export interface StuInfoParamsType {
   role: string | null;
   selfStudyStatus: string | null;
 }
+
+export interface StuInfoRadioStyleProps {
+  darkMode: 'dark' | 'light';
+}

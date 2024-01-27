@@ -43,7 +43,6 @@ const EditModal = ({
 
   const onSubmit = async () => {
     const isFailure = await putStuInfo(
-      role,
       data.id,
       watch('memberName'),
       watch('stuNum'),

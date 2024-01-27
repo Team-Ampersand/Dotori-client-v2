@@ -33,8 +33,7 @@ export const getSearchStuInfo = async (
 };
 
 export const putStuInfo = async (
-  role: string,
-  userId: number,
+  memberId: number,
   memberName: string,
   stuNum: string,
   gender: 'MAN' | 'WOMAN',
@@ -42,7 +41,7 @@ export const putStuInfo = async (
 ) => {
   try {
     await apiClient.put(StuInfoController.modifyStuInfo, {
-      userId: userId,
+      memberId: memberId,
       memberName: memberName,
       stuNum: stuNum,
       gender: gender,

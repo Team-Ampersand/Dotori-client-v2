@@ -1,3 +1,4 @@
+import UseToggleTheme from 'hooks/useToggleTheme';
 import * as S from './style';
 
 const EditRadioBtn = ({
@@ -13,14 +14,21 @@ const EditRadioBtn = ({
   onClick: (value: string) => void;
   watch: string;
 }) => {
+  const [theme] = UseToggleTheme();
   return (
     <S.Layer>
-      <h3>{name}</h3>
+      <span>{name}</span>
       <S.SelectList>
         {data.map((i, key) => {
           return (
             <div key={key}>
-              <S.Button type="radio" defaultChecked={watch === i} id={label[key]} />
+              <S.Button
+                type="radio"
+                checked={watch === i}
+                id={label[key]}
+                readOnly
+                darkMode={theme}
+              />
               <label htmlFor={label[key]} onClick={() => onClick(i)}>
                 {label[key]}
               </label>

@@ -7,6 +7,7 @@ export const MemberController = {
   emailPasswordCheck: '/email/password',
   changePasswd: '/members/password',
   myProfile: '/home',
+  profileImage: '/members/profileImage'
 };
 
 export const NoticeController = {

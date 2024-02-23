@@ -12,7 +12,7 @@ export const Layer = styled.div`
   color: ${Palette.NEUTRAL_N10};
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 export const ModalHeader = styled.div`
@@ -43,5 +43,8 @@ export const SubmitBtn = styled.button`
   border-radius: 0.5rem;
   border: none;
   padding: 14px 0;
-  color: ${Palette.NEUTRAL_N10};
+  color: #fff;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 16px;
 `;

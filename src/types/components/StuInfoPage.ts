@@ -5,6 +5,7 @@ export interface StuInfoType {
   stuNum: string;
   role: 'ROLE_DEVELOPER' | 'ROLE_COUNCILLOR' | 'ROLE_ADMIN' | 'ROLE_MEMBER';
   selfStudyStatus: 'CAN' | 'IMPOSSIBLE';
+  profileImage: string | null
 }
 
 export interface SearchStuInfoType
@@ -25,4 +26,8 @@ export interface StuInfoParamsType {
   grade: number | null;
   role: string | null;
   selfStudyStatus: string | null;
+}
+
+export interface StuInfoRadioStyleProps {
+  darkMode: 'dark' | 'light';
 }

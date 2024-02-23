@@ -21,6 +21,7 @@ const MassageList = () => {
             gender={item.gender}
             stuNum={item.stuNum}
             listType="massage"
+            profileImage={item.profileImage}
           />
         ))}
     </>

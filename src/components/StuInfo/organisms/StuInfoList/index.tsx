@@ -13,7 +13,7 @@ const StuInfoList = () => {
 
   const fetcher = async (url: string) => {
     const { data } = await apiClient.get(url, {
-      params: params,
+      params,
     });
 
     return { data };

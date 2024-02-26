@@ -82,6 +82,7 @@ const ProfileImgModal = () => {
 
   const handleRemoveClick = async () => {
     await deleteProfileImage();
+    setImgBase64('')
     setProfileImgModal(false);
     toast.success('프로필 이미지를 삭제했습니다.');
     mutate();

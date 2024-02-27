@@ -50,3 +50,4 @@ export { default as EllipsisVerticalIcon } from './EllipsisVerticalIcon';
 export { default as NewPageIcon } from './NewPageIcon';
 export { default as TrashcanIcon } from './TrashcanIcon';
 export { default as SettingIcon } from './SettingIcon';
+export { default as CircleDefaultProfile } from './CircleDefaultProfile';

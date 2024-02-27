@@ -41,8 +41,8 @@ export const ProfileBox = styled.div`
 `;
 
 export const ProfileImage = styled.div<{image: string}>`
-  width: 82px;
-  height: 82px;
+  width: 64px;
+  height: 64px;
   border-radius: 8px;
   background-position: center;
   background-image: url(${(props) => props.image});

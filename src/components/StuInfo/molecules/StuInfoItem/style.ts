@@ -30,7 +30,6 @@ export const ImgBox = styled.div<{ image?: string | null }>`
   height: 40px;
   aspect-ratio: 1 / 1;
   border-radius: 100%;
-  background-color: ${(props) => props.image === null && Palette.NEUTRAL_N40};
 
   ${(props) =>
     props.image &&

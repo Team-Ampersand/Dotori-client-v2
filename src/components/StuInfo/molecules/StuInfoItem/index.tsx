@@ -1,8 +1,13 @@
 import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy';
 import { RoleData } from 'assets/data/RoleData';
-import { BookIcon, EditPencilIcon } from 'assets/svg';
+import {
+  BookIcon,
+  CircleDefaultProfile,
+  EditPencilIcon
+} from 'assets/svg';
 import BookBenIcon from 'assets/svg/BookBenIcon';
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
+import EditModal from 'components/StuInfo/organisms/EditModal';
 import { useState } from 'react';
 import { Palette } from 'styles/globals';
 import { mutate } from 'swr';
@@ -10,7 +15,6 @@ import { StuInfoType } from 'types/components/StuInfoPage';
 import { getRole } from 'utils/Libs/getRole';
 import { StuInfoController } from 'utils/Libs/requestUrls';
 import * as S from './style';
-import EditModal from 'components/StuInfo/organisms/EditModal';
 
 interface Props {
   data: StuInfoType;
@@ -63,7 +67,7 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
           {stuInfoData.profileImage ? (
             <S.ImgBox image={stuInfoData.profileImage} />
           ) : (
-            <S.ImgBox />
+            <CircleDefaultProfile />
           )}
           <p>{stuInfoData.memberName}</p>
         </S.LeftBox>

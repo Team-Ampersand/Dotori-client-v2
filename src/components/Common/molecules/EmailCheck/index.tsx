@@ -34,8 +34,6 @@ const EmailCheck = ({ isLogin }: { isLogin: boolean }) => {
     if (!isAuthCheck) return;
     else if (!RegexsData.EMAIL.test(watch().email || ''))
       return toast.error('이메일 형식이 잘못되었어요.');
-    else if (watch().email?.includes('s240'))
-      return toast.error('아직 허용되지 않은 이메일이에요.');
     else if (
       isLogin
         ? await emailCheck(`${watch().email}@gsm.hs.kr`)

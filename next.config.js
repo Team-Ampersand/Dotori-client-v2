@@ -12,6 +12,14 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/neis/meal/:datestr',
+        destination: `https://open.neis.go.kr/hub/mealServiceDietInfo?key=${process.env.NEXT_PUBLIC_NEIS_API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=F10&SD_SCHUL_CODE=7380292&MLSV_YMD=:datestr`,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

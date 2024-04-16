@@ -41,7 +41,7 @@ export const WriterDot = styled.div`
 
 export const HeaderRightBox = styled(HeaderLeftBox)`
   align-items: flex-end;
-
+  gap: 1rem;
   small {
     color: ${Palette.NEUTRAL_N20};
   }

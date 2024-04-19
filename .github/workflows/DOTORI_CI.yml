@@ -36,7 +36,7 @@ jobs:
         content: "<@${{ secrets.ID1 }}> <@${{ secrets.ID2 }}> <@${{ secrets.ID3 }}> <@${{ secrets.ID4 }}>\n확인부탁드려용~"
         username: DOTORI V2 CI bot
         url: "https://github.com/Team-Ampersand/Dotori-client-v2"
-        color: 4CAF50
+        color: 00ff08
   
     - name: Failure notification to discord
       uses: sarisia/actions-status-discord@v1.11.0

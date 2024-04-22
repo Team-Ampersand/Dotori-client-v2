@@ -1,10 +1,9 @@
 import { deleteMusic, getMusic } from 'api/music';
 import { EllipsisVerticalIcon, NewPageIcon, TrashcanIcon } from 'assets/svg';
-import axios from 'axios';
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
 import useSWR, { mutate } from 'swr';
@@ -17,26 +16,8 @@ import { getDate } from 'utils/getDate';
 import * as S from './style';
 import ResponsiveModal from '../ResponsiveModal';
 
-const songTitle = async (url: string) => {
-  const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-
-  return axios.get(
-    `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${url}&key=${api_key}`
-  );
-};
-
-const youtube_parser = (url: string) => {
-  const regExp =
-    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-  const match = url.match(regExp);
-  if (match && match[7].length === 11) return match[7];
-  return '';
-};
-
 const SongItem = ({ data: songData }: { data: SongType }) => {
   const role = getRole();
-  const youtubeId = youtube_parser(songData.url);
-  const [title, setTitle] = useState<string>('');
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [modalState, setMdoalState] = useState<boolean>(false);
@@ -47,12 +28,6 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
     getDate(date)[2]
   }`;
-
-  useEffect(() => {
-    songTitle(youtubeId).then((res) => {
-      setTitle(res?.data.items[0].snippet.title);
-    });
-  }, [youtubeId]);
 
   const onDelete = async (id: number) => {
     const isSuccess = await deleteMusic(role, id);
@@ -66,14 +41,14 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
         <S.LeftWrapper>
           <S.ImgBox>
             <Image
-              src={`https://img.youtube.com/vi/${youtubeId}/0.jpg`}
+              src={songData.thumbnail}
               alt="thumbnail"
               layout="fill"
               objectFit="cover"
             />
           </S.ImgBox>
           <S.ResponseWrapper>
-            <S.Title>{title}</S.Title>
+            <S.Title>{songData.title}</S.Title>
             <S.Info>
               {songData.stuNum + ' ' + songData.username + '•' + songDate}
             </S.Info>

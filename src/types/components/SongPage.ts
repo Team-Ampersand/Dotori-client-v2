@@ -5,6 +5,8 @@ export interface SongType {
   email: string;
   createdTime: Date;
   stuNum: number;
+  thumbnail: string;
+  title: string;
 }
 
 export interface SongListType {

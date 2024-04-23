@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
+interface SubmitProps {
+  isValid: boolean;
+}
+
 export const Layer = styled.form`
   width: 100%;
   display: flex;
@@ -61,11 +65,12 @@ export const Input = styled.input`
   }
 `;
 
-export const Submit = styled.button`
+export const Submit = styled.button<SubmitProps>`
   flex-basis: 48px;
   line-height: 20px;
-  background: ${Palette.PRIMARY_P30};
-  color: ${Palette.NEUTRAL_N20};
+  background: ${(props) =>
+    props.isValid ? Palette.PRIMARY_P10 : Palette.PRIMARY_P30};
+  color: ${(props) => (props.isValid ? Palette.WHITE : Palette.NEUTRAL_N20)};
 `;
 
 export const NotForm = styled.p`

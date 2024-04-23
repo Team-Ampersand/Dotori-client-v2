@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ChangeEvent } from 'react';
 import { getMusic, postMusic } from 'api/music';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -37,7 +38,7 @@ const SongForm = () => {
     toast.warn(Object.values(err)[0].message);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const url = e.target.value;
     const isValid = regUrl.test(url);
     setIsValid(isValid);

@@ -21,7 +21,7 @@ const SongForm = () => {
   const regUrl =
     /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
 
-  const [isValidUrl, setIsValidUrl] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const date = useRecoilValue(selectedDate);
   const postDate = dateRegex(String(date));
@@ -40,7 +40,7 @@ const SongForm = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const url = e.target.value;
     const isValid = regUrl.test(url);
-    setIsValidUrl(isValid);
+    setIsValid(isValid);
   };
 
   return (
@@ -68,7 +68,7 @@ const SongForm = () => {
             })}
             onChange={handleInputChange}
           />
-          <S.Submit type="submit" isValid={isValidUrl}>
+          <S.Submit type="submit" isValid={isValid}>
             신청하기
           </S.Submit>
         </>

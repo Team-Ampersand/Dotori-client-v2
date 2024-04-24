@@ -16,18 +16,23 @@ export const postNotice = async (
   img: File[]
 ) => {
   let formData = new FormData();
-  img.map((item) => formData.append('files', item));
 
   let boardDto = {
     title: title,
     content: content,
   };
+  if (img.length === 0) {
+    formData.append('files', new Blob());
+  } else {
+    img.map((item) => formData.append('files', item));
+  }
 
   formData.append(
     'boardDto',
-    new Blob([JSON.stringify(boardDto)], { type: 'application/json' })
+    new Blob([JSON.stringify(boardDto)], {
+      type: 'application/json',
+    })
   );
-
   try {
     const { data } = await apiClient.post(
       NoticeController.getNotice(role),
@@ -36,7 +41,10 @@ export const postNotice = async (
     );
     toast.success('공지사항 작성이 완료되었습니다');
     return { data };
-  } catch (e: any) {}
+  } catch (e: any) {
+    toast.error('공지사항 작성에 실패하였습니다');
+    return { e };
+  }
 };
 
 export const deleteNotice = async (role: string, boardIdx: number) => {

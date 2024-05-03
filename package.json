@@ -1,14 +1,16 @@
 {
-  "name": "dodo",
+  "name": "dotori_v2",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "build:production": "env-cmd -f .env.production next build",
     "build:dev": "env-cmd -f .env.development next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@emotion/css": "^11.10.5",
@@ -43,5 +45,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^14.2.3"
   }
 }

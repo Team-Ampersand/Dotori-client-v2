@@ -38,12 +38,6 @@ const SongForm = () => {
     toast.warn(Object.values(err)[0].message);
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const url = e.target.value;
-    const isValid = regUrl.test(url);
-    setIsValid(isValid);
-  };
-
   return (
     <S.Layer onSubmit={handleSubmit(debouncedOnSuccess, onError)}>
       <S.FormHeader>
@@ -66,8 +60,12 @@ const SongForm = () => {
                 value: regUrl,
                 message: 'URL 형식에 맞게 입력해주세요',
               },
+              onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                const url = e.target.value;
+                const isValid = regUrl.test(url);
+                setIsValid(isValid);
+              },
             })}
-            onChange={handleInputChange}
           />
           <S.Submit type="submit" isValid={isValid}>
             신청하기

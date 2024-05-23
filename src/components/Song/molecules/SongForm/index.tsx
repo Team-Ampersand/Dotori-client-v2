@@ -10,12 +10,16 @@ import { dateRegex } from 'utils/dateRegex';
 import { getRole } from 'utils/Libs/getRole';
 import { SongController } from 'utils/Libs/requestUrls';
 import * as S from './style';
-import { debounce } from 'lodash';
 
 const SongForm = () => {
   const role = getRole();
   const setModal = useSetRecoilState(songNoticeModal);
-  const { register, handleSubmit, getValues } = useForm({
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = useForm({
     defaultValues: { url: '' },
   });
 
@@ -27,19 +31,19 @@ const SongForm = () => {
   const date = useRecoilValue(selectedDate);
   const postDate = dateRegex(String(date));
 
-  const debouncedOnSuccess = debounce(async () => {
+  const onSuccess = async () => {
     const isSuccess = await postMusic(role, getValues('url'));
     if (isSuccess) {
       mutate(SongController.music(role), () => getMusic(role, postDate));
     }
-  }, 300);
+  };
 
   const onError = (err: Object) => {
     toast.warn(Object.values(err)[0].message);
   };
 
   return (
-    <S.Layer onSubmit={handleSubmit(debouncedOnSuccess, onError)}>
+    <S.Layer onSubmit={handleSubmit(onSuccess, onError)}>
       <S.FormHeader>
         <h2>음악 신청</h2>
         <S.NoticeModalBtn type="button" onClick={() => setModal(true)}>
@@ -67,7 +71,7 @@ const SongForm = () => {
               },
             })}
           />
-          <S.Submit type="submit" isValid={isValid}>
+          <S.Submit type="submit" isValid={isValid} disabled={isSubmitting}>
             신청하기
           </S.Submit>
         </>

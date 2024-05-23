@@ -27,8 +27,8 @@ export interface myProfileType {
   id: number;
   stuNum: string;
   name: string;
-  gender: 'MAN' | 'WOMAN';
-  profileImage: string | null
+  gender: 'MAN' | 'WOMAN' | 'PENDING';
+  profileImage: string | null;
 }
 
 export interface applyPageProps {

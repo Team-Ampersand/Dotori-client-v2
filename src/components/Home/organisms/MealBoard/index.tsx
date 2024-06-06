@@ -4,7 +4,7 @@ import UseToggleTheme from 'hooks/useToggleTheme';
 import { useEffect, useState } from 'react';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
-import { MealResponse } from 'types/Meal';
+import { MealResponse, NeedMealInfo } from 'types/Meal';
 
 const returnMealdata = async (
   datestr: string,
@@ -65,7 +65,7 @@ const MealBoard = () => {
   useEffect(() => {
     if (mealRes) {
       const row = mealRes.mealServiceDietInfo?.[1]?.row || [];
-      const result = row.find((i: any) => {
+      const result = row.find((i: NeedMealInfo) => {
         const mealTime = Number(i.MMEAL_SC_CODE);
         return (
           (mealTime === 1 && mealCode === 0) ||

@@ -1,3 +1,4 @@
+// types/Meal.ts
 export type MealInfo = {
   ATPT_OFCDC_SC_CODE: string;
   ATPT_OFCDC_SC_NM: string;
@@ -17,15 +18,16 @@ export type MealInfo = {
 };
 
 export type MealResponse = {
-  mealServiceDietInfo: [
-    {
-      head: Array<
-        | { list_total_count: number }
-        | { RESULT: { CODE: string; MESSAGE: string } }
-      >;
-    },
-    {
-      row: MealInfo[];
-    }
-  ];
+  mealServiceDietInfo: {
+    head: Array<
+      | { list_total_count: number }
+      | { RESULT: { CODE: string; MESSAGE: string } }
+    >;
+    row: MealInfo[];
+  }[];
+};
+
+export type NeedMealInfo = {
+  MMEAL_SC_CODE: string;
+  DDISH_NM: string;
 };

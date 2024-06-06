@@ -28,10 +28,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <GlobalStyle />
         <Component {...pageProps} />
         <ToastContainer
-          autoClose={700}
-          pauseOnHover={true}
-          position={toast.POSITION.TOP_RIGHT}
-          transition={Slide}
           toastStyle={{
             backgroundColor: Palette.BACKGROUND_CARD,
             color: Palette.NEUTRAL_N10,

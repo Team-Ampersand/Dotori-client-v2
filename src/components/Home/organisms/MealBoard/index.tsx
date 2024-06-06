@@ -4,7 +4,7 @@ import UseToggleTheme from 'hooks/useToggleTheme';
 import { useEffect, useState } from 'react';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
-import { MealResponse, NeedMealInfo } from 'types/Meal';
+import { MealResponse, MealInfo } from 'types/Meal';
 
 const returnMealdata = async (
   datestr: string,
@@ -64,9 +64,9 @@ const MealBoard = () => {
 
   useEffect(() => {
     if (mealRes) {
-      const row = mealRes.mealServiceDietInfo?.[1]?.row || [];
-      const result = row.find((i: NeedMealInfo) => {
-        const mealTime = Number(i.MMEAL_SC_CODE);
+      const row: MealInfo[] = mealRes.mealServiceDietInfo?.[1]?.row || [];
+      const result = row.find((meal) => {
+        const mealTime = Number(meal.MMEAL_SC_CODE);
         return (
           (mealTime === 1 && mealCode === 0) ||
           (mealTime === 2 && mealCode === 1) ||
@@ -77,9 +77,7 @@ const MealBoard = () => {
         result?.DDISH_NM?.toString()
           .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)|[*<br/>a-z.() ]/g, '`')
           .split('`')
-          .filter((value: string) => {
-            return value !== '';
-          }) || [];
+          .filter((value: string) => value !== '') || [];
       setList(mealList);
     }
   }, [mealRes, mealCode]);

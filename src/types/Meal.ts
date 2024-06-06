@@ -1,4 +1,3 @@
-// types/Meal.ts
 export type MealInfo = {
   ATPT_OFCDC_SC_CODE: string;
   ATPT_OFCDC_SC_NM: string;
@@ -25,9 +24,4 @@ export type MealResponse = {
     >;
     row: MealInfo[];
   }[];
-};
-
-export type NeedMealInfo = {
-  MMEAL_SC_CODE: string;
-  DDISH_NM: string;
 };

@@ -4,34 +4,16 @@ import UseToggleTheme from 'hooks/useToggleTheme';
 import { useEffect, useState } from 'react';
 import { getDate } from 'utils/getDate';
 import * as S from './style';
+import { MealResponse, MealInfo } from 'types/Meal';
 
 const returnMealdata = async (
   datestr: string,
-  mealCode: number,
-  setList: (list: string[]) => void
+  setList: (list: string[]) => void,
+  setMealRes: (data: MealResponse) => void
 ) => {
   const { data } = await axios.get(`/neis/meal/${datestr}`);
   try {
-    const row = !!data.mealServiceDietInfo[1].row
-      ? data.mealServiceDietInfo[1].row
-      : [];
-
-    const result = row.find((i: any) => {
-      const mealTime = Number(i.MMEAL_SC_CODE);
-      return (
-        (mealTime === 1 && mealCode === 0) ||
-        (mealTime === 2 && mealCode === 1) ||
-        (mealTime === 3 && mealCode === 2)
-      );
-    });
-
-    const mealList = result.DDISH_NM.toString()
-      .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)|[*<br/>a-z.() ]/g, '`')
-      .split('`')
-      .filter((value: string) => {
-        return value !== '';
-      });
-    setList(mealList);
+    setMealRes(data);
   } catch (e: any) {
     setList([]);
   }
@@ -51,7 +33,8 @@ const MealBoard = () => {
   const [year, month, day, hour] = getDate();
   const [mealCode, setMealCode] = useState(returnMealcode(Number(hour)));
   const [currentDate] = useState(new Date(`${year}-${month}-${day}`));
-  const [list, setList] = useState<string[]>();
+  const [mealRes, setMealRes] = useState<MealResponse | null>(null);
+  const [list, setList] = useState<string[]>([]);
   const week = ['일', '월', '화', '수', '목', '금', '토'];
   const mealHourArr = ['조식', '중식', '석식'];
   const [theme] = UseToggleTheme();
@@ -76,8 +59,28 @@ const MealBoard = () => {
   );
 
   useEffect(() => {
-    returnMealdata(date.datestr, mealCode, setList);
-  }, [date, mealCode]);
+    returnMealdata(date.datestr, setList, setMealRes);
+  }, [date]);
+
+  useEffect(() => {
+    if (mealRes) {
+      const row: MealInfo[] = mealRes.mealServiceDietInfo?.[1]?.row || [];
+      const result = row.find((meal) => {
+        const mealTime = Number(meal.MMEAL_SC_CODE);
+        return (
+          (mealTime === 1 && mealCode === 0) ||
+          (mealTime === 2 && mealCode === 1) ||
+          (mealTime === 3 && mealCode === 2)
+        );
+      });
+      const mealList =
+        result?.DDISH_NM?.toString()
+          .replace(/\([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9.]*\)|[*<br/>a-z.() ]/g, '`')
+          .split('`')
+          .filter((value: string) => value !== '') || [];
+      setList(mealList);
+    }
+  }, [mealRes, mealCode]);
 
   const nextPrevDay = (n: number) => {
     currentDate.setDate(currentDate.getDate() + n);

@@ -1,3 +1,5 @@
+import { SongType } from './components/SongPage';
+import { myProfileType } from './Home';
 export interface MenuOptionStyleProps {
   name: '프로필 수정' | '규정위반 내역' | '비밀번호 변경' | '로그아웃';
 }
@@ -65,4 +67,6 @@ export interface PenaltyRecordModalProps {
 
 export interface SongResponsiveModalProps extends ModalProps {
   setDelModalState: (state: boolean) => void;
+  songData: SongType;
+  userData: myProfileType;
 }

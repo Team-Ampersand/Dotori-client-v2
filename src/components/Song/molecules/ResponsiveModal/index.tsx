@@ -1,8 +1,7 @@
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import * as S from './style';
 import { NewPageIcon, TrashcanIcon } from 'assets/svg';
-import { SongResponsiveModalProps, myProfileType } from 'types';
-import { SongType } from 'types/components/SongPage';
+import { SongResponsiveModalProps } from 'types';
 import { preventEvent } from 'utils/Libs/preventEvent';
 import { getRole } from 'utils/Libs/getRole';
 
@@ -12,10 +11,7 @@ const ResponsiveModal = ({
   setDelModalState,
   songData,
   userData,
-}: SongResponsiveModalProps & {
-  songData: SongType;
-  userData: myProfileType;
-}) => {
+}: SongResponsiveModalProps) => {
   const role = getRole();
   return (
     <>

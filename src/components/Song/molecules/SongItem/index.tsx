@@ -20,7 +20,7 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
   const role = getRole();
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
-  const [modalState, setMdoalState] = useState<boolean>(false);
+  const [modalState, setModalState] = useState<boolean>(false);
 
   const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
@@ -80,7 +80,7 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
           <EllipsisVerticalIcon
             onClick={(e) => {
               preventEvent(e);
-              setMdoalState(true);
+              setModalState(true);
             }}
           />
         </S.ResponsiveBtn>
@@ -91,11 +91,15 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
           setModalState={setDeleteModal}
           onClick={() => onDelete(songData.id)}
         />
-        <ResponsiveModal
-          modalState={modalState}
-          setModalState={setMdoalState}
-          setDelModalState={setDeleteModal}
-        />
+        {userData && (
+          <ResponsiveModal
+            modalState={modalState}
+            setModalState={setModalState}
+            setDelModalState={setDeleteModal}
+            songData={songData}
+            userData={userData}
+          />
+        )}
       </a>
     </Link>
   );

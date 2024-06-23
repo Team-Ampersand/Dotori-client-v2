@@ -1,14 +1,14 @@
 import ContentHeader from 'components/Notice/molecules/ContentHeader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { noticeContent } from 'recoilAtoms/recoilAtomContainer';
 import useSWR from 'swr';
 import { noticeDetailType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
 import * as S from './style';
-import { useSetRecoilState } from 'recoil';
-import { noticeContent } from 'recoilAtoms/recoilAtomContainer';
-import { useEffect } from 'react';
 
 const NoticeContent = () => {
   const router = useRouter();

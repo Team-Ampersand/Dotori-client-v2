@@ -61,6 +61,10 @@ export const Layer = styled.div`
     display: none;
   }
 
+  .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth {
+    pointer-events: none;
+  }
+
   .react-calendar__navigation__label {
     pointer-events: none;
   }

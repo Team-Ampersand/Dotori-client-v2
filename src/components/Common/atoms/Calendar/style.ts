@@ -54,6 +54,21 @@ export const Layer = styled.div`
     }
   }
 
+  .react-calendar__navigation__prev2-button,
+  .react-calendar__navigation__prev-button,
+  .react-calendar__navigation__next-button,
+  .react-calendar__navigation__next2-button {
+    display: none;
+  }
+
+  .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth {
+    pointer-events: none;
+  }
+
+  .react-calendar__navigation__label {
+    pointer-events: none;
+  }
+
   .react-calendar__month-view__weekdays {
     color: ${Palette.NEUTRAL_N30};
   }

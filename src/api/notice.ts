@@ -21,11 +21,6 @@ export const postNotice = async (
     title: title,
     content: content,
   };
-  if (img.length === 0) {
-    formData.append('files', new Blob());
-  } else {
-    img.map((item) => formData.append('files', item));
-  }
 
   formData.append(
     'boardDto',
@@ -33,6 +28,10 @@ export const postNotice = async (
       type: 'application/json',
     })
   );
+
+  if (img.length) img.map((item) => formData.append('files', item));
+  else formData.append('files', new Blob());
+
   try {
     const { data } = await apiClient.post(
       NoticeController.getNotice(role),

@@ -6,8 +6,8 @@ import useSWR from 'swr';
 import { noticeListType } from 'types/components/NoticePage';
 import { getRole } from 'utils/Libs/getRole';
 import { NoticeController } from 'utils/Libs/requestUrls';
-import * as S from './style';
 import { getDate } from 'utils/getDate';
+import * as S from './style';
 
 const NoticeList = () => {
   const role = getRole();
@@ -30,7 +30,7 @@ const NoticeList = () => {
       <S.NoticeContainer>
         {boardList &&
           [...boardList].map((item, key) => (
-            <>
+              <div key={item.id}>
               {boardList[key - 1]?.createdDate.slice(0, 7) >
                 boardList[key]?.createdDate.slice(0, 7) && (
                 <S.DateLine>
@@ -57,8 +57,8 @@ const NoticeList = () => {
                   }
                   id={item.id}
                 />
-              </div>
-            </>
+                </div>
+                </div>
           ))}
       </S.NoticeContainer>
     </S.Layer>

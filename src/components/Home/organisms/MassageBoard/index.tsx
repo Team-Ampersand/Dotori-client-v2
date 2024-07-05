@@ -1,18 +1,18 @@
-import ApplyBox from 'components/Home/molecules/ApplyBox';
-import { applyPageProps, applyStyleProps } from 'types';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
-import ApplyModifyModal from 'components/Home/molecules/ApplyModifyModal';
 import {
   applyCancelMassage,
   applyMassage,
   applyModifyMassage,
 } from 'api/massage';
-import { getRole } from 'utils/Libs/getRole';
-import useSWR from 'swr';
-import { MassageController } from 'utils/Libs/requestUrls';
+import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
+import ApplyBox from 'components/Home/molecules/ApplyBox';
+import ApplyModifyModal from 'components/Home/molecules/ApplyModifyModal';
 import UseToggleTheme from 'hooks/useToggleTheme';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import useSWR from 'swr';
+import { applyPageProps, applyStyleProps, myProfileType } from 'types';
+import { getRole } from 'utils/Libs/getRole';
+import { MassageController, MemberController } from 'utils/Libs/requestUrls';
 
 const MassageBoard = () => {
   const [info, setInfo] = useState<applyStyleProps>({
@@ -24,10 +24,12 @@ const MassageBoard = () => {
   const [theme] = UseToggleTheme();
   const { data, mutate } = useSWR<applyPageProps>(
     MassageController.massage(role)
-  );
+    );
+  const { data: myProfile } = useSWR<myProfileType>(MemberController.myProfile);
 
   useEffect(() => {
     if (role === 'admin') return setInfo({ applyStatus: '인원수정' });
+    else if (myProfile?.gender === 'WOMAN') return setInfo({ applyStatus: '신청불가' })
     switch (data?.massageStatus) {
       case 'CAN':
         return setInfo({ applyStatus: '안마의자' });

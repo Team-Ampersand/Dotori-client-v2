@@ -1,7 +1,7 @@
 import {
   deleteProfileImage,
   patchProfileImage,
-  postProfileImage
+  postProfileImage,
 } from 'api/member';
 import { CameraIcon, TrashcanIcon } from 'assets/svg';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
@@ -52,13 +52,15 @@ const ProfileImgModal = () => {
     try {
       const croppedImage = await getCroppedImg(imgBase64, 0, croppedAreaPixels);
       if (data?.profileImage) {
-        await patchProfileImage(croppedImage ?? '');
+        const data = await patchProfileImage(croppedImage ?? '');
         setProfileImgModal(false);
+        if( !data ) return toast.error('프로필 이미지 수정을 실패했습니다');
         toast.success('프로필 이미지를 수정했습니다');
       } else {
-        await postProfileImage(croppedImage ?? '');
+        const data = await postProfileImage(croppedImage ?? '');
         setProfileImgModal(false);
-        toast.success('프로필 이미지를 추가했습니다');
+        if( !data ) return toast.error('프로필 이미지 추가를 실패했습니다');
+        data && toast.success('프로필 이미지를 추가했습니다');
       }
 
       mutate();
@@ -82,7 +84,7 @@ const ProfileImgModal = () => {
 
   const handleRemoveClick = async () => {
     await deleteProfileImage();
-    setImgBase64('')
+    setImgBase64('');
     setProfileImgModal(false);
     toast.success('프로필 이미지를 삭제했습니다.');
     mutate();

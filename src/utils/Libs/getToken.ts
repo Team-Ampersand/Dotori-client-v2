@@ -8,9 +8,13 @@ export const getToken = async (ctx: GetServerSidePropsContext | null) => {
     let RefreshToken = ctx.req.cookies['RefreshToken'] || '';
 
     if (!RefreshToken) return {};
-    else if (!Authorization) {
-      const { newAuthorization }: any = await tokenReissue(RefreshToken, ctx);
-      Authorization = newAuthorization;
+    if (!Authorization) {
+      try {
+        const response: any = await tokenReissue(RefreshToken, ctx);
+        Authorization = response?.newAuthorization || '';
+      } catch {
+        return {};
+      }
     }
 
     return { Authorization, RefreshToken };

@@ -10,7 +10,7 @@ export const getToken = async (ctx: GetServerSidePropsContext | null) => {
     if (!RefreshToken) return {};
     if (!Authorization) {
       try {
-        const response: any = await tokenReissue(RefreshToken, ctx);
+        const response = await tokenReissue(RefreshToken, ctx);
         Authorization = response?.newAuthorization || '';
       } catch {
         return {};

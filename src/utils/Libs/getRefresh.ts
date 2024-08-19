@@ -1,12 +1,17 @@
 import { AxiosRequestConfig } from 'axios';
 import { tokenReissue } from '../../api/member';
 import { getToken } from './getToken';
+import { MemberController } from './requestUrls';
 
 export const getRefresh = async (config: AxiosRequestConfig) => {
   if (typeof window !== 'object') return config;
   const { Authorization, RefreshToken } = await getToken(null);
 
-  if (config.headers && Authorization) {
+  if (
+    config.headers &&
+    Authorization &&
+    !config.url?.includes(MemberController.auth)
+  ) {
     config.headers['Authorization'] = Authorization;
   } else if (
     !Authorization &&

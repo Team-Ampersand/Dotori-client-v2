@@ -69,10 +69,6 @@ export const Layer = styled.div`
     pointer-events: none;
   }
 
-  .react-calendar__navigation button {
-    margin: 0;
-  }
-
   .react-calendar__month-view__weekdays {
     color: ${Palette.NEUTRAL_N30};
   }

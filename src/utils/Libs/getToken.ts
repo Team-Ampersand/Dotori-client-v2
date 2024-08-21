@@ -10,7 +10,9 @@ export const getToken = async (ctx: GetServerSidePropsContext | null) => {
     if (!RefreshToken) return {};
     else if (!Authorization) {
       const { newAuthorization }: any = await tokenReissue(RefreshToken, ctx);
-      Authorization = newAuthorization;
+      if (newAuthorization) {
+        Authorization = newAuthorization;
+      }
     }
 
     return { Authorization, RefreshToken };

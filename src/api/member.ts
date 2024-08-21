@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
+import { removeToken } from 'utils/Libs/removeToken';
 import { MemberController } from 'utils/Libs/requestUrls';
 import { setToken } from 'utils/Libs/setToken';
 
@@ -145,7 +146,10 @@ export const tokenReissue = async (
     refreshToken = data.refreshToken;
     setToken(newAuthorization, refreshToken, ctx);
     return { newAuthorization };
-  } catch (e: any) {}
+  } catch (e: any) {
+    removeToken();
+    window.location.href = '/signin';
+  }
 };
 
 export const postProfileImage = async (image: Blob | string) => {

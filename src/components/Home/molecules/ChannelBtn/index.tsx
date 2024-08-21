@@ -1,15 +1,22 @@
-import ChannelIOScript from "components/Home/atoms/Script/SomeScript"
-import UseToggleTheme from "hooks/useToggleTheme";
-import { myProfileType } from "types";
-import { MemberController } from "utils/Libs/requestUrls";
+import ChannelIOScript from 'components/Home/atoms/Script/SomeScript';
+import UseToggleTheme from 'hooks/useToggleTheme';
+import { myProfileType } from 'types';
+import { MemberController } from 'utils/Libs/requestUrls';
 import useSWR from 'swr';
 
 const ChannelBtn = () => {
-    const [theme,] = UseToggleTheme();
-    const { data } = useSWR<myProfileType>(MemberController.myProfile);
-    return (
-        <ChannelIOScript stunumName={`${data?.stuNum}${data?.name}`} theme={theme} />
-    )
-}
+  const [theme] = UseToggleTheme();
+  const { data } = useSWR<myProfileType>(MemberController.myProfile);
+  return (
+    <>
+      {data ? (
+        <ChannelIOScript
+          stunumName={`${data?.stuNum}${data?.name}`}
+          theme={theme}
+        />
+      ) : null}
+    </>
+  );
+};
 
 export default ChannelBtn;

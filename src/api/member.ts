@@ -4,6 +4,7 @@ import { apiClient } from 'utils/Libs/apiClient';
 import { removeToken } from 'utils/Libs/removeToken';
 import { MemberController } from 'utils/Libs/requestUrls';
 import { setToken } from 'utils/Libs/setToken';
+import { setCookie } from 'nookies';
 
 export const signin = async (id: string, password: string) => {
   try {
@@ -11,7 +12,13 @@ export const signin = async (id: string, password: string) => {
       email: id,
       password: password,
     });
-    setToken(data.accessToken, data.refreshToken, null);
+    setToken(
+      data.accessToken,
+      data.accessExp,
+      data.refreshToken,
+      data.refreshExp,
+      null
+    );
     return toast.success('로그인이 되었습니다.');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 404') {
@@ -143,8 +150,10 @@ export const tokenReissue = async (
       }
     );
     newAuthorization = data.accessToken;
-    refreshToken = data.refreshToken;
-    setToken(newAuthorization, refreshToken, ctx);
+    setCookie(ctx, 'Authorization', `Bearer ${newAuthorization}`, {
+      expires: data.accessExp,
+      path: '/',
+    });
     return { newAuthorization };
   } catch (e: any) {
     removeToken();

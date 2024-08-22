@@ -160,7 +160,9 @@ export const tokenReissue = async (
     return { newAuthorization };
   } catch (e: any) {
     removeToken();
-    window.location.href = '/signin';
+    if (typeof window !== 'undefined') {
+      window.location.href = '/signin';
+    }
   }
 };
 

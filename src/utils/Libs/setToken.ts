@@ -3,15 +3,21 @@ import { setCookie } from 'nookies';
 
 export const setToken = (
   Authorization: string,
+  AuthorizationExp: string,
   RefreshToken: string,
+  RefreshTokenExp: string,
   ctx: GetServerSidePropsContext | null
 ): void => {
+  const authExpires = new Date(AuthorizationExp);
+  const refreshExpires = new Date(RefreshTokenExp);
+
   setCookie(ctx, 'Authorization', `Bearer ${Authorization}`, {
-    maxAge: 10800,
+    expires: authExpires,
     path: '/',
-  }); // 3시간
+  });
+
   setCookie(ctx, 'RefreshToken', `Bearer ${RefreshToken}`, {
-    maxAge: 15768000,
+    expires: refreshExpires,
     path: '/',
-  }); // 6개월
+  });
 };

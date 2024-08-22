@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
+import { removeToken } from 'utils/Libs/removeToken';
 import { MemberController } from 'utils/Libs/requestUrls';
 import { setToken } from 'utils/Libs/setToken';
 
@@ -10,7 +11,13 @@ export const signin = async (id: string, password: string) => {
       email: id,
       password: password,
     });
-    setToken(data.accessToken, data.refreshToken, null);
+    setToken(
+      data.accessToken,
+      data.accessExp,
+      data.refreshToken,
+      data.refreshExp,
+      null
+    );
     return toast.success('로그인이 되었습니다.');
   } catch (e: any) {
     if (e.message === 'Request failed with status code 404') {
@@ -143,9 +150,20 @@ export const tokenReissue = async (
     );
     newAuthorization = data.accessToken;
     refreshToken = data.refreshToken;
-    setToken(newAuthorization, refreshToken, ctx);
+    setToken(
+      data.accessToken,
+      data.accessExp,
+      data.refreshToken,
+      data.refreshExp,
+      null
+    );
     return { newAuthorization };
-  } catch (e: any) {}
+  } catch (e: any) {
+    removeToken();
+    if (typeof window !== 'undefined') {
+      window.location.href = '/signin';
+    }
+  }
 };
 
 export const postProfileImage = async (image: Blob | string) => {

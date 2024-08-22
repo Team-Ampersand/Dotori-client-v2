@@ -1,14 +1,12 @@
 import SEOHead from 'components/Common/atoms/SEOHead';
+import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import SideBar from 'components/Common/organisms/Sidebar';
 import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import NoticeContent from 'components/Notice/organisms/NoticeContent';
 import NoticeList from 'components/Notice/organisms/NoticeList';
 import NoticeWrite from 'components/Notice/organisms/NoticeWrite';
-import {
-  NoticeTemplate,
-  NoticeWrapper,
-} from 'components/Notice/templates/NoticeTemplate/style';
+import { NoticeWrapper } from 'components/Notice/templates/NoticeTemplate/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
@@ -31,13 +29,13 @@ const Notice: NextPage<{
       <SWRConfig value={fallback}>
         <MainTemplates>
           <SideBar />
-          <NoticeTemplate>
+          <CommonPageWrapper>
             <CommonHeader />
             <NoticeWrapper>
               <NoticeList />
               {isWrite ? <NoticeWrite /> : <NoticeContent />}
             </NoticeWrapper>
-          </NoticeTemplate>
+          </CommonPageWrapper>
         </MainTemplates>
       </SWRConfig>
     </>

@@ -8,7 +8,6 @@ import { RecoilRoot } from 'recoil';
 import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import InitMocks from '../mocks';
-import ChannelBtn from 'components/Home/molecules/ChannelBtn';
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
   InitMocks();
@@ -28,8 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <RecoilRoot>
         <GlobalStyle />
         <Component {...pageProps} />
-        <ChannelBtn />
-
         <ToastContainer
           toastStyle={{
             backgroundColor: Palette.BACKGROUND_CARD,

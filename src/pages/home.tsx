@@ -21,6 +21,7 @@ import {
   SelfstudyController,
 } from 'utils/Libs/requestUrls';
 import { applyPageProps, myProfileType, noticePageProps } from 'types';
+import ChannelBtn from 'components/Home/molecules/ChannelBtn';
 import SEOHead from 'components/Common/atoms/SEOHead';
 import dynamic from 'next/dynamic';
 
@@ -51,6 +52,7 @@ const HomePage: NextPage<{
             <MassageBoard />
           </HomeTemplates>
         </MainTemplates>
+        <ChannelBtn />
       </SWRConfig>
     </>
   );

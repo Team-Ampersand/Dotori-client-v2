@@ -1,9 +1,9 @@
 import { GetServerSidePropsContext } from 'next';
 import { toast } from 'react-toastify';
 import { apiClient } from 'utils/Libs/apiClient';
+import { removeToken } from 'utils/Libs/removeToken';
 import { MemberController } from 'utils/Libs/requestUrls';
 import { setToken } from 'utils/Libs/setToken';
-import { setCookie } from 'nookies';
 
 export const signin = async (id: string, password: string) => {
   try {
@@ -149,12 +149,21 @@ export const tokenReissue = async (
       }
     );
     newAuthorization = data.accessToken;
-    setCookie(ctx, 'Authorization', `Bearer ${newAuthorization}`, {
-      expires: data.accessExp,
-      path: '/',
-    });
+    refreshToken = data.refreshToken;
+    setToken(
+      data.accessToken,
+      data.accessExp,
+      data.refreshToken,
+      data.refreshExp,
+      null
+    );
     return { newAuthorization };
-  } catch (e: any) {}
+  } catch (e: any) {
+    removeToken();
+    if (typeof window !== 'undefined') {
+      window.location.href = '/signin';
+    }
+  }
 };
 
 export const postProfileImage = async (image: Blob | string) => {

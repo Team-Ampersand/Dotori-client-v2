@@ -1,9 +1,6 @@
 import axios from 'axios';
 import BASE_HEADER from '../Config/Config.json';
-import { getRefresh } from './getRefresh';
 import { tokenReissue } from 'api/member';
-import { MemberController } from './requestUrls';
-import { setToken } from './setToken';
 import { getToken } from './getToken';
 
 export const apiClient = axios.create({

@@ -10,7 +10,8 @@
     "build:dev": "env-cmd -f .env.development next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "prettier": "prettier --write **/*.{ts,tsx}"
   },
   "dependencies": {
     "@emotion/css": "^11.10.5",
@@ -25,8 +26,6 @@
     "axios": "^1.2.3",
     "caniuse-lite": "^1.0.30001559",
     "env-cmd": "^10.1.0",
-    "eslint": "8.32.0",
-    "eslint-config-next": "13.1.2",
     "jwt-decode": "^3.1.2",
     "lottie-react": "^2.4.0",
     "msw": "^1.2.1",
@@ -47,6 +46,12 @@
     "workerDirectory": "public"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.3"
+    "@next/bundle-analyzer": "^14.2.3",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "8.32.0",
+    "eslint-config-next": "^14.2.6",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3"
   }
 }

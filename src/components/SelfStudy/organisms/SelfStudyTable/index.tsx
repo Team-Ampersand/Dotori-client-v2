@@ -2,19 +2,20 @@ import * as S from './style';
 import SelfStudyList from 'components/SelfStudy/molecules/SelfStudyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import NullApplicstionItem from 'components/Common/molecules/NullApplicationItem';
-import { selfStudyList } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState } from 'recoil';
-import { selfstudyListType } from 'types';
+import { selfstudyListProps, selfstudyListType } from 'types';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
 import { useEffect } from 'react';
 import { selfStudySearch } from 'api/selfStudy';
 import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
+import { useState } from 'react';
 
 const SelfStudyTable = () => {
-  const [userList, setUserList] = useRecoilState(selfStudyList);
   const role = getRole();
+  const [userList, setUserList] = useState<selfstudyListProps[] | undefined>(
+    [],
+  );
   const { data } = useSWR<selfstudyListType>(
     SelfstudyController.selfStudyRank(role)
   );
@@ -43,7 +44,7 @@ const SelfStudyTable = () => {
       <ResponsiveHeader />
       {userList && userList.length > 0 ? (
         <S.ListWrapper>
-          <SelfStudyList />
+          <SelfStudyList userList={userList} />
         </S.ListWrapper>
       ) : (
         <NullApplicstionItem type={'selfstudy'} />

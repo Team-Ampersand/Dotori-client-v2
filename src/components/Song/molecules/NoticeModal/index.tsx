@@ -18,7 +18,7 @@ const NoticeModal = () => {
               기상 음악 순서는 신청 순서와는 별개로 사감선생님께서 정하십니다.
             </S.ContentItem>
             <S.ContentItem>
-              영어, 한국어 이외의 언어가 포함되거나 과도한 욕설이 담긴 음악은
+              영어, 한국어, 일본어 이외의 언어가 포함되거나 과도한 욕설이 담긴 음악은
               삭제될 수 있습니다.
             </S.ContentItem>
             <S.ContentItem>

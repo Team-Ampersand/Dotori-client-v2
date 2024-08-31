@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { EllipsisVerticalIcon } from "assets/svg";
-import { preventEvent } from "utils/Libs/preventEvent";
+import styled from '@emotion/styled';
+import { EllipsisVerticalIcon } from 'assets/svg';
+import { preventEvent } from 'utils/Libs/preventEvent';
 
 interface ResponsiveBtnProps {
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;

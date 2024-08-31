@@ -18,7 +18,7 @@ const SongList: React.FC<SongListProps> = ({ selectedDate }) => {
   const postDate = `${getDate(selectedDate)[0]}-${getDate(selectedDate)[1]}-${getDate(selectedDate)[2]}`;
   const { data, mutate } = useSWR<SongListType>(
     SongController.music(role),
-    () => getMusic(role, postDate)
+    () => getMusic(role, postDate),
   );
 
   useEffect(() => {
@@ -35,9 +35,11 @@ const SongList: React.FC<SongListProps> = ({ selectedDate }) => {
       </S.ListHeader>
       <S.ListContainer>
         {data && data.content?.length > 0 ? (
-          data.content?.map((i) => <SongItem selectedDate={selectedDate} key={i.id} data={i} />)
+          data.content?.map((i) => (
+            <SongItem selectedDate={selectedDate} key={i.id} data={i} />
+          ))
         ) : (
-          <EmptySongBox/>
+          <EmptySongBox />
         )}
       </S.ListContainer>
     </S.Layer>

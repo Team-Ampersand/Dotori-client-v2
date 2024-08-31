@@ -2,10 +2,8 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { Palette } from 'styles/globals';
 
-const CreateDate = ( { songDate }: { songDate: string } ) => {
-  return (
-    <Date>{songDate}</Date>
-  );
+const CreateDate = ({ songDate }: { songDate: string }) => {
+  return <Date>{songDate}</Date>;
 };
 
 export default CreateDate;

@@ -4,12 +4,17 @@ import { Palette } from 'styles/globals';
 
 interface SubmitProps {
   isValid: boolean;
-  isSubmitting: boolean; 
+  isSubmitting: boolean;
 }
 
 const Submit: React.FC<SubmitProps> = ({ isValid, isSubmitting }) => {
   return (
-    <SubmitButton type="submit" isValid={isValid} isSubmitting={isSubmitting} disabled={isSubmitting}>
+    <SubmitButton
+      type="submit"
+      isValid={isValid}
+      isSubmitting={isSubmitting}
+      disabled={isSubmitting}
+    >
       신청하기
     </SubmitButton>
   );

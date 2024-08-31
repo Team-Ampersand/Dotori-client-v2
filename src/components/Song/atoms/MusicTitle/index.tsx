@@ -11,9 +11,7 @@ const MusicTitle = ({ title, stuNum, username, songDate }: MusicTitleProps) => {
   return (
     <S.ResponseWrapper>
       <S.Title>{title}</S.Title>
-      <S.Info>
-        {stuNum + ' ' + username + '•' + songDate}
-      </S.Info>
+      <S.Info>{stuNum + ' ' + username + '•' + songDate}</S.Info>
     </S.ResponseWrapper>
   );
 };

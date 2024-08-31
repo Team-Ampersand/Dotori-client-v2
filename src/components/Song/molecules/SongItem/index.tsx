@@ -22,7 +22,10 @@ type SongItemProps = {
   selectedDate: Date;
 };
 
-const SongItem: React.FC<SongItemProps> = ({ data: songData, selectedDate }) => {
+const SongItem: React.FC<SongItemProps> = ({
+  data: songData,
+  selectedDate,
+}) => {
   const role = getRole();
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
@@ -44,12 +47,22 @@ const SongItem: React.FC<SongItemProps> = ({ data: songData, selectedDate }) => 
     <Link href={songData.url}>
       <a target="_blank">
         <S.LeftWrapper>
-          <Thumbnail thumbnail={songData.thumbnail}/>
-          <MusicTitle title={songData.title} stuNum={songData.stuNum} username={songData.username} songDate={songDate} />
+          <Thumbnail thumbnail={songData.thumbnail} />
+          <MusicTitle
+            title={songData.title}
+            stuNum={songData.stuNum}
+            username={songData.username}
+            songDate={songDate}
+          />
         </S.LeftWrapper>
         <StuInfo stuNum={songData.stuNum} username={songData.username} />
-        <CreateDate songDate={songDate}/>
-        <MusicListButton role={role} songStuNum={songData.stuNum} userStuNum={userData?.stuNum} setDeleteModal={setDeleteModal} />
+        <CreateDate songDate={songDate} />
+        <MusicListButton
+          role={role}
+          songStuNum={songData.stuNum}
+          userStuNum={userData?.stuNum}
+          setDeleteModal={setDeleteModal}
+        />
         <ResponsiveBtn setModalState={setModalState} />
         <CommonCheckModal
           title="신청 음악 삭제"

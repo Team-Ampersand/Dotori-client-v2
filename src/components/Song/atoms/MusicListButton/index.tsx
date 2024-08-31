@@ -9,7 +9,12 @@ interface MusicListButtonProps {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MusicListButton = ({ role, songStuNum, userStuNum, setDeleteModal }: MusicListButtonProps) => {
+const MusicListButton = ({
+  role,
+  songStuNum,
+  userStuNum,
+  setDeleteModal,
+}: MusicListButtonProps) => {
   return (
     <S.ButtonContainer>
       {(role !== 'member' || String(songStuNum) === userStuNum) && (

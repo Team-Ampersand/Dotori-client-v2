@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { getMusic, postMusic } from 'api/music';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useSetRecoilState } from 'recoil';
-import { selectedDate, songNoticeModal } from 'recoilAtoms/recoilAtomContainer';
 import { mutate } from 'swr';
 import { dateRegex } from 'utils/dateRegex';
 import { getRole } from 'utils/Libs/getRole';
@@ -15,11 +13,11 @@ import Submit from 'components/Song/atoms/Submit';
 
 type SongFormProps = {
   selectedDate: Date;
+  setModal?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SongForm: React.FC<SongFormProps> = ({ selectedDate }) => {
+const SongForm: React.FC<SongFormProps> = ({ selectedDate, setModal }) => {
   const role = getRole();
-  const setModal = useSetRecoilState(songNoticeModal);
   const {
     register,
     handleSubmit,
@@ -44,9 +42,15 @@ const SongForm: React.FC<SongFormProps> = ({ selectedDate }) => {
     toast.warn(Object.values(err)[0].message);
   };
 
+  const handleSetModal = (value: boolean) => {
+    if (setModal) {
+      setModal(value);
+    }
+  };
+
   return (
     <S.Layer onSubmit={handleSubmit(onSuccess, onError)}>
-      <FormHeader setModal={setModal} />
+      <FormHeader setModal={handleSetModal} />
       {role !== 'admin' ? (
         <>
           <Input setIsValid={setIsValid} register={register} />

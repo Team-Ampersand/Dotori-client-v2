@@ -24,7 +24,8 @@ const SongPage: NextPage<{
   fallback: Record<string, SongListType>;
 }> = ({ fallback }) => {
   UseThemeEffect();
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [isModal, setModal] = useState<boolean>(false);
   return (
     <>
       <SEOHead title="| 기상음악페이지" />
@@ -36,11 +37,18 @@ const SongPage: NextPage<{
             <ResponsiveHeader />
             <SongLayer>
               <SongList selectedDate={selectedDate} />
-              <SongRightLayer selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+              <SongRightLayer
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                setModal={setModal}
+              />
             </SongLayer>
           </CommonPageWrapper>
-          <SongModal />
-          <NoticeModal />
+          <SongModal
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
+          <NoticeModal isModal={isModal} setModal={setModal} />
         </MainTemplates>
       </SWRConfig>
     </>

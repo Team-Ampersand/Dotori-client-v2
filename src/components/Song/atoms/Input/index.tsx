@@ -13,12 +13,11 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({ setIsValid, register }) => {
-  
   const regUrl =
     /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
 
   return (
-    <SongInput 
+    <SongInput
       placeholder="URL을 입력해 주세요"
       type="url"
       {...register('url', {
@@ -33,7 +32,7 @@ const Input: React.FC<InputProps> = ({ setIsValid, register }) => {
         onChange: (e: ChangeEvent<HTMLInputElement>) => {
           const url = e.target.value;
           const isValid = regUrl.test(url);
-          setIsValid(isValid); 
+          setIsValid(isValid);
         },
       })}
     />

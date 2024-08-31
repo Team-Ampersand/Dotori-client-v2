@@ -4,12 +4,16 @@ import Calendar from 'react-calendar';
 import * as S from './style';
 
 type CalendarBoxProps = {
-  selectedDate: Date;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  selectedDate?: Date;
+  setSelectedDate?: React.Dispatch<React.SetStateAction<Date>>;
   setModal?: (state: boolean) => void;
 };
 
-const CalendarBox: React.FC<CalendarBoxProps> = ({ selectedDate, setSelectedDate, setModal }) => {
+const CalendarBox: React.FC<CalendarBoxProps> = ({
+  selectedDate,
+  setSelectedDate,
+  setModal,
+}) => {
   const [theme] = UseToggleTheme();
 
   return (
@@ -23,7 +27,7 @@ const CalendarBox: React.FC<CalendarBoxProps> = ({ selectedDate, setSelectedDate
         value={selectedDate}
         onChange={(value) => {
           if (!(value instanceof Date)) return;
-          setSelectedDate(value);
+          setSelectedDate?.(value);
         }}
         locale="ko"
         formatDay={(_locale, date) =>

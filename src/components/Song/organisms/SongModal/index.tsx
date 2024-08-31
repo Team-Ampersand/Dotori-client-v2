@@ -8,7 +8,15 @@ import {
   filterModal,
 } from 'recoilAtoms/recoilAtomContainer';
 
-const SongModal = () => {
+type SongModalProps = {
+  selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+};
+
+const SongModal: React.FC<SongModalProps> = ({
+  selectedDate,
+  setSelectedDate,
+}) => {
   const [modal, setModal] = useRecoilState(filterModal);
   const calendarModal = useRecoilValue(calendarModalState);
 
@@ -26,7 +34,15 @@ const SongModal = () => {
       }}
     >
       <div onClick={(e) => e.stopPropagation()}>
-        {modal && (calendarModal ? <CalendarBox /> : <SongForm />)}
+        {modal &&
+          (calendarModal ? (
+            <CalendarBox
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
+          ) : (
+            <SongForm selectedDate={selectedDate} />
+          ))}
       </div>
     </ResponseOverayWrapper>
   );

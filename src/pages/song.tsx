@@ -11,6 +11,7 @@ import SongRightLayer from 'components/Song/organisms/SongRightLayer';
 import { SongLayer } from 'components/Song/template/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
 import { GetServerSideProps, NextPage } from 'next';
+import { useState } from 'react';
 import { SWRConfig } from 'swr';
 import { SongListType } from 'types/components/SongPage';
 import { apiClient } from 'utils/Libs/apiClient';
@@ -23,6 +24,7 @@ const SongPage: NextPage<{
   fallback: Record<string, SongListType>;
 }> = ({ fallback }) => {
   UseThemeEffect();
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   return (
     <>
       <SEOHead title="| 기상음악페이지" />
@@ -33,8 +35,8 @@ const SongPage: NextPage<{
             <CommonHeader />
             <ResponsiveHeader />
             <SongLayer>
-              <SongList />
-              <SongRightLayer />
+              <SongList selectedDate={selectedDate} />
+              <SongRightLayer selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
             </SongLayer>
           </CommonPageWrapper>
           <SongModal />

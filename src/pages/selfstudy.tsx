@@ -6,7 +6,6 @@ import UseThemeEffect from 'hooks/useThemeEffect';
 import CommonHeader from 'components/Common/organisms/CommonHeader';
 import { GetServerSideProps, NextPage } from 'next';
 import { getRole } from 'utils/Libs/getRole';
-import { getToken } from 'utils/Libs/getToken';
 import { SWRConfig } from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
@@ -34,13 +33,11 @@ const SelfStudyPage: NextPage<{
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { Authorization } = await getToken(ctx);
   const role = getRole(ctx);
 
   try {
     const { data: selfStudyData } = await apiClient.get(
       SelfstudyController.selfStudyRank(role),
-      { headers: { Authorization } }
     );
 
     return {

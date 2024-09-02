@@ -10,15 +10,10 @@ import SongModal from 'components/Song/organisms/SongModal';
 import SongRightLayer from 'components/Song/organisms/SongRightLayer';
 import { SongLayer } from 'components/Song/template/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useState } from 'react';
 import { SWRConfig } from 'swr';
 import { SongListType } from 'types/components/SongPage';
-import { apiClient } from 'utils/Libs/apiClient';
-import { getRole } from 'utils/Libs/getRole';
-import { getToken } from 'utils/Libs/getToken';
-import { SongController } from 'utils/Libs/requestUrls';
-import { getDate } from 'utils/getDate';
 
 const SongPage: NextPage<{
   fallback: Record<string, SongListType>;
@@ -53,39 +48,6 @@ const SongPage: NextPage<{
       </SWRConfig>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { Authorization } = await getToken(ctx);
-  const role = getRole(ctx);
-  const date = `${getDate(new Date())[0]}-${getDate(new Date())[1]}-${
-    getDate(new Date())[2]
-  }`;
-
-  if (!Authorization) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    };
-  }
-
-  try {
-    const { data: songData } = await apiClient.get(SongController.music(role), {
-      headers: { Authorization },
-      params: {
-        date: date,
-      },
-    });
-    return {
-      props: {
-        fallback: { [SongController.music(role)]: songData },
-      },
-    };
-  } catch (e) {
-    return { props: {} };
-  }
 };
 
 export default SongPage;

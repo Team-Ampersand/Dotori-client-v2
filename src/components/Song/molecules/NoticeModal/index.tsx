@@ -2,13 +2,13 @@ import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOveray
 import * as S from './style';
 
 interface NoticeModalProps {
-  isModal: boolean;
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  isNoticeModal: boolean;
+  setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const NoticeModal: React.FC<NoticeModalProps> = ({ isModal, setModal }) => {
+const NoticeModal: React.FC<NoticeModalProps> = ({ isNoticeModal, setNoticeModal }) => {
   return (
-    <ModalOverayWrapper isClick={isModal} onClick={() => setModal(false)}>
+    <ModalOverayWrapper isClick={isNoticeModal} onClick={() => setNoticeModal(false)}>
       <S.Layer onClick={(e) => e.stopPropagation()}>
         <S.Header>
           <h3>※ 음악 신청 시 공지사항</h3>

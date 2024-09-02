@@ -12,11 +12,13 @@ import SongForm from 'components/Song/molecules/SongForm';
 type SongModalProps = {
   selectedDate: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SongModal: React.FC<SongModalProps> = ({
   selectedDate,
   setSelectedDate,
+  setNoticeModal
 }) => {
   const [modal, setModal] = useRecoilState(filterModal);
   const calendarModal = useRecoilValue(calendarModalState);
@@ -42,7 +44,7 @@ const SongModal: React.FC<SongModalProps> = ({
               setSelectedDate={setSelectedDate}
             />
           ) : (
-            <SongForm selectedDate={selectedDate} />
+            <SongForm setNoticeModal={setNoticeModal} selectedDate={selectedDate} />
           ))}
       </div>
     </ResponseOverayWrapper>

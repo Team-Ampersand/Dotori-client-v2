@@ -13,10 +13,10 @@ import * as S from './style';
 
 type SongFormProps = {
   selectedDate: Date;
-  setModal?: React.Dispatch<React.SetStateAction<boolean>>;
+  setNoticeModal?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SongForm: React.FC<SongFormProps> = ({ selectedDate, setModal }) => {
+const SongForm: React.FC<SongFormProps> = ({ selectedDate, setNoticeModal }) => {
   const role = getRole();
   const {
     register,
@@ -43,8 +43,8 @@ const SongForm: React.FC<SongFormProps> = ({ selectedDate, setModal }) => {
   };
 
   const handleSetModal = (value: boolean) => {
-    if (setModal) {
-      setModal(value);
+    if (setNoticeModal) {
+      setNoticeModal(value);
     }
   };
 

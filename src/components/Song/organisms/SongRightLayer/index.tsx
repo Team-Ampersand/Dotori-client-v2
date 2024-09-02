@@ -5,17 +5,17 @@ import * as S from './style';
 interface SongRightLayerProps {
   selectedDate: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SongRightLayer: React.FC<SongRightLayerProps> = ({
   selectedDate,
   setSelectedDate,
-  setModal,
+  setNoticeModal,
 }) => {
   return (
     <S.Layer>
-      <SongForm selectedDate={selectedDate} setModal={setModal} />
+      <SongForm selectedDate={selectedDate} setNoticeModal={setNoticeModal} />
       <CalendarBox
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}

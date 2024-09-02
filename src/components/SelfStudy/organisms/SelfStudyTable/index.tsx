@@ -1,4 +1,3 @@
-import * as S from './style';
 import SelfStudyList from 'components/SelfStudy/molecules/SelfStudyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import NullApplicstionItem from 'components/Common/molecules/NullApplicationItem';
@@ -6,30 +5,31 @@ import { selfstudyListProps, selfstudyListType } from 'types';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selfStudySearch } from 'api/selfStudy';
 import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
-import { useState } from 'react';
+import * as S from './style';
 
 const SelfStudyTable = () => {
   const role = getRole();
   const [userList, setUserList] = useState<selfstudyListProps[] | undefined>(
     [],
   );
+
   const { data } = useSWR<selfstudyListType>(
-    SelfstudyController.selfStudyRank(role)
+    SelfstudyController.selfStudyRank(role),
   );
 
-  const handelSelfstudySearch = async (
+  const handleSelfstudySearch = async (
     state: (string | undefined)[],
-    name?: string
+    name?: string,
   ) => {
     await selfStudySearch(
       role,
       name ? name : null,
       state[0] ? state[0] : null,
       state[1] ? state[1].slice(0, 1) : null,
-      state[2] ? state[2] : null
+      state[2] ? state[2] : null,
     ).then((res) => {
       setUserList(res?.data.list);
     });
@@ -52,7 +52,7 @@ const SelfStudyTable = () => {
       <div>
         <SearchFilter
           filterType={'selfstudy'}
-          onSubmit={handelSelfstudySearch}
+          onSubmit={handleSelfstudySearch}
         />
       </div>
     </S.TableWrapper>

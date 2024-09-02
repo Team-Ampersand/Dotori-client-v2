@@ -1,14 +1,11 @@
-import { deleteMusic, getMusic } from 'api/music';
-import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
-import Link from 'next/link';
 import { useState } from 'react';
 import useSWR, { mutate } from 'swr';
-import { myProfileType } from 'types';
-import { SongType } from 'types/components/SongPage';
+import Link from 'next/link';
+import { deleteMusic, getMusic } from 'api/music';
 import { getRole } from 'utils/Libs/getRole';
 import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
-import * as S from './style';
+import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import ResponsiveModal from '../ResponsiveModal';
 import Thumbnail from 'components/Song/atoms/Thumbnail';
 import MusicTitle from 'components/Song/atoms/MusicTitle';
@@ -16,6 +13,9 @@ import StuInfo from 'components/Song/atoms/StuInfo';
 import CreateDate from 'components/Song/atoms/CreateDate';
 import MusicListButton from 'components/Song/atoms/MusicListButton';
 import ResponsiveBtn from 'components/Song/atoms/ResponsiveBtn';
+import { myProfileType } from 'types';
+import { SongType } from 'types/components/SongPage';
+import * as S from './style';
 
 type SongItemProps = {
   data: SongType;

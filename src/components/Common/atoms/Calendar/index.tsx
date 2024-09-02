@@ -1,7 +1,7 @@
-import { XtextIcon } from 'assets/svg';
-import UseToggleTheme from 'hooks/useToggleTheme';
 import Calendar from 'react-calendar';
+import UseToggleTheme from 'hooks/useToggleTheme';
 import * as S from './style';
+import { XtextIcon } from 'assets/svg';
 
 type CalendarBoxProps = {
   selectedDate?: Date;

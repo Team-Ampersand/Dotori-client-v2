@@ -1,18 +1,18 @@
-import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
-import SEOHead from 'components/Common/atoms/SEOHead';
-import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
-import CommonHeader from 'components/Common/organisms/CommonHeader';
-import SideBar from 'components/Common/organisms/Sidebar';
-import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
-import NoticeModal from 'components/Song/molecules/NoticeModal';
-import SongList from 'components/Song/organisms/SongList';
-import SongModal from 'components/Song/organisms/SongModal';
-import SongRightLayer from 'components/Song/organisms/SongRightLayer';
-import { SongLayer } from 'components/Song/template/style';
-import UseThemeEffect from 'hooks/useThemeEffect';
 import { NextPage } from 'next';
 import { useState } from 'react';
 import { SWRConfig } from 'swr';
+import UseThemeEffect from 'hooks/useThemeEffect';
+import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
+import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
+import { SongLayer } from 'components/Song/template/style';
+import SEOHead from 'components/Common/atoms/SEOHead';
+import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
+import CommonHeader from 'components/Common/organisms/CommonHeader';
+import SideBar from 'components/Common/organisms/Sidebar';
+import SongList from 'components/Song/organisms/SongList';
+import SongModal from 'components/Song/organisms/SongModal';
+import SongRightLayer from 'components/Song/organisms/SongRightLayer';
+import NoticeModal from 'components/Song/molecules/NoticeModal';
 import { SongListType } from 'types/components/SongPage';
 
 const SongPage: NextPage<{

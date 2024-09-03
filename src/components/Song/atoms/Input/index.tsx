@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { useForm, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
@@ -12,9 +12,10 @@ interface InputProps {
   register: UseFormRegister<FormValues>;
 }
 
+const regUrl =
+  /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
+
 const Input: React.FC<InputProps> = ({ setIsValid, register }) => {
-  const regUrl =
-    /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
 
   return (
     <SongInput

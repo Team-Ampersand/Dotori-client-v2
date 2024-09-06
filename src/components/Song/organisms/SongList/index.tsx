@@ -9,9 +9,9 @@ import SongItem from 'components/Song/molecules/SongItem';
 import { SongListType } from 'types/components/SongPage';
 import * as S from './style';
 
-type SongListProps = {
+interface SongListProps {
   selectedDate: Date;
-};
+}
 
 const SongList: React.FC<SongListProps> = ({ selectedDate }) => {
   const role = getRole();

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import * as S from './style';
 
-const Thumbnail = ({ thumbnail }: { thumbnail: string }) => {
+const MusicItemThumbnail = ({ thumbnail }: { thumbnail: string }) => {
   return (
     <S.ImgBox>
       <Image src={thumbnail} alt="thumbnail" layout="fill" objectFit="cover" />
@@ -9,4 +9,4 @@ const Thumbnail = ({ thumbnail }: { thumbnail: string }) => {
   );
 };
 
-export default Thumbnail;
+export default MusicItemThumbnail;

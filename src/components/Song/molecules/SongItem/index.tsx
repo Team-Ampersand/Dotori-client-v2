@@ -7,8 +7,8 @@ import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import ResponsiveModal from '../ResponsiveModal';
-import Thumbnail from 'components/Song/atoms/Thumbnail';
-import MusicTitle from 'components/Song/atoms/MusicTitle';
+import MusicItemThumbnail from 'components/Song/atoms/MusicItemThumbnail';
+import MusicItemTitle from 'components/Song/atoms/MusicItemTitle';
 import StuInfo from 'components/Song/atoms/StuInfo';
 import CreateDate from 'components/Song/atoms/CreateDate';
 import MusicListButton from 'components/Song/atoms/MusicListButton';
@@ -47,8 +47,8 @@ const SongItem: React.FC<SongItemProps> = ({
     <Link href={songData.url}>
       <a target="_blank">
         <S.LeftWrapper>
-          <Thumbnail thumbnail={songData.thumbnail} />
-          <MusicTitle
+          <MusicItemThumbnail thumbnail={songData.thumbnail} />
+          <MusicItemTitle
             title={songData.title}
             stuNum={songData.stuNum}
             username={songData.username}

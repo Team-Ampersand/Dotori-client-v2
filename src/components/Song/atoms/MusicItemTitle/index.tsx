@@ -1,13 +1,13 @@
 import * as S from './style';
 
-interface MusicTitleProps {
+interface MusicItemTitleProps {
   title: string;
   stuNum: number;
   username: string;
   songDate: string;
 }
 
-const MusicTitle = ({ title, stuNum, username, songDate }: MusicTitleProps) => {
+const MusicItemTitle = ({ title, stuNum, username, songDate }: MusicItemTitleProps) => {
   return (
     <S.ResponseWrapper>
       <S.Title>{title}</S.Title>
@@ -16,4 +16,4 @@ const MusicTitle = ({ title, stuNum, username, songDate }: MusicTitleProps) => {
   );
 };
 
-export default MusicTitle;
+export default MusicItemTitle;

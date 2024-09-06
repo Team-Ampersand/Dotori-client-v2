@@ -35,8 +35,8 @@ const SongList: React.FC<SongListProps> = ({ selectedDate }) => {
       </S.ListHeader>
       <S.ListContainer>
         {data && data.content?.length > 0 ? (
-          data.content?.map((i) => (
-            <SongItem selectedDate={selectedDate} key={i.id} data={i} />
+          data.content?.map((item) => (
+            <SongItem selectedDate={selectedDate} key={item.id} data={item} />
           ))
         ) : (
           <EmptySongBox />

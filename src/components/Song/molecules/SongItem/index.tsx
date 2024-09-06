@@ -6,7 +6,6 @@ import { getRole } from 'utils/Libs/getRole';
 import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
-import ResponsiveModal from '../ResponsiveModal';
 import MusicItemThumbnail from 'components/Song/atoms/MusicItemThumbnail';
 import MusicItemTitle from 'components/Song/atoms/MusicItemTitle';
 import StuInfo from 'components/Song/atoms/StuInfo';
@@ -15,6 +14,7 @@ import MusicListButton from 'components/Song/atoms/MusicListButton';
 import ResponsiveBtn from 'components/Song/atoms/ResponsiveBtn';
 import { myProfileType } from 'types';
 import { SongType } from 'types/components/SongPage';
+import ResponsiveModal from '../ResponsiveModal';
 import * as S from './style';
 
 type SongItemProps = {

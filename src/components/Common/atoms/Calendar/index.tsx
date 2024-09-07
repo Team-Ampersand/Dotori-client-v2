@@ -3,11 +3,11 @@ import UseToggleTheme from 'hooks/useToggleTheme';
 import { XtextIcon } from 'assets/svg';
 import * as S from './style';
 
-type CalendarBoxProps = {
+interface CalendarBoxProps {
   selectedDate?: Date;
   setSelectedDate?: React.Dispatch<React.SetStateAction<Date>>;
   setModal?: (state: boolean) => void;
-};
+}
 
 const CalendarBox: React.FC<CalendarBoxProps> = ({
   selectedDate,

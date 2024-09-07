@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Palette } from "styles/globals";
+import styled from '@emotion/styled';
+import { Palette } from 'styles/globals';
 
 export const FormHeader = styled.div`
   display: flex;
@@ -12,8 +12,8 @@ export const FormHeader = styled.div`
 
 export const NoticeModalBtn = styled.button`
   background: ${Palette.NEUTRAL_N40};
-  width: 1.8em;
-  height: 1.8em;
+  width: 24px;
+  height: 24px;
   border: none;
   border-radius: 100%;
   display: flex;

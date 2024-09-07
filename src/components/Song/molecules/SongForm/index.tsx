@@ -16,7 +16,10 @@ type SongFormProps = {
   setNoticeModal?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SongForm: React.FC<SongFormProps> = ({ selectedDate, setNoticeModal }) => {
+const SongForm: React.FC<SongFormProps> = ({
+  selectedDate,
+  setNoticeModal,
+}) => {
   const role = getRole();
   const {
     register,
@@ -50,7 +53,7 @@ const SongForm: React.FC<SongFormProps> = ({ selectedDate, setNoticeModal }) => 
 
   return (
     <S.Layer onSubmit={handleSubmit(onSuccess, onError)}>
-      <FormHeader setModal={handleSetModal} />
+      <FormHeader handleSetModal={handleSetModal} />
       {role !== 'admin' ? (
         <>
           <Input setIsValid={setIsValid} register={register} />

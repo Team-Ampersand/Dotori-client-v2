@@ -1,14 +1,14 @@
 import * as S from './style';
 
 interface FormHeaderProps {
-  setModal: (value: boolean) => void;
+  handleSetModal: (value: boolean) => void;
 }
 
-const FormHeader: React.FC<FormHeaderProps> = ({ setModal }) => {
+const FormHeader: React.FC<FormHeaderProps> = ({ handleSetModal }) => {
   return (
     <S.FormHeader>
       <h2>음악 신청</h2>
-      <S.NoticeModalBtn type="button" onClick={() => setModal(true)}>
+      <S.NoticeModalBtn type="button" onClick={() => handleSetModal(true)}>
         !
       </S.NoticeModalBtn>
     </S.FormHeader>

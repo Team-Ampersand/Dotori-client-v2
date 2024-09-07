@@ -8,7 +8,7 @@ const FormHeader: React.FC<FormHeaderProps> = ({ handleSetModal }) => {
   return (
     <S.FormHeader>
       <h2>음악 신청</h2>
-      <S.NoticeModalBtn type="button" onClick={() => handleSetModal(true)}>
+      <S.NoticeModalBtn onClick={() => handleSetModal(true)}>
         !
       </S.NoticeModalBtn>
     </S.FormHeader>

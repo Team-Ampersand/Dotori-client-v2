@@ -24,7 +24,7 @@ const ApplicationItem = ({
 }: ApplicationItemProps) => {
   const role = getRole();
   const lookUp = useRecoilValue(selfStudyLookup);
-
+  const rankImages = [Goldmedal, Silvermedal, BronzeMedal];
   return (
     <S.ApplicationItemWrapper>
       <S.Number>{rank}</S.Number>
@@ -32,28 +32,10 @@ const ApplicationItem = ({
         <>
           {!lookUp && (
             <S.Medal>
-              {rank === 1 && (
+              {rank && rank <= 3 && (
                 <Image
-                  src={Goldmedal}
+                  src={rankImages[rank - 1]}
                   alt="goldmedal"
-                  priority
-                  width={44}
-                  height={64}
-                />
-              )}
-              {rank === 2 && (
-                <Image
-                  src={Silvermedal}
-                  alt="Silvermedal"
-                  priority
-                  width={44}
-                  height={64}
-                />
-              )}
-              {rank === 3 && (
-                <Image
-                  src={BronzeMedal}
-                  alt="BronzeMedal"
                   priority
                   width={44}
                   height={64}
@@ -74,7 +56,11 @@ const ApplicationItem = ({
         </>
       )}
       <S.Profile>
-        {profileImage ? <ProfileImage image={profileImage} /> : <DefaultProfile />}
+        {profileImage ? (
+          <ProfileImage image={profileImage} />
+        ) : (
+          <DefaultProfile />
+        )}
       </S.Profile>
       <S.StuInfo>
         <S.Name>

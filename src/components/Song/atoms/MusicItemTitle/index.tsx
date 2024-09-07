@@ -7,11 +7,16 @@ interface MusicItemTitleProps {
   songDate: string;
 }
 
-const MusicItemTitle = ({ title, stuNum, username, songDate }: MusicItemTitleProps) => {
+const MusicItemTitle = ({
+  title,
+  stuNum,
+  username,
+  songDate,
+}: MusicItemTitleProps) => {
   return (
     <S.ResponseWrapper>
       <S.Title>{title}</S.Title>
-      <S.Info>{stuNum + ' ' + username + '•' + songDate}</S.Info>
+      <S.Info>{`${stuNum} ${username} • ${songDate}`}</S.Info>
     </S.ResponseWrapper>
   );
 };

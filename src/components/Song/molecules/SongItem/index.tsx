@@ -17,10 +17,10 @@ import { SongType } from 'types/components/SongPage';
 import ResponsiveModal from '../ResponsiveModal';
 import * as S from './style';
 
-type SongItemProps = {
+interface SongItemProps {
   data: SongType;
   selectedDate: Date;
-};
+}
 
 const SongItem: React.FC<SongItemProps> = ({
   data: songData,

@@ -15,11 +15,11 @@ type SongModalProps = {
   setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SongModal: React.FC<SongModalProps> = ({
+const SongModal = ({
   selectedDate,
   setSelectedDate,
-  setNoticeModal
-}) => {
+  setNoticeModal,
+}: SongModalProps) => {
   const [modal, setModal] = useRecoilState(filterModal);
   const calendarModal = useRecoilValue(calendarModalState);
 
@@ -44,7 +44,10 @@ const SongModal: React.FC<SongModalProps> = ({
               setSelectedDate={setSelectedDate}
             />
           ) : (
-            <SongForm setNoticeModal={setNoticeModal} selectedDate={selectedDate} />
+            <SongForm
+              setNoticeModal={setNoticeModal}
+              selectedDate={selectedDate}
+            />
           ))}
       </div>
     </ResponseOverayWrapper>

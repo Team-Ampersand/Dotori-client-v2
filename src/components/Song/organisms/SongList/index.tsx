@@ -13,7 +13,7 @@ interface SongListProps {
   selectedDate: Date;
 }
 
-const SongList: React.FC<SongListProps> = ({ selectedDate }) => {
+const SongList = ({ selectedDate }: SongListProps) => {
   const role = getRole();
   const postDate = `${getDate(selectedDate)[0]}-${getDate(selectedDate)[1]}-${getDate(selectedDate)[2]}`;
   const { data, mutate } = useSWR<SongListType>(

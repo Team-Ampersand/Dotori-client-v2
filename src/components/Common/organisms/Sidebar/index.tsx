@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 
 const SideBarList = dynamic(
   () => import('../../../Common/molecules/SidebarList'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SideBar = () => {

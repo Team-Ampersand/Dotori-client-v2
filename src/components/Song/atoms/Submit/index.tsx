@@ -7,7 +7,7 @@ interface SubmitProps {
   isSubmitting: boolean;
 }
 
-const Submit: React.FC<SubmitProps> = ({ isValid, isSubmitting }) => {
+const Submit = ({ isValid, isSubmitting }: SubmitProps) => {
   return (
     <SubmitButton
       type="submit"

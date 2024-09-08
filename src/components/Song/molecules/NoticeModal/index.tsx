@@ -6,9 +6,12 @@ interface NoticeModalProps {
   setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const NoticeModal: React.FC<NoticeModalProps> = ({ isNoticeModal, setNoticeModal }) => {
+const NoticeModal = ({ isNoticeModal, setNoticeModal }: NoticeModalProps) => {
   return (
-    <ModalOverayWrapper isClick={isNoticeModal} onClick={() => setNoticeModal(false)}>
+    <ModalOverayWrapper
+      isClick={isNoticeModal}
+      onClick={() => setNoticeModal(false)}
+    >
       <S.Layer onClick={(e) => e.stopPropagation()}>
         <S.Header>
           <h3>※ 음악 신청 시 공지사항</h3>

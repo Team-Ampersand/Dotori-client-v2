@@ -16,10 +16,7 @@ type SongFormProps = {
   setNoticeModal?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SongForm: React.FC<SongFormProps> = ({
-  selectedDate,
-  setNoticeModal,
-}) => {
+const SongForm = ({ selectedDate, setNoticeModal }: SongFormProps) => {
   const role = getRole();
   const {
     register,

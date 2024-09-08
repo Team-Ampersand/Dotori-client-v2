@@ -8,11 +8,11 @@ interface SongRightLayerProps {
   setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SongRightLayer: React.FC<SongRightLayerProps> = ({
+const SongRightLayer = ({
   selectedDate,
   setSelectedDate,
   setNoticeModal,
-}) => {
+}: SongRightLayerProps) => {
   return (
     <S.Layer>
       <SongForm selectedDate={selectedDate} setNoticeModal={setNoticeModal} />

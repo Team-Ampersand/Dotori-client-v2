@@ -22,10 +22,7 @@ interface SongItemProps {
   selectedDate: Date;
 }
 
-const SongItem: React.FC<SongItemProps> = ({
-  data: songData,
-  selectedDate,
-}) => {
+const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
   const role = getRole();
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);

@@ -4,7 +4,7 @@ interface FormHeaderProps {
   handleSetModal: (value: boolean) => void;
 }
 
-const FormHeader: React.FC<FormHeaderProps> = ({ handleSetModal }) => {
+const FormHeader = ({ handleSetModal }: FormHeaderProps) => {
   return (
     <S.FormHeader>
       <h2>음악 신청</h2>

@@ -15,8 +15,7 @@ interface InputProps {
 const regUrl =
   /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
 
-const Input: React.FC<InputProps> = ({ setIsValid, register }) => {
-
+const Input = ({ setIsValid, register }: InputProps) => {
   return (
     <SongInput
       placeholder="URL을 입력해 주세요"

@@ -9,11 +9,11 @@ interface CalendarBoxProps {
   setModal?: (state: boolean) => void;
 }
 
-const CalendarBox: React.FC<CalendarBoxProps> = ({
+const CalendarBox = ({
   selectedDate,
   setSelectedDate,
   setModal,
-}) => {
+}: CalendarBoxProps) => {
   const [theme] = UseToggleTheme();
 
   return (

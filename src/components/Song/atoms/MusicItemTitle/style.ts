@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Palette } from "styles/globals";
+import styled from '@emotion/styled';
+import { Palette } from 'styles/globals';
 
 export const ResponseWrapper = styled.div`
   width: 70%;
@@ -24,7 +24,7 @@ export const Title = styled.h4`
 
 export const Info = styled.div`
   display: none;
-  font-size: 12px;
+  font-size: 1em;
   color: ${Palette.NEUTRAL_N20};
 
   @media (max-width: 800px) {

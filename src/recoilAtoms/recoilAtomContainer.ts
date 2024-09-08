@@ -103,11 +103,6 @@ export const selectedDate = atom<Date>({
   default: new Date(),
 });
 
-export const songNoticeModal = atom<boolean>({
-  key: 'songNoticeModal',
-  default: false,
-});
-
 export const isemailPasswordCheck = atom<{
   isAuth: boolean;
   authEmail?: string;

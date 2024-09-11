@@ -1,8 +1,8 @@
-import StuInfoItem from 'components/StuInfo/molecules/StuInfoItem';
+import useSWR from 'swr';
+import StuInfoItem from 'components/StuInfo/organisms/StuInfoItem';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { stuInfoParams } from 'recoilAtoms/recoilAtomContainer';
-import useSWR from 'swr';
 import { StuInfoType } from 'types/components/StuInfoPage';
 import { apiClient } from 'utils/Libs/apiClient';
 import { StuInfoController } from 'utils/Libs/requestUrls';

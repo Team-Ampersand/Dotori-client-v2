@@ -11,7 +11,7 @@ const StuInfoForm = () => {
     const stuName = name?.trim() !== '' ? name?.trim() ?? null : null;
     const gender = state[2] ?? null;
     const classNum = state[1]?.trim() ?? null;
-    const grade = !!Number(state[0]) ? Number(state[0]) : null;
+    const grade = Number(state[0]) || null;
     const stuRole = RoleData.USERFILTER[state[3] ?? ''];
     const selfStudyCheck =
       state[4] === '자습가능'

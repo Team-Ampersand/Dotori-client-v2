@@ -2,17 +2,19 @@ import { AuthInput } from 'components/Common';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import * as S from './style';
 
+interface Props{
+  name: string;
+  register: UseFormRegisterReturn;
+  watch: string;
+  reset: () => void;
+}
+
 const EditInput = ({
   name,
   register,
   watch,
   reset,
-}: {
-  name: string;
-  register: UseFormRegisterReturn;
-  watch: string;
-  reset: () => void;
-}) => {
+}: Props) => {
   return (
     <S.Layer>
       <span>{name}</span>

@@ -1,19 +1,15 @@
-import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy';
-import { RoleData } from 'assets/data/RoleData';
-import {
-  BookIcon,
-  CircleDefaultProfile,
-  EditPencilIcon
-} from 'assets/svg';
-import BookBenIcon from 'assets/svg/BookBenIcon';
+import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy'
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import EditModal from 'components/StuInfo/organisms/EditModal';
 import { useState } from 'react';
-import { Palette } from 'styles/globals';
 import { mutate } from 'swr';
 import { StuInfoType } from 'types/components/StuInfoPage';
 import { getRole } from 'utils/Libs/getRole';
 import { StuInfoController } from 'utils/Libs/requestUrls';
+import StudentInfoButtons from 'components/StuInfo/molecules/StudentInfoButton';
+import Role from 'components/StuInfo/atoms/Role';
+import ProfileImageBox from 'components/StuInfo/molecules/ProfileImageBox';
+import Gender from 'components/StuInfo/atoms/Gender';
 import * as S from './style';
 
 interface Props {
@@ -28,23 +24,12 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
   const [content, setContent] = useState('');
   const isAbleSelfStudy = stuInfoData.selfStudyStatus === 'CAN';
 
-  const requestGender = (gender: string) => {
-    switch (gender) {
-      case 'MAN':
-        return '남';
-      case 'WOMAN':
-        return '여';
-      default:
-        return '성';
-    }
-  };
-
-  const onModal = async (selfStudyStatus: boolean) => {
+  const onSelfStudyModal = async (selfStudyStatus: boolean) => {
     const isClear = selfStudyStatus ? '' : ' 해제';
 
     setTitle(`자습 금지${isClear}`);
     setContent(
-      `${stuInfoData.memberName} 학생을 자습 금지${isClear}하겠습니까?`
+      `${stuInfoData.memberName} 학생을 자습 금지${isClear}하겠습니까?`,
     );
     setCheckModal(true);
   };
@@ -63,39 +48,19 @@ const StuInfoItem = ({ data: stuInfoData }: Props) => {
   return (
     <>
       <S.Layer>
-        <S.LeftBox>
-          {stuInfoData.profileImage ? (
-            <S.ImgBox image={stuInfoData.profileImage} />
-          ) : (
-            <CircleDefaultProfile />
-          )}
-          <p>{stuInfoData.memberName}</p>
-        </S.LeftBox>
+        <ProfileImageBox
+          memberName={stuInfoData.memberName}
+          profileImage={stuInfoData.profileImage}
+        />
         <S.StuNum>{stuInfoData.stuNum}</S.StuNum>
-        <S.Gender>{requestGender(stuInfoData.gender)}</S.Gender>
-        <S.RoleBox>
-          <S.Role color={RoleData.WRITERCOLOR[stuInfoData.role]}>
-            <S.ColorDot />
-            {RoleData.WRITER[stuInfoData.role]}
-          </S.Role>
-        </S.RoleBox>
-        <S.ButtonBox>
-          <S.Button
-            status={isAbleSelfStudy}
-            hide={stuInfoData.role === 'ROLE_ADMIN'}
-            onClick={() => onModal(isAbleSelfStudy)}
-          >
-            {isAbleSelfStudy ? <BookIcon /> : <BookBenIcon />}
-          </S.Button>
-          <S.Button
-            hide={stuInfoData.role === 'ROLE_ADMIN'}
-            onClick={() => {
-              setEditModal(true);
-            }}
-          >
-            <EditPencilIcon side={17} color={Palette.NEUTRAL_N20} />
-          </S.Button>
-        </S.ButtonBox>
+        <Gender gender={stuInfoData.gender} />
+        <Role role={stuInfoData.role} />
+        <StudentInfoButtons
+          isAbleSelfStudy={isAbleSelfStudy}
+          role={stuInfoData.role}
+          onSelfStudyModal={onSelfStudyModal}
+          setEditModal={setEditModal}
+        />
       </S.Layer>
 
       <CommonCheckModal

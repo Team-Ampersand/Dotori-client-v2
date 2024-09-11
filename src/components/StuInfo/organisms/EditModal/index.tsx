@@ -1,12 +1,12 @@
+import { useForm } from 'react-hook-form';
+import { mutate } from 'swr';
 import { putStuInfo } from 'api/stuInfo';
 import { XtextIcon } from 'assets/svg';
+import { StuInfoController } from 'utils/Libs/requestUrls';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import EditInput from 'components/StuInfo/molecules/EditInput';
 import EditRadioBtn from 'components/StuInfo/molecules/EditRadioBtn';
-import { useForm } from 'react-hook-form';
-import { mutate } from 'swr';
 import { StuInfoType } from 'types/components/StuInfoPage';
-import { StuInfoController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
 interface Props {

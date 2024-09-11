@@ -1,5 +1,5 @@
-import { AuthInput } from 'components/Common';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { AuthInput } from 'components/Common';
 import * as S from './style';
 
 interface Props{

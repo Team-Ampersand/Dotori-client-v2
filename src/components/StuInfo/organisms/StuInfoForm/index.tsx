@@ -1,7 +1,7 @@
-import { RoleData } from 'assets/data/RoleData';
-import SearchFilter from 'components/Common/molecules/SearchFilter';
 import { useSetRecoilState } from 'recoil';
+import { RoleData } from 'assets/data/RoleData';
 import { stuInfoParams } from 'recoilAtoms/recoilAtomContainer';
+import SearchFilter from 'components/Common/molecules/SearchFilter';
 import * as S from './style';
 
 const StuInfoForm = () => {

@@ -1,15 +1,15 @@
-import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy'
-import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
-import EditModal from 'components/StuInfo/organisms/EditModal';
 import { useState } from 'react';
 import { mutate } from 'swr';
-import { StuInfoType } from 'types/components/StuInfoPage';
+import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy'
 import { getRole } from 'utils/Libs/getRole';
 import { StuInfoController } from 'utils/Libs/requestUrls';
-import StudentInfoButtons from 'components/StuInfo/molecules/StudentInfoButton';
-import Role from 'components/StuInfo/atoms/Role';
-import ProfileImageBox from 'components/StuInfo/molecules/ProfileImageBox';
+import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
 import Gender from 'components/StuInfo/atoms/Gender';
+import Role from 'components/StuInfo/atoms/Role';
+import StudentInfoButtons from 'components/StuInfo/molecules/StudentInfoButton';
+import ProfileImageBox from 'components/StuInfo/molecules/ProfileImageBox';
+import EditModal from 'components/StuInfo/organisms/EditModal';
+import { StuInfoType } from 'types/components/StuInfoPage';
 import * as S from './style';
 
 interface Props {

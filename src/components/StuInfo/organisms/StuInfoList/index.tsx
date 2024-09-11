@@ -1,11 +1,11 @@
-import useSWR from 'swr';
-import StuInfoItem from 'components/StuInfo/organisms/StuInfoItem';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { stuInfoParams } from 'recoilAtoms/recoilAtomContainer';
-import { StuInfoType } from 'types/components/StuInfoPage';
+import useSWR from 'swr';
 import { apiClient } from 'utils/Libs/apiClient';
 import { StuInfoController } from 'utils/Libs/requestUrls';
+import { stuInfoParams } from 'recoilAtoms/recoilAtomContainer';
+import StuInfoItem from 'components/StuInfo/organisms/StuInfoItem';
+import { StuInfoType } from 'types/components/StuInfoPage';
 import * as S from './style';
 
 const StuInfoList = () => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { mutate } from 'swr';
-import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy'
+import { cancelSelfStudyBan, selfStudyBan } from 'api/selfStudy';
 import { getRole } from 'utils/Libs/getRole';
 import { StuInfoController } from 'utils/Libs/requestUrls';
 import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';

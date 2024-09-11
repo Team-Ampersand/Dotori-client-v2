@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
-import { ButtonProps } from "types/components/StuInfoPage";
+import { ButtonProps } from 'types/components/StuInfoPage';
 
 export const ButtonBox = styled.div`
   display: flex;

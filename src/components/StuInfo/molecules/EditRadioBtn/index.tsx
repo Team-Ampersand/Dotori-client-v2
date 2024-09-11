@@ -1,7 +1,7 @@
 import UseToggleTheme from 'hooks/useToggleTheme';
 import * as S from './style';
 
-interface Props{
+interface Props {
   name: string;
   label: string[];
   data: string[];
@@ -9,13 +9,7 @@ interface Props{
   watch: string;
 }
 
-const EditRadioBtn = ({
-  name,
-  label,
-  data,
-  onClick,
-  watch,
-}: Props) => {
+const EditRadioBtn = ({ name, label, data, onClick, watch }: Props) => {
   const [theme] = UseToggleTheme();
   return (
     <S.Layer>

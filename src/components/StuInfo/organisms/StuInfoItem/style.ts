@@ -17,7 +17,6 @@ export const Layer = styled.div`
   }
 `;
 
-
 export const StuNum = styled.p`
   flex-basis: 3em;
 `;

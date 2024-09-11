@@ -8,7 +8,7 @@ const StuInfoForm = () => {
   const setParamData = useSetRecoilState(stuInfoParams);
 
   const handleSubmit = async (state: (string | undefined)[], name?: string) => {
-    const stuName = name?.trim() !== '' ? name?.trim() ?? null : null;
+    const stuName = name?.trim() !== '' ? (name?.trim() ?? null) : null;
     const gender = state[2] ?? null;
     const classNum = state[1]?.trim() ?? null;
     const grade = Number(state[0]) || null;
@@ -17,8 +17,8 @@ const StuInfoForm = () => {
       state[4] === '자습가능'
         ? 'CAN'
         : state[4] === '자습금지'
-        ? 'IMPOSSIBLE'
-        : null;
+          ? 'IMPOSSIBLE'
+          : null;
 
     setParamData({
       name: stuName,

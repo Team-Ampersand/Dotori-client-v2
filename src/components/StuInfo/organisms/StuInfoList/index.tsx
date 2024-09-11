@@ -21,7 +21,7 @@ const StuInfoList = () => {
 
   const { data: searchStuInfoList, mutate } = useSWR(
     StuInfoController.searchStuInfo,
-    fetcher
+    fetcher,
   );
   const { data: stuInfoList } = useSWR(StuInfoController.stuInfo);
 

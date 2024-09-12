@@ -1,11 +1,6 @@
 import { SearchFilterProps } from 'types';
 
-const FilterItem = ({
-  name,
-  item,
-  value,
-  onClick,
-}: SearchFilterProps) => {
+const FilterItem = ({ name, item, value, onClick }: SearchFilterProps) => {
   return (
     <>
       <input

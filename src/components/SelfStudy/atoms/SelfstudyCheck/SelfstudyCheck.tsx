@@ -1,22 +1,24 @@
 import React from 'react';
-import * as S from './Style';
+import useSWR from 'swr';
 import { CheckProps, selfstudyListProps } from 'types';
 import { CheckBox, CheckedBox } from 'assets/svg';
 import { selfStudyCheck } from 'api/selfStudy';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
-import useSWR from 'swr';
+import * as S from './Style';
 
 const SelfstudyCheck = ({ role, memberId, checked }: CheckProps) => {
   const { mutate } = useSWR<selfstudyListProps[]>(
-    SelfstudyController.selfStudyRank(role)
+    SelfstudyController.selfStudyRank(role),
   );
 
   const studyChecks = async (
     role: string,
     memberId: number | undefined,
-    checked: boolean
+    checked: boolean,
   ) => {
-    await selfStudyCheck(role, memberId, checked).then(() => mutate());
+    await selfStudyCheck(role, memberId, checked).then(() => {
+      mutate();
+    });
   };
 
   return (

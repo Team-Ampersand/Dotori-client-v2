@@ -5,10 +5,7 @@ export const ModalOverayWrapper = styled.div`
   visibility: ${(props: ModalStyleProps) =>
     props.isClick ? 'visible' : 'hidden'};
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  inset: 0;
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -16,8 +13,8 @@ export const ModalOverayWrapper = styled.div`
   background: hsla(235, 77%, 10%, 0.45);
 
   @media (max-width: 950px) {
-    background: hsla(235, 77%, 10%, 0.70);
-	}
+    background: hsla(235, 77%, 10%, 0.7);
+  }
 `;
 
 export const ResponseOverayWrapper = styled.div`
@@ -25,10 +22,7 @@ export const ResponseOverayWrapper = styled.div`
     visibility: ${(props: ModalStyleProps) =>
       props.isClick ? 'visible' : 'hidden'};
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset: 0;
     z-index: 2;
     display: flex;
     justify-content: center;

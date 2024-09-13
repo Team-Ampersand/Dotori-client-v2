@@ -7,9 +7,5 @@ export interface ApplicationItemProps {
   stuNum: string;
   listType: string;
   lastRank?: number;
-  profileImage: string | null
-}
-
-export interface NullApplicationItemProps {
-  type: string;
+  profileImage: string | null;
 }

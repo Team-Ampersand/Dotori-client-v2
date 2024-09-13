@@ -1,17 +1,13 @@
+import { NextPage } from 'next';
+import { SWRConfig } from 'swr';
 import SideBar from 'components/Common/organisms/Sidebar';
-import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
+import SEOHead from 'components/Common/atoms/SEOHead';
+import CommonHeader from 'components/Common/organisms/CommonHeader';
 import { SelfStudyTable } from 'components/SelfStudy/organisms';
 import { CommonPageWrapper } from 'components/Common/atoms/Wrappers/CommonPageWrapper/style';
+import { MainTemplates } from 'components/Common/templates/MainTemplates/style';
 import UseThemeEffect from 'hooks/useThemeEffect';
-import CommonHeader from 'components/Common/organisms/CommonHeader';
-import { GetServerSideProps, NextPage } from 'next';
-import { getRole } from 'utils/Libs/getRole';
-import { getToken } from 'utils/Libs/getToken';
-import { SWRConfig } from 'swr';
-import { apiClient } from 'utils/Libs/apiClient';
-import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { selfstudyListType } from 'types';
-import SEOHead from 'components/Common/atoms/SEOHead';
 
 const SelfStudyPage: NextPage<{
   fallback: Record<string, selfstudyListType>;
@@ -31,26 +27,6 @@ const SelfStudyPage: NextPage<{
       </SWRConfig>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { Authorization } = await getToken(ctx);
-  const role = getRole(ctx);
-
-  try {
-    const { data: selfStudyData } = await apiClient.get(
-      SelfstudyController.selfStudyRank(role),
-      { headers: { Authorization } }
-    );
-
-    return {
-      props: {
-        fallback: { [SelfstudyController.selfStudyRank(role)]: selfStudyData },
-      },
-    };
-  } catch (e) {
-    return { props: {} };
-  }
 };
 
 export default SelfStudyPage;

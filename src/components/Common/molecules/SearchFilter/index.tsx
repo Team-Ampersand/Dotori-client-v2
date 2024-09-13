@@ -1,26 +1,29 @@
-import { FilterMenuData } from 'assets/data/FilterMenuData';
-import AuthInput from 'components/Common/atoms/Inputs/AuthInput';
-import FilterItem from 'components/Common/atoms/Items/FilterItem';
-import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { useDidMountEffect } from 'hooks/useDidMountEffect';
 import UseToggleTheme from 'hooks/useToggleTheme';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import AuthInput from 'components/Common/atoms/Inputs/AuthInput';
+import FilterItem from 'components/Common/atoms/Items/FilterItem';
+import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { filterModal, selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
-import { SearchFilterTypeProps, SignupForm } from 'types';
+import { useDidMountEffect } from 'hooks/useDidMountEffect';
+import { SearchFilterTypeProps } from 'types';
+import { FilterMenuData } from 'assets/data/FilterMenuData';
 import { isNotNull } from 'utils/isNotNull';
 import * as S from './style';
 
 const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
   const [theme] = UseToggleTheme();
   const [filterState, setFilterState] = useState<(string | undefined)[]>(
-    Array.from({ length: 5 }, () => undefined)
+    Array.from({ length: 5 }, () => undefined),
   );
   const [modalState, setModalState] = useRecoilState(filterModal);
   const setLookUp = useSetRecoilState(selfStudyLookup);
-  const { register, setValue, watch, resetField } = useForm<SignupForm>({
-    defaultValues: { name: '' },
+
+  const { register, setValue, watch, resetField } = useForm({
+    defaultValues: {
+      name: '',
+    },
   });
 
   const handelResetClick = () => {
@@ -41,8 +44,8 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
     value === '남자'
       ? (value = 'MAN')
       : value === '여자'
-      ? (value = 'WOMAN')
-      : '';
+        ? (value = 'WOMAN')
+        : '';
     const copy = [...filterState];
     copy[idx] = filterState[idx] === value ? undefined : value;
     setFilterState(copy);
@@ -72,17 +75,20 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
           />
         </S.SearchBox>
         <S.SelectWrapper>
-          {FilterMenuData.map((i, idx) => (
-            <S.Select key={idx} isShow={i.show.includes(filterType)}>
-              <span>{i.filterTitle}</span>
+          {FilterMenuData.map((filterItem, idx) => (
+            <S.Select
+              key={filterItem.filterTitle}
+              isShow={filterItem.show.includes(filterType)}
+            >
+              <span>{filterItem.filterTitle}</span>
               <S.SelectBox darkmode={theme}>
-                {i.filterList.map((j, ind) => (
+                {filterItem.filterList.map((list) => (
                   <FilterItem
-                    key={ind}
-                    name={i.filterTitle}
-                    item={j}
+                    key={list}
+                    item={list}
+                    name={filterItem.filterTitle}
                     value={filterState[idx]}
-                    onClick={() => filterChange(idx, j)}
+                    onClick={() => filterChange(idx, list)}
                   />
                 ))}
               </S.SelectBox>
@@ -93,7 +99,7 @@ const SearchFilter = ({ filterType, onSubmit }: SearchFilterTypeProps) => {
           onClick={() => setModalState(false)}
           modalState={modalState}
         >
-          <span>닫기</span>
+          닫기
         </S.ApplyBtn>
       </S.FilterWrapper>
       <ResponseOverayWrapper

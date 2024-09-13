@@ -1,10 +1,11 @@
 import ApplicationItem from 'components/Common/molecules/ApplicationItem';
-import { useRecoilState } from 'recoil';
-import { selfStudyList } from 'recoilAtoms/recoilAtomContainer';
+import { selfstudyListProps } from 'types';
 
-const SelfStudyList = () => {
-  const [userList] = useRecoilState(selfStudyList);
+interface Props {
+  userList: selfstudyListProps[] | undefined;
+}
 
+const SelfStudyList = ({ userList }: Props) => {
   return (
     <>
       {userList &&

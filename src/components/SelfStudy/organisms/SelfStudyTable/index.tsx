@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { useEffect, useState } from 'react';
 import { selfStudySearch } from 'api/selfStudy';
 import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
+import { CapIcon } from 'assets/svg';
 import * as S from './style';
 
 const SelfStudyTable = () => {
@@ -47,7 +48,11 @@ const SelfStudyTable = () => {
           <SelfStudyList userList={userList} />
         </S.ListWrapper>
       ) : (
-        <NullApplicstionItem type={'selfstudy'} />
+        <NullApplicstionItem
+          Icon={CapIcon}
+          message="자습 신청한 인원이 없습니다.."
+          subMessage="홈에서 자습 신청을 해보세요!"
+        />
       )}
       <div>
         <SearchFilter

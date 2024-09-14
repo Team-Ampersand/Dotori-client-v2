@@ -4,7 +4,11 @@ import { isNoticeModify, isNoticeWrite } from 'recoilAtoms/recoilAtomContainer';
 import { Palette } from 'styles/globals';
 import * as S from './style';
 
-const BottomBtnBox = () => {
+interface Props {
+  isSubmitting: boolean;
+}
+
+const BottomBtnBox = ({ isSubmitting }: Props) => {
   const setNoticeWrite = useSetRecoilState(isNoticeWrite);
   const setNoticeModify = useSetRecoilState(isNoticeModify);
 
@@ -31,6 +35,7 @@ const BottomBtnBox = () => {
           return;
         }}
         type="submit"
+        isSubmitting={isSubmitting}
       >
         확인
       </NoticeOptionBtn>

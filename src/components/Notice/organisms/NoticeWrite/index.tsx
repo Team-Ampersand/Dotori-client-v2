@@ -21,10 +21,16 @@ import * as S from './style';
 
 const NoticeWrite = () => {
   const router = useRouter();
-  const { register, watch, handleSubmit, setValue, resetField } =
-    useForm<noticeFormType>({
-      defaultValues: { title: '', content: '' },
-    });
+  const {
+    register,
+    watch,
+    handleSubmit,
+    setValue,
+    resetField,
+    formState: { isSubmitting },
+  } = useForm<noticeFormType>({
+    defaultValues: { title: '', content: '' },
+  });
 
   const [imgList, setImgList] = useState<string[]>([]);
   const [postImgList, setPostImgList] = useState<File[]>([]);
@@ -88,7 +94,7 @@ const NoticeWrite = () => {
         data={imgList}
         onDelete={(id: number) => onImgDelete(id)}
       />
-      <BottomBtnBox />
+      <BottomBtnBox isSubmitting={isSubmitting} />
     </S.Layer>
   );
 };

@@ -1,13 +1,17 @@
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import { useRecoilState } from 'recoil';
-import { songNoticeModal } from 'recoilAtoms/recoilAtomContainer';
 import * as S from './style';
 
-const NoticeModal = () => {
-  const [isModal, setModal] = useRecoilState(songNoticeModal);
+interface NoticeModalProps {
+  isNoticeModal: boolean;
+  setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const NoticeModal = ({ isNoticeModal, setNoticeModal }: NoticeModalProps) => {
   return (
-    <ModalOverayWrapper isClick={isModal} onClick={() => setModal(false)}>
+    <ModalOverayWrapper
+      isClick={isNoticeModal}
+      onClick={() => setNoticeModal(false)}
+    >
       <S.Layer onClick={(e) => e.stopPropagation()}>
         <S.Header>
           <h3>※ 음악 신청 시 공지사항</h3>
@@ -18,8 +22,8 @@ const NoticeModal = () => {
               기상 음악 순서는 신청 순서와는 별개로 사감선생님께서 정하십니다.
             </S.ContentItem>
             <S.ContentItem>
-              영어, 한국어, 일본어 이외의 언어가 포함되거나 과도한 욕설이 담긴 음악은
-              삭제될 수 있습니다.
+              영어, 한국어, 일본어 이외의 언어가 포함되거나 과도한 욕설이 담긴
+              음악은 삭제될 수 있습니다.
             </S.ContentItem>
             <S.ContentItem>
               기상 음악과 관련 없는 영상을 올렸을 시 삭제될 수 있습니다.

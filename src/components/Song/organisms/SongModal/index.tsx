@@ -1,14 +1,25 @@
-import CalendarBox from 'components/Common/atoms/Calendar';
-import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import SongForm from 'components/Song/molecules/SongForm';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   calendarModalState,
   filterModal,
 } from 'recoilAtoms/recoilAtomContainer';
+import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 
-const SongModal = () => {
+import CalendarBox from 'components/Common/atoms/Calendar';
+import SongForm from 'components/Song/molecules/SongForm';
+
+type SongModalProps = {
+  selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SongModal = ({
+  selectedDate,
+  setSelectedDate,
+  setNoticeModal,
+}: SongModalProps) => {
   const [modal, setModal] = useRecoilState(filterModal);
   const calendarModal = useRecoilValue(calendarModalState);
 
@@ -26,7 +37,18 @@ const SongModal = () => {
       }}
     >
       <div onClick={(e) => e.stopPropagation()}>
-        {modal && (calendarModal ? <CalendarBox /> : <SongForm />)}
+        {modal &&
+          (calendarModal ? (
+            <CalendarBox
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
+          ) : (
+            <SongForm
+              setNoticeModal={setNoticeModal}
+              selectedDate={selectedDate}
+            />
+          ))}
       </div>
     </ResponseOverayWrapper>
   );

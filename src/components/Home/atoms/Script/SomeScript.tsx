@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/inline-script-id */
 import Script from 'next/script';
 
 const ChannelIOScript = ({stunumName,theme}:{stunumName:string,theme:string}) => (

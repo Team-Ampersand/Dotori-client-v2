@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 import { FilterStyleProps } from 'types';
 
-export const FilterWrapper = styled.div`
+export const FilterWrapper = styled.form`
   min-width: 250px;
   width: 280px;
   padding: 20px;
@@ -127,10 +127,8 @@ export const ApplyBtn = styled.div`
     align-items: center;
     margin-top: 30px;
     cursor: pointer;
-    span {
-      font-weight: 700;
-      font-size: 16px;
-      color: #fff;
-    }
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
   }
 `;

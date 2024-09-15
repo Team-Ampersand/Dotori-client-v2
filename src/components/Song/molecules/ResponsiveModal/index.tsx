@@ -1,9 +1,9 @@
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-import * as S from './style';
-import { NewPageIcon, TrashcanIcon } from 'assets/svg';
+import { HeartIcon, TrashcanIcon } from 'assets/svg';
 import { SongResponsiveModalProps } from 'types';
 import { preventEvent } from 'utils/Libs/preventEvent';
 import { getRole } from 'utils/Libs/getRole';
+import * as S from './style';
 
 const ResponsiveModal = ({
   modalState,
@@ -11,25 +11,34 @@ const ResponsiveModal = ({
   setDelModalState,
   songData,
   userData,
+  heartState,
+  setHeartState,
 }: SongResponsiveModalProps) => {
   const role = getRole();
+
+  const handleHeart = (e: React.MouseEvent<HTMLDivElement>) => {
+    preventEvent(e);
+    setHeartState(!heartState);
+    setModalState(false);
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLDivElement>) => {
+    preventEvent(e);
+    setDelModalState(true);
+    setModalState(false);
+  };
+
   return (
     <>
       <S.ModalWrapper modalState={modalState}>
         <S.BtnWrapper>
-          <div>
-            <NewPageIcon />
-            바로가기
+          <div onClick={handleHeart}>
+            <HeartIcon heartState={heartState} />
+            좋아요
           </div>
           {(role !== 'member' ||
             String(songData.stuNum) === userData.stuNum) && (
-            <div
-              onClick={(e) => {
-                preventEvent(e);
-                setDelModalState(true);
-                setModalState(false);
-              }}
-            >
+            <div onClick={handleDelete}>
               <TrashcanIcon />
               기상음악 삭제
             </div>

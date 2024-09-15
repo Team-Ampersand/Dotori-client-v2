@@ -6,6 +6,7 @@ import { SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import EmptySongBox from 'components/Song/atoms/EmptySongBox';
 import SongItem from 'components/Song/molecules/SongItem';
+import MusicListSelect from 'components/Song/atoms/MusicListSelect';
 import { SongListType } from 'types/components/SongPage';
 import * as S from './style';
 
@@ -25,13 +26,21 @@ const SongList = ({ selectedDate }: SongListProps) => {
     mutate();
   }, [selectedDate]);
 
+  const options = [
+    { value: '좋아요순', label: '좋아요순' },
+    { value: '신청순', label: '신청순' },
+  ];
+
   return (
     <S.Layer>
       <S.ListHeader>
-        <h3>신청음악</h3>
-        <p>
-          <span>{data?.content?.length ?? 0}</span> 개
-        </p>
+        <S.MusicDataHeader>
+          <h3>신청음악</h3>
+          <p>
+            <span>{data?.content?.length ?? 0}</span> 개
+          </p>
+        </S.MusicDataHeader>
+        <MusicListSelect options={options} />
       </S.ListHeader>
       <S.ListContainer>
         {data && data.content?.length > 0 ? (

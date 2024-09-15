@@ -27,6 +27,7 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [modalState, setModalState] = useState<boolean>(false);
+  const [heartState, setHeartState] = useState<boolean>(false);
 
   const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
@@ -44,7 +45,11 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
     <Link href={songData.url}>
       <a target="_blank">
         <S.LeftWrapper>
-          <MusicItemThumbnail thumbnail={songData.thumbnail} />
+          <MusicItemThumbnail
+            heartState={heartState}
+            setHeartState={setHeartState}
+            thumbnail={songData.thumbnail}
+          />
           <MusicItemTitle
             title={songData.title}
             stuNum={songData.stuNum}
@@ -59,6 +64,8 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
           songStuNum={songData.stuNum}
           userStuNum={userData?.stuNum}
           setDeleteModal={setDeleteModal}
+          heartState={heartState}
+          setHeartState={setHeartState}
         />
         <ResponsiveBtn setModalState={setModalState} />
         <CommonCheckModal
@@ -75,6 +82,8 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
             setDelModalState={setDeleteModal}
             songData={songData}
             userData={userData}
+            heartState={heartState}
+            setHeartState={setHeartState}
           />
         )}
       </a>

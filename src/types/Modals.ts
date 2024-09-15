@@ -61,7 +61,7 @@ export interface PenaltyRecordModalProps {
   handleDelete: (
     state: string[],
     setState: (state: string[]) => void,
-    select: string
+    select: string,
   ) => void;
 }
 
@@ -69,4 +69,6 @@ export interface SongResponsiveModalProps extends ModalProps {
   setDelModalState: (state: boolean) => void;
   songData: SongType;
   userData: myProfileType;
+  heartState: boolean;
+  setHeartState: React.Dispatch<React.SetStateAction<boolean>>;
 }

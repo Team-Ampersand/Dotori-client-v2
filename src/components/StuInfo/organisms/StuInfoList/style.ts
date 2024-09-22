@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { Palette } from 'styles/globals';
 
 export const Layer = styled.div`
-  width: 70%;
   height: 100%;
   background: ${Palette.BACKGROUND_CARD};
   border-radius: 1rem;
   padding: 1.5rem 1rem;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 0.25em;
   overflow-y: auto;

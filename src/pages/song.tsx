@@ -44,7 +44,10 @@ const SongPage: NextPage<{
             setSelectedDate={setSelectedDate}
             setNoticeModal={setNoticeModal}
           />
-          <NoticeModal isNoticeModal={isNoticeModal} setNoticeModal={setNoticeModal} />
+          <NoticeModal
+            isNoticeModal={isNoticeModal}
+            setNoticeModal={setNoticeModal}
+          />
         </MainTemplates>
       </SWRConfig>
     </>

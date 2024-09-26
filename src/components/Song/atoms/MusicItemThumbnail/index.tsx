@@ -1,22 +1,29 @@
 import Image from 'next/image';
 import { preventEvent } from 'utils/Libs/preventEvent';
-import * as S from './style';
+import { likeMusic } from 'api/music';
 import { HeartIcon } from 'assets/svg';
+import * as S from './style';
 
 interface MusicItemThumbnailProps {
   thumbnail: string;
   heartState: boolean;
   setHeartState: React.Dispatch<React.SetStateAction<boolean>>;
+  musicId: number;
+  role: string;
+  setLikeCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const MusicItemThumbnail = ({
   thumbnail,
   heartState,
   setHeartState,
+  musicId,
+  role,
+  setLikeCount,
 }: MusicItemThumbnailProps) => {
-  const handleHeart = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleHeart = async (e: React.MouseEvent<HTMLDivElement>) => {
     preventEvent(e);
-    setHeartState(!heartState);
+    await likeMusic(role, musicId, heartState, setHeartState, setLikeCount);
   };
   return (
     <div>

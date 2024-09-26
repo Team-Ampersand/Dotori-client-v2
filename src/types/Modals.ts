@@ -70,5 +70,7 @@ export interface SongResponsiveModalProps extends ModalProps {
   songData: SongType;
   userData: myProfileType;
   heartState: boolean;
+  musicId: number;
   setHeartState: React.Dispatch<React.SetStateAction<boolean>>;
+  setLikeCount: React.Dispatch<React.SetStateAction<number>>;
 }

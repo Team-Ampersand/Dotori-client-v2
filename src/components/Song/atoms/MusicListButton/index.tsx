@@ -1,5 +1,6 @@
 import { preventEvent } from 'utils/Libs/preventEvent';
 import { HeartIcon, TrashcanIcon } from 'assets/svg';
+import { likeMusic } from 'api/music';
 import * as S from './style';
 
 interface MusicListButtonProps {
@@ -9,6 +10,9 @@ interface MusicListButtonProps {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   heartState: boolean;
   setHeartState: React.Dispatch<React.SetStateAction<boolean>>;
+  musicId: number;
+  likeCount: number;
+  setLikeCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const MusicListButton = ({
@@ -18,10 +22,13 @@ const MusicListButton = ({
   setDeleteModal,
   heartState,
   setHeartState,
+  musicId,
+  likeCount,
+  setLikeCount,
 }: MusicListButtonProps) => {
-  const handleHeart = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleHeart = async (e: React.MouseEvent<HTMLDivElement>) => {
     preventEvent(e);
-    setHeartState(!heartState);
+    await likeMusic(role, musicId, heartState, setHeartState, setLikeCount);
   };
 
   return (
@@ -41,7 +48,7 @@ const MusicListButton = ({
           <S.ButtonStyle>
             <HeartIcon heartState={heartState} />
           </S.ButtonStyle>
-          <S.LikeNum>39</S.LikeNum>
+          <S.LikeNum>{likeCount}</S.LikeNum>
         </S.LikeContainer>
       </S.ButtonTestContainer>
     </S.ButtonContainer>

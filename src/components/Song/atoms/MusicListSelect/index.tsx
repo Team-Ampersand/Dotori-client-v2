@@ -1,23 +1,14 @@
 import { useState } from 'react';
 import { ArrowDown } from 'assets/svg';
+import { MusicListSelectProps, OptionType } from 'types/components/SongPage';
 import * as S from './style';
 
-interface OptionType {
-  value: string;
-  label: string;
-}
-
-interface MusicListSelectProps {
-  options: OptionType[];
-}
-
-const MusicListSelect = ({ options }: MusicListSelectProps) => {
-  const defaultOption =
-    options.find((option) => option.value === '좋아요순') || options[0];
+const MusicListSelect = ({
+  options,
+  selectedOption,
+  setSelectedOption,
+}: MusicListSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] =
-    useState<OptionType>(defaultOption);
-
   const handleOptionClick = (option: OptionType) => {
     setSelectedOption(option);
     setIsOpen(false);

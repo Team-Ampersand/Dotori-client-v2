@@ -3,6 +3,7 @@ import { HeartIcon, TrashcanIcon } from 'assets/svg';
 import { SongResponsiveModalProps } from 'types';
 import { preventEvent } from 'utils/Libs/preventEvent';
 import { getRole } from 'utils/Libs/getRole';
+import { likeMusic } from 'api/music';
 import * as S from './style';
 
 const ResponsiveModal = ({
@@ -13,12 +14,14 @@ const ResponsiveModal = ({
   userData,
   heartState,
   setHeartState,
+  musicId,
+  setLikeCount,
 }: SongResponsiveModalProps) => {
   const role = getRole();
 
-  const handleHeart = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleHeart = async (e: React.MouseEvent<HTMLDivElement>) => {
     preventEvent(e);
-    setHeartState(!heartState);
+    await likeMusic(role, musicId, heartState, setHeartState, setLikeCount);
     setModalState(false);
   };
 

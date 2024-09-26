@@ -7,7 +7,7 @@ export const MemberController = {
   emailPasswordCheck: '/email/password',
   changePasswd: '/members/password',
   myProfile: '/home',
-  profileImage: '/members/profileImage'
+  profileImage: '/members/profileImage',
 };
 
 export const NoticeController = {
@@ -79,6 +79,12 @@ export const SongController = {
   },
   deleteMusic(role: string, musicId: number) {
     return `/${role}/music/${musicId}`;
+  },
+  likeMusic(role: string, musicId: number) {
+    return `/${role}/music/${musicId}/like`;
+  },
+  getlikeMusic(role: string) {
+    return `/${role}/music/like`;
   },
 };
 

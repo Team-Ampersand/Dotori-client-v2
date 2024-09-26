@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 import Link from 'next/link';
 import { deleteMusic, getMusic } from 'api/music';
@@ -28,12 +28,18 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [modalState, setModalState] = useState<boolean>(false);
   const [heartState, setHeartState] = useState<boolean>(false);
+  const [likeCount, setLikeCount] = useState<number>(0);
 
   const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
   const postDate = `${getDate(selectedDate)[0]}-${getDate(selectedDate)[1]}-${
     getDate(selectedDate)[2]
   }`;
+
+  useEffect(() => {
+    setHeartState(songData.memberLikeCheck);
+    setLikeCount(songData.likeCount);
+  }, [setHeartState, setLikeCount]);
 
   const onDelete = async (id: number) => {
     const isSuccess = await deleteMusic(role, id);
@@ -49,6 +55,9 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
             heartState={heartState}
             setHeartState={setHeartState}
             thumbnail={songData.thumbnail}
+            musicId={songData.id}
+            role={role}
+            setLikeCount={setLikeCount}
           />
           <MusicItemTitle
             title={songData.title}
@@ -66,6 +75,9 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
           setDeleteModal={setDeleteModal}
           heartState={heartState}
           setHeartState={setHeartState}
+          musicId={songData.id}
+          likeCount={likeCount}
+          setLikeCount={setLikeCount}
         />
         <ResponsiveBtn setModalState={setModalState} />
         <CommonCheckModal
@@ -84,6 +96,8 @@ const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
             userData={userData}
             heartState={heartState}
             setHeartState={setHeartState}
+            musicId={songData.id}
+            setLikeCount={setLikeCount}
           />
         )}
       </a>

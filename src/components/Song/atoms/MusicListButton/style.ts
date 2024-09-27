@@ -28,9 +28,9 @@ export const ButtonTestContainer = styled.div`
     ${ButtonStyle}
   }
 
-  /* svg path {
+  & > div:first-of-type svg path {
     stroke: ${Palette.NEUTRAL_N20};
-  } */
+  }
   @media (max-width: 420px) {
     display: none;
   }

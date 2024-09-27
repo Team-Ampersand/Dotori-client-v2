@@ -4,6 +4,7 @@ import { SongResponsiveModalProps } from 'types';
 import { preventEvent } from 'utils/Libs/preventEvent';
 import { getRole } from 'utils/Libs/getRole';
 import { likeMusic } from 'api/music';
+import { toast } from 'react-toastify';
 import * as S from './style';
 
 const ResponsiveModal = ({
@@ -21,8 +22,14 @@ const ResponsiveModal = ({
 
   const handleHeart = async (e: React.MouseEvent<HTMLDivElement>) => {
     preventEvent(e);
-    await likeMusic(role, musicId, heartState, setHeartState, setLikeCount);
-    setModalState(false);
+    try {
+      const data = await likeMusic(role, musicId);
+      setLikeCount(data.likeCount);
+      setHeartState(!heartState);
+    } catch (error) {
+      console.error('Error liking music:', error);
+      toast.error('음악을 찾지 못했습니다');
+    }
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLDivElement>) => {

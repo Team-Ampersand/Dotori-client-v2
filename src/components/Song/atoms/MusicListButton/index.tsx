@@ -1,6 +1,7 @@
 import { preventEvent } from 'utils/Libs/preventEvent';
 import { HeartIcon, TrashcanIcon } from 'assets/svg';
 import { likeMusic } from 'api/music';
+import { toast } from 'react-toastify';
 import * as S from './style';
 
 interface MusicListButtonProps {
@@ -28,9 +29,15 @@ const MusicListButton = ({
 }: MusicListButtonProps) => {
   const handleHeart = async (e: React.MouseEvent<HTMLDivElement>) => {
     preventEvent(e);
-    await likeMusic(role, musicId, heartState, setHeartState, setLikeCount);
+    try {
+      const data = await likeMusic(role, musicId);
+      setLikeCount(data.likeCount);
+      setHeartState(!heartState);
+    } catch (error) {
+      console.error('Error liking music:', error);
+      toast.error('음악을 찾지 못했습니다');
+    }
   };
-
   return (
     <S.ButtonContainer>
       <S.ButtonTestContainer>

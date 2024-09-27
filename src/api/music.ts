@@ -44,24 +44,11 @@ export const deleteMusic = async (role: string, musicId: number) => {
   }
 };
 
-export const likeMusic = async (
-  role: string,
-  musicId: number,
-  heartState: boolean,
-  setHeartState: React.Dispatch<React.SetStateAction<boolean>>,
-  setLikeCount: React.Dispatch<React.SetStateAction<number>>,
-) => {
-  try {
-    const response = await apiClient.patch(
-      SongController.likeMusic(role, musicId),
-    );
-    setLikeCount(response.data.likeCount);
-    setHeartState(!heartState);
-    return true;
-  } catch (e) {
-    toast.error('음악을 찾지 못했습니다');
-    return false;
-  }
+export const likeMusic = async (role: string, musicId: number) => {
+  const response = await apiClient.patch(
+    SongController.likeMusic(role, musicId),
+  );
+  return response.data;
 };
 
 export const getLikeMusic = async (role: string, date: string) => {

@@ -44,14 +44,26 @@ export const deleteMusic = async (role: string, musicId: number) => {
   }
 };
 
-export const likeMusic = async (role: string, musicId: number) => {
+export const likeMusic = async ({
+  role,
+  musicId,
+}: {
+  role: string;
+  musicId: number;
+}) => {
   const response = await apiClient.patch(
     SongController.likeMusic(role, musicId),
   );
   return response.data;
 };
 
-export const getLikeMusic = async (role: string, date: string) => {
+export const getLikeMusic = async ({
+  role,
+  date,
+}: {
+  role: string;
+  date: string;
+}) => {
   try {
     const { data } = await apiClient.get(SongController.getlikeMusic(role), {
       params: {

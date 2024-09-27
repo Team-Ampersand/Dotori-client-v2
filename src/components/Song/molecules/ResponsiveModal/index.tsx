@@ -23,7 +23,7 @@ const ResponsiveModal = ({
   const handleHeart = async (e: React.MouseEvent<HTMLDivElement>) => {
     preventEvent(e);
     try {
-      const data = await likeMusic(role, musicId);
+      const data = await likeMusic({ role, musicId });
       setLikeCount(data.likeCount);
       setHeartState(!heartState);
     } catch (error) {

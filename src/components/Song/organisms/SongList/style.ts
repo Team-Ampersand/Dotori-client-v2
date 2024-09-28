@@ -21,10 +21,16 @@ export const Layer = styled.div`
 export const ListHeader = styled.div`
   width: 100%;
   background: ${Palette.BACKGROUND_CARD};
-  opacity: 0.9;
   backdrop-filter: blur(4px);
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const MusicDataHeader = styled.div`
+  gap: 0.5rem;
+  display: flex;
   align-items: center;
 
   h3 {
@@ -58,7 +64,6 @@ export const ListContainer = styled.div`
     height: 72px;
     transition: 0.2s;
     border-radius: 0.5em;
-    padding: 0.5em 0.5em 0.5em 0;
 
     :hover {
       background: ${Palette.NEUTRAL_N50};

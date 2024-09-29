@@ -1,34 +1,36 @@
-import * as S from './style';
 import SelfStudyList from 'components/SelfStudy/molecules/SelfStudyList';
 import SearchFilter from 'components/Common/molecules/SearchFilter';
 import NullApplicstionItem from 'components/Common/molecules/NullApplicationItem';
-import { selfStudyList } from 'recoilAtoms/recoilAtomContainer';
-import { useRecoilState } from 'recoil';
-import { selfstudyListType } from 'types';
+import { selfstudyListProps, selfstudyListType } from 'types';
 import { SelfstudyController } from 'utils/Libs/requestUrls';
 import { getRole } from 'utils/Libs/getRole';
 import useSWR from 'swr';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selfStudySearch } from 'api/selfStudy';
 import ResponsiveHeader from 'components/Common/atoms/ResponsiveHeader';
+import { CapIcon } from 'assets/svg';
+import * as S from './style';
 
 const SelfStudyTable = () => {
-  const [userList, setUserList] = useRecoilState(selfStudyList);
   const role = getRole();
-  const { data } = useSWR<selfstudyListType>(
-    SelfstudyController.selfStudyRank(role)
+  const [userList, setUserList] = useState<selfstudyListProps[] | undefined>(
+    [],
   );
 
-  const handelSelfstudySearch = async (
+  const { data } = useSWR<selfstudyListType>(
+    SelfstudyController.selfStudyRank(role),
+  );
+
+  const handleSelfstudySearch = async (
     state: (string | undefined)[],
-    name?: string
+    name?: string,
   ) => {
     await selfStudySearch(
       role,
       name ? name : null,
-      state[0] ? state[0] : null,
-      state[1] ? state[1].slice(0, 1) : null,
-      state[2] ? state[2] : null
+      state[0] ?? null,
+      state[1]?.slice(0, 1) ?? null,
+      state[2] ?? null,
     ).then((res) => {
       setUserList(res?.data.list);
     });
@@ -43,15 +45,19 @@ const SelfStudyTable = () => {
       <ResponsiveHeader />
       {userList && userList.length > 0 ? (
         <S.ListWrapper>
-          <SelfStudyList />
+          <SelfStudyList userList={userList} />
         </S.ListWrapper>
       ) : (
-        <NullApplicstionItem type={'selfstudy'} />
+        <NullApplicstionItem
+          Icon={CapIcon}
+          message="자습 신청한 인원이 없습니다.."
+          subMessage="홈에서 자습 신청을 해보세요!"
+        />
       )}
       <div>
         <SearchFilter
           filterType={'selfstudy'}
-          onSubmit={handelSelfstudySearch}
+          onSubmit={handleSelfstudySearch}
         />
       </div>
     </S.TableWrapper>

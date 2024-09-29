@@ -1,12 +1,19 @@
-import { XtextIcon } from 'assets/svg';
-import UseToggleTheme from 'hooks/useToggleTheme';
 import Calendar from 'react-calendar';
-import { useRecoilState } from 'recoil';
-import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
+import UseToggleTheme from 'hooks/useToggleTheme';
+import { XtextIcon } from 'assets/svg';
 import * as S from './style';
 
-const CalendarBox = ({ setModal }: { setModal?: (state: boolean) => void }) => {
-  const [date, setDate] = useRecoilState(selectedDate);
+interface CalendarBoxProps {
+  selectedDate?: Date;
+  setSelectedDate?: React.Dispatch<React.SetStateAction<Date>>;
+  setModal?: (state: boolean) => void;
+}
+
+const CalendarBox = ({
+  selectedDate,
+  setSelectedDate,
+  setModal,
+}: CalendarBoxProps) => {
   const [theme] = UseToggleTheme();
 
   return (
@@ -17,10 +24,10 @@ const CalendarBox = ({ setModal }: { setModal?: (state: boolean) => void }) => {
         </S.XIcon>
       )}
       <Calendar
-        value={date}
+        value={selectedDate}
         onChange={(value) => {
           if (!(value instanceof Date)) return;
-          setDate(value);
+          setSelectedDate?.(value);
         }}
         locale="ko"
         formatDay={(_locale, date) =>

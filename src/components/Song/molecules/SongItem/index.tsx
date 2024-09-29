@@ -1,33 +1,45 @@
-import { deleteMusic, getMusic } from 'api/music';
-import { EllipsisVerticalIcon, NewPageIcon, TrashcanIcon } from 'assets/svg';
-import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { selectedDate } from 'recoilAtoms/recoilAtomContainer';
+import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
-import { myProfileType } from 'types';
-import { SongType } from 'types/components/SongPage';
+import Link from 'next/link';
+import { deleteMusic, getMusic } from 'api/music';
 import { getRole } from 'utils/Libs/getRole';
-import { preventEvent } from 'utils/Libs/preventEvent';
 import { MemberController, SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
-import * as S from './style';
+import CommonCheckModal from 'components/Common/molecules/CommonCheckModal';
+import MusicItemThumbnail from 'components/Song/atoms/MusicItemThumbnail';
+import MusicItemTitle from 'components/Song/atoms/MusicItemTitle';
+import StuInfo from 'components/Song/atoms/StuInfo';
+import CreateDate from 'components/Song/atoms/CreateDate';
+import MusicListButton from 'components/Song/atoms/MusicListButton';
+import ResponsiveBtn from 'components/Song/atoms/ResponsiveBtn';
+import { myProfileType } from 'types';
+import { SongType } from 'types/components/SongPage';
 import ResponsiveModal from '../ResponsiveModal';
+import * as S from './style';
 
-const SongItem = ({ data: songData }: { data: SongType }) => {
+interface SongItemProps {
+  data: SongType;
+  selectedDate: Date;
+}
+
+const SongItem = ({ data: songData, selectedDate }: SongItemProps) => {
   const role = getRole();
   const { data: userData } = useSWR<myProfileType>(MemberController.myProfile);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [modalState, setModalState] = useState<boolean>(false);
+  const [heartState, setHeartState] = useState<boolean>(false);
+  const [likeCount, setLikeCount] = useState<number>(0);
 
   const createdDate = new Date(songData.createdTime);
   const songDate = `${getDate(createdDate)[3]}시 ${getDate(createdDate)[4]}분`;
-  const date = useRecoilValue(selectedDate);
-  const postDate = `${getDate(date)[0]}-${getDate(date)[1]}-${
-    getDate(date)[2]
+  const postDate = `${getDate(selectedDate)[0]}-${getDate(selectedDate)[1]}-${
+    getDate(selectedDate)[2]
   }`;
+
+  useEffect(() => {
+    setHeartState(songData.memberLikeCheck);
+    setLikeCount(songData.likeCount);
+  }, [setHeartState, setLikeCount]);
 
   const onDelete = async (id: number) => {
     const isSuccess = await deleteMusic(role, id);
@@ -39,51 +51,35 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
     <Link href={songData.url}>
       <a target="_blank">
         <S.LeftWrapper>
-          <S.ImgBox>
-            <Image
-              src={songData.thumbnail}
-              alt="thumbnail"
-              layout="fill"
-              objectFit="cover"
-            />
-          </S.ImgBox>
-          <S.ResponseWrapper>
-            <S.Title>{songData.title}</S.Title>
-            <S.Info>
-              {songData.stuNum + ' ' + songData.username + '•' + songDate}
-            </S.Info>
-          </S.ResponseWrapper>
-        </S.LeftWrapper>
-        <S.StuInfo>
-          <p>{songData.stuNum}</p>
-          <p>{songData.username}</p>
-        </S.StuInfo>
-        <S.CreateDate>{songDate}</S.CreateDate>
-        <S.ButtonContainer>
-          {(role !== 'member' ||
-            String(songData.stuNum) === userData?.stuNum) && (
-            <button
-              onClick={(e) => {
-                preventEvent(e);
-                setDeleteModal(true);
-              }}
-            >
-              <TrashcanIcon />
-            </button>
-          )}
-          <div>
-            <NewPageIcon />
-          </div>
-        </S.ButtonContainer>
-
-        <S.ResponsiveBtn>
-          <EllipsisVerticalIcon
-            onClick={(e) => {
-              preventEvent(e);
-              setModalState(true);
-            }}
+          <MusicItemThumbnail
+            heartState={heartState}
+            setHeartState={setHeartState}
+            thumbnail={songData.thumbnail}
+            musicId={songData.id}
+            role={role}
+            setLikeCount={setLikeCount}
           />
-        </S.ResponsiveBtn>
+          <MusicItemTitle
+            title={songData.title}
+            stuNum={songData.stuNum}
+            username={songData.username}
+            songDate={songDate}
+          />
+        </S.LeftWrapper>
+        <StuInfo stuNum={songData.stuNum} username={songData.username} />
+        <CreateDate songDate={songDate} />
+        <MusicListButton
+          role={role}
+          songStuNum={songData.stuNum}
+          userStuNum={userData?.stuNum}
+          setDeleteModal={setDeleteModal}
+          heartState={heartState}
+          setHeartState={setHeartState}
+          musicId={songData.id}
+          likeCount={likeCount}
+          setLikeCount={setLikeCount}
+        />
+        <ResponsiveBtn setModalState={setModalState} />
         <CommonCheckModal
           title="신청 음악 삭제"
           content="신청 음악을 정말 삭제하시겠습니까?"
@@ -98,6 +94,10 @@ const SongItem = ({ data: songData }: { data: SongType }) => {
             setDelModalState={setDeleteModal}
             songData={songData}
             userData={userData}
+            heartState={heartState}
+            setHeartState={setHeartState}
+            musicId={songData.id}
+            setLikeCount={setLikeCount}
           />
         )}
       </a>

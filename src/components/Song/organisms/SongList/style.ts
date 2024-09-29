@@ -21,10 +21,16 @@ export const Layer = styled.div`
 export const ListHeader = styled.div`
   width: 100%;
   background: ${Palette.BACKGROUND_CARD};
-  opacity: 0.9;
   backdrop-filter: blur(4px);
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const MusicDataHeader = styled.div`
+  gap: 0.5rem;
+  display: flex;
   align-items: center;
 
   h3 {
@@ -58,7 +64,6 @@ export const ListContainer = styled.div`
     height: 72px;
     transition: 0.2s;
     border-radius: 0.5em;
-    padding: 0.5em 0.5em 0.5em 0;
 
     :hover {
       background: ${Palette.NEUTRAL_N50};
@@ -70,23 +75,5 @@ export const ListContainer = styled.div`
   }
   & > a:-webkit-any-link {
     text-decoration: none;
-  }
-`;
-
-export const EmptySongBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.5em;
-
-  h2 {
-    margin-top: 0.75em;
-    color: ${Palette.NEUTRAL_N10};
-  }
-  p {
-    color: ${Palette.NEUTRAL_N20};
   }
 `;

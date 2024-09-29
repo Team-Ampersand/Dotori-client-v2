@@ -1,15 +1,15 @@
-import * as S from './style';
 import { DefaultProfile, FemaleIcon, MaleIcon, StampIcon } from 'assets/svg';
 import SelfstudyCheck from 'components/SelfStudy/atoms/SelfstudyCheck/SelfstudyCheck';
+import { ProfileImage } from 'components/Home/organisms/Profile/style';
 import { ApplicationItemProps } from 'types';
 import { useRecoilValue } from 'recoil';
 import { selfStudyLookup } from 'recoilAtoms/recoilAtomContainer';
 import { getRole } from 'utils/Libs/getRole';
 import Image from 'next/image';
-import Goldmedal from 'assets/png/GoldMedalIcon.png';
-import Silvermedal from 'assets/png/SilverMedalIcon.png';
+import GoldMedal from 'assets/png/GoldMedalIcon.png';
+import SilverMedal from 'assets/png/SilverMedalIcon.png';
 import BronzeMedal from 'assets/png/BronzeMedalIcon.png';
-import { ProfileImage } from 'components/Home/organisms/Profile/style';
+import * as S from './style';
 
 const ApplicationItem = ({
   id,
@@ -24,7 +24,7 @@ const ApplicationItem = ({
 }: ApplicationItemProps) => {
   const role = getRole();
   const lookUp = useRecoilValue(selfStudyLookup);
-
+  const rankImages = [GoldMedal, SilverMedal, BronzeMedal];
   return (
     <S.ApplicationItemWrapper>
       <S.Number>{rank}</S.Number>
@@ -32,28 +32,10 @@ const ApplicationItem = ({
         <>
           {!lookUp && (
             <S.Medal>
-              {rank === 1 && (
+              {rank && rank <= 3 && (
                 <Image
-                  src={Goldmedal}
-                  alt="goldmedal"
-                  priority
-                  width={44}
-                  height={64}
-                />
-              )}
-              {rank === 2 && (
-                <Image
-                  src={Silvermedal}
-                  alt="Silvermedal"
-                  priority
-                  width={44}
-                  height={64}
-                />
-              )}
-              {rank === 3 && (
-                <Image
-                  src={BronzeMedal}
-                  alt="BronzeMedal"
+                  src={rankImages[rank - 1]}
+                  alt="RankImage"
                   priority
                   width={44}
                   height={64}
@@ -74,7 +56,11 @@ const ApplicationItem = ({
         </>
       )}
       <S.Profile>
-        {profileImage ? <ProfileImage image={profileImage} /> : <DefaultProfile />}
+        {profileImage ? (
+          <ProfileImage image={profileImage} />
+        ) : (
+          <DefaultProfile />
+        )}
       </S.Profile>
       <S.StuInfo>
         <S.Name>

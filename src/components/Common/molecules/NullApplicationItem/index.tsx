@@ -1,23 +1,17 @@
 import * as S from './style';
-import { CapIcon, CupIcon } from 'assets/svg';
-import { NullApplicationItemProps } from 'types';
 
-const NullApplicstionItem = ({ type }: NullApplicationItemProps) => {
+interface Props {
+  message: string;
+  subMessage: string;
+  Icon: () => JSX.Element;
+}
+
+const NullApplicstionItem = ({ Icon, message, subMessage }: Props) => {
   return (
     <S.NullApplicstionWrapper>
-      {type === 'selfstudy' ? (
-        <>
-          <CapIcon />
-          <span>자습 신청한 인원이 없습니다..</span>
-          <p>홈에서 자습 신청을 해보세요!</p>
-        </>
-      ) : (
-        <>
-          <CupIcon />
-          <span>안마의자를 신청한 인원이 없습니다..</span>
-          <p>홈에서 안마의자 신청을 해보세요!</p>
-        </>
-      )}
+      <Icon />
+      <span>{message}</span>
+      <p>{subMessage}</p>
     </S.NullApplicstionWrapper>
   );
 };

@@ -1,3 +1,70 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": ["node_modules/**", "**/dist/**"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "import"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "@typescript-eslint/no-empty-interface": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ]
+      }
+    ],// 일단 style의 경우 {}같은 형식으로 불러오는 hook또는 함수 사이에 있어 import에서 걸림 -> import를 아래쪽으로 내려 해결
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],// 사용하지않는 기능을 불러오는 경우 -> 삭제
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    // 수정해야할 부분들
+    "no-empty": "off",// 대부분 catch라서 off..
+    "react/prop-types": "off",// 아직 파악을 제대로 하지 못 함
+    "prefer-const": "warn", //const로 바꿔도 문제가 없는 let
+    "no-extra-boolean-cast":"warn", // 불필요한 !!사용 필요한 경우 Boolean()으로 바꾸는게 더 좋을 수도 있음
+    "no-constant-condition": "warn",// 항상 결과가 참 또는 거짓임
+    "@typescript-eslint/no-inferrable-types": "warn",//추론 가능 타입
+    "@typescript-eslint/ban-types": "warn"// Object -> NonNullable<object>
+  }
 }

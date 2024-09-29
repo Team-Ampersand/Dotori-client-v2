@@ -1,25 +1,21 @@
+import { useForm } from 'react-hook-form';
+import { mutate } from 'swr';
 import { putStuInfo } from 'api/stuInfo';
 import { XtextIcon } from 'assets/svg';
+import { StuInfoController } from 'utils/Libs/requestUrls';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import EditInput from 'components/StuInfo/molecules/EditInput';
 import EditRadioBtn from 'components/StuInfo/molecules/EditRadioBtn';
-import { useForm } from 'react-hook-form';
-import { mutate } from 'swr';
 import { StuInfoType } from 'types/components/StuInfoPage';
-import { getRole } from 'utils/Libs/getRole';
-import { StuInfoController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
-const EditModal = ({
-  isClick,
-  onClick,
-  data,
-}: {
+interface Props {
   isClick: boolean;
   onClick: () => void;
   data: StuInfoType;
-}) => {
-  const role = getRole();
+}
+
+const EditModal = ({ isClick, onClick, data }: Props) => {
   const { register, watch, setValue, reset, handleSubmit } = useForm<
     Omit<StuInfoType, 'id' | 'selfStudyStatus'>
   >({
@@ -47,7 +43,7 @@ const EditModal = ({
       watch('memberName'),
       watch('stuNum'),
       watch('gender'),
-      watch('role')
+      watch('role'),
     );
     if (!isFailure) return;
 

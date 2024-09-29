@@ -33,7 +33,4 @@ export const BtnWrapper = styled.div`
       border-radius: 16px 16px 0 0;
     }
   }
-  svg path {
-    stroke: ${Palette.NEUTRAL_N20};
-  }
 `;

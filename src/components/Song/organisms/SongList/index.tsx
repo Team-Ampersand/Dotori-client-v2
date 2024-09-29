@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
-import { getMusic } from 'api/music';
-import { getRole } from 'utils/Libs/getRole';
-import { SongController } from 'utils/Libs/requestUrls';
 import { getDate } from 'utils/getDate';
 import EmptySongBox from 'components/Song/atoms/EmptySongBox';
 import SongItem from 'components/Song/molecules/SongItem';
-import { SongListType } from 'types/components/SongPage';
+import MusicListSelect from 'components/Song/atoms/MusicListSelect';
+import { OptionType, SongListType } from 'types/components/SongPage';
+import { fetchMusic } from 'utils/fetchMusic';
+import { getRole } from 'utils/Libs/getRole';
+import { SongController } from 'utils/Libs/requestUrls';
 import * as S from './style';
 
 interface SongListProps {
@@ -16,22 +17,47 @@ interface SongListProps {
 const SongList = ({ selectedDate }: SongListProps) => {
   const role = getRole();
   const postDate = `${getDate(selectedDate)[0]}-${getDate(selectedDate)[1]}-${getDate(selectedDate)[2]}`;
-  const { data, mutate } = useSWR<SongListType>(
-    SongController.music(role),
-    () => getMusic(role, postDate),
+
+  const options = useMemo(
+    () => [
+      { value: '좋아요순', label: '좋아요순' },
+      { value: '신청순', label: '신청순' },
+    ],
+    [],
+  );
+
+  const defaultOption = useMemo(
+    () => options.find((option) => option.value === '좋아요순') || options[0],
+    [options],
+  );
+
+  const [selectedOption, setSelectedOption] =
+    useState<OptionType>(defaultOption);
+
+  const swrKey = SongController.music(role);
+
+  const { data, mutate } = useSWR<SongListType>(swrKey, () =>
+    fetchMusic(role, postDate, selectedOption.value),
   );
 
   useEffect(() => {
     mutate();
-  }, [selectedDate]);
+  }, [selectedDate, selectedOption, mutate]);
 
   return (
     <S.Layer>
       <S.ListHeader>
-        <h3>신청음악</h3>
-        <p>
-          <span>{data?.content?.length ?? 0}</span> 개
-        </p>
+        <S.MusicDataHeader>
+          <h3>신청음악</h3>
+          <p>
+            <span>{data?.content?.length ?? 0}</span> 개
+          </p>
+        </S.MusicDataHeader>
+        <MusicListSelect
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          options={options}
+        />
       </S.ListHeader>
       <S.ListContainer>
         {data && data.content?.length > 0 ? (

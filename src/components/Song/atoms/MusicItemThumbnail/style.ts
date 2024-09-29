@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Palette } from "styles/globals";
+import styled from '@emotion/styled';
+import { Palette } from 'styles/globals';
 
 export const ImgBox = styled.div`
   position: relative;
@@ -16,5 +16,16 @@ export const ImgBox = styled.div`
 
   span {
     min-height: 72px;
+  }
+`;
+
+export const HeartContainer = styled.div`
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+
+  @media (min-width: 420px) {
+    display: none;
   }
 `;

@@ -24,7 +24,7 @@ export const Title = styled.h4`
 
 export const Info = styled.div`
   display: none;
-  font-size: 1em;
+  font-size: 0.75em;
   color: ${Palette.NEUTRAL_N20};
 
   @media (max-width: 800px) {

@@ -20,7 +20,11 @@ const MassageTable = () => {
           <MassageList />
         </S.ListWrapper>
       ) : (
-        <NullApplicstionItem Icon={CupIcon} message="" subMessage="" />
+        <NullApplicstionItem 
+          Icon={CupIcon} 
+          message="안마의자를 신청한 인원이 없습니다.." 
+          subMessage="홈에서 안마의자 신청을 해보세요!" 
+        />
       )}
     </S.TableWrapper>
   );

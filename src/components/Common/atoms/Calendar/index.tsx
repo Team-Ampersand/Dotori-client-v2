@@ -25,7 +25,12 @@ const CalendarBox = ({
       )}
       <Calendar
         value={selectedDate}
+        activeStartDate={selectedDate}
         onChange={(value) => {
+          if (!(value instanceof Date)) return;
+          setSelectedDate?.(value);
+        }}
+        onActiveStartDateChange={({value}) => {
           if (!(value instanceof Date)) return;
           setSelectedDate?.(value);
         }}

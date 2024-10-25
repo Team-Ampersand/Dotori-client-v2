@@ -32,7 +32,7 @@ jobs:
         webhook: ${{ secrets.WEBHOOK_CI }}
         title: "🎉 Dotori Client CI 🐿"
         description: "CI success"
-        content: "<@${{ secrets.ID1 }}> <@${{ secrets.ID2 }}> <@${{ secrets.ID3 }}> <@${{ secrets.ID4 }}>\n확인부탁드려용~"
+        content: "<@${{ secrets.ID1 }}> <@${{ secrets.ID2 }}>\n확인부탁드려용~"
         username: DOTORI V2 CI bot
         url: "https://github.com/Team-Ampersand/Dotori-client-v2"
         color: 4CAF50

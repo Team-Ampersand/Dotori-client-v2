@@ -1,9 +1,7 @@
-import * as S from './style';
 import { ModalOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
 import ModalHeader from 'components/Common/atoms/ModalHeader';
 import { XmarkIcon, CalendarIcon, PlusIcon } from 'assets/svg';
 import { useState } from 'react';
-import PenaltyRecordMenuModal from '../PenaltyRecordMenuModal';
 import { useRecoilState } from 'recoil';
 import {
   calendarModalState,
@@ -18,8 +16,14 @@ import { toast } from 'react-toastify';
 import { returnPenaltyValuesKorean } from 'assets/data/PenaltyValuesData';
 import { mutate } from 'swr';
 import { penaltyController } from 'utils/Libs/requestUrls';
-import CalendarBox from 'components/Common/atoms/Calendar';
 import { getDate } from 'utils/getDate';
+import dynamic from 'next/dynamic';
+import PenaltyRecordMenuModal from '../PenaltyRecordMenuModal';
+import * as S from './style';
+
+const Calendar = dynamic(() => import('components/Common/atoms/Calendar'), {
+  ssr: false,
+});
 
 const PenaltyRecordModal = () => {
   const role = getRole();
@@ -27,7 +31,7 @@ const PenaltyRecordModal = () => {
   const [penaltySelect, setPenaltySelect] = useRecoilState(penaltySelected);
   const [penaltyRecordInfoModal, setPenaltyRecordInfoModal] = useState(false);
   const [penaltyRecordModal, setPenaltyRecordModal] = useRecoilState(
-    penaltyRecordModalState
+    penaltyRecordModalState,
   );
   const [date] = useRecoilState(selectedDate);
   const [calendarModal, setCalenderModal] = useRecoilState(calendarModalState);
@@ -37,7 +41,7 @@ const PenaltyRecordModal = () => {
   const handleDelete = (
     state: string[],
     setState: (state: string[]) => void,
-    select: string
+    select: string,
   ) => {
     setState([...state.filter((i) => i !== select)]);
   };
@@ -51,7 +55,7 @@ const PenaltyRecordModal = () => {
       role,
       penaltyStu.map((i) => i.stuNum),
       penaltySelect,
-      `${year}-${month}-${day}`
+      `${year}-${month}-${day}`,
     ).then(() => {
       setPenaltyRecordModal(false);
       setPenaltySelect([]);
@@ -88,7 +92,7 @@ const PenaltyRecordModal = () => {
                       setCalenderModal(false);
                     }}
                   >
-                    <CalendarBox setModal={setCalenderModal} />
+                    <Calendar setModal={setCalenderModal} />
                   </ModalOverayWrapper>
                 )}
               </>

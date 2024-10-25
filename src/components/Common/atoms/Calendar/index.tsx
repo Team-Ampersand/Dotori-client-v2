@@ -30,7 +30,7 @@ const CalendarBox = ({
           if (!(value instanceof Date)) return;
           setSelectedDate?.(value);
         }}
-        onActiveStartDateChange={({value}) => {
+        onActiveStartDateChange={({ value }) => {
           if (!(value instanceof Date)) return;
           setSelectedDate?.(value);
         }}

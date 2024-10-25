@@ -1,6 +1,10 @@
-import CalendarBox from 'components/Common/atoms/Calendar';
 import SongForm from 'components/Song/molecules/SongForm';
+import dynamic from 'next/dynamic';
 import * as S from './style';
+
+const Calendar = dynamic(() => import('components/Common/atoms/Calendar'), {
+  ssr: false,
+});
 
 interface SongRightLayerProps {
   selectedDate: Date;
@@ -16,10 +20,7 @@ const SongRightLayer = ({
   return (
     <S.Layer>
       <SongForm selectedDate={selectedDate} setNoticeModal={setNoticeModal} />
-      <CalendarBox
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-      />
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
     </S.Layer>
   );
 };

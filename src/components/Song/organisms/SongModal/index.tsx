@@ -5,15 +5,18 @@ import {
   filterModal,
 } from 'recoilAtoms/recoilAtomContainer';
 import { ResponseOverayWrapper } from 'components/Common/atoms/Wrappers/ModalOverayWrapper/style';
-
-import CalendarBox from 'components/Common/atoms/Calendar';
 import SongForm from 'components/Song/molecules/SongForm';
+import dynamic from 'next/dynamic';
 
 type SongModalProps = {
   selectedDate: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
   setNoticeModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+const Calendar = dynamic(() => import('components/Common/atoms/Calendar'), {
+  ssr: false,
+});
 
 const SongModal = ({
   selectedDate,
@@ -39,7 +42,7 @@ const SongModal = ({
       <div onClick={(e) => e.stopPropagation()}>
         {modal &&
           (calendarModal ? (
-            <CalendarBox
+            <Calendar
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
             />
